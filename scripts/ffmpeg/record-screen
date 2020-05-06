@@ -1,0 +1,11 @@
+#!/bin/sh
+
+[ -z "$1" ] \
+	&& echo "${0##*/}: must specify output file" && exit 1
+
+ffmpeg \
+	-f x11grab \
+	-s "$(xdpyinfo | grep -m 1 dimensions | grep -om 1 '[0-9]\{1,4\}x[0-9]\{1,4\}' | head -n1)" \
+	-i "$DISPLAY" \
+	-c:v libx264 \
+	"$1"

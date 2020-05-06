@@ -1,0 +1,10 @@
+#!/bin/sh
+
+pass="$(printf "SETPROMPT Password:\nGETPIN\n" | pinentry-dmenu)"
+
+if echo "$pass" | grep -m 1 'ERR' >/dev/null
+then
+	exit 1
+fi
+
+echo "$pass" | grep '^D' | sed 's/^D //'

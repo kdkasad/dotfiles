@@ -1,0 +1,6 @@
+#!/bin/sh
+
+tar -cJf ~/backups/code.txz ~/code
+tar -cJf ~/backups/documents.txz ~/documents
+
+notify-send -a "backup helper" "finished creating backups:" "~/code\n~/documents"
