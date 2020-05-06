@@ -1,0 +1,13 @@
+vimrc		~/.config/nvim/init.vim
+dwmrc		~/.config/dwm/dwmrc
+xinitrc		~/.xinitrc
+xresources	~/.config/xresources
+muttrc		~/.config/mutt/muttrc
+picom		~/.config/picom/picom.conf
+fontconfig	~/.config/fontconfig/fonts.conf
+bashrc		~/.config/bash/bashrc
+profile		~/.profile
+env			~/.config/env
+dunstrc		~/.config/dunst/dunstrc
+keymap		~/.config/keymap
+aliases		~/.config/aliases

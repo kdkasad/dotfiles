@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# Use dmenu to choose a unicode character from ~/.local/share/unicode.txt and copy it
+grep -v '#' ~/.local/share/unicode.txt | dmenu -i -l 20 | grep -o '^.' | xclip -r -i -selection clipboard
+
+# If nothing was selected, exit
+[ ! "$(xclip -o -selection clipboard)" ] && exit 1
+
+# If dunst is running, send a notification
+pgrep -x dunst >/dev/null && notify-send -a 'Unicode Chooser' "$(xclip -r -o -selection clipboard) copied to clipboard"

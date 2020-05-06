@@ -1,0 +1,3 @@
+#!/bin/sh
+
+man -Tpdf $@ | zathura -

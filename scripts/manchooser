@@ -1,0 +1,6 @@
+#!/bin/sh
+
+[ "$1" = "-p" ] && PDF=1
+
+man -k . | dmenu -i -l 30 | awk '{print $2 $1}' | tr -d '(' | tr ')' ' ' |
+	([ "$PDF" = 1 ] && xargs manpdf || xargs -r st -e man)

@@ -1,0 +1,92 @@
+#!/bin/sh
+
+alias ll='ls -lh'
+alias la='ls -A'
+alias lla='ls -lAh'
+alias l='ls -CF'
+
+alias rm='rm -Iv'
+alias cp='cp -iv'
+alias mv='mv -iv'
+alias ln='ln -iv'
+
+# Directory creation shortcuts
+alias mkd='mkdir -pv'
+mkcd() {
+	mkdir -pv "$@"
+	cd "$1" || exit 1
+}
+
+# Make sl cancellable
+alias sl='sl -e'
+
+# Make & install suckless utilities
+alias suckmake='make clean && make && sudo make install ; make clean'
+
+# Create makefile
+alias genmk='cp ~/.config/templates/config.mk ~/.config/templates/Makefile -t ./ && vim config.mk && vim Makefile'
+
+# Text editor
+alias v="$EDITOR"
+alias nv='v'
+alias sv='sudo -e'
+alias svim='sudo -e'
+
+# Fuzzy search function
+se() {
+	find ~/* ~/.scripts ~/.config ~/.local/src -type f 2>/dev/null | fzf --reverse --height=40% -i | xargs -r -d '\n' $EDITOR
+}
+sd() {
+	destdir="$(find ./* ~/* ~/.scripts ~/.config ~/.local/src -type d 2>/dev/null | fzf --reverse --height=40% -i)"
+	[ $? -ne 0 ] && return 1
+	cd "$destdir" \
+	&& ls && history -s cd "$destdir"
+}
+ser() {
+	exe="$(find ~ -type f -perm -u=x 2>/dev/null | fzf --reverse --height=40% -i)"
+	history -s $exe
+	$exe
+}
+
+# Video search/play
+vidse() {
+	(find ~/videos -type f 2>/dev/null | fzf --reverse --height=40% -i | xargs -r -d '\n' -n 1 setsid -f mpv) \
+	&& exit
+}
+
+# Transmission BitTorrent client
+alias trc='transmission-remote-cli'
+alias trd='transmission-daemon'
+
+# Arduino CLI
+alias acli='arduino-cli'
+
+# Disable unwanted features in some programs:
+alias wget='wget --hsts-file=~/.local/share/wget_hsts'
+
+# Add an "alert" alias for long running commands.  Use like so:
+#   sleep 10; alert
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+# Shred and remove in one command
+secrm() {
+	shred "$@"
+	rm "$@"
+}
+
+# quickly source bashrc
+alias sorc='source ~/.config/bash/bashrc'
+
+alias scim=sc-im
+
+# Map CapsLock to Escape
+alias capsesc='setxkbmap -option caps:escape_shifted_capslock'
+
+# quickly create executable scripts
+mkscript() {
+	touch "$@"
+	chmod +x "$@"
+	vim "$@"
+}
+
+alias ctime="date +'%A, %d %B %Y at %H:%M'"

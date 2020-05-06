@@ -1,0 +1,7 @@
+#!/bin/sh
+
+conf=$(sed 's/\s.*$//' ~/.config/config_files | dmenu)
+
+[ "$?" -ne 0 ] && exit 1
+
+grep "$conf" ~/.config/config_files | sed "s/^.*\s//; s|^\~|$HOME|" | xargs -r st -e $EDITOR

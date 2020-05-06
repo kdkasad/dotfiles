@@ -1,0 +1,45 @@
+.TH backlightctl 1 "23 April 2020" "backlightctl 1.0.0"
+.SH NAME
+backlightctl - backlight brightness controller
+.SH SYNOPSIS
+.B backlightctl
+{inc|dec|set}
+.I percent
+
+.B backlightctl
+get
+.SH DESCRIPTION
+.B backlightctl
+is a simple utility to control a monitor's backlight via the Intel driver's entry in the
+.I /proc
+filesystem
+.SH OPTIONS
+.TP
+.B inc
+increase the brightness by
+.B percent
+.TP
+.B dec
+decrease the brightness by
+.B percent
+.TP
+.B set
+set the brightnesss to
+.B percent
+.TP
+.B percent
+the amount to
+.BR inc / dec / set
+the brightness. Must be an integer from 
+.IR 0..100 .
+.TP
+.B get
+print the current brightness as a percent to stdout.
+does not include a '%' character.
+.SH AUTHOR
+.MT kdkasad@gmail.com
+Kian Kasad
+.ME
+.SH SEE ALSO
+.IR xbacklight (1),
+.IR xset (1)

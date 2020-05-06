@@ -1,0 +1,11 @@
+#!/bin/sh
+
+case $BUTTON in
+	1) notify-send -a 'acpi' 'battery info' "$(acpi -b)" ;;
+esac
+
+printf '🔋'
+cat /sys/class/power_supply/BAT0/capacity | tr -d '\n'
+printf '%%'
+
+cat /sys/class/power_supply/BAT0/status | sed 's/discharging//i; s/charging/ 🔌/i'

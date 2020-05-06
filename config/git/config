@@ -1,0 +1,11 @@
+[user]
+	name = Kian Kasad
+	email = kdkasad@gmail.com
+	signingkey = 50FAB7A7AEAB6392
+[commit]
+	gpgsign = true
+[core]
+	editor = nvim
+[color]
+	status = auto
+	ui = auto

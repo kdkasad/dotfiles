@@ -1,0 +1,5 @@
+#!/bin/sh
+
+PID=$1
+
+echo "ibase=16; `wmctrl -lp | grep -i $PID | cut -c 3-11 | tr a-z A-Z`" | bc

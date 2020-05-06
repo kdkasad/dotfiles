@@ -1,0 +1,12 @@
+#!/bin/sh
+
+case $BUTTON in
+	1) setsid $TERMINAL -e sh -c "sudo pacman -Syu && notify-send -a 'pacman' '📦 finished upgrading packages' || notify-send -a 'pacman' '📦 error upgrading packages' ; pause" ;;
+	3) notify-send -a 'pacman' "📦 $(pacman -Qu | grep -Fcv "[ignored]") out-of-date packages" "$(pacman -Qu | sed 's/^/<b>/; s/ /<\/b> <small>/; s/$/<\/small>/')" ;;
+esac
+
+pacman -Qu >/dev/null \
+	|| exit 0
+
+printf '📦'
+pacman -Qu | grep -Fcv "[ignored]"

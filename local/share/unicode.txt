@@ -1,0 +1,94 @@
+è - E with grave (lowercase)
+é - E with acute (lowercase)
+ê - E with circumflex (lowercase)
+à - A with grave (lowercase)
+á - A with acute (lowercase)
+â - A with circumflex (lowercase)
+ù - U with grave (lowercase)
+ô - O with circumflex (lowercase)
+í - I with acute (lowercase)
+î - I with circumflex (lowercase)
+À - A with grave (capital)
+Á - A with acute (capital)
+Â - A with circumflex (capital)
+È - E with grave (capital)
+É - E with acute (capital)
+Ê - E with circumflex (capital)
+Í - I with acute (capital)
+Ì - I with grave (capital)
+Î - I with circumflex (capital)
+Ò - O with grave (capital)
+Ó - O with acute (capital)
+Ô - O with circumflex (capital)
+¡ - Inverted Exclamation Mark
+¢ - Cent sign
+£ - Pound sign
+¤ - Currency sign
+¥ - Yen sign
+¦ - Broken bar
+§ - Section sign
+¨ - Diaeresis
+© - Copyright sign
+™ - Trademark sign
+ª - Feminine Ordinal Indicator
+« - Left-pointing double angle quotation mark
+¬ - Not sign
+- - Soft hyphen
+® - Registered sign
+¯ - macron
+° - Degree symbol
+± - Plus-minus sign
+² - Superscript two
+³ - Superscript three
+´ - Acute accent
+µ - Micro sign
+¶ - Pilcrow sign
+· - Middle dot
+¸ - Cedilla
+¹ - Superscript one
+º - Masculine ordinal indicator
+» - Right-pointing double angle quotation mark
+¼ - Vulgar fraction one quarter
+½ - Vulgar fraction one half
+¾ - Vulgar fraction three quarters
+¿ - Inverted Question Mark
+Ã - A with tilde (capital)
+Ä - A with diaeresis (capital)
+Å - A with ring above (capital)
+Æ - AE combined (capital)
+Ç - C with cedilla (capital)
+Ë - E with diaeresis (capital)
+Ï - I with diaeresis (capital)
+Ð - Eth (capital)
+Ñ - N with tilde (capital)
+Õ - O with tilde (capital)
+Ö - O with diaeresis (capital)
+× - Multiplication sign
+Ø - O with stroke (capital)
+Ù - U with grave (capital)
+Ú - U with acute (capital)
+Û - U with circumflex (capital)
+Ü - U with diaeresis (capital)
+Ý - Y with acute (capital)
+Þ - Thorn (capital)
+ß - sharp S (lowercase)
+ã - A with tilde (lowercase)
+ä - A with diaeresis (lowercase)
+å - A with ring above (lowercase)
+æ - Æ (lowercase)
+ç - C with cedilla (lowercase)
+ë - E with diaeresis (lowercase)
+ì - I with grave (lowercase)
+ï - I with diaeresis (lowercase)
+ð - Eth (lowercase)
+ñ - N with tilde (lowercase)
+ò - O with grave (lowercase)
+ó - O with acute (lowercase)
+õ - O with tilde (lowercase)
+ö - O with diaeresis (lowercase)
+ø - O with stroke (lowercase)
+÷ - Division sign
+ü - U with diaeresis (lowercase)
+ý - Y with acute (lowercase)
+þ - Thorn (lowercase)
+ÿ - Y with diaeresis (lowercase)

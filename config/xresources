@@ -1,0 +1,68 @@
+! vim: ft=cpp
+
+#define nord0 #2E3440
+#define nord1 #3B4252
+#define nord2 #434C5E
+#define nord3 #4C566A
+#define nord4 #D8DEE9
+#define nord5 #E5E9F0
+#define nord6 #ECEFF4
+#define nord7 #8FBCBB
+#define nord8 #88C0D0
+#define nord9 #81A1C1
+#define nord10 #5E81AC
+#define nord11 #BF616A
+#define nord12 #D08770
+#define nord13 #EBCB8B
+#define nord14 #A3BE8C
+#define nord15 #B48EAD
+
+#define pink_dark	#473d4b
+#define pink_gray2	#55495B
+#define pink_gray	#908EA8
+#define pink_light	#FFFFFF
+#define pink_red	#F06D72
+#define pink_pink	#F9C1C4
+#define pink_green	#A2EEA2
+#define pink_yellow	#FFED9B
+#define pink_orange #F8A983
+#define pink_blue	#88A9CE
+#define pink_cyan	#99D7F8
+#define pink_purple	#C2B1D5
+
+/* dwm */
+dwm.normbordercolor: pink_gray
+dwm.normbgcolor: pink_dark
+dwm.normfgcolor: pink_light
+dwm.selbordercolor: pink_pink
+dwm.selbgcolor: pink_pink
+dwm.selfgcolor: pink_dark
+
+/* dmenu */
+dmenu.background: pink_dark
+dmenu.foreground: pink_light
+dmenu.selbackground: pink_pink
+dmenu.selforeground: pink_dark
+
+/* st */
+st.font:	terminal:autohint=true:antialias=true:size=11
+st.foreground:   pink_light
+st.background:   pink_dark
+st.cursorColor:  pink_light
+st.color0: pink_dark
+st.color1: pink_red
+st.color2: pink_green
+st.color3: pink_yellow
+st.color4: pink_blue
+st.color5: pink_purple
+st.color6: pink_cyan
+st.color7: pink_light
+st.color8: pink_gray
+st.color9: pink_pink
+st.color10: pink_green
+st.color11: pink_orange
+st.color12: pink_blue
+st.color13: pink_purple
+st.color14: pink_cyan
+st.color15: pink_gray2
+st.tabspaces: 4

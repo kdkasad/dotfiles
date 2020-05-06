@@ -1,0 +1,51 @@
+#!/bin/sh
+
+export TERMINAL='st'
+export EDITOR='nvim'
+export BROWSER='brave'
+export EMAIL='kdkasad@gmail.com'
+
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_DATA_HOME="$HOME/.local/share"
+
+# Move xauthority out of home directory
+export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
+# Disable less history
+export LESSHISTFILE="-"
+# directory for GnuPG data
+export GNUPGHOME="$XDG_DATA_HOME/gnupg"
+# ssh-agent socket location
+export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
+# Java doesn't understand tiling wm's
+export _JAVA_AWT_WM_NONREPARENTING=1
+# Move cargo directory out of home
+export CARGO_HOME="${XDG_DATA_HOME}/cargo"
+
+if [ -d "$HOME/.local/opt/gcc-arm/gcc-arm-none-eabi-9-2019-q4-major/bin" ] ; then
+	PATH="$HOME/.local/opt/gcc-arm/gcc-arm-none-eabi-9-2019-q4-major/bin:$PATH"
+fi
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
+
+# set PATH so it includes user's scripts directory if it exists
+if [ -d "$HOME/.scripts" ] ; then
+	for dir in $(find -L "$HOME/.scripts" -not -path "$HOME/.scripts/statusbar*" -not -path "$HOME/.scripts/cron-jobs*" -type d); do
+		PATH="$dir:$PATH"
+	done
+fi
+
+# Chose sudo askpass program
+if [ -x /usr/local/bin/dmenu-askpass ]; then
+	export SUDO_ASKPASS=/usr/local/bin/dmenu-askpass
+elif [ -x /usr/bin/X11/ssh-askpass ]; then
+	export SUDO_ASKPASS=/usr/bin/X11/ssh-askpass
+fi

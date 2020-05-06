@@ -1,0 +1,11 @@
+#!/bin/sh
+
+[ "$(rfkill list wlan | grep 'Soft blocked: ' | sed 's/Soft blocked:\s*//; s/no/1/; s/yes/0/')" -eq '1' ] &&
+	(sudo -A rfkill block wlan &&
+		notify-send -a 'RF-Kill' 'WiFi disabled' ||
+		notify-send -a 'RF-Kill' 'Error disabling WiFi') ||
+	(sudo -A rfkill unblock wlan &&
+		notify-send -a 'RF-Kill' 'WiFi enabled' ||
+		notify-send -a 'RF-Kill' 'Error enabling WiFi')
+sudo -A rfkill unblock bluetooth
+updatestatusbar 3

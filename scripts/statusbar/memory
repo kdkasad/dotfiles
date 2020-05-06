@@ -1,0 +1,8 @@
+#!/bin/sh
+
+case $BUTTON in
+	1) setsid $TERMINAL -e htop -s PERCENT_MEM ;;
+esac
+
+printf '⚙'
+free | awk '/^Mem:/ {printf "%.0f%%", (100 * $3 / $2)}'

@@ -1,0 +1,16 @@
+#!/bin/sh
+
+case $BUTTON in
+	1) volmute -n ;;
+	2) volup -n ;;
+	3) voldown -n ;;
+esac >/dev/null
+
+if type pactl >/dev/null 2>&1; then # PulseAudio
+	if pactl list sinks | grep 'Mute: yes' >/dev/null; then
+		printf '🔇'
+		exit
+	fi
+	printf '🔊'
+	pactl list sinks | grep -m 1 '^\s*Volume:' | grep -o '[0-9]\{1,3\}%'
+fi

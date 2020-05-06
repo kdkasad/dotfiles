@@ -1,0 +1,14 @@
+#!/bin/sh
+
+case $BUTTON in
+	1) setsid $TERMINAL -e sh -c "networkctl ; pause" ;;
+	3) setsid $TERMINAL -e sh -c "networkctl status" ;;
+esac
+
+if ! networkctl | grep -m 1 routable >/dev/null; then
+	printf '✈'
+	exit
+fi
+
+printf '📡'
+networkctl status | sed -n '/Address:/,/Gateway:/p' | grep -v Gateway | grep -o '\([0-9]\{1,3\}\.\)\{3\}[0-9]\{1,3\}' |  tr '\n' % | sed 's/%/, /g; s/, $//'

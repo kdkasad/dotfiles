@@ -1,0 +1,36 @@
+#!/bin/sh
+
+CLOCK_ICON_0=🕛
+CLOCK_ICON_1=🕧
+CLOCK_ICON_2=🕐
+CLOCK_ICON_3=🕜
+CLOCK_ICON_4=🕑
+CLOCK_ICON_5=🕝
+CLOCK_ICON_6=🕒
+CLOCK_ICON_7=🕞
+CLOCK_ICON_8=🕓
+CLOCK_ICON_9=🕟
+CLOCK_ICON_10=🕔
+CLOCK_ICON_11=🕠
+CLOCK_ICON_12=🕕
+CLOCK_ICON_13=🕡
+CLOCK_ICON_14=🕖
+CLOCK_ICON_15=🕢
+CLOCK_ICON_16=🕗
+CLOCK_ICON_17=🕣
+CLOCK_ICON_18=🕘
+CLOCK_ICON_19=🕤
+CLOCK_ICON_20=🕙
+CLOCK_ICON_21=🕥
+CLOCK_ICON_22=🕚
+CLOCK_ICON_23=🕦
+
+hour=$(date +"%H")
+min=$(date +"%M")
+
+index=$(expr "$hour" % 12 '*' 2)
+[ "$min" -gt 30 ] && index=$(expr "$index" + 1)
+
+clockicon="$(eval echo \$CLOCK_ICON_$index)"
+
+date +"$clockicon%H:%M 📅%A, %d %B %Y"

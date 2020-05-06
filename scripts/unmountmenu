@@ -1,0 +1,26 @@
+#!/bin/sh
+
+available=$(lsblk -rnpo 'NAME,SIZE,MOUNTPOINT' | awk '$3!=""&&$3!="/"&&$3!="/boot"&&$3!="/home"&&$3!="/back"&&$3!="[SWAP]"{printf "%s (%s)\n",$1,$2}')
+if [ ! $available ]; then 
+	notify-send -a "Device unmount menu" "No devices available" "There are no devices which can be safely unmounted" & exit 2
+fi
+
+device=$(echo -n "$available" | dmenu -i -l 10 -p 'Choose device:' | awk '{print $1}')
+[ -z "$device" ] && exit 1
+if [ ! -b $device ]; then
+	notify-send -a "Device mount menu" "Error mounting device" "The specified device does not exist:\n$device" &
+	exit 2
+fi
+
+mountpoint=$(lsblk -rnpo 'NAME,MOUNTPOINT' | awk "\$1==\"$device\"{print \$2}" | sed "s|^$HOME|~|")
+deletemp=$(printf "Yes\\nNo" | dmenu -p "Delete mountpoint? ($mountpoint)" | sed 's/Yes\|yes\|Y\|y/1/; s/No\|no\|N\|n/0/')
+
+tmpfile=$(tempfile)
+(sudo -A umount $device 2>$tmpfile) &&
+	(rm -f $tmpfile ; pgrep -x dunst >/dev/null && notify-send -a "Device unmount menu" "Device was unmounted" "$device was successfully unmounted" &) ||
+	((pgrep -x dunst >/dev/null && notify-send -a "Device unmount menu" "Error unmounting device" "$device could not be unmounted.\nOpening error output...") ; $TERMINAL -e less $tmpfile & cpid=$! ; (wait $cpid && rm -f $tmpfile) &)
+
+[ $deletemp -eq 1 ] &&
+	(mountpoint=$(echo -n $mountpoint | sed "s|^~|$HOME|"); rm -rf $mountpoint || sudo -A rm -rf $mountpoint ||
+		(notify-send -a "Device unmount menu" "Could not delete mountpoint" "The directory $(echo -n $mountpoint | sed "s|^$HOME|~|") could not be deleted" & exit 3)
+	)

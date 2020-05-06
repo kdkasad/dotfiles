@@ -1,0 +1,14 @@
+[Default Applications]
+application/x-bittorrent=torrent.desktop;
+x-scheme-handler/magnet=torrent.desktop;
+inode/directory=pcmanfm.desktop
+application/x-compressed-tar=userapp-st -e tar -xf-XDA8I0.desktop
+x-scheme-handler/mailto=brave-browser.desktop
+text/plain=userapp-st -e nvim-U147I0.desktop
+x-scheme-handler/jetbrains=jetbrains-toolbox.desktop
+
+[Removed Associations]
+
+[Added Associations]
+application/x-compressed-tar=userapp-st -e tar -xf-XDA8I0.desktop;userapp-tar -xf-U1OXI0.desktop;
+text/plain=userapp-st -e nvim-U147I0.desktop;nvim.desktop;

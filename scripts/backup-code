@@ -1,0 +1,5 @@
+#!/bin/sh
+
+pushd ~/code
+tar -cJf ~/backups/code.tar.xz .
+popd

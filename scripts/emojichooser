@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# Use dmenu to choose an emoji from ~/.local/share/emoji.txt and copy it
+grep -v '#' ~/.local/share/emoji.txt | dmenu -i -l 20 | grep -o '^.' | xclip -i -r -selection clipboard
+
+# If nothing was copied (i.e. the user exited), exit
+[ ! "$(xclip -o -selection clipboard)" ] && exit 1
+
+# If dunst is running, send a notification
+pgrep -x dunst >/dev/null && notify-send -a 'Emoji Chooser' "$(xclip -r -o -selection clipboard) copied to clipboard"

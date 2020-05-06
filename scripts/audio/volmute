@@ -1,0 +1,12 @@
+#!/bin/sh
+
+if command -v pactl >/dev/null 2>&1; then # PulseAudio
+	# Toggle mute
+	pactl set-sink-mute 0 toggle
+else # ALSA
+	# Toggle mute
+	amixer set Master toggle
+fi
+
+# Update statusbar
+pkill -RTMIN+1 dwmblocks
