@@ -21,7 +21,7 @@ mkcd() {
 alias sl='sl -e'
 
 # Make & install suckless utilities
-alias suckmake='make clean && make && sudo make install ; make clean'
+alias suckmake='make clean && make install ; make clean'
 
 # Create makefile
 alias genmk='cp ~/.config/templates/config.mk ~/.config/templates/Makefile -t ./ && vim config.mk && vim Makefile'
@@ -93,3 +93,9 @@ alias ctime="date +'%A, %d %B %Y at %H:%M'"
 
 # abook file location defaults
 alias abook='abook -C ~/.config/abook/abookrc --datafile ~/.local/share/addressbook'
+
+# present using SENT
+pres() {
+	setsid sh -c "sent \"$@\" ; st" &
+	exit
+}

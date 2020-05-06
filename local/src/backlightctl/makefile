@@ -1,3 +1,6 @@
+PREFIX = ~/.local
+MANPREFIX = $(PREFIX)/share/man
+
 COMPILER_ARGS=
 DEBUG_OPTS=-g -Wall
 RELEASE_OPTS = -O3
@@ -17,11 +20,11 @@ clean:
 	rm -f backlightctl
 
 install: all
-	install -m 0755 -T backlightctl /usr/local/bin/backlightctl
-	install -m 0644 -T backlightctl.1 /usr/local/share/man/man1/backlightctl.1
+	install -m 0755 -T backlightctl $(PREFIX)/bin/backlightctl
+	install -m 0644 -T backlightctl.1 $(MANPREFIX)/man1/backlightctl.1
 
 uninstall:
-	rm -f /usr/local/backlightctl /usr/local/share/man/man1/backlightctl.1
+	rm -f /usr/local/backlightctl $(PREFIX)/man/man1/backlightctl.1
 
 backlightctl: backlightctl.c
 	${CC} $(COMPILER_ARGS) $($(CONFIG)_OPTS) -o $@ $^ $(LIBS)

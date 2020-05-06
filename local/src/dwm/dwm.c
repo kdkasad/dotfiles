@@ -1624,7 +1624,7 @@ restack(Monitor *m)
 void
 restart(const Arg *arg) {
 	cleanup();
-	execl("/usr/local/bin/dwm", "dwm", NULL);
+	execlp("dwm", "dwm", NULL);
 }
 
 void

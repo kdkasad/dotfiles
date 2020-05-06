@@ -19,7 +19,9 @@ export GNUPGHOME="$XDG_DATA_HOME/gnupg"
 export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
 # set email variables
 export MAILDIR=/var/spool/mail/kian
-export MSMTP_QUEUEDIR="$XDG_RUNTIME_DIR/msmtp.queue"
+export MSMTP_QUEUEDIR="$XDG_DATA_HOME/msmtp.queue"
+# sudo adkpass program
+export SUDO_ASKPASS="$HOME/.scripts/dmenupass"
 
 # Java doesn't understand tiling wm's
 export _JAVA_AWT_WM_NONREPARENTING=1
@@ -45,11 +47,4 @@ if [ -d "$HOME/.scripts" ] ; then
 	for dir in $(find -L "$HOME/.scripts" -not -path "$HOME/.scripts/statusbar*" -not -path "$HOME/.scripts/cron-jobs*" -type d); do
 		PATH="$dir:$PATH"
 	done
-fi
-
-# Chose sudo askpass program
-if [ -x /usr/local/bin/dmenu-askpass ]; then
-	export SUDO_ASKPASS=/usr/local/bin/dmenu-askpass
-elif [ -x /usr/bin/X11/ssh-askpass ]; then
-	export SUDO_ASKPASS=/usr/bin/X11/ssh-askpass
 fi
