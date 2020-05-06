@@ -1,12 +1,13 @@
 #!/bin/sh
 
-if ! grep Discharging /sys/class/power_supply/BAT0/status >/dev/null; then
-	exit 0
-fi
-
 warning_start=20
 warning_inc=5
-cache_file="${XDG_CACHE_HOME:-~/.cache}/checkbattery-last"
+cache_file="${XDG_RUNTIME_HOME:-/run/user/$(id -u)}/checkbattery-last"
+
+if ! grep Discharging /sys/class/power_supply/BAT0/status >/dev/null; then
+	rm -f $cache_file
+	exit 0
+fi
 
 [ ! -f $cache_file ] && echo $((warning_start + warning_inc)) > $cache_file
 
