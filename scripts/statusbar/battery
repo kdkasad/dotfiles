@@ -8,4 +8,4 @@ printf '🔋'
 cat /sys/class/power_supply/BAT0/capacity | tr -d '\n'
 printf '%%'
 
-cat /sys/class/power_supply/BAT0/status | sed 's/discharging//i; s/charging/ 🔌/i'
+cat /sys/class/power_supply/BAT0/status | sed 's/discharging//i; s/full\|charging/ 🔌/i'
