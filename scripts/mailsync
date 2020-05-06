@@ -4,16 +4,18 @@
 logfile="${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/mailsync.log"
 exec 2>"$logfile"
 
-notify-send -a mailsync '📬 syncing mail...'
+HOME=${HOME:-/home/$(id -un)}
+
+/usr/bin/notify-send -a mailsync '📬 syncing mail...'
 
 # recieve new mail with mbsync
 /usr/bin/mbsync -a \
-	|| ${err:=1}
+	|| ${err:='1'}
 
 # send outgoing mail using msmtpq
 /usr/local/bin/msmtp-runqueue.sh \
-	|| ${err:=1}
+	|| ${err:='1'}
 
 [ ${err:=0} -ne 1 ] \
-	&& notify-send -a 'mailsync' '📬 done syncing mail' "$(find ${MAILDIR:-/var/spool/mail/$(id -un)}/*/INBOX/new -type f | wc -l) unread emails" \
-	|| notify-send -a 'mailsync' '📪 failed to sync mail' "see <i>$logfile</i> for details"
+	&& /usr/bin/notify-send -a 'mailsync' '📬 done syncing mail' "$(find ${MAILDIR:-/var/spool/mail/$(id -un)}/*/INBOX/new -type f | wc -l) unread emails" \
+	|| /usr/bin/notify-send -a 'mailsync' '📪 failed to sync mail' "see <i>$logfile</i> for details"
