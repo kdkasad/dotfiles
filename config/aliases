@@ -90,3 +90,6 @@ mkscript() {
 }
 
 alias ctime="date +'%A, %d %B %Y at %H:%M'"
+
+# abook file location defaults
+alias abook='abook -C ~/.config/abook/abookrc --datafile ~/.local/share/addressbook'
