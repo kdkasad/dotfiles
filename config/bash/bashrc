@@ -73,8 +73,10 @@ if [ "$color_prompt" = "yes" ]; then
 				fi
 				if git rev-parse >/dev/null 2>&1; then
 					branch="$(git branch --show-current)"
-					state="$(git rev-list --left-right --count origin/$branch..$branch | grep '[0-9]*' | awk '{if($1==0&&$2>0)print " +";else if($1>0&&$2==0)print " -";else if($1==0&&$2==0);else print " ±";}')"
-					gittext=$(printf " \[\e[00m\]: \[\e[01;32m\] %s%s" "$branch" "$state")
+					state="$(git status -sb | grep -o -e 'ahead' -e 'behind' | tr -d '\n' | sed "s/behindahead/\x1b[33m ±/; s/aheadbehind/\x1b[33m±/; s/ahead/\x1b[32m+/; s/behind/\x1b[31m-/")"
+					gittext=$(printf " \[\e[00m\]: \[\e[01;35m\]%s \[\e[01;35m\]%s" "$state" "$branch")
+				else
+					gittext=""
 				fi
 				PS1="\[\033[01;34m\]\w$gittext$STATUS_TEXT \[\033[00;01m\]\$\[\033[00m\] "
 			}
@@ -88,7 +90,14 @@ if [ "$color_prompt" = "yes" ]; then
 				else
 					STATUS_TEXT='\[\033[00m\] : \[\033[01;31m\]$LCS\[\033[00m\]'
 				fi
-				PS1="\[\033[01;33m\]\u: \[\033[01;34m\]\w\[\033[00m\]$STATUS_TEXT\[\033[01;34m\] \$\[\033[00m\] "
+				if git rev-parse >/dev/null 2>&1; then
+					branch="$(git branch --show-current)"
+					state="$(git status -sb | grep -o -e 'ahead' -e 'behind' | tr -d '\n' | sed "s/behindahead/\x1b[33m ±/; s/aheadbehind/\x1b[33m±/; s/ahead/\x1b[32m+/; s/behind/\x1b[31m-/")"
+					gittext=$(printf " \[\e[00m\]: \[\e[01;35m\]%s \[\e[01;35m\]%s" "$state" "$branch")
+				else
+					gittext=""
+				fi
+				PS1="\[\033[01;33m\]\u: \[\033[01;34m\]\w\[\033[00m\]$gittext$STATUS_TEXT\[\033[01;34m\] \$\[\033[00m\] "
 			}
 			PROMPT_COMMAND=set_ps1
 			;;
@@ -101,7 +110,14 @@ if [ "$color_prompt" = "yes" ]; then
 					else
 						STATUS_TEXT='\[\033[00m\] : \[\033[01;31m\]$LCS\[\033[00m\]'
 					fi
-					PS1="\[\033[01;33m\]ROOT: \[\033[01;34m\]\w\[\033[00m\]$STATUS_TEXT\[\033[01m\] $ "
+					if git rev-parse >/dev/null 2>&1; then
+						branch="$(git branch --show-current)"
+						state="$(git status -sb | grep -o -e 'ahead' -e 'behind' | tr -d '\n' | sed "s/behindahead/\x1b[33m ±/; s/aheadbehind/\x1b[33m±/; s/ahead/\x1b[32m+/; s/behind/\x1b[31m-/")"
+						gittext=$(printf " \[\e[00m\]: \[\e[01;35m\]%s \[\e[01;35m\]%s" "$state" "$branch")
+					else
+						gittext=""
+					fi
+					PS1="\[\033[01;33m\]ROOT: \[\033[01;34m\]\w\[\033[00m\]$gittext$STATUS_TEXT\[\033[00;01m\] #\[\033[00m\] "
 				}
 				PROMPT_COMMAND=set_ps1
 	fi
