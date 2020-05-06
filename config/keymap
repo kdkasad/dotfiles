@@ -126,3 +126,7 @@
 # config file editor
 "confedit"
 	Mod4 + o
+
+# mutt email client
+"st -e mutt"
+	Mod4 + Shift + M
