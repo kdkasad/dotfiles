@@ -17,6 +17,10 @@ export LESSHISTFILE="-"
 export GNUPGHOME="$XDG_DATA_HOME/gnupg"
 # ssh-agent socket location
 export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
+# set email variables
+export MAILDIR=/var/spool/mail/kian
+export MSMTP_QUEUEDIR="$XDG_RUNTIME_DIR/msmtp.queue"
+
 # Java doesn't understand tiling wm's
 export _JAVA_AWT_WM_NONREPARENTING=1
 # Move cargo directory out of home

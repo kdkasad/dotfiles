@@ -1,0 +1,5 @@
+#!/bin/sh
+
+[ $# -lt 1 ] && offset=0 || offset=$1
+
+pkill -RTMIN+$offset dwmblocks

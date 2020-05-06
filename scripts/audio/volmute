@@ -9,4 +9,4 @@ else # ALSA
 fi
 
 # Update statusbar
-pkill -RTMIN+1 dwmblocks
+updatestatusbar 1
