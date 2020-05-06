@@ -5,6 +5,7 @@
 static const Block blocks[] = {
 	/*Icon*/	/*Command*/		/*Update Interval*/	/*Update Signal*/
 	{ "",		BD"inet",						40,		3,		0 },
+	{ "",		BD"email",					   300,		9,		0 },
 	{ "",		BD"packages",				   600,		4,		0 },
 	{ "☀",	"backlightctl get | sed 's/$/%/'",3600,		2,		0 },
 	{ "",		BD"volume",					  3600,		1,		0 },
