@@ -5,5 +5,5 @@ compiler gcc
 set tags+=~/.local/share/systags_c
 
 " Snippets:
-iabbrev imain int main(int argc, char** argv) {<CR><++>;<CR>return 0;<CR>}<C-o>?<++>;<CR><C-o>df;
+iabbrev imain int<cr>main(int argc, char *argv[]) {<CR><++>;<CR>return 0;<CR>}<C-o>?<++>;<CR><C-o>df;
 iabbrev com /* */<Esc>2hi
