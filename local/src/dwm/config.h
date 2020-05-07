@@ -4,14 +4,15 @@
 static const char *dwmrc_path		= "~/.config/dwm/dwmrc";
 
 /* appearance */
-static const unsigned int borderpx  = 3;        /* border pixel of windows */
+static const unsigned int borderpx  = 0;        /* border pixel of windows */
 static const unsigned int gappx     = 20;        /* gaps between windows */
-static const unsigned int snap      = 12;       /* snap pixel */
+static const unsigned int snap      = 12;       /* snap to corners */
+static const unsigned int corner_radius = 8;	/* corner radius */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 0;        /* 0 means bottom bar */
 static const char *fonts[]          = {
 	"display:style=Regular:size=12",
-	"Segoe UI Emoji:size=12"
+	"Segoe UI Emoji:size=12",
 };
 
 /* colors */
