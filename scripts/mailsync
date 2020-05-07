@@ -10,11 +10,11 @@ HOME=${HOME:-/home/$(id -un)}
 
 # recieve new mail with mbsync
 /usr/bin/mbsync -a \
-	|| ${err:='1'}
+	|| : ${err:='1'}
 
 # send outgoing mail using msmtpq
 /usr/local/bin/msmtp-runqueue.sh \
-	|| ${err:='1'}
+	|| : ${err:='1'}
 
 [ ${err:=0} -ne 1 ] \
 	&& /usr/bin/notify-send -a 'mailsync' '📬 done syncing mail' "$(find ${MAILDIR:-/var/spool/mail/$(id -un)}/*/INBOX/new -type f | wc -l) unread emails" \
