@@ -1,9 +1,9 @@
 #!/bin/sh
 
 case $BUTTON in
-	1) volmute -n ;;
-	2) volup -n ;;
-	3) voldown -n ;;
+	1) volmute ;;
+	2) volup ;;
+	3) voldown ;;
 esac >/dev/null
 
 if type pactl >/dev/null 2>&1; then # PulseAudio
