@@ -21,7 +21,7 @@ mkcd() {
 alias sl='sl -e'
 
 # Make & install suckless utilities
-alias suckmake='make clean && make install ; make clean'
+alias suckmake='make clean && make install clean'
 
 # Create makefile
 alias genmk='cp ~/.config/templates/config.mk ~/.config/templates/Makefile -t ./ && vim config.mk && vim Makefile'
