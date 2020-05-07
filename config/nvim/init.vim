@@ -33,6 +33,9 @@ set secure
 " No need to be compatible with Vi
 set nocompatible
 
+" Always chdir to the working file
+set autochdir
+
 " S/R highlighing for neovim
 if has('nvim')
 	set inccommand=nosplit
@@ -41,10 +44,10 @@ endif
 " Syntax highlighting
 syntax on
 
-" Autocomplete options
+" Autocomplete/ctags options
 set omnifunc=syntaxcomplete#Complete
-set tags+=./.tags
-set tags+=./.ctags
+set tags+=./tags;/
+ autocmd BufReadPost *.c silent! !ctags -R .
 
 " Line numbers
 set number
@@ -209,9 +212,10 @@ set spelllang=en,fr
 """""""""""""""""""""""""""""
 augroup specialfiles
 
-" reload keymap
+" reload config files
 au BufWritePost ~/.config/keymap !pkill -x xbindkeys -HUP
 au BufWritePost ~/.config/picom/picom.conf !pkill -x picom && setsid picom -b
+au BufWritePost ~/.config/dunst/dunstrc !pkill -x dunst && setsid dunst
 
 " shellcheck
 au Filetype sh map <buffer> <leader>s :sp \| te shellcheck --color=always %<cr>
@@ -224,6 +228,9 @@ au Filetype sh map <buffer> <leader>vbs :vs \| te checkbashisms %<cr>
 " compile *roff documents
 au Filetype groff,nroff,troff map <buffer> <leader>c :!compiledoc %<cr>
 au Filetype groff,nroff,troff map <buffer> <leader>pdf :exe "silent !setsid zathura ".expand('%:r').".pdf"<cr>
+
+" reload xresources
+au BufWritePost ~/.config/xresources !xrdb -merge %
 
 " Email editing (mutt)
 au BufRead /tmp/{mutt,neomutt}-* setfiletype mail
@@ -273,7 +280,9 @@ nnoremap <leader>tm :sp\|terminal<cr>
 nnoremap <leader>tv :vs\|terminal<cr>
 
 " vifm.vim shortcut
-map <Leader>vf	:Vifm<CR>
+map <Leader>fm	:Vifm<CR>
+map <leader>fv	:VsplitVifm<cr>
+map <leader>fs	:SplitVifm<cr>
 
 " toggle line wrapping
 nnoremap <leader>w :set wrap!<cr>
@@ -286,7 +295,10 @@ imap <leader>dk <plug>DeadKeysToggle
 map <leader>dk <plug>DeadKeysToggle
 
 " toggle goyo
-map <leader>f :Goyo \| colo pink_forest<cr>
+map <leader>ff :Goyo \| colo pink_forest<cr>
 
 " turn of search highlighting
 nmap <leader>nh :nohlsearch<cr>
+
+" Generate ctags
+nmap <leader>ct !ctags --recurse=yes --tag-relative=yes --exclude=.git .
