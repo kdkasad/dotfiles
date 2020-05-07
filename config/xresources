@@ -31,17 +31,17 @@
 #define pink_purple	#C2B1D5
 
 /* dwm */
-dwm.normbordercolor: pink_gray
+dwm.normbordercolor: pink_dark
 dwm.normbgcolor: pink_dark
 dwm.normfgcolor: pink_light
-dwm.selbordercolor: pink_pink
-dwm.selbgcolor: pink_pink
+dwm.selbordercolor: pink_dark
+dwm.selbgcolor: pink_purple
 dwm.selfgcolor: pink_dark
 
 /* dmenu */
 dmenu.background: pink_dark
 dmenu.foreground: pink_light
-dmenu.selbackground: pink_pink
+dmenu.selbackground: pink_purple
 dmenu.selforeground: pink_dark
 
 /* st */
