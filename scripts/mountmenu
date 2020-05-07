@@ -1,18 +1,24 @@
 #!/bin/sh
 
-device=$(lsblk -rnpo 'NAME,SIZE,TYPE,MOUNTPOINT' | awk '$3=="part"&&$4==""{printf "%s (%s)",$1,$2}' | dmenu -i -l 10 -p 'Choose device' | awk '{print $1}')
+available_devices=$(lsblk -rnpo 'NAME,SIZE,TYPE,MOUNTPOINT' | awk '$3=="part"&&$4==""{printf "%s (%s)",$1,$2}')
+if [ -z "$available_devices" ]; then
+	notify-send -a 'device manager' 'no devices found'
+	exit 0
+fi
+
+device=$(echo "$available_devices" | dmenu -i -l 10 -p 'Choose device' | awk '{print $1}')
 [ -z "$device" ] && exit 1
 
 mountpoint=$(find /mnt /media /mount ~ -maxdepth 5 -not -path '*/\.*' -type d -empty 2>/dev/null | sed "s|^$HOME|~|" | dmenu -i -l 30 -p 'Choose mountpoint' | sed "s|^~|$HOME|")
-[ ! $mountpoint ] && exit 1
+[ -z "$mountpoint" ] && exit 1
 
 if [ ! -d $mountpoint ]; then
-	(mkdir -p $mountpoint || sudo -A mkdir -p $mountpoint) || (notify-send -a "Device mount menu" "Error mounting device" "Could not create directory: $mountpoint" & exit 2)
+	(mkdir -p $mountpoint || sudo -A mkdir -p $mountpoint) || notify-send -a "device manager" "Error mounting device" "Could not create directory: $mountpoint" & exit 2
 fi
 
-tmpfile=$(tempfile)
+tmpfile=$(mktemp)
 (sudo -A mount $device $mountpoint 2>$tmpfile) &&
 	(rm $tmpfile ; pgrep dunst >/dev/null && 
-		notify-send -a 'Device mount menu' "Successfully mounted device" "$device was mounted to $(echo -n $mountpoint | sed "s|^$HOME|~|")") ||
-	(pgrep dunst >/dev/null && notify-send -a 'Device mount menu' "Error mounting device" "$device could not be mounted to $(echo -n $mountpoint | sed "s|^$HOME|~|").\nOpening the error file..." ; 
+		notify-send -a 'device manager' "Successfully mounted device" "$device was mounted to $(echo -n $mountpoint | sed "s|^$HOME|~|")") ||
+	(pgrep dunst >/dev/null && notify-send -a 'device manager' "Error mounting device" "$device could not be mounted to $(echo -n $mountpoint | sed "s|^$HOME|~|").\nOpening the error file..." ; 
 		$TERMINAL -e less $tmpfile &)
