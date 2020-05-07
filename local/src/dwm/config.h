@@ -1,8 +1,5 @@
 /* See LICENSE file for copyright and license details. */
 
-/* dwmrc location */
-static const char *dwmrc_path		= "~/.config/dwm/dwmrc";
-
 /* appearance */
 static const unsigned int borderpx  = 0;        /* border pixel of windows */
 static const unsigned int gappx     = 20;        /* gaps between windows */

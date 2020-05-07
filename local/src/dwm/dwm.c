@@ -213,6 +213,7 @@ static void pop(Client *);
 static void propertynotify(XEvent *e);
 static void quit(const Arg *arg);
 static Monitor *recttomon(int x, int y, int w, int h);
+static void removeroundedcorners(Client *c);
 static void resize(Client *c, int x, int y, int w, int h, int interact);
 static void resizeclient(Client *c, int x, int y, int w, int h);
 static void resizemouse(const Arg *arg);
@@ -769,6 +770,60 @@ dirtomon(int dir)
 	return m;
 }
 
+void
+drawroundedcorners(Client *c) {
+	// if set to zero in config.h, do not attempt to round
+	if(corner_radius < 0) return;
+
+	/* no support for fullscreen windows */
+	if (c->isfullscreen)
+		removeroundedcorners(c);
+
+	// NOTE: this is extremely hacky and surely could be optimized.
+	//	   Any X wizards out there reading this, please pull request.
+	if (corner_radius > 0 && c) {
+		Window win;
+		win = c->win;
+		if(!win) return;
+
+		XWindowAttributes win_attr;
+		if(!XGetWindowAttributes(dpy, win, &win_attr)) return;
+
+		// set in config.h:
+		int dia = 2 * corner_radius;
+		int w = c->w;
+		int h = c->h;
+		if(w < dia || h < dia) return;
+
+		Pixmap mask;
+		mask = XCreatePixmap(dpy, win, w, h, 1);
+		if(!mask) return;
+
+		XGCValues xgcv;
+		GC shape_gc;
+		shape_gc = XCreateGC(dpy, mask, 0, &xgcv);
+
+		if(!shape_gc) {
+			XFreePixmap(dpy, mask);
+			free(shape_gc);
+			return;
+		}
+
+		XSetForeground(dpy, shape_gc, 0);
+		XFillRectangle(dpy, mask, shape_gc, 0, 0, w, h);
+		XSetForeground(dpy, shape_gc, 1);
+		XFillArc(dpy, mask, shape_gc, 0, 0, dia, dia, 0, 23040);
+		XFillArc(dpy, mask, shape_gc, w-dia-1, 0, dia, dia, 0, 23040);
+		XFillArc(dpy, mask, shape_gc, 0, h-dia-1, dia, dia, 0, 23040);
+		XFillArc(dpy, mask, shape_gc, w-dia-1, h-dia-1, dia, dia, 0, 23040);
+		XFillRectangle(dpy, mask, shape_gc, corner_radius, 0, w-dia, h);
+		XFillRectangle(dpy, mask, shape_gc, 0, corner_radius, w, h-dia);
+		XShapeCombineMask(dpy, win, ShapeBounding, 0, 0, mask, ShapeSet);
+		XFreePixmap(dpy, mask);
+		XFreeGC(dpy, shape_gc);
+	}
+}
+
 int
 drawstatusbar(Monitor *m, int bh, char* stext) {
 	int ret, i, w, x, len;
@@ -980,12 +1035,12 @@ focus(Client *c)
 		grabbuttons(c, 1);
 		XSetWindowBorder(dpy, c->win, scheme[SchemeSel][ColBorder].pixel);
 		setfocus(c);
+		drawroundedcorners(c);
 	} else {
 		XSetInputFocus(dpy, root, RevertToPointerRoot, CurrentTime);
 		XDeleteProperty(dpy, root, netatom[NetActiveWindow]);
 	}
 	selmon->sel = c;
-	drawroundedcorners(c);
 	drawbars();
 }
 
@@ -1183,6 +1238,7 @@ grid(Monitor *m) {
 		ah = ((i + 1) % rows == 0) ? m->wh - ch * rows : 0;
 		aw = (i >= rows * (cols - 1)) ? m->ww - cw * cols : 0;
 		resize(c, cx, cy, cw - 2 * c->bw + aw, ch - 2 * c->bw + ah, False);
+		drawroundedcorners(c);
 		i++;
 	}
 }
@@ -1367,8 +1423,10 @@ monocle(Monitor *m)
 			n++;
 	if (n > 0) /* override layout symbol */
 		snprintf(m->ltsymbol, sizeof m->ltsymbol, "[%d]", n);
-	for (c = nexttiled(m->clients); c; c = nexttiled(c->next))
+	for (c = nexttiled(m->clients); c; c = nexttiled(c->next)) {
 		resize(c, m->wx - c->bw, m->wy - c->bw, m->ww, m->wh, 0);
+		removeroundedcorners(c);
+	}
 }
 
 void
@@ -1547,53 +1605,33 @@ resizeclient(Client *c, int x, int y, int w, int h)
 }
 
 void
-drawroundedcorners(Client *c) {
-    // if set to zero in config.h, do not attempt to round
+removeroundedcorners(Client *c)
+{
     if(corner_radius < 0) return;
 
-    // NOTE: this is extremely hacky and surely could be optimized.
-    //       Any X wizards out there reading this, please pull request.
-    if (corner_radius > 0 && c && !c->isfullscreen) {
-        Window win;
-        win = c->win;
-        if(!win) return;
+	if (!c->win)
+		return;
+	Window *win = &c->win;
 
-        XWindowAttributes win_attr;
-        if(!XGetWindowAttributes(dpy, win, &win_attr)) return;
+	Pixmap mask;
+	mask = XCreatePixmap(dpy, *win, c->w, c->h, 1);
+	if(!mask) return;
 
-        // set in config.h:
-        int dia = 2 * corner_radius;
-        int w = c->w;
-        int h = c->h;
-        if(w < dia || h < dia) return;
+	XGCValues xgcv;
+	GC shape_gc;
+	shape_gc = XCreateGC(dpy, mask, 0, &xgcv);
 
-        Pixmap mask;
-        mask = XCreatePixmap(dpy, win, w, h, 1);
-        if(!mask) return;
+	if(!shape_gc) {
+		XFreePixmap(dpy, mask);
+		free(shape_gc);
+		return;
+	}
 
-        XGCValues xgcv;
-        GC shape_gc;
-        shape_gc = XCreateGC(dpy, mask, 0, &xgcv);
-
-        if(!shape_gc) {
-            XFreePixmap(dpy, mask);
-            free(shape_gc);
-            return;
-        }
-
-        XSetForeground(dpy, shape_gc, 0);
-        XFillRectangle(dpy, mask, shape_gc, 0, 0, w, h);
-        XSetForeground(dpy, shape_gc, 1);
-        XFillArc(dpy, mask, shape_gc, 0, 0, dia, dia, 0, 23040);
-        XFillArc(dpy, mask, shape_gc, w-dia-1, 0, dia, dia, 0, 23040);
-        XFillArc(dpy, mask, shape_gc, 0, h-dia-1, dia, dia, 0, 23040);
-        XFillArc(dpy, mask, shape_gc, w-dia-1, h-dia-1, dia, dia, 0, 23040);
-        XFillRectangle(dpy, mask, shape_gc, corner_radius, 0, w-dia, h);
-        XFillRectangle(dpy, mask, shape_gc, 0, corner_radius, w, h-dia);
-        XShapeCombineMask(dpy, win, ShapeBounding, 0, 0, mask, ShapeSet);
-        XFreePixmap(dpy, mask);
-        XFreeGC(dpy, shape_gc);
-    }
+	XSetForeground(dpy, shape_gc, 1);
+	XFillRectangle(dpy, mask, shape_gc, 0, 0, c->w, c->h);
+	XShapeCombineMask(dpy, *win, ShapeBounding, 0, 0, mask, ShapeSet);
+	XFreePixmap(dpy, mask);
+	XFreeGC(dpy, shape_gc);
 }
 
 void
@@ -1682,6 +1720,7 @@ restack(Monitor *m)
 void
 restart(const Arg *arg) {
 	cleanup();
+	XCloseDisplay(dpy);
 	execlp("dwm", "dwm", NULL);
 }
 
@@ -1798,6 +1837,7 @@ setfullscreen(Client *c, int fullscreen)
 		c->isfloating = 1;
 		resizeclient(c, c->mon->mx, c->mon->my, c->mon->mw, c->mon->mh);
 		XRaiseWindow(dpy, c->win);
+		removeroundedcorners(c);
 	} else if (!fullscreen && c->isfullscreen){
 		XChangeProperty(dpy, c->win, netatom[NetWMState], XA_ATOM, 32,
 			PropModeReplace, (unsigned char*)0, 0);
