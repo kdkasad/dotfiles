@@ -1544,10 +1544,12 @@ resizeclient(Client *c, int x, int y, int w, int h)
 	wc.border_width = c->bw;
 	XConfigureWindow(dpy, c->win, CWX|CWY|CWWidth|CWHeight|CWBorderWidth, &wc);
 	configure(c);
+	drawroundedcorners(c);
 	XSync(dpy, False);
 }
 
-void drawroundedcorners(Client *c) {
+void
+drawroundedcorners(Client *c) {
     // if set to zero in config.h, do not attempt to round
     if(corner_radius < 0) return;
 
@@ -1651,7 +1653,7 @@ resizemouse(const Arg *arg)
 		selmon = m;
 		focus(NULL);
 	}
-    drawroundedcorners(c);
+	drawroundedcorners(c);
 }
 
 void
