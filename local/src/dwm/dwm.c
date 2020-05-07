@@ -985,6 +985,7 @@ focus(Client *c)
 		XDeleteProperty(dpy, root, netatom[NetActiveWindow]);
 	}
 	selmon->sel = c;
+	drawroundedcorners(c);
 	drawbars();
 }
 
@@ -1325,10 +1326,8 @@ manage(Window w, XWindowAttributes *wa)
 	if (c->mon == selmon)
 		unfocus(selmon->sel, 0);
 	c->mon->sel = c;
+
 	arrange(c->mon);
-
-    drawroundedcorners(c);
-
 	XMapWindow(dpy, c->win);
 	focus(NULL);
 }
@@ -1544,7 +1543,6 @@ resizeclient(Client *c, int x, int y, int w, int h)
 	wc.border_width = c->bw;
 	XConfigureWindow(dpy, c->win, CWX|CWY|CWWidth|CWHeight|CWBorderWidth, &wc);
 	configure(c);
-	drawroundedcorners(c);
 	XSync(dpy, False);
 }
 
@@ -2028,7 +2026,7 @@ tile(Monitor *m)
 		mw = m->nmaster ? m->ww * m->mfact : 0;
 	else
 		mw = m->ww - m->gappx;
-	for (i = 0, my = ty = m->gappx, c = nexttiled(m->clients); c; c = nexttiled(c->next), i++)
+	for (i = 0, my = ty = m->gappx, c = nexttiled(m->clients); c; c = nexttiled(c->next), i++) {
 		if (i < m->nmaster) {
 			h = (m->wh - my) / (MIN(n, m->nmaster) - i) - m->gappx;
 			resize(c, m->wx + m->gappx, m->wy + my, mw - (2*c->bw) - m->gappx * (n > m->nmaster ? 1.5 : 1), h - (2*c->bw), 0);
@@ -2038,6 +2036,8 @@ tile(Monitor *m)
 			resize(c, m->wx + mw + m->gappx / 2, m->wy + ty, m->ww - mw - (2*c->bw) - 1.5*m->gappx, h - (2*c->bw), 0);
 			ty += HEIGHT(c) + m->gappx;
 		}
+		drawroundedcorners(c);
+	}
 }
 
 void
