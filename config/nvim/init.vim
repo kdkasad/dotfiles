@@ -189,6 +189,7 @@ map <C-l> <C-W>l
 "   SPELL-CHECK SETTINGS    "
 """""""""""""""""""""""""""""
 " Auto-enable spellcheck for some filetypes
+augroup spellcheck
 au Filetype markdown setlocal spell
 au Filetype html setlocal spell
 au Filetype gitcommit setlocal spell
@@ -196,6 +197,8 @@ au Filetype tex setlocal spell
 au Filetype plaintex setlocal spell
 au Filetype nroff setlocal spell
 au Filetype groff setlocal spell
+au Filetype mail setlocal spell
+augroup end
 
 " Enable french dictionary
 set spelllang=en,fr
