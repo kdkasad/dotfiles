@@ -1,5 +1,20 @@
 #!/bin/sh
 
-[ $# -lt 1 ] && offset=0 || offset=$1
+if [ $# -lt 1 ]; then
+	offset=0
+else
+	case "$1" in
+		inet) offset=3 ;;
+		email) offset=9 ;;
+		pacman|packages) offset=4 ;;
+		brightness) offset=2 ;;
+		volume) offset=1 ;;
+		battery) offset=5 ;;
+		cpu) offset=6 ;;
+		memory) offset=7 ;;
+		date|time|datetime) offset=8 ;;
+		*) echo "$1" | grep -o "^[0-9]\+$" >/dev/null && offset="$1" || exit 1
+	esac
+fi
 
-pkill -RTMIN+$offset dwmblocks
+pkill -RTMIN+$offset -x dwmblocks
