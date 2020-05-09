@@ -187,6 +187,22 @@ map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 
+"""""""""""""""""""""""""""""
+"   FILE TYPE PREFERENCES   "
+"""""""""""""""""""""""""""""
+
+" Use groff, not troff or nroff
+au Filetype nroff setlocal ft=groff
+au Filetype troff setlocal ft=groff
+
+
+"""""""""""""""""""""""""""""
+"        TEMPLATES          "
+"""""""""""""""""""""""""""""
+
+" groff_ms MLA format
+iabbrev mladoc <C-o>:read ~/.config/nvim/templates/mla.ms<cr>
+
 
 """""""""""""""""""""""""""""
 "   SPELL-CHECK SETTINGS    "
@@ -198,7 +214,6 @@ au Filetype html setlocal spell
 au Filetype gitcommit setlocal spell
 au Filetype tex setlocal spell
 au Filetype plaintex setlocal spell
-au Filetype nroff setlocal spell
 au Filetype groff setlocal spell
 au Filetype mail setlocal spell
 augroup end
@@ -301,4 +316,4 @@ map <leader>ff :Goyo \| colo pink_forest<cr>
 nmap <leader>nh :nohlsearch<cr>
 
 " Generate ctags
-nmap <leader>ct !ctags --recurse=yes --tag-relative=yes --exclude=.git .
+nmap <leader>gt !ctags --recurse=yes --tag-relative=yes --exclude=.git .
