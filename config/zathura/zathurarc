@@ -11,7 +11,7 @@ set inputbar-fg "#f9c1c4"
 set incremental-search
 
 # Set space between pages
-set page-padding 10
+# set page-padding 10
 
 
 
