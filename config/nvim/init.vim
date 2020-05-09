@@ -18,6 +18,7 @@ Plug 'kdkasad/vim-deadkeys'
 Plug 'junegunn/goyo.vim'
 Plug 'jreybert/vimagit'
 Plug 'terryma/vim-multiple-cursors'
+Plug 'neovim/nvim-lsp'
 
 call plug#end()
 
@@ -150,6 +151,26 @@ let g:lightline = { 'colorscheme': 'pink_line', }
 if &term =~ '256color'
 	set t_ut=
 endif
+
+
+"""""""""""""""""""""""""""""
+"      LANGUAGE SERVERS     "
+"""""""""""""""""""""""""""""
+
+lua << END
+	require'nvim_lsp'.ccls.setup{}
+END
+
+nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
+nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
+nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
+nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
+
 
 
 """""""""""""""""""""""""""""
@@ -318,8 +339,9 @@ nmap <leader>nh <cmd>nohlsearch<cr>
 " Generate ctags
 nmap <leader>gt !ctags --recurse=yes --tag-relative=yes --exclude=.git .
 " make project
-nmap <leader>m <cmd>te make<cr>
-nmap <leader>mv <cmd>vs \| te make<cr>
+nnoremap <leader>mm <cmd>sp \| te bear make<cr>
+nmap <leader>m <leader>mm
+nnoremap <leader>mv <cmd>vs \| te bear make<cr>
 
 " Close split
 map <leader>wc <C-w>c
