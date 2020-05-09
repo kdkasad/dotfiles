@@ -20,6 +20,8 @@ export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
 # set email variables
 export MAILDIR=/var/spool/mail/kian
 export MSMTP_QUEUEDIR="$XDG_DATA_HOME/msmtp.queue"
+# set default refer database (only works in compiledoc script)
+export REFER_SOURCES="$HOME/documents/sources.refer"
 # sudo adkpass program
 export SUDO_ASKPASS="$HOME/.scripts/dmenupass"
 
@@ -47,4 +49,9 @@ if [ -d "$HOME/.scripts" ] ; then
 	for dir in $(find -L "$HOME/.scripts" -not -path "$HOME/.scripts/statusbar*" -not -path "$HOME/.scripts/cron-jobs*" -type d); do
 		PATH="$dir:$PATH"
 	done
+fi
+
+# include Intellij IDEA path
+if [ -d "$HOME/.local/opt/intellij/bin" ]; then
+	PATH="$HOME/.local/opt/intellij/bin:$PATH"
 fi
