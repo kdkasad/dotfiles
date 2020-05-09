@@ -158,7 +158,11 @@ endif
 """""""""""""""""""""""""""""
 
 lua << END
+	require'nvim_lsp'.bashls.setup{}
 	require'nvim_lsp'.ccls.setup{}
+	require'nvim_lsp'.cssls.setup{}
+	require'nvim_lsp'.html.setup{}
+	require'nvim_lsp'.vimls.setup{}
 END
 
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
