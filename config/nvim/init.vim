@@ -47,7 +47,7 @@ syntax on
 " Autocomplete/ctags options
 set omnifunc=syntaxcomplete#Complete
 set tags+=./tags;/
- autocmd BufReadPost *.c silent! !ctags -R .
+autocmd BufReadPost,BufWritePost *.c,*.cpp,*.h silent! !ctags -R %:h
 
 " Line numbers
 set number
