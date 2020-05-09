@@ -99,6 +99,8 @@ exe "hi Constant" . s:fg_yellow . s:bg_none
 exe "hi Number" . s:fg_pink . s:bg_none
 exe "hi Type" . s:fg_blue . s:bg_none
 exe "hi Search" . s:bg_cyan
+exe "hi Folded" . s:fg_cyan . s:bg_gray2
+exe "hi SignColumn" . s:fg_cyan . s:bg_none
 
 exe "hi DiffAdd" . s:bg_green . s:fg_dark
 exe "hi DiffDelete" . s:bg_red . s:fg_dark
@@ -114,6 +116,11 @@ exe "hi SpellBad" . s:fg_dark . s:bg_red
 exe "hi SpellRare" . s:fg_dark . s:bg_yellow
 hi! link SpellLocal SpellRare
 exe "hi SpellCap" . s:fg_dark . s:bg_orange
+
+exe "hi LspDiagnosticsError" . s:fg_red . s:bg_none
+exe "hi LspDiagnosticsWarning" . s:fg_orange . s:bg_none
+exe "hi LspDiagnosticsHint" . s:fg_yellow . s:bg_none
+exe "hi LspDiagnosticsInformation" . s:fg_yellow . s:bg_none
 
 exe "hi cIncluded" . s:fg_cyan . s:bg_none
 
