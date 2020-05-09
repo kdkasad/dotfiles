@@ -6,7 +6,15 @@ set font "monospace regular 13"
 set default-bg "#473d4b"
 set statusbar-bg "#473d4b"
 set inputbar-bg "#473d4b"
-set inputbar-fg "#f9c1c4"
+set inputbar-fg "#c2b1d5"
+set hightlight-color "#88a9ce"
+set hightlight-active-color "#c2b1d5"
+
+set continuous-hist-save
+
+set window-title-basename
+set window-title-home-tilde
+set statusbar-home-tilde
 
 set incremental-search
 
