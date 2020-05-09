@@ -261,7 +261,7 @@ augroup end
 let mapleader = ','
 
 " redo
-nmap <leader>r :redo<cr>
+nmap <leader>r <cmd>redo<cr>
 
 " Get off my lawn
 map <up> :echoe "this is vim"<cr>
@@ -313,7 +313,13 @@ map <leader>dk <plug>DeadKeysToggle
 map <leader>ff :Goyo \| colo pink_forest<cr>
 
 " turn of search highlighting
-nmap <leader>nh :nohlsearch<cr>
+nmap <leader>nh <cmd>nohlsearch<cr>
 
 " Generate ctags
 nmap <leader>gt !ctags --recurse=yes --tag-relative=yes --exclude=.git .
+" make project
+nmap <leader>m <cmd>te make<cr>
+nmap <leader>mv <cmd>vs \| te make<cr>
+
+" Close split
+map <leader>wc <C-w>c
