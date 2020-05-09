@@ -13,6 +13,6 @@ base="${file%.*}"
 	|| out="$base.pdf"
 
 case "$ext" in
-	ms) groff -me -ms -kpt -Tpdf "$file" > "$base.pdf" ;;
-	mom) groff -mom -kpt -Tpdf "$file" > "$base.pdf" ;;
+	ms) refer -PSep "${REFER_SOURCES:-$HOME/documents/sources.refer}" "$file" | groff -me -ms -kpt -Tpdf > "$base.pdf" ;;
+	mom) refer -PSep "${REFER_SOURCES:-$HOME/documents/sources.refer}" "$file" | groff -mom -kpt -Tpdf > "$base.pdf" ;;
 esac
