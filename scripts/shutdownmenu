@@ -1,0 +1,23 @@
+#!/bin/sh
+
+target="$(cat << eof | dmenu -i -p "Choose target:"
+suspend
+power off
+reboot
+hibernate
+hybrid sleep
+suspend then hibernate
+halt
+eof
+)"
+
+case "$target" in
+	"suspend") systemctl suspend ;;
+	"power off") poweroff ;;
+	"reboot") reboot ;;
+	"hibernate") systemctl hibernate ;;
+	"hybrid sleep") systemctl hybrid-sleep ;;
+	"suspend then hibernate") systemctl suspend-then-hibernate ;;
+	"halt") halt ;;
+	*) echo "$0: unknown option: $target" ; exit 1
+esac

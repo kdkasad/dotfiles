@@ -59,7 +59,7 @@
 	XF86RFKill
 
 # hibernate using Su-S-Esc
-"systemctl hibernate"
+"shutdownmenu"
 	Control + Alt + Delete
 
 # screenshots
