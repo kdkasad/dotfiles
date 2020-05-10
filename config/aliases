@@ -50,6 +50,34 @@ ser() {
 	history -s "$(echo "$exe" | sed "s|$HOME|~|")"
 	"$exe"
 }
+sec() {
+	file="$(find "$@" -type f -not -path '*/.*' 2>/dev/null | sed "s|$HOME|~|" | fzf --reverse --height=40% -i | sed "s|~|HOME|")"
+	[ -z "$file" ] && return 1
+	read -p "command to run (use %s to insert filename): "
+	eval "echo \"$file\" | xargs -d '\n' -I '%s' $(echo "$REPLY" | sed 's/%s/"%s"/g')"
+	history -s "$(echo $REPLY | sed "s|%s|\"$file\"|")"
+}
+sech() {
+	file="$(find "$@" -type f 2>/dev/null | sed "s|$HOME|~|" | fzf --reverse --height=40% -i | sed "s|~|HOME|")"
+	[ -z "$file" ] && return 1
+	read -p "command to run (use %s to insert filename): "
+	eval "echo \"$file\" | xargs -d '\n' -I '%s' $(echo "$REPLY" | sed 's/%s/"%s"/g')"
+	history -s "$(echo $REPLY | sed "s|%s|\"$file\"|")"
+}
+secd() {
+	file="$(find "$@" -type d -not -path '*/.*' 2>/dev/null | sed "s|$HOME|~|" | fzf --reverse --height=40% -i | sed "s|~|HOME|")"
+	[ -z "$file" ] && return 1
+	read -p "command to run (use %s to insert filename): "
+	eval "echo \"$file\" | xargs -d '\n' -I '%s' $(echo "$REPLY" | sed 's/%s/"%s"/g')"
+	history -s "$(echo $REPLY | sed "s|%s|\"$file\"|")"
+}
+sechd() {
+	file="$(find "$@" -type d 2>/dev/null | sed "s|$HOME|~|" | fzf --reverse --height=40% -i | sed "s|~|HOME|")"
+	[ -z "$file" ] && return 1
+	read -p "command to run (use %s to insert filename): "
+	eval "echo \"$file\" | xargs -d '\n' -I '%s' $(echo "$REPLY" | sed 's/%s/"%s"/g')"
+	history -s "$(echo $REPLY | sed "s|%s|\"$file\"|")"
+}
 
 # Video search/play
 vidse() {
