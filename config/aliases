@@ -34,7 +34,10 @@ alias svim='sudo -e'
 
 # Fuzzy search function
 se() {
-	find ~/* ~/.scripts ~/.config ~/.local/src -type f 2>/dev/null | fzf --reverse --height=40% -i | xargs -r -d '\n' $EDITOR
+	f="$(find ~/* ~/.scripts ~/.config ~/.local/src -type f 2>/dev/null | fzf --reverse --height=40% -i)"
+	[ -z "$f" ] && return 1
+	history -s $EDITOR "$(echo "$f" | sed "s|$HOME|~|")"
+	$EDITOR "$f"
 }
 sd() {
 	destdir="$(find ./* ~/* ~/.scripts ~/.config ~/.local/src -type d 2>/dev/null | fzf --reverse --height=40% -i)"
@@ -44,14 +47,16 @@ sd() {
 }
 ser() {
 	exe="$(find ~ -type f -perm -u=x 2>/dev/null | fzf --reverse --height=40% -i)"
-	history -s $exe
-	$exe
+	history -s "$(echo "$exe" | sed "s|$HOME|~|")"
+	"$exe"
 }
 
 # Video search/play
 vidse() {
-	(find ~/videos -type f 2>/dev/null | fzf --reverse --height=40% -i | xargs -r -d '\n' -n 1 setsid -f mpv) \
-	&& exit
+	vid="$(find ~/videos -type f 2>/dev/null | fzf --reverse --height=40% -i)"
+	[ -z "$vid" ] && return 1
+	history -s mpv "$(echo "$vid" | sed "s|$HOME|~|")"
+	setsid -f mpv "$vid" && exit
 }
 
 # Transmission BitTorrent client
