@@ -165,6 +165,13 @@ lua << END
 	require'nvim_lsp'.vimls.setup{}
 END
 
+" Keep sign column visible for files with LSP
+au BufEnter *.sh setlocal signcolumn=yes						" Bash
+au BufEnter *.c,*.cpp*.objc,*.objcpp setlocal signcolumn=yes	" C/C++
+au BufEnter *.css,*.scss,*.less setlocal signcolumn=yes			" CSS
+au BufEnter *.html setlocal signcolumn=yes						" HTML
+au BufEnter *.vim setlocal signcolumn=yes						" Vimscript
+
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
 nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
