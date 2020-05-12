@@ -166,11 +166,14 @@ lua << END
 END
 
 " Keep sign column visible for files with LSP
+augroup autosigncol
+au Filetype sh setlocal signcolumn=yes							" Bash
 au BufEnter *.sh setlocal signcolumn=yes						" Bash
 au BufEnter *.c,*.cpp*.objc,*.objcpp setlocal signcolumn=yes	" C/C++
 au BufEnter *.css,*.scss,*.less setlocal signcolumn=yes			" CSS
 au BufEnter *.html setlocal signcolumn=yes						" HTML
 au BufEnter *.vim setlocal signcolumn=yes						" Vimscript
+augroup end
 
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
 nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
@@ -356,3 +359,7 @@ nnoremap <leader>mv <cmd>vs \| te bear make<cr>
 
 " Close split
 map <leader>wc <C-w>c
+
+" Move visual selection
+vnoremap K :m '<-2<cr>gv=gv
+vnoremap J :m '>+1<cr>gv=gv
