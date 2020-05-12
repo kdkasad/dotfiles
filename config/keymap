@@ -41,7 +41,7 @@
 "xset dpms force off ; pkill -x dwmblocks -RTMIN+2"
 	Mod4 + F11
 # brightness 100%
-"xset dpms force on ; backlightctl set 100  ; pkill -x dwmblocks -RTMIN+2"
+"xset dpms force on ; pkill -x dwmblocks -RTMIN+2"
 	Mod4 + F12
 
 # refresh statusbar
@@ -58,7 +58,7 @@
 "rftoggle"
 	XF86RFKill
 
-# hibernate using Su-S-Esc
+# open shutdown menu
 "shutdownmenu"
 	Control + Alt + Delete
 
