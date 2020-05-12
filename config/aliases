@@ -34,7 +34,10 @@ alias svim='sudo -e'
 
 # Fuzzy search function
 se() {
-	f="$(find ~/* ~/.scripts ~/.config ~/.local/src -type f 2>/dev/null | fzf --reverse --height=40% -i)"
+	[ -n "$@" ] \
+		&& fopts="$@" \
+		|| fopts="~/* ~/.scripts ~/.config ~/.local/src"
+	f="$(find $fopts -type f 2>/dev/null | fzf --reverse --height=40% -i)"
 	[ -z "$f" ] && return 1
 	history -s $EDITOR "$(echo "$f" | sed "s|$HOME|~|")"
 	$EDITOR "$f"
@@ -135,3 +138,6 @@ pres() {
 	setsid sh -c "sent \"$@\" ; st" &
 	exit
 }
+
+# set irssi data/config
+alias irssi="irssi --config=$HOME/.config/irssi/config --home=$HOME/.local/share/irssi"
