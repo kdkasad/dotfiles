@@ -7,8 +7,8 @@ set default-bg "#473d4b"
 set statusbar-bg "#473d4b"
 set inputbar-bg "#473d4b"
 set inputbar-fg "#c2b1d5"
-set hightlight-color "#88a9ce"
-set hightlight-active-color "#c2b1d5"
+set highlight-color "#88a9ce"
+set highlight-active-color "#c2b1d5"
 
 set continuous-hist-save
 
