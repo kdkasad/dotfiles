@@ -11,4 +11,4 @@ if ! find /sys/class/net/ -mindepth 1 -maxdepth 1 -not -name lo | xargs -rI '%s'
 fi
 
 printf '📡'
-ip a | sed -n '/[0-9]: [^l][^o]/,$p' | grep -o 'inet \([0-9]\{1,3\}.\)\{3\}[0-9]\{1,3\}' | sed 's/^inet //' | paste -s
+ip a | sed -n '/[0-9]: [^l][^o]/,$p' | grep -o 'inet \([0-9]\{1,3\}.\)\{3\}[0-9]\{1,3\}' | sed 's/^inet //' | paste -sd '%' | sed 's/%/, /g'
