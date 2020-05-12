@@ -20,4 +20,4 @@ HOME=${HOME:-/home/$(id -un)}
 	&& /usr/bin/notify-send -a 'mailsync' '📬 done syncing mail' "$(find ${MAILDIR:-/var/spool/mail/$(id -un)}/*/INBOX/new -type f | wc -l) unread emails" \
 	|| /usr/bin/notify-send -a 'mailsync' '📪 failed to sync mail' "see <i>$logfile</i> for details"
 
-updatestatusbar email
+$HOME/.scripts/updatestatusbar email
