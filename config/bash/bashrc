@@ -73,8 +73,8 @@ if [ "$color_prompt" = "yes" ]; then
 				fi
 				if git rev-parse >/dev/null 2>&1; then
 					branch="$(git branch --show-current)"
-					state="$(git status -sb | grep -o -e 'ahead' -e 'behind' | tr -d '\n' | sed "s/behindahead/\x1b[33m ±/; s/aheadbehind/\x1b[33m±/; s/ahead/\x1b[32m+/; s/behind/\x1b[31m-/")"
-					gittext=$(printf " \[\e[00m\]: \[\e[01;35m\]%s \[\e[01;35m\]%s" "$state" "$branch")
+					state="$(git status -sb | grep -o '\[.*\]' | sed 's/\[\|\]//g' | awk '{if($1=="ahead")ahead=$2;if($1=="behind")behind=$2;if($3=="ahead")ahead=$4;if($3==behind)behind=$4;printf " ↑%d ↓%d", ahead, behind}' | sed 's/ [↑↓]0//g; s/↑[0-9]\+/\x1b[32m&/; s/↓[0-9]\+/\x1b[31m&/')"
+					gittext=$(printf " \[\e[00m\]: \[\e[01;35m\] \[\e[01;35m\]%s%s" "$branch" "$state")
 				else
 					gittext=""
 				fi
@@ -92,8 +92,8 @@ if [ "$color_prompt" = "yes" ]; then
 				fi
 				if git rev-parse >/dev/null 2>&1; then
 					branch="$(git branch --show-current)"
-					state="$(git status -sb | grep -o -e 'ahead' -e 'behind' | tr -d '\n' | sed "s/behindahead/\x1b[33m ±/; s/aheadbehind/\x1b[33m±/; s/ahead/\x1b[32m+/; s/behind/\x1b[31m-/")"
-					gittext=$(printf " \[\e[00m\]: \[\e[01;35m\]%s \[\e[01;35m\]%s" "$state" "$branch")
+					state="$(git status -sb | grep -o '\[.*\]' | sed 's/\[\|\]//g' | awk '{if($1=="ahead")ahead=$2;if($1=="behind")behind=$2;if($3=="ahead")ahead=$4;if($3==behind)behind=$4;printf " ↑%d ↓%d", ahead, behind}' | sed 's/ [↑↓]0//g; s/↑[0-9]\+/\x1b[32m&/; s/↓[0-9]\+/\x1b[31m&/')"
+					gittext=$(printf " \[\e[00m\]: \[\e[01;35m\] \[\e[01;35m\]%s%s" "$branch" "$state")
 				else
 					gittext=""
 				fi
@@ -112,8 +112,8 @@ if [ "$color_prompt" = "yes" ]; then
 					fi
 					if git rev-parse >/dev/null 2>&1; then
 						branch="$(git branch --show-current)"
-						state="$(git status -sb | grep -o -e 'ahead' -e 'behind' | tr -d '\n' | sed "s/behindahead/\x1b[33m ±/; s/aheadbehind/\x1b[33m±/; s/ahead/\x1b[32m+/; s/behind/\x1b[31m-/")"
-						gittext=$(printf " \[\e[00m\]: \[\e[01;35m\]%s \[\e[01;35m\]%s" "$state" "$branch")
+						state="$(git status -sb | grep -o '\[.*\]' | sed 's/\[\|\]//g' | awk '{if($1=="ahead")ahead=$2;if($1=="behind")behind=$2;if($3=="ahead")ahead=$4;if($3==behind)behind=$4;printf " ↑%d ↓%d", ahead, behind}' | sed 's/ [↑↓]0//g; s/↑[0-9]\+/\x1b[32m&/; s/↓[0-9]\+/\x1b[31m&/')"
+						gittext=$(printf " \[\e[00m\]: \[\e[01;35m\] \[\e[01;35m\]%s%s" "$branch" "$state")
 					else
 						gittext=""
 					fi
@@ -189,3 +189,7 @@ function run-help() {
 	help "$READLINE_LINE" 2>/dev/null || man "$READLINE_LINE";
 }
 bind -m vi-insert -x '"\eh": run-help'
+
+if ! tty | grep "not a tty" >/dev/null; then
+	pfetch
+fi
