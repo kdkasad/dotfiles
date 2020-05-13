@@ -10,7 +10,7 @@ h	~
 us	/usr/share
 ulb	/usr/local/bin
 e	/etc
-ep	~/experiments
+ep	~/projects
 fo	~/.fonts
 dl ~/downloads
 doc ~/documents
