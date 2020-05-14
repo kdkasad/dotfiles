@@ -4,9 +4,17 @@
 logfile="${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/mailsync.log"
 exec 2>"$logfile"
 
+# set home variable
 HOME=${HOME:-/home/$(id -un)}
 
-/usr/bin/notify-send -a mailsync '📬 syncing mail...'
+# cache file
+cache_file="${XDG_CACHE_HOME:-$HOME/.cache}/mailsync-unread-count"
+if [ ! -f "$cache_file" ]; then
+	printf 0 > "$cache_file" \
+		|| : ${err:='1'}
+fi
+
+# /usr/bin/notify-send -a mailsync '📬 syncing mail...'
 
 # recieve new mail with mbsync
 /usr/bin/mbsync -a \
@@ -16,8 +24,17 @@ HOME=${HOME:-/home/$(id -un)}
 /usr/local/bin/msmtp-runqueue.sh \
 	|| : ${err:='1'}
 
-[ ${err:=0} -ne 1 ] \
-	&& /usr/bin/notify-send -a 'mailsync' '📬 done syncing mail' "$(find ${MAILDIR:-/var/spool/mail/$(id -un)}/*/INBOX/new -type f | wc -l) unread emails" \
-	|| /usr/bin/notify-send -a 'mailsync' '📪 failed to sync mail' "see <i>$logfile</i> for details"
+prev="$(cat "$cache_file")"
+unread="$(find "${MAILDIR:-/var/spool/mail/$(id -un)}"/*/INBOX/new -type f | wc -l)"
+new="$(expr $unread - $prev)"
+echo -n "$unread" > "$cache_file"
+
+if [ ${err:=0} -eq 0 ]; then
+	if [ $new -gt 0 ]; then
+		/usr/bin/notify-send -a 'mailsync' '📬 done syncing mail' "$new new emails"
+	fi
+else
+	/usr/bin/notify-send -a 'mailsync' '📪 failed to sync mail' "see <i>$logfile</i> for details"
+fi
 
 $HOME/.scripts/updatestatusbar email
