@@ -1,6 +1,6 @@
 #!/bin/sh
 
-export TERMINAL='st'
+export TERMINAL='alacritty'
 export EDITOR='nvim'
 export BROWSER='brave'
 export EMAIL="YOUR EMAIL"

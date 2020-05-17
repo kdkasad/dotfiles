@@ -42,7 +42,7 @@ fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-    *linux|screen|xterm|xterm-color|*-256color) color_prompt=yes;;
+    alacritty|*linux|screen|xterm|xterm-color|*-256color) color_prompt=yes;;
 esac
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
@@ -63,7 +63,7 @@ fi
 
 if [ "$color_prompt" = "yes" ]; then
 	case "$TERM" in
-		st*)
+		"$TERMINAL"*)
 			set_ps1() {
 				LCS=$?
 				if [ $LCS = 0 ]; then
