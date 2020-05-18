@@ -40,6 +40,7 @@ let s:pink_term		= 9
 let s:orange_term	= 11
 let s:gray2_term	= 15
 
+let s:fg_none	= " ctermfg=none" . " guifg=none"
 let s:fg_dark	= " ctermfg=" . s:dark_term . " guifg=" . s:dark_gui
 let s:fg_red	= " ctermfg=" . s:red_term . " guifg=" . s:red_gui
 let s:fg_green	= " ctermfg=" . s:green_term . " guifg=" . s:green_gui
@@ -53,7 +54,7 @@ let s:fg_pink	= " ctermfg=" . s:pink_term . " guifg=" . s:pink_gui
 let s:fg_orange	= " ctermfg=" . s:orange_term . " guifg=" . s:orange_gui
 let s:fg_gray2	= " ctermfg=" . s:gray2_term . " guifg=" . s:gray2_gui
 
-let s:bg_none	= " ctermbg=NONE guibg=NONE"
+let s:bg_none	= " ctermbg=NONE guibg=" . s:dark_gui
 let s:bg_dark	= " ctermbg=" . s:dark_term . " guibg=" . s:dark_gui
 let s:bg_red	= " ctermbg=" . s:red_term . " guibg=" . s:red_gui
 let s:bg_green	= " ctermbg=" . s:green_term . " guibg=" . s:green_gui
@@ -77,7 +78,7 @@ let s:reverse	= " cterm=reverse gui=reverse"
 " ELEMENT STYLING "
 """""""""""""""""'"
 
-exe "hi Normal" . s:fg_white . s:bg_dark
+exe "hi Normal" . s:fg_none . s:bg_none
 exe "hi Error" . s:fg_white . s:bg_red
 hi! link ErrorMsg Error
 exe "hi Question" . s:fg_green . s:bg_none . s:none
@@ -107,8 +108,8 @@ exe "hi DiffDelete" . s:bg_red . s:fg_dark
 exe "hi DiffAdded" . s:fg_green . s:bg_none
 exe "hi DiffRemoved" . s:fg_red . s:bg_none
 
-exe "hi Pmenu" . s:fg_dark . s:bg_purple
-exe "hi PmenuSel" . s:fg_dark . s:bg_pink
+exe "hi Pmenu" . s:fg_none . s:bg_gray2
+exe "hi PmenuSel" . s:fg_dark . s:bg_purple
 exe "hi PmenuSbar" . s:bg_gray
 exe "hi PmenuThumb" . s:bg_gray2
 
