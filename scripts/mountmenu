@@ -1,6 +1,6 @@
 #!/bin/sh
 
-available_devices=$(lsblk -rnpo 'NAME,SIZE,TYPE,MOUNTPOINT' | awk '$3=="part"&&$4==""{printf "%s (%s)",$1,$2}')
+available_devices=$(lsblk -rnpo 'NAME,SIZE,TYPE,MOUNTPOINT' | awk '$3=="part"&&$4==""{printf "%s (%s)\n",$1,$2}')
 if [ -z "$available_devices" ]; then
 	notify-send -a 'device manager' 'no devices found'
 	exit 0
@@ -17,7 +17,7 @@ if [ ! -d $mountpoint ]; then
 fi
 
 tmpfile=$(mktemp)
-(sudo -A mount $device $mountpoint 2>$tmpfile) &&
+(sudo -A mount "$device" "$mountpoint" -o user 2>$tmpfile) &&
 	(rm $tmpfile ; pgrep dunst >/dev/null && 
 		notify-send -a 'device manager' "Successfully mounted device" "$device was mounted to $(echo -n $mountpoint | sed "s|^$HOME|~|")") ||
 	(pgrep dunst >/dev/null && notify-send -a 'device manager' "Error mounting device" "$device could not be mounted to $(echo -n $mountpoint | sed "s|^$HOME|~|").\nOpening the error file..." ; 
