@@ -39,18 +39,34 @@ se() {
 		|| fopts="~/* ~/.scripts ~/.config ~/.local/src"
 	f="$(find $fopts -type f 2>/dev/null | fzf --reverse --height=40% -i)"
 	[ -z "$f" ] && return 1
-	history -s $EDITOR "$(echo "$f" | sed "s|$HOME|~|")"
+	case "$SHELL" in
+		*bash) history -s $EDITOR "$(echo "$f" | sed "s|$HOME|~|")" ;;
+		*zsh) fc -AI
+			  echo $EDITOR "$(echo "$f" | sed "s|$HOME|~|")" >> $HISTFILE
+			  fc -R ;;
+	esac
 	$EDITOR "$f"
 }
 sd() {
 	destdir="$(find ./* ~/* ~/.scripts ~/.config ~/.local/src -type d 2>/dev/null | fzf --reverse --height=40% -i)"
 	[ $? -ne 0 ] && return 1
 	cd "$destdir" \
-	&& ls && history -s cd "$destdir"
+	&& ls
+	case "$SHELL" in
+		*bash) history -s cd "$destdir" ;;
+		*zsh) fc -AI
+			  echo cd $destdir >> $HISTFILE
+			  fc -R ;;
+	esac
 }
 ser() {
 	exe="$(find ~ -type f -perm -u=x 2>/dev/null | fzf --reverse --height=40% -i)"
-	history -s "$(echo "$exe" | sed "s|$HOME|~|")"
+	case "$SHELL" in
+		*bash) history -s "$(echo "$exe" | sed "s|$HOME|~|")" ;;
+		*zsh) fc -AI
+			  echo "$(echo "$exe" | sed "s|$HOME|~|")" >> $HISTFILE
+			  fc -R ;;
+	esac
 	"$exe"
 }
 sec() {
@@ -58,35 +74,60 @@ sec() {
 	[ -z "$file" ] && return 1
 	read -p "command to run (use %s to insert filename): "
 	eval "echo \"$file\" | xargs -d '\n' -I '%s' $(echo "$REPLY" | sed 's/%s/"%s"/g')"
-	history -s "$(echo $REPLY | sed "s|%s|\"$file\"|")"
+	case "$SHELL" in
+		*bash) history -s "$(echo $REPLY | sed "s|%s|\"$file\"|")" ;;
+		*zsh) fc -AI
+			  echo "$(echo $REPLY | sed "s|%s|\"$file\"|")" >> $HISTFILE
+			  fc -R ;;
+	esac
 }
 sech() {
 	file="$(find "$@" -type f 2>/dev/null | sed "s|$HOME|~|" | fzf --reverse --height=40% -i | sed "s|~|HOME|")"
 	[ -z "$file" ] && return 1
 	read -p "command to run (use %s to insert filename): "
 	eval "echo \"$file\" | xargs -d '\n' -I '%s' $(echo "$REPLY" | sed 's/%s/"%s"/g')"
-	history -s "$(echo $REPLY | sed "s|%s|\"$file\"|")"
+	case "$SHELL" in
+		*bash) history -s "$(echo $REPLY | sed "s|%s|\"$file\"|")" ;;
+		*zsh) fc -AI
+			  echo "$(echo $REPLY | sed "s|%s|\"$file\"|")" >> $HISTFILE
+			  fc -R ;;
+	esac
 }
 secd() {
 	file="$(find "$@" -type d -not -path '*/.*' 2>/dev/null | sed "s|$HOME|~|" | fzf --reverse --height=40% -i | sed "s|~|HOME|")"
 	[ -z "$file" ] && return 1
 	read -p "command to run (use %s to insert filename): "
 	eval "echo \"$file\" | xargs -d '\n' -I '%s' $(echo "$REPLY" | sed 's/%s/"%s"/g')"
-	history -s "$(echo $REPLY | sed "s|%s|\"$file\"|")"
+	case "$SHELL" in
+		*bash) history -s "$(echo $REPLY | sed "s|%s|\"$file\"|")" ;;
+		*zsh) fc -AI
+			  echo "$(echo $REPLY | sed "s|%s|\"$file\"|")" >> $HISTFILE
+			  fc -R ;;
+	esac
 }
 sechd() {
 	file="$(find "$@" -type d 2>/dev/null | sed "s|$HOME|~|" | fzf --reverse --height=40% -i | sed "s|~|HOME|")"
 	[ -z "$file" ] && return 1
 	read -p "command to run (use %s to insert filename): "
 	eval "echo \"$file\" | xargs -d '\n' -I '%s' $(echo "$REPLY" | sed 's/%s/"%s"/g')"
-	history -s "$(echo $REPLY | sed "s|%s|\"$file\"|")"
+	case "$SHELL" in
+		*bash) history -s "$(echo $REPLY | sed "s|%s|\"$file\"|")" ;;
+		*zsh) fc -AI
+			  echo "$(echo $REPLY | sed "s|%s|\"$file\"|")" >> $HISTFILE
+			  fc -R ;;
+	esac
 }
 
 # Video search/play
 vidse() {
 	vid="$(find ~/videos -type f 2>/dev/null | fzf --reverse --height=40% -i)"
 	[ -z "$vid" ] && return 1
-	history -s mpv "$(echo "$vid" | sed "s|$HOME|~|")"
+	case "$SHELL" in
+		*bash) history -s mpv "$(echo "$vid" | sed "s|$HOME|~|")" ;;
+		*zsh) fc -AI
+			  echo mpv "$(echo "$vid" | sed "s|$HOME|~|")" >> $HISTFILE
+			  fc -R ;;
+	esac
 	setsid -f mpv "$vid" && exit
 }
 
@@ -113,8 +154,11 @@ secrm() {
 	rm "$@"
 }
 
-# quickly source bashrc
-alias sorc='source ~/.config/bash/bashrc'
+# quickly source shell config
+case "$SHELL" in
+	*bash) alias sorc='source ~/.config/bash/bashrc' ;;
+	*zsh) alias sorc="source $ZDOTDIR/.zshrc" ;;
+esac
 
 alias scim=sc-im
 
@@ -141,3 +185,6 @@ pres() {
 
 # set irssi data/config
 alias irssi="irssi --config=$HOME/.config/irssi/config --home=$HOME/.local/share/irssi"
+
+# youtube-dl is a long name
+alias ytdl='youtube-dl'
