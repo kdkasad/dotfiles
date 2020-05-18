@@ -1,1 +1,2 @@
 config/env filter=remove-email
+config/mpv/script-opts/mpv_crop_script.conf filter=remove-home
