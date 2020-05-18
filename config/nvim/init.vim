@@ -280,7 +280,7 @@ au Filetype groff,nroff,troff map <buffer> <leader>c :!compiledoc %<cr>
 au Filetype groff,nroff,troff map <buffer> <leader>pdf :exe "silent !setsid zathura ".expand('%:r').".pdf"<cr>
 
 " reload xresources
-au BufWritePost ~/.config/xresources !xrdb -merge %
+au BufWritePost ~/.config/xresources !xrdb -load %
 
 " Email editing (mutt)
 au BufRead /tmp/{mutt,neomutt}-* setfiletype mail
