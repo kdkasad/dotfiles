@@ -4,13 +4,15 @@ SAVEHIST=1000
 
 setopt autocd
 
-zstyle :compinstall filename '/home/kian/.zshrc'
+zstyle :compinstall filename "$XDG_CONFIG_HOME/zsh/.zshrc"
 
 autoload -U compinit
 zstyle ':completion:*' menu select
 zmodload zsh/complist
 compinit
 _comp_options+=(globdots)
+
+MAILCHECK=0
 
 # Enable vim mode
 bindkey -v
