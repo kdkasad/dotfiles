@@ -340,11 +340,10 @@ nnoremap <leader>w :set wrap!<cr>
 nnoremap <leader>s :set spell!<cr>
 
 " toggle deadkeys
-imap <leader>dk <plug>DeadKeysToggle
-map <leader>dk <plug>DeadKeysToggle
+nmap <leader>dk <plug>DeadKeysToggle
 
 " toggle goyo
-map <leader>ff :Goyo \| colo pink_forest<cr>
+nmap <leader>ff :Goyo \| colo pink_forest<cr>
 
 " turn of search highlighting
 nmap <leader>nh <cmd>nohlsearch<cr>
@@ -357,8 +356,11 @@ nmap <leader>m <leader>mm
 nnoremap <leader>mv <cmd>vs \| te bear make<cr>
 
 " Close split
-map <leader>wc <C-w>c
+nmap <leader>wc <C-w>c
 
 " Move visual selection
 vnoremap K :m '<-2<cr>gv=gv
 vnoremap J :m '>+1<cr>gv=gv
+
+" Delete last word in insert mode using Control + Backspace
+imap <c-h> <esc>cb
