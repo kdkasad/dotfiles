@@ -1,6 +1,11 @@
 HISTFILE=~/.cache/zsh_history
 HISTSIZE=1000
 SAVEHIST=1000
+setopt APPEND_HISTORY
+setopt HIST_IGNORE_DUPS
+setopt HIST_REDUCE_BLANKS
+
+setopt CORRECT
 
 setopt autocd
 
@@ -49,9 +54,6 @@ case $- in
     *i*) ;;
       *) return;;
 esac
-
-# don't put duplicate lines or lines starting with space in the history.
-HISTCONTROL=ignoreboth
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTFILE=~/.local/share/shell_history
