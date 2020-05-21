@@ -19,7 +19,6 @@ let s:gray2_gui		= "#55495B"
 let s:gray_gui		= "#908EAB"
 let s:white_gui		= "#FFFFFF"
 let s:red_gui		= "#F06D72"
-let s:pink_gui		= "#F9C1C4"
 let s:green_gui		= "#A2EEA2"
 let s:yellow_gui	= "#FFED9B"
 let s:orange_gui	= "#F8A983"
@@ -36,7 +35,6 @@ let s:purple_term	= 5
 let s:cyan_term		= 6
 let s:white_term	= 7
 let s:gray_term		= 8
-let s:pink_term		= 9
 let s:orange_term	= 11
 let s:gray2_term	= 15
 
@@ -50,7 +48,6 @@ let s:fg_purple	= " ctermfg=" . s:purple_term . " guifg=" . s:purple_gui
 let s:fg_cyan	= " ctermfg=" . s:cyan_term . " guifg=" . s:cyan_gui
 let s:fg_white	= " ctermfg=" . s:white_term . " guifg=" . s:white_gui
 let s:fg_gray	= " ctermfg=" . s:gray_term . " guifg=" . s:gray_gui
-let s:fg_pink	= " ctermfg=" . s:pink_term . " guifg=" . s:pink_gui
 let s:fg_orange	= " ctermfg=" . s:orange_term . " guifg=" . s:orange_gui
 let s:fg_gray2	= " ctermfg=" . s:gray2_term . " guifg=" . s:gray2_gui
 
@@ -64,7 +61,6 @@ let s:bg_purple	= " ctermbg=" . s:purple_term . " guibg=" . s:purple_gui
 let s:bg_cyan	= " ctermbg=" . s:cyan_term . " guibg=" . s:cyan_gui
 let s:bg_white	= " ctermbg=" . s:white_term . " guibg=" . s:white_gui
 let s:bg_gray	= " ctermbg=" . s:gray_term . " guibg=" . s:gray_gui
-let s:bg_pink	= " ctermbg=" . s:pink_term . " guibg=" . s:pink_gui
 let s:bg_orange	= " ctermbg=" . s:orange_term . " guibg=" . s:orange_gui
 let s:bg_gray2	= " ctermbg=" . s:gray2_term . " guibg=" . s:gray2_gui
 
@@ -97,7 +93,7 @@ exe "hi Statement" . s:fg_yellow . s:bg_none . s:bold
 exe "hi Identifier" . s:fg_cyan . s:bg_none
 exe "hi PreProc" . s:fg_purple . s:bg_none . s:bold
 exe "hi Constant" . s:fg_yellow . s:bg_none
-exe "hi Number" . s:fg_pink . s:bg_none
+exe "hi Number" . s:fg_purple . s:bg_none
 exe "hi Type" . s:fg_blue . s:bg_none
 exe "hi Search" . s:bg_cyan
 exe "hi Folded" . s:fg_cyan . s:bg_gray2
