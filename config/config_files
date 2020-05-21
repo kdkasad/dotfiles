@@ -5,7 +5,7 @@ xresources	~/.config/xresources
 muttrc		~/.config/mutt/muttrc
 picom		~/.config/picom/picom.conf
 fontconfig	~/.config/fontconfig/fonts.conf
-bashrc		~/.config/bash/bashrc
+zshrc		~/.config/zsh/.zshrc
 profile		~/.profile
 env			~/.config/env
 dunstrc		~/.config/dunst/dunstrc
