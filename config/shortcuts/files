@@ -1,4 +1,4 @@
-brc	~/.config/bash/bashrc
+zrc	~/.config/zsh/.zshrc
 pro ~/.profile
 sf	~/.config/shortcuts/files
 sdr	~/.config/shortcuts/dirs
