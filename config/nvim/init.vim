@@ -9,16 +9,16 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-abolish'
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-line'
-Plug 'vifm/vifm.vim'
-Plug 'ap/vim-css-color'
 Plug 'itchyny/lightline.vim'
+Plug 'ap/vim-css-color'
 Plug 'gerw/vim-HiLinkTrace'
 Plug 'udalov/kotlin-vim'
 Plug 'kdkasad/vim-deadkeys'
 Plug 'junegunn/goyo.vim'
-Plug 'jreybert/vimagit'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'neovim/nvim-lsp'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
 call plug#end()
 
@@ -263,7 +263,7 @@ augroup specialfiles
 
 " reload config files
 au BufWritePost ~/.config/keymap !pkill -x xbindkeys -HUP
-au BufWritePost ~/.config/picom/picom.conf !pkill -x picom && setsid picom -b
+au BufWritePost ~/.config/picom/picom.conf !pkill -x picom && picom -b
 au BufWritePost ~/.config/dunst/dunstrc !pkill -x dunst && setsid dunst
 
 " shellcheck
@@ -343,7 +343,7 @@ nnoremap <leader>s :set spell!<cr>
 nmap <leader>dk <plug>DeadKeysToggle
 
 " toggle goyo
-nmap <leader>ff :Goyo \| colo pink_forest<cr>
+nmap <leader>g :Goyo \| colo pink_forest<cr>
 
 " turn of search highlighting
 nmap <leader>nh <cmd>nohlsearch<cr>
@@ -364,3 +364,7 @@ vnoremap J :m '>+1<cr>gv=gv
 
 " Delete last word in insert mode using Control + Backspace
 imap <c-h> <esc>cb
+
+" fzf
+nmap <leader>ff :Files<cr>
+nmap <leader>fg :BLines<cr>
