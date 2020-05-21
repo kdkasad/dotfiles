@@ -5,7 +5,8 @@ setopt APPEND_HISTORY
 setopt HIST_IGNORE_DUPS
 setopt HIST_REDUCE_BLANKS
 
-setopt CORRECT
+# reverse history search
+bindkey '^R' history-incremental-search-backward
 
 setopt autocd
 
