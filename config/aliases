@@ -1,17 +1,17 @@
 #!/bin/sh
 
-alias ll='ls -lh'
-alias la='ls -A'
-alias lla='ls -lAh'
-alias l='ls -CF'
+alias -g ll='ls -lh'
+alias -g la='ls -A'
+alias -g lla='ls -lAh'
+alias -g l='ls -CF'
 
-alias rm='rm -Iv'
-alias cp='cp -iv'
-alias mv='mv -iv'
-alias ln='ln -iv'
+alias -g rm='rm -Iv'
+alias -g cp='cp -iv'
+alias -g mv='mv -iv'
+alias -g ln='ln -iv'
 
 # Directory creation shortcuts
-alias mkd='mkdir -pv'
+alias -g mkd='mkdir -pv'
 mkcd() {
 	mkdir -pv "$@"
 	cd "$1" || exit 1

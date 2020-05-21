@@ -102,7 +102,7 @@ if [ "$color_prompt" = yes ]; then
 		__git_info_state="$(git status -sb | grep -o '\[.*\]' | sed 's/\[\|\]//g' | awk '{if($1=="ahead")ahead=$2;if($1=="behind")behind=$2;if($3=="ahead")ahead=$4;if($3==behind)behind=$4;printf "%B ↑%d ↓%d%b", ahead, behind}' | sed 's/ [↑↓]0//g; s/↑[0-9]\+/%F{green}&/; s/↓[0-9]\+/%F{red}&/')"
 		RPROMPT="%B%F{magenta} ${__git_info_branch}${__git_info_state}"
 	}
-	precmd_functions+=( precmd_git_info )
+	precmd_functions=( precmd_git_info )
 else
 	if [ -z "$SSH_CLIENT" ]; then
 		PROMPT="%~%(?.. : %?) %(!.#.$) "
@@ -116,15 +116,15 @@ unset color_prompt force_color_prompt
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-	alias tree='tree -C'
-    alias less='less -r'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
+    alias -g ls='ls --color=auto'
+	alias -g tree='tree -C'
+    alias -g less='less -r'
+    #alias -g dir='dir --color=auto'
+    #alias -g vdir='vdir --color=auto'
 
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
+    alias -g grep='grep --color=auto'
+    alias -g fgrep='fgrep --color=auto'
+    alias -g egrep='egrep --color=auto'
 fi
 
 # colored GCC warnings and errors
