@@ -12,6 +12,14 @@ options:
 	@echo "CC		= ${CC}"
 	@echo
 
+install: ${BIN}
+	@echo "installing..."
+	@install -Dm755 ${BIN} -t ${DESTDIR}${PREFIX}/bin/
+
+uninstall:
+	@echo "uninstalling"
+	@rm -f ${addprefix ${DESTDIR}${PREFIX}/bin/, ${BIN}}
+
 .c.o:
 	${CC} -c ${CFLAGS} $<
 
@@ -23,3 +31,5 @@ ${BIN}: ${OBJ}
 clean:
 	@echo cleaning...
 	@rm -f ${BIN} ${OBJ}
+
+.PHONY: all options install uninstall clean

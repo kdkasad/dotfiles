@@ -1,7 +1,7 @@
 VERSION = 0.0
 
 
-PREFIX = /usr/local
+PREFIX = ~/.local
 MANPREFIX = ${PREFIX}/share/man
 
 INCS = -I/usr/include
