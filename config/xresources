@@ -66,3 +66,8 @@ st.color13: pink_purple
 st.color14: pink_cyan
 st.color15: pink_gray2
 st.tabspaces: 4
+
+/* slock */
+slock.defaultcolor:	pink_dark
+slock.inputcolor:	pink_purple
+slock.failcolor:	pink_red
