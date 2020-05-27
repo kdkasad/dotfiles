@@ -8,7 +8,7 @@ INCS = -I/usr/include
 LIBS = -L/usr/lib -lc
 
 CPPFLAGS = -DVERSION=\"${VERSION}\"
-CFLAGS = -std=c99 -pedantic -Wall -O3 ${INCS} ${CPPFLAGS}
+CFLAGS = -std=c18 -pedantic -Wall -O3 ${INCS} ${CPPFLAGS}
 LDFLAGS = -s ${LIBS}
 
 CC = cc
