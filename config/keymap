@@ -74,12 +74,12 @@
 
 ## app/program shortcuts
 
-# vim
-"$TERMINAL -e vim"
+# editor
+"$TERMINAL -e $EDITOR"
 	Mod4 + v
 
 # todo list
-"$TERMINAL -e vim ~/notes/todo"
+"$TERMINAL -e $EDITOR ~/notes/todo"
 	Mod4 + Shift + t
 
 # man page chooser
