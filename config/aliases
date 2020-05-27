@@ -3,6 +3,7 @@
 alias -g ll='ls -lh'
 alias -g la='ls -A'
 alias -g lla='ls -lAh'
+alias -g llA='ls -lah'
 alias -g l='ls -CF'
 
 alias -g rm='rm -Iv'
@@ -36,7 +37,7 @@ alias svim='sudo -e'
 se() {
 	[ -n "$@" ] \
 		&& fopts="$@" \
-		|| fopts="~/* ~/.scripts ~/.config ~/.local/src"
+		|| fopts="~/* ~/.scripts ~/.config ~/.local/share ~/.local/src ~/.local/opt"
 	f="$(find $fopts -type f 2>/dev/null | fzf --reverse --height=40% -i)"
 	[ -z "$f" ] && return 1
 	case "$SHELL" in
@@ -48,7 +49,10 @@ se() {
 	$EDITOR "$f"
 }
 sd() {
-	destdir="$(find ./* ~/* ~/.scripts ~/.config ~/.local/src -type d 2>/dev/null | fzf --reverse --height=40% -i)"
+	[ -n "$@" ] \
+		&& fopts="$@" \
+		|| fopts="./* ~/* ~/.scripts ~/.config ~/.local/share ~/.local/src ~/.local/opt"
+	destdir="$(find $fopts -type d 2>/dev/null | fzf --reverse --height=40% -i)"
 	[ $? -ne 0 ] && return 1
 	cd "$destdir" \
 	&& ls
@@ -155,10 +159,7 @@ secrm() {
 }
 
 # quickly source shell config
-case "$SHELL" in
-	*bash) alias sorc='source ~/.config/bash/bashrc' ;;
-	*zsh) alias sorc="source $ZDOTDIR/.zshrc" ;;
-esac
+alias sorc="source $ZDOTDIR/.zshrc"
 
 alias scim=sc-im
 
@@ -188,3 +189,8 @@ alias irssi="irssi --config=$HOME/.config/irssi/config --home=$HOME/.local/share
 
 # youtube-dl is a long name
 alias ytdl='youtube-dl'
+
+# don't glob urls when using curl or mpv
+alias curl='noglob curl'
+alias mpv='noglob mpv'
+alias youtube-dl='noglob youtube-dl'
