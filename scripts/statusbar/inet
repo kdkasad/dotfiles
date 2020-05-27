@@ -1,8 +1,8 @@
 #!/bin/sh
 
 case $BUTTON in
-	1) setsid -f $TERMINAL -e sh -c "ipaddr ; pause" ;;
-	3) setsid -f $TERMINAL -e sh -c "rfkill list ; pause" ;;
+	1) setsid -f $TERMINAL --class floating -e sh -c "ipaddr ; pause" ;;
+	3) setsid -f $TERMINAL --class floating -e sh -c "rfkill list ; pause" ;;
 esac
 
 if ! find /sys/class/net/ -mindepth 1 -maxdepth 1 -not -name lo | xargs -rI '%s' cat %s/carrier | grep 1 >/dev/null 2>&1; then
