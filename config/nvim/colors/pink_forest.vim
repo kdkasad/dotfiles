@@ -140,5 +140,28 @@ hi! link markdownH5 htmlH
 hi! link markdownH6 htmlH
 exe "hi htmlLink" . s:fg_blue . s:bg_none . " cterm=bold,underline gui=bold,underline"
 hi! link markdownLink htmlLink
+hi! link mailURL htmlLink
 
 hi! link helpHyperTextJump htmlLink
+
+"""""""""""""""""""""
+"        FZF        "
+"""""""""""""""""""""
+
+if &rtp =~ 'fzf'
+	let g:fzf_colors =
+	  \ { 'fg':      ['fg', 'Normal'],
+		\ 'bg':      ['bg', 'Normal'],
+		\ 'hl':      ['fg', 'Number'],
+		\ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+		\ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+		\ 'hl+':     ['fg', 'String'],
+		\ 'info':    ['fg', 'PreProc'],
+		\ 'border':  ['fg', 'Ignore'],
+		\ 'gutter':  ['bg', 'Normal'],
+		\ 'prompt':  ['fg', 'Conditional'],
+		\ 'pointer': ['fg', 'Exception'],
+		\ 'marker':  ['fg', 'Keyword'],
+		\ 'spinner': ['fg', 'Label'],
+		\ 'header':  ['fg', 'Comment'] }
+endif
