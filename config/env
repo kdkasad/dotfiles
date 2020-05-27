@@ -1,5 +1,12 @@
 #!/bin/sh
 
+# This script sets environment variables.
+# It is intended to keep ~/.zprofile clean
+# It is sourced by ~/.zprofile on login
+
+
+## SET GENERAL VARIABLES ##
+
 export TERMINAL='alacritty'
 export EDITOR='nvim'
 export BROWSER='brave'
@@ -9,50 +16,64 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
 
+
+## CONFIGURE PROGRAMS ##
+
 # less(1) configuration
 export LESS='-r'
 export LESSOPEN='|lesspipe.sh %s'
 export LESSHISTFILE="-"
 
-# Move zsh config
-export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
-# Move xauthority out of home directory
-export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
-# directory for GnuPG data
-export GNUPGHOME="$XDG_DATA_HOME/gnupg"
-# ssh-agent socket location
-export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
-# set email variables
-export MAILDIR=/var/spool/mail/kian
-export MSMTP_QUEUEDIR="$XDG_DATA_HOME/msmtp.queue"
-# set default refer database (only works in compiledoc script)
-export REFER_SOURCES="$HOME/documents/sources.refer"
-# sudo adkpass program
-export SUDO_ASKPASS="$HOME/.scripts/dmenupass"
-
 # Java doesn't understand tiling wm's
 export _JAVA_AWT_WM_NONREPARENTING=1
-# Move cargo directory out of home
+
+# sudo askpass program
+export SUDO_ASKPASS="$HOME/.scripts/dmenupass"
+
+
+## CLEAN ~ ##
+
+# Move zsh config
+export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+
+# Move xauthority out of home directory
+export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
+
+# directory for GnuPG data
+export GNUPGHOME="$XDG_DATA_HOME/gnupg"
+
+# ssh-agent socket location
+export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
+
+# set email locations
+export MAILDIR=/var/spool/mail/kian
+export MSMTP_QUEUEDIR="$XDG_DATA_HOME/msmtp.queue"
+
+# set default refer database (only works in compiledoc script)
+export REFER_SOURCES="$HOME/documents/sources.refer"
+
+# Move cargo directory
 export CARGO_HOME="${XDG_DATA_HOME}/cargo"
 
-# mpd(1) config
+# mpd(1) socket location
 export MPD_HOST="$XDG_RUNTIME_DIR/mpd/socket"
+
+
+## CONFIGURE PATH ##
 
 if [ -d "$HOME/.local/opt/gcc-arm/gcc-arm-none-eabi-9-2019-q4-major/bin" ] ; then
 	PATH="$HOME/.local/opt/gcc-arm/gcc-arm-none-eabi-9-2019-q4-major/bin:$PATH"
 fi
 
-# set PATH so it includes user's private bin if it exists
+# include user's bin directory
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
-
-# set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-# set PATH so it includes user's scripts directory if it exists
+# include user's scripts directory
 if [ -d "$HOME/.scripts" ] ; then
 	for dir in $(find -L "$HOME/.scripts" -not -path "$HOME/.scripts/statusbar*" -not -path "$HOME/.scripts/cron-jobs*" -type d); do
 		PATH="$dir:$PATH"
