@@ -17,10 +17,22 @@ Plug 'kdkasad/vim-deadkeys'
 Plug 'junegunn/goyo.vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'neovim/nvim-lsp'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'nfnty/vim-nftables'
 
 call plug#end()
+
+
+"""""""""""""""""""""""""""""
+"       FZF SETTINGS        "
+"""""""""""""""""""""""""""""
+
+let g:fzf_layout = {
+			\ 'window': {
+				\'width': 0.9,
+				\'height': 0.6
+			\ }
+		\ }
 
 
 """""""""""""""""""""""""""""
@@ -361,9 +373,6 @@ nmap <leader>wc <C-w>c
 " Move visual selection
 vnoremap K :m '<-2<cr>gv=gv
 vnoremap J :m '>+1<cr>gv=gv
-
-" Delete last word in insert mode using Control + Backspace
-imap <c-h> <esc>cb
 
 " fzf
 nmap <leader>ff :Files<cr>
