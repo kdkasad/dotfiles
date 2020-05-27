@@ -1,7 +1,8 @@
-#show-read-feeds no
+# vim: set ft=config
+
 auto-reload yes
 
-external-url-viewer "urlscan -dc -r 'linkhandler {}'"
+external-url-viewer "urlview -dc -r 'linkhandler {}'"
 
 bind-key j down
 bind-key k up
@@ -20,21 +21,44 @@ bind-key n next-unread
 bind-key N prev-unread
 bind-key D pb-download
 bind-key U show-urls
-bind-key x pb-delete
-bind-key dd pb-delete
+
+# color info				magenta	default
+# color listfocus			black	magenta	bold
+# color listfocus_unread	black	magenta	bold
+# color listnormal		default	default
+# color listnormal_unread	default default bold
 
 highlight all "---.*---" yellow
 highlight feedlist ".*(0/0))" black
 highlight article "(^Feed:.*|^Title:.*|^Author:.*)" cyan default bold
 highlight article "(^Link:.*|^Date:.*)" default default
-highlight article "https?://[^ ]+" green default
-highlight article "^(Title):.*$" blue default
+highlight article "https?://[^ ]+" blue default
+highlight article "^(Title):.*$" magenta default
 highlight article "\\[[0-9][0-9]*\\]" magenta default bold
 highlight article "\\[image\\ [0-9]+\\]" green default bold
 highlight article "\\[embedded flash: [0-9][0-9]*\\]" green default bold
-highlight article ":.*\\(link\\)$" cyan default
-highlight article ":.*\\(image\\)$" blue default
-highlight article ":.*\\(embedded flash\\)$" magenta default
+highlight article ":.*\\(link\\)$" blue default
+highlight article ":.*\\(image\\)$" green default
+highlight article ":.*\\(embedded flash\\)$" red default
 
 browser "linkhandler"
 macro , open-in-browser
+
+## podboat(1) config ##
+
+# where to save podcasts
+download-path ~/audio/podcasts/
+
+# filename of downloaded podcasts
+download-filename-format "%t - %n (%F).%e"
+
+# maximum concurrent downloads
+max-downloads 5
+
+# program to play podcasts in
+player mpv
+
+# keybindings
+bind-key ^D pb-toggle-download-all
+bind-key x pb-delete
+bind-key dd pb-delete
