@@ -1,0 +1,14 @@
+#!/bin/sh
+
+if [ $# -gt 0 ]; then
+	nf="$(echo -n "$1" | sed 'y/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/; s/[][,:(){}]//g; s/ - /_/g; s/ /-/g;')"
+	mv -nT "$1" "$nf"
+	exit
+fi
+
+cd ~/audio/podcasts
+
+find . -mindepth 1 -type d -exec podname {} \;
+find . -type f -exec podname {} \;
+
+find . -mindepth 1 -type d -empty -delete
