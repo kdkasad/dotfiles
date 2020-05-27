@@ -74,12 +74,12 @@
 
 ## app/program shortcuts
 
-# editor
-"$TERMINAL -e $EDITOR"
+# scratchpad
+"$TERMINAL --class floating -e $EDITOR ~/notes/scratchpad.txt"
 	Mod4 + v
 
 # todo list
-"$TERMINAL -e $EDITOR ~/notes/todo"
+"$TERMINAL --class floating -e $EDITOR ~/notes/todo.txt"
 	Mod4 + Shift + t
 
 # man page chooser
