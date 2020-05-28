@@ -105,7 +105,7 @@ font:
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
   offset:
     x: 0
-    y: 2
+    y: 0
 
   # Glyph offset determines the locations of the glyphs within their cells with
   # the default being at the bottom. Increasing `x` moves the glyph to the right,
@@ -441,6 +441,9 @@ key_bindings:
   - { key: Home,     mods: Control|Shift, action: ResetFontSize    }
   - { key: PageUp,   mods: Control|Shift, action: IncreaseFontSize }
   - { key: PageDown, mods: Control|Shift, action: DecreaseFontSize }
+  - { key: R,        mods: Control|Shift, action: ResetFontSize    }
+  - { key: U,        mods: Control|Shift, action: IncreaseFontSize }
+  - { key: D,        mods: Control|Shift, action: DecreaseFontSize }
 
   #- { key: Paste,                    action: Paste                            }
   #- { key: Copy,                     action: Copy                             }
