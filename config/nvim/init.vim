@@ -340,11 +340,6 @@ noremap <Leader>tc :tabc<CR>
 nnoremap <leader>tm :sp\|terminal<cr>
 nnoremap <leader>tv :vs\|terminal<cr>
 
-" vifm.vim shortcut
-map <Leader>fm	:Vifm<CR>
-map <leader>fv	:VsplitVifm<cr>
-map <leader>fs	:SplitVifm<cr>
-
 " toggle line wrapping
 nnoremap <leader>w :set wrap!<cr>
 
