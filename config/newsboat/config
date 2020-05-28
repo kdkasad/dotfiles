@@ -22,11 +22,11 @@ bind-key N prev-unread
 bind-key D pb-download
 bind-key U show-urls
 
-# color info				magenta	default
-# color listfocus			black	magenta	bold
-# color listfocus_unread	black	magenta	bold
-# color listnormal		default	default
-# color listnormal_unread	default default bold
+color info				magenta	default
+color listfocus			black	magenta	bold
+color listfocus_unread	black	magenta	bold
+color listnormal		default	default
+color listnormal_unread	default default bold
 
 highlight all "---.*---" yellow
 highlight feedlist ".*(0/0))" black
@@ -47,10 +47,10 @@ macro , open-in-browser
 ## podboat(1) config ##
 
 # where to save podcasts
-download-path ~/audio/podcasts/
+download-path "~/audio/podcasts/%n"
 
 # filename of downloaded podcasts
-download-filename-format "%t - %n (%F).%e"
+download-filename-format "%F - %t.%e"
 
 # maximum concurrent downloads
 max-downloads 5
@@ -59,6 +59,6 @@ max-downloads 5
 player mpv
 
 # keybindings
-bind-key ^D pb-toggle-download-all
-bind-key x pb-delete
-bind-key dd pb-delete
+bind-key a pb-toggle-download-all podboat
+bind-key x pb-delete podboat
+bind-key dd pb-delete podboat
