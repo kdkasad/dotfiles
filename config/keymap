@@ -75,11 +75,11 @@
 ## app/program shortcuts
 
 # scratchpad
-"$TERMINAL --class floating -e $EDITOR ~/notes/scratchpad.txt"
+"$TERMINAL --class floating -t scratchpad -e $EDITOR ~/notes/scratchpad.txt"
 	Mod4 + v
 
 # todo list
-"$TERMINAL --class floating -e $EDITOR ~/notes/todo.txt"
+"$TERMINAL --class floating -t 'todo list' -e $EDITOR ~/notes/todo.txt"
 	Mod4 + Shift + t
 
 # man page chooser
@@ -130,3 +130,7 @@
 # mutt email client
 "$TERMINAL -e mutt"
 	Mod4 + Shift + M
+
+# launch keepass
+"pgrep -x keepassxc >/dev/null || keepassxc"
+	Mod4 + Control + K
