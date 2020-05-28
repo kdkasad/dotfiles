@@ -25,7 +25,7 @@ xautolock -time 10 -notify 20 -notifier "notify-send -a 'xautolock' 'sleeping in
 picom -b &
 
 # Set keyboard repeat rate
-xset r rate 150 40
+xset r rate 250 40
 
 # Become dwm
 exec dwm
