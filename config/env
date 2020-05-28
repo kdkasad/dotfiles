@@ -30,6 +30,50 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 # sudo askpass program
 export SUDO_ASKPASS="$HOME/.scripts/dmenupass"
 
+# icons for lf(1)
+export LF_ICONS="\
+di=🗀 :\
+fi=🗎:\
+ln=⛓:\
+*.png=🖼:\
+*.ico=🖼:\
+*.jpg=📸:\
+*.jpeg=📸:\
+*.gif=🖼:\
+*.svg=🗺:\
+*.xcf=🖌:\
+*.html=🌎:\
+*.xml=📰:\
+*.gpg=🔒:\
+*.css=🎨:\
+*.pdf=📚:\
+*.djvu=📚:\
+*.epub=📚:\
+*.csv=📓:\
+*.xlsx=📓:\
+*.mp3=🎵:\
+*.opus=🎵:\
+*.ogg=🎵:\
+*.m4a=🎵:\
+*.flac=🎼:\
+*.mkv=🎥:\
+*.mp4=🎥:\
+*.webm=🎥:\
+*.mpeg=🎥:\
+*.avi=🎥:\
+*.zip=📦:\
+*.rar=📦:\
+*.7z=📦:\
+*.tar.gz=📦:\
+*.iso=📀:\
+*.img=📀:\
+*.bib=🎓:\
+*.1=ℹ:\
+*.nfo=ℹ:\
+*.info=ℹ:\
+*.log=📙:\
+"
+
 
 ## CLEAN ~ ##
 
@@ -57,6 +101,21 @@ export CARGO_HOME="${XDG_DATA_HOME}/cargo"
 
 # mpd(1) socket location
 export MPD_HOST="$XDG_RUNTIME_DIR/mpd/socket"
+
+# move inputrc for readline(3)
+export INPUTRC="$XDG_CONFIG_HOME/inputrc"
+
+# wget(1) config
+export WGETRC="$XDG_CONFIG_HOME/wgetrc"
+
+# tmux(1) temporary data
+export TMUX_TMPDIR="$XDG_RUNTIME_DIR/tmux"
+
+# Android SDK
+export ANDROID_SDK_HOME="$XDG_DATA_HOME/android"
+
+# wine(1)
+export WINEPREFIX="$XDG_DATA_HOME/wine"
 
 
 ## CONFIGURE PATH ##
