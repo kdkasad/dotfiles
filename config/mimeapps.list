@@ -1,7 +1,10 @@
 [Default Applications]
 application/x-bittorrent=torrent.desktop;
 x-scheme-handler/magnet=torrent.desktop;
-inode/directory=pcmanfm.desktop
-x-scheme-handler/mailto=brave-browser.desktop
-x-scheme-handler/jetbrains=jetbrains-toolbox.desktop
-text/html=brave-browser.desktop
+inode/directory=pcmanfm.desktop;
+x-scheme-handler/jetbrains=jetbrains-toolbox.desktop;
+x-scheme-handler/lbry=lbry.desktop;
+x-scheme-handler/http=brave-nightly-bin.desktop;
+x-scheme-handler/https=brave-nightly-bin.desktop;
+x-scheme-handler/ftp=brave-nightly-bin.desktop;
+x-scheme-handler/chrome=brave-nightly-bin.desktop;
