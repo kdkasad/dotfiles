@@ -241,6 +241,9 @@ map <C-l> <C-W>l
 au Filetype nroff setlocal ft=groff
 au Filetype troff setlocal ft=groff
 
+" Detect systemd services
+au BufRead *.service setlocal ft=systemd
+
 
 """""""""""""""""""""""""""""
 "        TEMPLATES          "
