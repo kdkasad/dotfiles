@@ -309,9 +309,6 @@ augroup end
 " Leader key
 let mapleader = ','
 
-" redo
-nmap <leader>r <cmd>redo<cr>
-
 " Get off my lawn
 map <up> :echoe "this is vim"<cr>
 map <down> :echoe "this is vim"<cr>
@@ -375,3 +372,6 @@ vnoremap J :m '>+1<cr>gv=gv
 " fzf
 nmap <leader>ff :Files<cr>
 nmap <leader>fg :BLines<cr>
+
+" visual to norm shortcut
+vnoremap . :norm 
