@@ -300,7 +300,7 @@ mouse:
     #   - (Linux/BSD) xdg-open
     #   - (Windows) explorer
     launcher:
-     program: brave
+     program: xdg-open
      args: []
 
     # URL modifiers
