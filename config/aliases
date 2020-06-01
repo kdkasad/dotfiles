@@ -1,10 +1,10 @@
 #!/bin/sh
 
-alias -g ll='ls -lh'
-alias -g la='ls -A'
+alias -g  ll='ls -lh'
+alias -g  la='ls -A'
 alias -g lla='ls -lAh'
 alias -g llA='ls -lah'
-alias -g l='ls -CF'
+alias	   l='ls -CF'
 
 alias -g rm='rm -Iv'
 alias -g cp='cp -iv'
