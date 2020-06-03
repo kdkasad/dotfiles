@@ -375,3 +375,6 @@ nmap <leader>fg :BLines<cr>
 
 " visual to norm shortcut
 vnoremap . :norm 
+
+" save using ZW
+nnoremap ZW <cmd>w<cr>
