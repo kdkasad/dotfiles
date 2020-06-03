@@ -95,7 +95,7 @@
 	Mod4 + Shift + Return
 
 # dmenu program launcher
-"dmenu_run"
+"dmenu_run_history"
 	Mod4 + p
 
 # unicode character chooser
