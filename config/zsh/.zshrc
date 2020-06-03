@@ -9,6 +9,7 @@ setopt HIST_REDUCE_BLANKS
 bindkey '^R' history-incremental-search-backward
 
 setopt autocd
+setopt extendedglob
 
 zstyle :compinstall filename "$XDG_CONFIG_HOME/zsh/.zshrc"
 
