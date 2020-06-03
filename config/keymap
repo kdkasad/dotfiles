@@ -98,7 +98,7 @@
 "dmenu_run_history -h 32"
 	Mod4 + p
 # dmenu program launcher (centered window)
-"dmenu_run_history -c -l 10 -h 32"
+"dmenu_run_history -c -l 10 -h 32 -bw 4"
 	Mod4 + Shift + p
 
 # unicode character chooser
