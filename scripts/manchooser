@@ -1,6 +1,9 @@
 #!/bin/sh
 
-[ "$1" = "-p" ] && PDF=1
+if [ "$1" = "-p" ]; then
+	PDF=1
+	shift
+fi
 
-man -k . | dmenu -i -l 30 | awk '{print $2 $1}' | tr -d '(' | tr ')' ' ' |
+man -k . | dmenu -i -l 30 "$@" | awk '{print $2 $1}' | tr -d '(' | tr ')' ' ' |
 	([ "$PDF" = 1 ] && xargs manpdf || xargs -r $TERMINAL -e man)
