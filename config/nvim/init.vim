@@ -115,6 +115,7 @@ set noshowmode
 
 " Tab settings
 set tabstop=4
+set softtabstop=4
 set shiftwidth=4
 set noexpandtab
 set autoindent
@@ -352,14 +353,12 @@ nmap <leader>dk <plug>DeadKeysToggle
 " toggle goyo
 nmap <leader>g :Goyo \| colo pink_forest<cr>
 
-" turn of search highlighting
+" turn off search highlighting
 nmap <leader>nh <cmd>nohlsearch<cr>
 
-" Generate ctags
-nmap <leader>gt !ctags --recurse=yes --tag-relative=yes --exclude=.git .
 " make project
 nnoremap <leader>mm <cmd>sp \| te bear make<cr>
-nmap <leader>m <leader>mm
+nnoremap <leader>m ,mm
 nnoremap <leader>mv <cmd>vs \| te bear make<cr>
 
 " Close split
