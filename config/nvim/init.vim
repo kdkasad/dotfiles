@@ -172,7 +172,6 @@ endif
 lua << END
 	require'nvim_lsp'.bashls.setup{}
 	require'nvim_lsp'.ccls.setup{}
-	require'nvim_lsp'.cssls.setup{}
 	require'nvim_lsp'.html.setup{}
 	require'nvim_lsp'.vimls.setup{}
 END
@@ -182,7 +181,6 @@ augroup autosigncol
 au Filetype sh setlocal signcolumn=yes							" Bash
 au BufEnter *.sh setlocal signcolumn=yes						" Bash
 au BufEnter *.c,*.cpp*.objc,*.objcpp setlocal signcolumn=yes	" C/C++
-au BufEnter *.css,*.scss,*.less setlocal signcolumn=yes			" CSS
 au BufEnter *.html setlocal signcolumn=yes						" HTML
 au BufEnter *.vim setlocal signcolumn=yes						" Vimscript
 augroup end
