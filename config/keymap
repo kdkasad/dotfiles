@@ -85,20 +85,20 @@
 	Mod4 + Shift + t
 
 # man page chooser
-"manchooser"
+"manchooser -c -h 32 -l 20 -bw 4"
 	Mod4 + e
-"manchooser -p"
+"manchooser -p -c -h 32 -l 20 -bw 4"
 	Mod4 + Shift + e
 
 # terminal
 "$TERMINAL"
 	Mod4 + Shift + Return
 
-# dmenu program launcher
-"dmenu_run_history -h 32"
-	Mod4 + p
 # dmenu program launcher (centered window)
 "dmenu_run_history -c -l 10 -h 32 -bw 4"
+	Mod4 + p
+# dmenu program launcher
+"dmenu_run_history -h 32"
 	Mod4 + Shift + p
 
 # unicode character chooser
