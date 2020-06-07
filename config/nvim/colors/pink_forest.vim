@@ -78,7 +78,7 @@ exe "hi Normal" . s:fg_none . s:bg_none
 exe "hi Error" . s:fg_white . s:bg_red
 hi! link ErrorMsg Error
 exe "hi Question" . s:fg_green . s:bg_none . s:none
-exe "hi EndOfBuffer" . s:fg_dark . s:bg_none
+exe "hi EndOfBuffer" . s:fg_gray2 . s:bg_none
 exe "hi StatusLine" . s:fg_purple . s:bg_gray2
 exe "hi Comment" . s:fg_gray
 exe "hi CursorLine" . s:bg_gray2 . s:none
