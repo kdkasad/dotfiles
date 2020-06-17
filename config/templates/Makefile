@@ -20,10 +20,8 @@ uninstall:
 	@echo "uninstalling"
 	@rm -f ${addprefix ${DESTDIR}${PREFIX}/bin/, ${BIN}}
 
-.c.o:
-	${CC} -c ${CFLAGS} $<
-
-${OBJ}: config.mk
+%.o: %.c
+	${CC} ${CFLAGS} -c -o $@ $^
 
 ${BIN}: ${OBJ}
 	${CC} -o $@ $^ ${LDFLAGS}
