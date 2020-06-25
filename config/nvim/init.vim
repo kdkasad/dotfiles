@@ -13,12 +13,13 @@ Plug 'itchyny/lightline.vim'
 Plug 'ap/vim-css-color'
 Plug 'gerw/vim-HiLinkTrace'
 Plug 'udalov/kotlin-vim'
-Plug 'kdkasad/vim-deadkeys'
+Plug 'https://gitlab.com/kdkasad/vim-deadkeys'
 Plug 'junegunn/goyo.vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'neovim/nvim-lsp'
 Plug 'junegunn/fzf.vim'
 Plug 'nfnty/vim-nftables'
+Plug 'dhruvasagar/vim-table-mode'
 
 call plug#end()
 
@@ -95,7 +96,7 @@ command! Wqa wqa
 command! WQa wqa
 command! Wqall wqall
 
-" Make Y behave like D/C
+" Make Y yank to end of line
 nnoremap Y y$
 
 " Automatic scrolling past cursor
@@ -349,7 +350,7 @@ nnoremap <leader>s :set spell!<cr>
 nmap <leader>dk <plug>DeadKeysToggle
 
 " toggle goyo
-nmap <leader>g :Goyo \| colo pink_forest<cr>
+nmap <leader>g :Goyo<cr>
 
 " turn off search highlighting
 nmap <leader>nh <cmd>nohlsearch<cr>

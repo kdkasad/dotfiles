@@ -9,7 +9,7 @@
 
 export TERMINAL='alacritty'
 export EDITOR='nvim'
-export BROWSER='brave-nightly'
+export BROWSER='firefox'
 export EMAIL="YOUR EMAIL"
 
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -18,6 +18,9 @@ export XDG_DATA_HOME="$HOME/.local/share"
 
 
 ## CONFIGURE PROGRAMS ##
+
+# configure gpg tty
+export GPG_TTY="$(tty)"
 
 # less(1) configuration
 export LESS='-r'
@@ -77,6 +80,9 @@ ln=⛓:\
 
 ## CLEAN ~ ##
 
+# move pass(1) directory
+export PASSWORD_STORE_DIR="$XDG_DATA_HOME/password-store"
+
 # Move zsh config
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 
@@ -90,7 +96,7 @@ export GNUPGHOME="$XDG_DATA_HOME/gnupg"
 export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
 
 # set email locations
-export MAILDIR=/var/spool/mail/kian
+export MAILDIR=~/.local/share/mail
 export MSMTP_QUEUEDIR="$XDG_DATA_HOME/msmtp.queue"
 
 # set default refer database (only works in compiledoc script)
@@ -120,10 +126,6 @@ export WINEPREFIX="$XDG_DATA_HOME/wine"
 
 ## CONFIGURE PATH ##
 
-if [ -d "$HOME/.local/opt/gcc-arm/gcc-arm-none-eabi-9-2019-q4-major/bin" ] ; then
-	PATH="$HOME/.local/opt/gcc-arm/gcc-arm-none-eabi-9-2019-q4-major/bin:$PATH"
-fi
-
 # include user's bin directory
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
@@ -133,8 +135,8 @@ if [ -d "$HOME/.local/bin" ] ; then
 fi
 
 # include user's scripts directory
-if [ -d "$HOME/.scripts" ] ; then
-	for dir in $(find -L "$HOME/.scripts" -not -path "$HOME/.scripts/statusbar*" -not -path "$HOME/.scripts/cron-jobs*" -type d); do
+if [ -d "$HOME/.local/bin/scripts" ] ; then
+	for dir in $(find -L "$HOME/.local/bin/scripts" -not -path "$HOME/.local/bin/scripts/statusbar*" -not -path "$HOME/.local/bin/scripts/cron-jobs*" -type d); do
 		PATH="$dir:$PATH"
 	done
 fi

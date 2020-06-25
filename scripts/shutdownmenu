@@ -1,6 +1,6 @@
 #!/bin/sh
 
-target="$(cat << eof | dmenu -i -p "Choose target:"
+target="$( dmenu -i -p "choose state:" << eof || printf 'cancelled'
 power off
 reboot
 suspend
@@ -12,12 +12,30 @@ eof
 )"
 
 case "$target" in
-	"suspend") systemctl suspend ;;
+	*cancelled) exit 1 ;;
+esac
+
+case "$target" in
+	suspend|hibernate|"hybrid sleep"|"suspend then hibernate")
+		lockfirst="$( printf "no\nyes" | dmenu -i -p "lock first?" || printf cancelled )"
+		;;
+esac
+
+echo "$lockfirst" | grep cancelled >/dev/null 2>&1 \
+	&& exit 1
+
+case "$lockfirst" in
+	*cancelled) exit 1 ;;
+	*y*) setsid -f slock ;;
+esac
+
+case "$target" in
+	"suspend") systemctl -i suspend ;;
 	"power off") poweroff ;;
 	"reboot") reboot ;;
-	"hibernate") systemctl hibernate ;;
-	"hybrid sleep") systemctl hybrid-sleep ;;
-	"suspend then hibernate") systemctl suspend-then-hibernate ;;
+	"hibernate") systemctl -i hibernate ;;
+	"hybrid sleep") systemctl -i hybrid-sleep ;;
+	"suspend then hibernate") systemctl -i suspend-then-hibernate ;;
 	"halt") halt ;;
 	*) echo "$0: unknown option: $target" ; exit 1
 esac

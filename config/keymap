@@ -30,24 +30,24 @@
 	Mod4 + F2
 
 # brightness down
-"backlightctl dec 10 ; pkill -x dwmblocks -RTMIN+2"
+"backlightctl dec 10 ; updatestatusbar brightness"
 	Mod4 + F9
-"backlightctl dec 10 ; pkill -x dwmblocks -RTMIN+2"
+"backlightctl dec 10 ; updatestatusbar brightness"
 	XF86MonBrightnessDown
 # brightness up
-"backlightctl inc 10 ; pkill -x dwmblocks -RTMIN+2"
+"backlightctl inc 10 ; updatestatusbar brightness"
 	Mod4 + F10
-"backlightctl inc 10 ; pkill -x dwmblocks -RTMIN+2"
+"backlightctl inc 10 ; updatestatusbar brightness"
 	XF86MonBrightnessUp
 # brightness 0 (screen off)
-"xset dpms force off ; pkill -x dwmblocks -RTMIN+2"
+"xset dpms force off ; updatestatusbar brightness"
 	Mod4 + F11
 # brightness 100%
-"xset dpms force on ; pkill -x dwmblocks -RTMIN+2"
+"xset dpms force on ; updatestatusbar brightness"
 	Mod4 + F12
 
 # refresh statusbar
-"pkill -RTMIN dwmblocks"
+"updatestatusbar"
 	Mod4 + F1
 
 # Minecraft fishing
@@ -85,9 +85,9 @@
 	Mod4 + Shift + t
 
 # man page chooser
-"manchooser -c -h 32 -l 20 -bw 4"
+"manchooser -g -c -h 32 -l 20 -bw 4"
 	Mod4 + e
-"manchooser -p -c -h 32 -l 20 -bw 4"
+"manchooser -g -p -c -h 32 -l 20 -bw 4"
 	Mod4 + Shift + e
 
 # terminal
@@ -132,8 +132,8 @@
 "confedit"
 	Mod4 + o
 
-# mutt email client
-"$TERMINAL -e mutt"
+# email client
+"$TERMINAL -e neomutt"
 	Mod4 + Shift + M
 
 # launch keepass

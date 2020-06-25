@@ -4,7 +4,9 @@ alias -g  ll='ls -lh'
 alias -g  la='ls -A'
 alias -g lla='ls -lAh'
 alias -g llA='ls -lah'
-alias	   l='ls -CF'
+alias	   l='ls -CF1'
+
+alias -g sl='sl | lolcat'
 
 alias -g rm='rm -Iv'
 alias -g cp='cp -iv'
@@ -17,9 +19,6 @@ mkcd() {
 	mkdir -pv "$@"
 	cd "$1" || exit 1
 }
-
-# Make sl cancellable
-alias sl='sl -e'
 
 # Make & install suckless utilities
 alias suckmake='make clean && make install clean'
@@ -47,6 +46,20 @@ se() {
 			  fc -R ;;
 	esac
 	$EDITOR "$f"
+}
+so() {
+	[ -n "$@" ] \
+		&& fopts="$@" \
+		|| fopts="~/* ~/.scripts ~/.config ~/.local/share ~/.local/src ~/.local/opt"
+	f="$(find $fopts -type f 2>/dev/null | fzf --reverse --height=40% -i)"
+	[ -z "$f" ] && return 1
+	case "$SHELL" in
+		*bash) history -s $EDITOR "$(echo "$f" | sed "s|$HOME|~|")" ;;
+		*zsh) fc -AI
+			  echo $EDITOR "$(echo "$f" | sed "s|$HOME|~|")" >> $HISTFILE
+			  fc -R ;;
+	esac
+	xdg-open "$f"
 }
 sd() {
 	[ -n "$@" ] \
@@ -122,19 +135,6 @@ sechd() {
 	esac
 }
 
-# Video search/play
-vidse() {
-	vid="$(find ~/videos -type f 2>/dev/null | fzf --reverse --height=40% -i)"
-	[ -z "$vid" ] && return 1
-	case "$SHELL" in
-		*bash) history -s mpv "$(echo "$vid" | sed "s|$HOME|~|")" ;;
-		*zsh) fc -AI
-			  echo mpv "$(echo "$vid" | sed "s|$HOME|~|")" >> $HISTFILE
-			  fc -R ;;
-	esac
-	setsid -f mpv "$vid" && exit
-}
-
 # Transmission BitTorrent client
 alias trc='transmission-remote-cli'
 alias trd='transmission-daemon'
@@ -194,3 +194,10 @@ alias ytdl='youtube-dl'
 alias curl='noglob curl'
 alias mpv='noglob mpv'
 alias youtube-dl='noglob youtube-dl'
+
+# show progress in xz
+xzip() {
+	in="$1"
+	shift
+	pv "$in" | xz -z "$@" > "$in.xz"
+}

@@ -9,3 +9,5 @@
 [color]
 	status = auto
 	ui = auto
+[pull]
+	ff = only

@@ -441,9 +441,9 @@ key_bindings:
   - { key: Home,     mods: Control|Shift, action: ResetFontSize    }
   - { key: PageUp,   mods: Control|Shift, action: IncreaseFontSize }
   - { key: PageDown, mods: Control|Shift, action: DecreaseFontSize }
-  - { key: R,        mods: Control|Shift, action: ResetFontSize    }
-  - { key: U,        mods: Control|Shift, action: IncreaseFontSize }
-  - { key: D,        mods: Control|Shift, action: DecreaseFontSize }
+  - { key: Add,      mods: Control|Shift, action: ResetFontSize    }
+  - { key: Equals,   mods: Control,       action: IncreaseFontSize }
+  - { key: Minus,    mods: Control,       action: DecreaseFontSize }
 
   #- { key: Paste,                    action: Paste                            }
   #- { key: Copy,                     action: Copy                             }
