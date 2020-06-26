@@ -31,7 +31,7 @@ export LESSHISTFILE="-"
 export _JAVA_AWT_WM_NONREPARENTING=1
 
 # sudo askpass program
-export SUDO_ASKPASS="$HOME/.scripts/dmenupass"
+export SUDO_ASKPASS="$HOME/.local/bin/scripts/dmenupass"
 
 # icons for lf(1)
 export LF_ICONS="\
