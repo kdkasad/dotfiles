@@ -65,7 +65,7 @@
     frame_width = 3
 
     # Defines color of the frame around the notification window.
-    frame_color = "#473d4b"
+    frame_color = "#c2b1d5"
 
     # Define a color for the separator.
     # possible values are:
@@ -180,10 +180,10 @@
     ### Misc/Advanced ###
 
     # dmenu path.
-    dmenu = /usr/bin/dmenu -p dunst:
+    dmenu = /home/kian/.local/bin/dmenu -p dunst:
 
     # Browser for opening urls in context menu.
-    browser = /usr/bin/brave -new-tab
+    browser = /usr/bin/brave-nightly -new-tab
 
     # Always run rule-defined scripts, even if the notification is suppressed
     always_run_script = true
@@ -323,5 +323,10 @@
 #    appname = Pidgin
 #    summary = *twitter.com*
 #    urgency = normal
-#
+
+# [brave]
+# 	appname = Brave
+# 	format = ""
+# 	urgency = low
+
 # vim: ft=cfg
