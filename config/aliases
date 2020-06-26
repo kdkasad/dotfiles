@@ -201,3 +201,6 @@ xzip() {
 	shift
 	pv "$in" | xz -z "$@" > "$in.xz"
 }
+
+alias gc='git commit'
+alias gcm='git commit -m'
