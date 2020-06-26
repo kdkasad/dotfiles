@@ -9,7 +9,7 @@
 
 export TERMINAL='alacritty'
 export EDITOR='nvim'
-export BROWSER='firefox'
+export BROWSER='brave-nightly'
 export EMAIL="YOUR EMAIL"
 
 export XDG_CONFIG_HOME="$HOME/.config"
