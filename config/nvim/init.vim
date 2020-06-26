@@ -278,8 +278,8 @@ augroup specialfiles
 
 " reload config files
 au BufWritePost ~/.config/keymap !pkill -x xbindkeys -HUP
-au BufWritePost ~/.config/picom/picom.conf !pkill -x picom && picom -b
-au BufWritePost ~/.config/dunst/dunstrc !pkill -x dunst && setsid dunst
+au BufWritePost ~/.config/picom/picom.conf !pkill -x picom ; picom -b
+au BufWritePost ~/.config/dunst/dunstrc !pkill -x dunst ; setsid dunst
 
 " shellcheck
 au Filetype sh map <buffer> <leader>s :sp \| te shellcheck --color=always %<cr>
