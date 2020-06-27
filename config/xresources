@@ -71,3 +71,6 @@ st.tabspaces: 4
 slock.defaultcolor:	pink_dark
 slock.inputcolor:	pink_purple
 slock.failcolor:	pink_red
+
+/* general */
+Xcursor.size: 24
