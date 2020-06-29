@@ -1,0 +1,18 @@
+#!/bin/sh
+
+CACHEPASS_TMPDIR="${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/getemailpasswd"
+
+if [ "$1" = '-c' ]; then
+	rm -rfv "$CACHEPASS_TMPDIR"
+	exit 0
+fi
+
+if [ ! -d "$CACHEPASS_TMPDIR" ]; then
+	mkdir "$CACHEPASS_TMPDIR" >&2
+fi
+
+if [ ! -s "$CACHEPASS_TMPDIR/$1" ]; then
+	pass "$1" > "$CACHEPASS_TMPDIR/$1"
+fi
+
+cat "$CACHEPASS_TMPDIR/$1"
