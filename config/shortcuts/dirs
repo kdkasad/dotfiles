@@ -6,7 +6,7 @@ ap		~/.local/src
 lsr		~/.local/src
 co		~/.config
 sha		~/.local/share
-d		~/.dotfiles
+d		~/.local/share/dotfiles
 us		/usr/share
 ulb		/usr/local/bin
 e		/etc
