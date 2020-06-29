@@ -1,9 +1,13 @@
 #!/bin/sh
 
-if [ "$1" = "-p" ]; then
-	PDF=1
+if [ "$1" = "-g" ]; then
 	shift
+	CHOOSER="dmenu -i -l 30 $@"
+	VIEWER="$TERMINAL -e man"
+else
+	CHOOSER="fzf +x --reverse --height=60% $@"
+	VIEWER="man"
 fi
 
-man -k . | dmenu -i -l 30 "$@" | awk '{print $2 $1}' | tr -d '(' | tr ')' ' ' |
-	([ "$PDF" = 1 ] && xargs manpdf || xargs -r $TERMINAL -e man)
+man -k . | $CHOOSER | awk '{print $2 $1}' | tr -d '(' | tr ')' ' ' |
+	xargs -r $VIEWER
