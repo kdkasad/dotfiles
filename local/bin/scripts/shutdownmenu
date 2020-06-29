@@ -1,13 +1,12 @@
 #!/bin/sh
 
-target="$( dmenu -i -p "choose state:" << eof || printf 'cancelled'
+target="$( dmenu "$@" -i -p "choose state:" << eof || printf 'cancelled'
 power off
 reboot
 suspend
 hibernate
 hybrid sleep
 suspend then hibernate
-halt
 eof
 )"
 
@@ -17,7 +16,7 @@ esac
 
 case "$target" in
 	suspend|hibernate|"hybrid sleep"|"suspend then hibernate")
-		lockfirst="$( printf "no\nyes" | dmenu -i -p "lock first?" || printf cancelled )"
+		lockfirst="$( printf "yes\nno" | dmenu -i -p "lock first?" || printf cancelled )"
 		;;
 esac
 
@@ -30,12 +29,11 @@ case "$lockfirst" in
 esac
 
 case "$target" in
-	"suspend") systemctl -i suspend ;;
-	"power off") poweroff ;;
-	"reboot") reboot ;;
-	"hibernate") systemctl -i hibernate ;;
-	"hybrid sleep") systemctl -i hybrid-sleep ;;
-	"suspend then hibernate") systemctl -i suspend-then-hibernate ;;
-	"halt") halt ;;
+	"suspend") loginctl suspend ;;
+	"power off") loginctl poweroff ;;
+	"reboot") loginctl reboot ;;
+	"hibernate") loginctl hibernate ;;
+	"hybrid sleep") loginctl hybrid-sleep ;;
+	"suspend then hibernate") loginctl suspend-then-hibernate ;;
 	*) echo "$0: unknown option: $target" ; exit 1
 esac
