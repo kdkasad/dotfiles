@@ -6,7 +6,14 @@ case $BUTTON in
 	3) voldown ;;
 esac >/dev/null
 
-if type pactl >/dev/null 2>&1; then # PulseAudio
+if type amixer >/dev/null 2>&1; then # ALSA
+	if amixer get Master | grep Mono: | grep off >/dev/null; then
+		printf '🔇'
+		exit
+	fi
+	printf '🔊'
+	amixer get Master | grep Mono: | grep -o '[0-9]\{1,3\}%'
+else # PulseAudio
 	if pactl list sinks | grep 'Mute: yes' >/dev/null; then
 		printf '🔇'
 		exit
