@@ -9,5 +9,5 @@ zshrc		~/.config/zsh/.zshrc
 profile		~/.zprofile
 env			~/.config/env
 dunstrc		~/.config/dunst/dunstrc
-keymap		~/.config/keymap
+keymap		~/.config/xbindkeysrc
 aliases		~/.config/aliases
