@@ -7,8 +7,14 @@ umask 027
 # load environment configuration
 [ -f "$HOME/.config/env" ] && . $HOME/.config/env
 
+# configure gpg tty
+export GPG_TTY="$(tty)"
+
 # start ssh-agent(1)
-eval $(ssh-agent)
+eval $(ssh-agent) >/dev/null 2>&1
+
+# set dbus address
+eval $(dbus-launch | sed 's/^/export /')
 
 # if logged in on tty1, start the X server
 if [ $(tty) = "/dev/tty1" ]; then
