@@ -6,7 +6,7 @@ muttrc		~/.config/mutt/muttrc
 picom		~/.config/picom/picom.conf
 fontconfig	~/.config/fontconfig/fonts.conf
 zshrc		~/.config/zsh/.zshrc
-profile		~/.profile
+profile		~/.zprofile
 env			~/.config/env
 dunstrc		~/.config/dunst/dunstrc
 keymap		~/.config/keymap
