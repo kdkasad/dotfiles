@@ -6,39 +6,75 @@ if [ -z "$HOME" ]; then
 	exit 1
 fi
 
-# create directories
-mkdir -p "$HOME/.local/share"
-mkdir -p "$HOME/.local/opt"
-mkdir -p "$HOME/.local/bin"
+install() {
+	cat << EOF >&2
+	This script does not install any dependencies or programs other than the following:
+	  * dwm
+	  * dwmblocks
+	  * dmenu
+	  * slock
+	  * pause
+	
+	It also does not install any dependencies required to build the programs listed above.
+	You will need at least:
+	  * git
+	  * make
+	  * cc (any C compiler should work)
+	  * xorg
+	  * xorg-xext
+	  * libxft (libxft-bgra is required for emojis. it is available in the AUR)
 
-# get dotfiles
-cd "$HOME/.local/share"
-git clone https://git.kasad.com/dotfiles.git dotfiles
-cd dotfiles
+	There may be more. If so, edit this and submit a pull request at https://gitlab.com/kdkasad/dotfiles
 
-# install dotfiles
-find . -mindepth 1 -not -path '*/.git*' -type d -print0 | sed -z 's/^\.\///' | xargs -r0i%p mkdir -vp "$HOME/.%p"
-find . -mindepth 1 -not -path '*/.git*' -not -path './LICENSE' -type f -print0 | sed -z 's/^\.\///' | xargs -r0i%p ln -v ./%p "$HOME/.%p"
+	Press [enter] to continue...
+EOF
+	read cont
 
-# get utilities/programs
-cd "$HOME/.local/opt"
-git clone https://git.kasad.com/dwm.git dwm
-git clone https://git.kasad.com/dwmblocks.git dwmblocks
-git clone https://git.kasad.com/dmenu.git dmenu
-git clone https://git.kasad.com/slock.git slock
-git clone https://git.kasad.com/pause.git pause
+	mkdir -p "$HOME/.local/share"
+	# create directories
+	mkdir -p "$HOME/.local/opt"
+	mkdir -p "$HOME/.local/bin"
 
-# make and install utilites/programs
-cd "$HOME/.local/opt/dwm"
-make install; make clean
-cd "$HOME/.local/opt/dwmblocks"
-make install; make clean
-cd "$HOME/.local/opt/dmenu"
-make install; make clean
-cd "$HOME/.local/opt/slock"
-sudo make install; sudo make clean
-cd "$HOME/.local/opt/pause"
-make install; make clean
+	# get dotfiles
+	cd "$HOME/.local/share"
+	git clone https://git.kasad.com/dotfiles.git dotfiles
+	cd dotfiles
 
-# reload xresources
-xrdb -load "$HOME/.config/xresources"
+	# install dotfiles
+	find . -mindepth 1 -not -path '*/.git*' -type d -print0 | sed -z 's/^\.\///' | xargs -r0i%p mkdir -vp "$HOME/.%p"
+	find . -mindepth 1 -not -path '*/.git*' -not -path './LICENSE' -type f -print0 | sed -z 's/^\.\///' | xargs -r0i%p ln -v ./%p "$HOME/.%p"
+
+	# get utilities/programs
+	cd "$HOME/.local/opt"
+	git clone https://git.kasad.com/dwm.git dwm
+	git clone https://git.kasad.com/dwmblocks.git dwmblocks
+	git clone https://git.kasad.com/dmenu.git dmenu
+	git clone https://git.kasad.com/slock.git slock
+	git clone https://git.kasad.com/pause.git pause
+
+	# make and install utilites/programs
+	cd "$HOME/.local/opt/dwm"
+	make install; make clean
+	cd "$HOME/.local/opt/dwmblocks"
+	make install; make clean
+	cd "$HOME/.local/opt/dmenu"
+	make install; make clean
+	cd "$HOME/.local/opt/slock"
+	sudo make PREFIX="$HOME/.local" install; sudo make clean
+	cd "$HOME/.local/opt/pause"
+	make install; make clean
+
+	# reload xresources
+	xrdb -load "$HOME/.config/xresources"
+}
+
+refresh_repo() {
+	cd "$HOME/.local/share/dotfiles"
+	find . -mindepth 1 -not -path '*/.git*' -not -path './LICENSE' -type f -print0 | sed -z 's/^\.\///' | xargs -r0i%p ln -vf "$HOME/.%p" ./%p
+}
+
+if [ "$1" = "refresh-repo" ]; then
+	refresh_repo
+else if [ "$1" = "install" -o -z "$1" ]; then
+	install
+fi
