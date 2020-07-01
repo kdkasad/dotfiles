@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# set volume to 20%
+command -v amixer >/dev/null 2>&1 && amixer sset Master 20%
+
 # load xresources
 xrdb -merge ~/.config/xresources &
 
