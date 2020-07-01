@@ -125,8 +125,6 @@
 # lock screen
 "slock"
 	Mod4 + Shift + l
-"slock systemctl hibernate -i"
-	Mod4 + Shift + Alt + l
 
 # config file editor
 "confedit"
