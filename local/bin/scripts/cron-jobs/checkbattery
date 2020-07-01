@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 warning_start=20
 warning_inc=5
