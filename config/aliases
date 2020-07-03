@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/zsh
 
 alias -g  ll='ls -lh'
 alias -g  la='ls -A'
@@ -175,9 +175,6 @@ mkscript() {
 
 alias ctime="date +'%A, %d %B %Y at %H:%M'"
 
-# abook file location defaults
-alias abook='abook -C ~/.config/abook/abookrc --datafile ~/.local/share/addressbook'
-
 # present using SENT
 pres() {
 	setsid sh -c "sent \"$@\" ; st" &
@@ -204,3 +201,9 @@ xzip() {
 
 alias gc='git commit'
 alias gcm='git commit -m'
+
+# show qemu-img progress bar
+alias -g qemu-img='qemu-img -p'
+
+# use sxiv-rifle by default
+alias -g sxiv=sxiv-rifle
