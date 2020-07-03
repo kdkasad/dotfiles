@@ -19,7 +19,7 @@ source ${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/session-env
 
 # For individual configurations:
 [ -d "$HOME/.local/share/password-store" ] && export PASSWORD_STORE_DIR="${PASSWORD_STORE_DIR:-$HOME/.local/share/password-store}"
-[ -d "$HOME/.local/gnupg" ] && export GNUPGHOME="${GNUPGHOME:-$HOME/.local/gnupg}"
+[ -d "$HOME/.local/share/gnupg" ] && export GNUPGHOME="${GNUPGHOME:-$HOME/.local/share/gnupg}"
 
 # Settings are different for MacOS (Darwin) systems.
 if [ "$(uname)" = "Darwin" ]; then
