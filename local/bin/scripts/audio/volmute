@@ -8,5 +8,8 @@ else # ALSA
 	amixer set Master toggle
 fi
 
+# Send volume notification
+notifyvolume
+
 # Update statusbar
 updatestatusbar 1

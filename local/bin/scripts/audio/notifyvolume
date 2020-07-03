@@ -1,0 +1,19 @@
+#!/bin/sh
+
+if type amixer >/dev/null 2>&1; then # ALSA
+	if amixer get Master | grep Mono: | grep off >/dev/null; then
+		volumebar='muted'
+	fi
+	volumepercent="$(amixer get Master | grep Mono: | grep -o '[0-9]\{1,3\}%')"
+else # PulseAudio
+	if pactl list sinks | grep 'Mute: yes' >/dev/null; then
+		volumebar='muted'
+	fi
+	volumepercent="$(pactl list sinks | grep -m 1 '^\s*Volume:' | grep -o '[0-9]\{1,3\}%')"
+fi
+
+if [ "$volumebar" = muted ]; then
+	notify-send -a 'volume-notifier' 'volume:' "muted"
+else
+	notify-send -a 'volume-notifier' 'volume:' "$volumepercent"
+fi

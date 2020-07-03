@@ -12,5 +12,8 @@ else # ALSA
 	amixer set Master 5%+
 fi
 
+# Send volume notification
+notifyvolume
+
 # Update statusbar
 updatestatusbar 1
