@@ -1,8 +1,10 @@
 #!/bin/bash
 
+source "${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/session-env"
+
 warning_start=20
 warning_inc=5
-cache_file="${XDG_RUNTIME_HOME:-/run/user/$(id -u)}/checkbattery-last"
+cache_file="${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/checkbattery-last"
 
 if ! grep Discharging /sys/class/power_supply/BAT0/status >/dev/null; then
 	rm -f $cache_file
