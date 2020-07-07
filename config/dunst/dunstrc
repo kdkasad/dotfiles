@@ -407,10 +407,18 @@
 #    summary = *twitter.com*
 #    urgency = normal
 
+[stack-cachepass]
+    appname = "cachepass"
+    set_stack_tag = "cachepass"
+
 [stack-volumes]
     appname = "volume-notifier"
 	format =  "<b>%s</b>\n%b"
     set_stack_tag = "volume"
+
+[hide-appname]
+	appname = "notify-send"
+	format =  "<b>%s</b>\n%b"
 
 
 # vim: ft=cfg

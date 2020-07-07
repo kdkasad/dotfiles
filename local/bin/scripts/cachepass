@@ -1,10 +1,17 @@
 #!/bin/sh
 
-CACHEPASS_TMPDIR="${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/getemailpasswd"
+umask 077
+CACHEPASS_TMPDIR="${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/cachepass"
 
 if [ "$1" = '-c' ]; then
-	rm -rfv "$CACHEPASS_TMPDIR"
+	rm -rfv "$CACHEPASS_TMPDIR" >&2
 	exit 0
+fi
+
+notify=0
+if [ $# -ge 2 -a "$1" = '-n' ]; then
+	notify=1
+	shift
 fi
 
 if [ ! -d "$CACHEPASS_TMPDIR" ]; then
@@ -12,6 +19,14 @@ if [ ! -d "$CACHEPASS_TMPDIR" ]; then
 fi
 
 if [ ! -s "$CACHEPASS_TMPDIR/$1" ]; then
+	if [ $notify -gt 0 ]; then
+		notify-send -a cachepass 'requesting password' 'in 3 seconds...'
+		sleep 1
+		notify-send -a cachepass 'requesting password' 'in 2 seconds...'
+		sleep 1
+		notify-send -a cachepass 'requesting password' 'in 1 second...'
+		sleep 1
+	fi
 	pass "$1" > "$CACHEPASS_TMPDIR/$1"
 fi
 
