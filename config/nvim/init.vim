@@ -20,6 +20,8 @@ Plug 'neovim/nvim-lsp'
 Plug 'junegunn/fzf.vim'
 Plug 'nfnty/vim-nftables'
 Plug 'dhruvasagar/vim-table-mode'
+Plug 'ghifarit53/sonokai'
+Plug 'sheerun/vim-polyglot'
 
 call plug#end()
 
@@ -158,13 +160,16 @@ au BufReadPost *
 
 " Color scheme
 set background=dark
-colorscheme pink_forest
-let g:lightline = { 'colorscheme': 'pink_line', }
-" Disable Background Color Erase (BCE) which caused some errors
-if &term =~ '256color'
-	set t_ut=
-endif
+set termguicolors
 
+let g:sonokai_style = 'shusia'
+let g:sonokai_transparent_background = 1
+let g:sonokai_enable_italic = 1
+let g:sonokai_menu_selection_background = 'blue'
+colorscheme sonokai
+
+" Lightline colors
+let g:lightline = { 'colorscheme': 'sonokai', }
 
 """""""""""""""""""""""""""""
 "      LANGUAGE SERVERS     "

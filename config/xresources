@@ -17,7 +17,7 @@
 #define nord14 #A3BE8C
 #define nord15 #B48EAD
 
-#define pink_dark	#473d4b
+#define pink_dark	#473D4B
 #define pink_gray2	#55495B
 #define pink_gray	#908EA8
 #define pink_light	#FFFFFF
@@ -30,47 +30,52 @@
 #define pink_cyan	#99D7F8
 #define pink_purple	#C2B1D5
 
+#define lakeside_dark	#484761
+#define lakeside_yellow	#CDC95E
+#define lakeside_blue	#416494
+#define lakeside_purple	#9E649C
+#define lakeside_cyan	#64939E
+#define lakeside_green	#649E6E
+#define lakeside_orange	#CD955E
+#define lakeside_red	#CD5E66
+#define lakeside_light	#F6E6C7
+#define lakeside_gray	#8584A0
+#define lakeside_gray2	#565570
+
+#define shusia_black		#1A181A
+#define shusia_bg0			#2D2A2E
+#define shusia_dark			#343136
+#define shusia_bg2			#3B383E
+#define shusia_bg3			#423F46
+#define shusia_gray2		#49464E
+#define shusia_light		#E3E1E4
+#define shusia_red			#F85E84
+#define shusia_orange		#EF9062
+#define shusia_yellow		#E5C463
+#define shusia_green		#9ECD6F
+#define shusia_blue			#7A9ED7
+#define shusia_cyan			#7ACCD7
+#define shusia_purple		#AB9DF2
+#define shusia_gray			#848089
+
 /* dwm */
-dwm.normbordercolor: pink_dark
-dwm.normbgcolor: pink_dark
-dwm.normfgcolor: pink_light
-dwm.selbordercolor: pink_dark
-dwm.selbgcolor: pink_purple
-dwm.selfgcolor: pink_dark
+dwm.normbordercolor: shusia_dark
+dwm.normbgcolor: shusia_dark
+dwm.normfgcolor: shusia_light
+dwm.selbordercolor: shusia_dark
+dwm.selbgcolor: shusia_blue
+dwm.selfgcolor: shusia_dark
 
 /* dmenu */
-dmenu.background: pink_dark
-dmenu.foreground: pink_light
-dmenu.selbackground: pink_purple
-dmenu.selforeground: pink_dark
-
-/* st */
-st.font:	terminal:autohint=true:antialias=true:size=11
-st.foreground:   pink_light
-st.background:   pink_dark
-st.cursorColor:  pink_light
-st.color0: pink_dark
-st.color1: pink_red
-st.color2: pink_green
-st.color3: pink_yellow
-st.color4: pink_blue
-st.color5: pink_purple
-st.color6: pink_cyan
-st.color7: pink_light
-st.color8: pink_gray
-st.color9: pink_pink
-st.color10: pink_green
-st.color11: pink_orange
-st.color12: pink_blue
-st.color13: pink_purple
-st.color14: pink_cyan
-st.color15: pink_gray2
-st.tabspaces: 4
+dmenu.background: shusia_dark
+dmenu.foreground: shusia_light
+dmenu.selbackground: shusia_blue
+dmenu.selforeground: shusia_dark
 
 /* slock */
-slock.defaultcolor:	pink_dark
-slock.inputcolor:	pink_purple
-slock.failcolor:	pink_red
+slock.defaultcolor:	shusia_dark
+slock.inputcolor:	shusia_blue
+slock.failcolor:	shusia_red
 
 /* general */
 Xcursor.size: 24
