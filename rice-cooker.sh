@@ -6,7 +6,7 @@ if [ -z "$HOME" ]; then
 	exit 1
 fi
 
-install() {
+install_dots() {
 	cat << EOF >&2
 	This script does not install any dependencies or programs other than the following:
 	  * dwm
@@ -73,8 +73,8 @@ refresh_repo() {
 	find . -mindepth 1 -not -path '*/.git*' -not -path './LICENSE' -type f -print0 | sed -z 's/^\.\///' | xargs -r0i%p ln -vf "$HOME/.%p" ./%p
 }
 
-if [ "$1" = "refresh-repo" ]; then
+if [ "$1" = "refresh" ]; then
 	refresh_repo
-else if [ "$1" = "install" -o -z "$1" ]; then
-	install
+elif [ "$1" = "install" -o -z "$1" ]; then
+	install_dots
 fi
