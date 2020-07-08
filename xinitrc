@@ -9,8 +9,8 @@ xrdb -merge ~/.config/xresources &
 # Start statusbar manager
 dwmblocks &
 
-# Set desktop background (I recommend symlinking this to the actual image)
-bgs ~/pictures/wallpapers/current &
+# Set desktop background dynamically
+wallchanger
 
 # set Caps Lock to act as Escape
 setxkbmap -option 'caps:escape_shifted_capslock' &
