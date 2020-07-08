@@ -202,8 +202,5 @@ xzip() {
 alias gc='git commit'
 alias gcm='git commit -m'
 
-# show qemu-img progress bar
-alias -g qemu-img='qemu-img -p'
-
 # use sxiv-rifle by default
-alias -g sxiv=sxiv-rifle
+alias -g sx=sxiv-rifle
