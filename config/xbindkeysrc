@@ -65,13 +65,13 @@
 	Control + Alt + Delete
 
 # screenshots
-"scrnshot -f"
-	Print
-"scrnshot -cf"
-	Shift + Print
 "scrnshot"
+	Print
+"scrnshot -p"
+	Shift + Print
+"scrnshot -s"
 	Control + Print
-"scrnshot -c"
+"scrnshot -ps"
 	Control + Shift + Print
 
 ## app/program shortcuts
@@ -87,7 +87,7 @@
 # man page chooser
 "manchooser -g -c -h 32 -l 20 -bw 4"
 	Mod4 + e
-"manchooser -g -p -c -h 32 -l 20 -bw 4"
+"manchooser -g -h 32 -l 20 -bw 4"
 	Mod4 + Shift + e
 
 # terminal

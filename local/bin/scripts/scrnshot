@@ -1,30 +1,26 @@
-#!/bin/bash
+#!/bin/sh
 
-while getopts "fc" arg; do
-	case $arg in
-		f) xwdarg='-root' ;;
-		c) choosepath=1 ;;
+ss_select() {
+	maim -su | tee $path | xclip -i -selection clipboard -t image/png
+	notify-send -a 'screenshot utility' "screenshot taken" "saved to <pre>$(echo "$path" | sed "s|^$HOME|~|")</pre><br><br>and copied to clipboard"
+	exit
+}
+
+ss_full() {
+	maim -u | tee $path | xclip -i -selection clipboard -t image/png
+	notify-send -a 'screenshot utility' "screenshot taken" "saved to <pre>$(echo "$path" | sed "s|^$HOME|~|")</pre><br><br>and copied to clipboard"
+	exit
+}
+
+optstring="ps"
+
+path="$HOME/pictures/screenshots/$(date +'%Y-%m-%d_%H:%M:%S').png"
+
+while getopts "$optstring" option; do
+	case "$option" in
+		p) path="$(find ~ -not -path '*/.*' -type d 2>/dev/null | sed -e "s|$HOME|~|" -e "s|[^/]$|\0/|" | dmenu -l 20 -p "choose output path:" | sed "s|^~|$HOME|")" ;;
+		s) ss_select ;;
 	esac
 done
 
-tmpfile=/tmp/scrnshot.xwd
-
-xwd $xwdarg -nobdrs -out $tmpfile || err=1 quit
-
-if [ "$choosepath" = 1 ]; then
-	outpath=$(find ~ -not -path '*/.*' -type d 2>/dev/null | sed -e "s|$HOME|~|" -e "s|[^/]$|\0/|" | dmenu -l 20 -p "Choose output path:")
-else
-	outpath=~/pictures/screenshots/$(date +"%Y-%m-%d_%H:%M:%S").jpg
-fi
-
-convert $tmpfile ${outpath/'~'/$HOME} || err=1 quit
-
-quit() {
-	[ "$err" = 1 ] &&
-		notify-send -a 'screenshot manager' 'Failed to take screenshot' ||
-		notify-send -a 'screenshot manager' 'Screenshot taken' "saved to $outpath"
-}
-
-quit
-
-rm -f $tmpfile
+ss_full
