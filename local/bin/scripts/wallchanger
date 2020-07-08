@@ -4,6 +4,9 @@
 # Sets wallpaper based on the current time
 #
 
+# load required session environment
+source "${XDG_RUNTIME_DIR:-/run/user/$(id -un)}/session-env"
+
 # directory where images are located
 wpdir="${WP_DIR:-$HOME/pictures/wallpapers/dynamic/current}/"
 
