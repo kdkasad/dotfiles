@@ -5,15 +5,24 @@
 #
 
 # load required session environment
-source "${XDG_RUNTIME_DIR:-/run/user/$(id -un)}/session-env"
+source "${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/session-env"
 
 # directory where images are located
-wpdir="${WP_DIR:-$HOME/pictures/wallpapers/dynamic/current}/"
+wpdir="${WP_DIR:-$HOME/pictures/wallpapers/dynamic/current}"
 
 # command to run to set wallpaper
-wpcmd="${WP_CMD:-bgs}"
+if [ -n "$WP_CMD" ]; then
+	wpcmd="$WP_CMD"
+elif command -v bgs >/dev/null; then
+	wpcmd="bgs"
+elif command -v feh >/dev/null; then
+	wpcmd="feh --no-fehbg --bg-scale"
+else
+	echo "backend not found" >&2
+	exit 1
+fi
 
-wpnum="$(find "$wpdir" -maxdepth 1 -mindepth 1 -type f -name '*.jpg' | wc -l)"
+wpnum="$(find -L "$wpdir" -maxdepth 1 -mindepth 1 -type f -name '*.jpg' | wc -l)"
 
 # get image number to use
 index=$(printf "%0.2d" "$(expr $(date +%H) / '(' 24 / $wpnum ')')")
