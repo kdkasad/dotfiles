@@ -19,7 +19,7 @@ set statusbar-home-tilde
 set incremental-search
 
 # Set space between pages
-# set page-padding 10
+set page-padding 10
 
 
 
