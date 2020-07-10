@@ -1,0 +1,397 @@
+;==========================================================
+;
+;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/polybar/polybar
+;
+;   The README contains a lot of information
+;
+;==========================================================
+
+[colors]
+
+background = ${xrdb:polybar.bg:#000}
+background-alt = ${xrdb:polybar.bg-alt:#444}
+
+foreground = ${xrdb:polybar.fg:#fff}
+foreground-alt = ${xrdb:polybar.fg-alt:#555}
+
+primary = ${xrdb:polybar.primary:#00f}
+secondary = ${xrdb:polybar.secondary:#0f0}
+alert = ${xrdb:polybar.alert:#f00}
+
+red = ${xrdb:polybar.red:#f00}
+green = ${xrdb:polybar.green:#0f0}
+yellow = ${xrdb:polybar.yellow:#ff0}
+blue = ${xrdb:polybar.blue:#00f}
+purple = ${xrdb:polybar.purple:#f0f}
+cyan = ${xrdb:polybar.cyan:#0ff}
+orange = ${xrdb:polybar.orange:#f80}
+
+[bar/statusbar]
+monitor = ${env:MONITOR:}
+width = ${xrdb:polybar.width:100%}
+height = ${xrdb:polybar.height:27}
+offset-x = ${xrdb:polybar.offset-x:0}
+offset-y = ${xrdb:polybar.offset-y:0}
+radius = ${xrdb:polybar.radius:0.0}
+bottom = ${xrdb:polybar.bottom:true}
+fixed-center = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = ${xrdb:polybar.line-size:3}
+line-color = ${xrdb:polybar.line-color:#f00}
+
+border-size = ${xrdb:polybar.border-size:4}
+border-color = ${xrdb:polybar.border-color:#00000000}
+
+padding-left = ${xrdb:polybar.padding-left:0}
+padding-right = ${xrdb:polybar.padding-right:2}
+
+module-margin-left = 1
+module-margin-right = 2
+
+font-0 = ${xrdb:polybar.font-0:display:size=10:antialias=true;1}
+font-1 = ${xrdb:polybar.font-1:Segoe UI Emoji:size=10:antialias=true;1}
+font-2 = ${xrdb:polybar.font-2:monospace:size=10:antialias=true;1}
+
+modules-left = dwm xwindow
+modules-center = mpd
+modules-right = backlight-acpi alsa email cpu temperature memory wlan eth battery date
+
+tray-position = right
+tray-padding = 2
+;tray-background = #0063ff
+
+;wm-restack = bspwm
+;wm-restack = i3
+
+override-redirect = true
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:100:...%
+format-padding = 6
+
+[module/xkeyboard]
+type = internal/xkeyboard
+blacklist-0 = num lock
+
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground-alt}
+format-prefix-underline = ${colors.secondary}
+
+label-layout = %layout%
+label-layout-underline = ${colors.secondary}
+
+label-indicator-padding = 2
+label-indicator-margin = 1
+label-indicator-background = ${colors.secondary}
+label-indicator-underline = ${colors.secondary}
+
+[module/filesystem]
+type = internal/fs
+interval = 25
+
+mount-0 = /
+
+label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
+label-unmounted = %mountpoint% not mounted
+label-unmounted-foreground = ${colors.foreground-alt}
+
+[module/mpd]
+type = internal/mpd
+
+format-online = <label-song> 🎵 <bar-progress>
+format-underline = ${colors.purple}
+
+label-song = %title%
+label-song-maxlen = 25
+; no idea what this next line does but it came defaulted to this
+label-song-ellipsis = true
+
+bar-progress-width = 15
+bar-progress-indicator = |
+bar-progress-fill = ─
+bar-progress-empty = ─
+
+icon-play = ▶
+icon-pause = ⏸
+icon-stop = ⏹
+icon-prev = ⏮
+icon-next = ⏭
+icon-seekb = ⏪
+icon-seekf = ⏩
+icon-random = 🔀
+icon-repeat = 🔁
+icon-repeatone = 🔂
+icon-single = 🔂
+icon-consume = ✀
+
+[module/xbacklight]
+type = internal/xbacklight
+
+format = <label> <bar>
+label = ☀
+
+bar-width = 10
+bar-indicator = |
+bar-indicator-foreground = ${colors.foreground}
+bar-indicator-font = 2
+bar-fill = ─
+bar-fill-font = 2
+bar-fill-foreground = ${colors.purple}
+bar-empty = ─
+bar-empty-font = 2
+bar-empty-foreground = ${colors.foreground-alt}
+
+[module/backlight-acpi]
+inherit = module/xbacklight
+type = internal/backlight
+card = intel_backlight
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = "🔨"
+format-prefix-foreground = ${colors.foreground-alt}
+format-underline = ${colors.red}
+label = %percentage:2%%
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = "⚙ "
+format-prefix-foreground = ${colors.foreground-alt}
+format-underline = ${colors.cyan}
+label = %percentage_used%%
+
+[module/wlan]
+type = internal/network
+interface = ${env:WLAN_IFACE:wlp2s0}
+interval = 3.0
+
+format-connected = <ramp-signal> <label-connected>
+format-connected-underline = ${colors.purple}
+label-connected = %essid%
+
+format-disconnected =
+;format-disconnected = <label-disconnected>
+;format-disconnected-underline = ${self.format-connected-underline}
+;label-disconnected = %ifname% disconnected
+;label-disconnected-foreground = ${colors.foreground-alt}
+
+ramp-signal-0 = 📶
+ramp-signal-1 = 📶
+ramp-signal-2 = 📶
+ramp-signal-3 = 📶
+ramp-signal-4 = 📶
+ramp-signal-foreground = ${colors.foreground-alt}
+
+[module/eth]
+type = internal/network
+interface = ${env:WLAN_IFACE:enp1s0}
+interval = 3.0
+
+format-connected-underline = ${colors.green}
+format-connected-prefix = "📡 "
+format-connected-prefix-foreground = ${colors.foreground-alt}
+label-connected = %local_ip%
+
+format-disconnected =
+;format-disconnected = <label-disconnected>
+;format-disconnected-underline = ${self.format-connected-underline}
+;label-disconnected = %ifname% disconnected
+;label-disconnected-foreground = ${colors.foreground-alt}
+
+[module/date]
+type = internal/date
+interval = 5
+
+date =
+date-alt = "📅 %A, %b %d"
+
+time = 🕓 %H:%M
+time-alt = 🕓 %H:%M
+
+format-prefix = ""
+format-prefix-foreground = ${colors.foreground-alt}
+format-underline = ${colors.purple}
+
+label = %date% %time%
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+format-volume = <label-volume> <bar-volume>
+label-volume = VOL %percentage%%
+label-volume-foreground = ${root.foreground}
+
+label-muted = 🔇 muted
+label-muted-foreground = ${colors.foreground-alt}
+
+bar-volume-width = 10
+bar-volume-foreground-0 = ${colors.green}
+bar-volume-foreground-1 = ${colors.green}
+bar-volume-foreground-2 = ${colors.green}
+bar-volume-foreground-3 = ${colors.green}
+bar-volume-foreground-4 = ${colors.yellow}
+bar-volume-foreground-5 = ${colors.yellow}
+bar-volume-foreground-6 = ${colors.red}
+bar-volume-gradient = true
+bar-volume-indicator = |
+bar-volume-indicator-font = 2
+bar-volume-fill = ─
+bar-volume-fill-font = 2
+bar-volume-empty = ─
+bar-volume-empty-font = 2
+bar-volume-empty-foreground = ${colors.foreground-alt}
+
+[module/alsa]
+type = internal/alsa
+
+format-volume = <label-volume> <bar-volume>
+label-volume = "🔊 "
+label-volume-foreground = ${root.foreground}
+
+format-muted-prefix = "🔇 "
+format-muted-foreground = ${colors.foreground-alt}
+label-muted = muted
+
+bar-volume-width = 10
+bar-volume-foreground-0 = ${colors.green}
+bar-volume-foreground-1 = ${colors.green}
+bar-volume-foreground-2 = ${colors.green}
+bar-volume-foreground-3 = ${colors.green}
+bar-volume-foreground-4 = ${colors.yellow}
+bar-volume-foreground-5 = ${colors.yellow}
+bar-volume-foreground-6 = ${colors.red}
+bar-volume-gradient = true
+bar-volume-indicator = |
+bar-volume-indicator-font = 2
+bar-volume-fill = ─
+bar-volume-fill-font = 2
+bar-volume-empty = ─
+bar-volume-empty-font = 2
+bar-volume-empty-foreground = ${colors.foreground-alt}
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = ADP1
+
+format-charging =  <label-charging>
+format-charging-underline = ${colors.green}
+label-charging = 🔋 %percentage_raw%%
+
+format-discharging =  <label-discharging>
+format-discharging-underline = ${colors.orange}
+label-discharging = 🔋 %percentage_raw%%
+
+format-full-prefix = "🔋 "
+format-full-prefix-foreground = ${colors.foreground-alt}
+format-full-underline = ${self.format-charging-underline}
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+
+format =  <label>
+format-underline = ${colors.red}
+; format-warn = <ramp> <label-warn>
+; format-warn-underline = ${self.format-underline}
+
+label = 🌡 %temperature-c%
+; label-warn = %temperature-c%
+; label-warn-foreground = ${colors.secondary}
+
+[module/powermenu]
+type = custom/menu
+
+expand-right = false
+
+format-spacing = 1
+
+label-open = ⏻
+label-open-foreground = ${colors.foreground}
+label-close = ⏻ cancel
+label-close-foreground = ${colors.foreground-alt}
+label-separator = |
+label-separator-foreground = ${colors.foreground-alt}
+
+menu-0-0 = reboot
+menu-0-0-exec = menu-open-1
+menu-0-1 = power off
+menu-0-1-exec = menu-open-2
+
+menu-1-0 = cancel
+menu-1-0-exec = menu-open-0
+menu-1-1 = reboot
+menu-1-1-exec = sudo reboot
+
+menu-2-0 = power off
+menu-2-0-exec = sudo poweroff
+menu-2-1 = cancel
+menu-2-1-exec = menu-open-0
+
+[module/dwm]
+type=internal/xworkspaces
+
+pin-workspaces = false
+enable-click = true
+enable-scroll = true
+
+format = <label-state>
+
+label-active = "  %name%  "
+label-active-background = ${colors.blue}
+label-active-foreground = ${colors.background}
+
+label-urgent = "  %name%  "
+label-urgent-background = "${colors.alert}
+
+label-occupied = "  %name%  "
+label-occupied-background = ${colors.background}
+label-occupied-foreground = ${colors.foreground}
+
+label-empty = "  %name%  "
+label-empty-background = ${colors.background}
+label-empty-foreground = ${colors.foreground}
+
+[module/email]
+type = custom/script
+
+exec = ~/.local/bin/scripts/statusbar/email
+interval = 60
+
+click-left = setsid -f $TERMINAL -e neomutt
+click-right = ~/.local/bin/scripts/mailsync
+
+format-underline = ${colors.green}
+
+[settings]
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+;pseudo-transparency = false
+
+[global/wm]
+margin-top = 5
+margin-bottom = 5
+
+; vim:ft=dosini

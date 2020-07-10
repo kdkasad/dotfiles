@@ -13,8 +13,8 @@ eof
 # set volume to 20%
 command -v amixer >/dev/null 2>&1 && amixer sset Master 20%
 
-# Start statusbar manager
-dwmblocks &
+# Start statusbar
+~/.config/polybar/start-polybar.sh >/dev/null 2>&1 &
 
 # Set desktop background dynamically
 wallchanger &

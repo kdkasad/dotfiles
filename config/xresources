@@ -77,5 +77,34 @@ slock.defaultcolor:	shusia_dark
 slock.inputcolor:	shusia_blue
 slock.failcolor:	shusia_red
 
+/* polybar */
+polybar.bg:			shusia_dark
+polybar.bg-alt:		shusia_gray2
+polybar.fg:			shusia_light
+polybar.fg-alt:		shusia_gray
+
+polybar.primary:	shusia_blue
+polybar.secondary:	shusia_light
+polybar.alert:		shushia_red
+
+polybar.width:	100%
+polybar.height:	27
+
+polybar.border-size:	0
+polybar.border-color:	shusia_blue
+
+polybar.font-0:	display:size=12:antialias=true;1
+polybar.font-1:	Segoe UI Emoji:size=12:antialias=true;1
+polybar.font-2:	monospace:size=12:antialias=true;1
+
+polybar.red:	shusia_red
+polybar.orange:	shusia_orange
+polybar.yellow:	shusia_yellow
+polybar.green:	shusia_green
+polybar.blue:	shusia_blue
+polybar.cyan:	shusia_cyan
+polybar.purple:	shusia_purple
+
 /* general */
+Xcursor.theme: beachball
 Xcursor.size: 24
