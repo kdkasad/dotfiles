@@ -65,26 +65,28 @@ font-0 = ${xrdb:polybar.font-0:display:size=10:antialias=true;1}
 font-1 = ${xrdb:polybar.font-1:Segoe UI Emoji:size=10:antialias=true;1}
 font-2 = ${xrdb:polybar.font-2:monospace:size=10:antialias=true;1}
 
-modules-left = dwm xwindow
+modules-left = dwm separator xwindow
 modules-center = mpd
 modules-right = backlight-acpi alsa email cpu temperature memory wlan eth battery date
 
 tray-position = right
-tray-padding = 2
+tray-padding = 4
 ;tray-background = #0063ff
-
-;wm-restack = bspwm
-;wm-restack = i3
 
 override-redirect = true
 
 cursor-click = pointer
 cursor-scroll = ns-resize
 
+[module/separator]
+type = custom/text
+content = |
+content-foreground = ${colors.foreground-alt}
+
 [module/xwindow]
 type = internal/xwindow
 label = %title:0:100:...%
-format-padding = 6
+format-padding = 2
 
 [module/xkeyboard]
 type = internal/xkeyboard
@@ -123,7 +125,7 @@ label-song-maxlen = 25
 ; no idea what this next line does but it came defaulted to this
 label-song-ellipsis = true
 
-bar-progress-width = 15
+bar-progress-width = 10
 bar-progress-indicator = |
 bar-progress-fill = ─
 bar-progress-empty = ─
@@ -350,20 +352,23 @@ menu-2-1-exec = menu-open-0
 [module/dwm]
 type=internal/xworkspaces
 
-pin-workspaces = false
+pin-workspaces = true
 enable-click = true
 enable-scroll = true
 
 format = <label-state>
 
 label-active = "  %name%  "
-label-active-background = ${colors.blue}
+label-active-background = ${colors.primary}
 label-active-foreground = ${colors.background}
 
 label-urgent = "  %name%  "
-label-urgent-background = "${colors.alert}
+label-urgent-underline = ${colors.alert}
+label-urgent-background = ${colors.background}
+label-urgent-foreground = ${colors.foreground}
 
 label-occupied = "  %name%  "
+label-occupied-underline = ${colors.primary}
 label-occupied-background = ${colors.background}
 label-occupied-foreground = ${colors.foreground}
 
