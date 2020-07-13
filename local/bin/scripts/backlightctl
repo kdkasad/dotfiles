@@ -1,0 +1,64 @@
+#!/bin/sh
+
+# backlight driver
+default_driver=intel_backlight
+
+# basename of script ($0 with leading path removed)
+scriptname="${0##*/}"
+
+of="[03;04m"	# escape code for italic & underline
+nf="[0m"		# clear formatting
+
+usage() {
+	cat << eof >&2
+usage:
+	${scriptname} ${of}get${nf}		- returns the current brightness from 0-100
+	${scriptname} ${of}set${nf} ${of}percent${nf}	- set brightness to ${of}percent${nf} (0-100)
+	${scriptname} ${of}inc${nf} ${of}percent${nf}	- increase brightness by ${of}percent${nf} (0-100)
+	${scriptname} ${of}dec${nf} ${of}percent${nf}	- decrease brightness by ${of}percent${nf} (0-100)
+eof
+}
+
+get_driver() {
+	driver="${BACKLIGHT_DRIVER:-$default_driver}"
+}
+
+get_scale() {
+	get_driver
+	read -r max < /sys/class/backlight/$driver/max_brightness
+	scale=$((max / 100))
+}
+
+get_brightness() {
+	get_scale
+	read -r current < /sys/class/backlight/$driver/brightness
+	brightness=$((current / scale))
+}
+
+print_brightness() {
+	get_brightness
+	echo $brightness
+}
+
+set_brightness() {
+	get_scale
+	echo $(($1 * scale)) > /sys/class/backlight/$driver/brightness
+}
+
+inc_brightness() {
+	get_brightness
+	set_brightness $((brightness + $1))
+}
+
+dec_brightness() {
+	get_brightness
+	set_brightness $((brightness - $1))
+}
+
+case "$1" in
+	get) print_brightness ;;
+	set) set_brightness $2 ;;
+	inc) inc_brightness $2 ;;
+	dec) dec_brightness $2 ;;
+	*) usage ;;
+esac
