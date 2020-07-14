@@ -67,7 +67,7 @@ font-2 = ${xrdb:polybar.font-2:monospace:size=10:antialias=true;1}
 
 modules-left = dwm separator xwindow
 modules-center = mpd
-modules-right = backlight-acpi alsa email cpu temperature memory wlan eth battery date
+modules-right = backlight-acpi alsa pacman email cpu temperature memory wlan eth battery date
 
 tray-position = right
 tray-padding = 4
@@ -364,8 +364,6 @@ label-active-foreground = ${colors.background}
 
 label-urgent = "  %name%  "
 label-urgent-underline = ${colors.alert}
-label-urgent-background = ${colors.background}
-label-urgent-foreground = ${colors.foreground}
 
 label-occupied = "  %name%  "
 label-occupied-underline = ${colors.primary}
@@ -376,14 +374,25 @@ label-empty = "  %name%  "
 label-empty-background = ${colors.background}
 label-empty-foreground = ${colors.foreground}
 
+[module/pacman]
+type = custom/script
+
+exec = ~/.local/bin/scripts/statusbar/packages
+interval = 600
+
+click-left = BUTTON=1 ~/.local/bin/scripts/statusbar/packages
+click-right = BUTTON=3 ~/.local/bin/scripts/statusbar/packages
+
+format-underline = ${colors.orange}
+
 [module/email]
 type = custom/script
 
 exec = ~/.local/bin/scripts/statusbar/email
 interval = 60
 
-click-left = setsid -f $TERMINAL -e neomutt
-click-right = ~/.local/bin/scripts/mailsync
+click-left = BUTTON=1 ~/.local/bin/scripts/statusbar/email
+click-right = BUTTON=3 ~/.local/bin/scripts/statusbar/email
 
 format-underline = ${colors.green}
 
