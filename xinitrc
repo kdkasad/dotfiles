@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# start dbus
+eval dbus-launch --exit-with-x11 --sh-syntax
+
 # set session environment file
 cat << eof > "${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/session-env" &
 DISPLAY=$DISPLAY
