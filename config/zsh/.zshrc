@@ -126,6 +126,7 @@ if [ -x /usr/bin/dircolors ]; then
     alias -g grep='grep --color=auto'
     alias -g fgrep='fgrep --color=auto'
     alias -g egrep='egrep --color=auto'
+	alias -g diff='diff --color=auto'
 fi
 
 # colored GCC warnings and errors
