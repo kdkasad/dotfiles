@@ -81,9 +81,9 @@
 	Mod4 + v
 
 # man page chooser
-"manchooser -g -c -h 32 -l 20 -bw 4"
+"manchooser -g -c -h 32 -l 20"
 	Mod4 + e
-"manchooser -g -h 32 -l 20 -bw 4"
+"manchooser -g -h 32 -l 20"
 	Mod4 + Shift + e
 
 # terminal
@@ -91,7 +91,7 @@
 	Mod4 + Shift + Return
 
 # dmenu program launcher (centered window)
-"dmenu_run_history -c -l 10 -h 32 -bw 4"
+"dmenu_run_history -c -l 10 -h 32"
 	Mod4 + p
 # dmenu program launcher
 "dmenu_run_history -h 32"
