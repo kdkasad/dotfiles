@@ -378,7 +378,7 @@ label-empty-foreground = ${colors.foreground}
 type = custom/script
 
 exec = ~/.local/bin/scripts/statusbar/packages
-interval = 600
+interval = 300
 
 click-left = BUTTON=1 ~/.local/bin/scripts/statusbar/packages
 click-right = BUTTON=3 ~/.local/bin/scripts/statusbar/packages
