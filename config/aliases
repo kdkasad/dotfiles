@@ -136,7 +136,6 @@ sechd() {
 }
 
 # Transmission BitTorrent client
-alias trc='transmission-remote-cli'
 alias trd='transmission-daemon'
 
 # Arduino CLI
