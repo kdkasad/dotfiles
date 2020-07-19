@@ -30,6 +30,9 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 # sudo askpass program
 export SUDO_ASKPASS="$HOME/.local/bin/scripts/dmenupass"
 
+# qt5 theme
+QT_QPA_PLATFORMTHEME=qt5ct
+
 # icons for lf(1)
 export LF_ICONS="\
 di=🗀 :\
