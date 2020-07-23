@@ -1,4 +1,7 @@
 [Desktop Entry]
 Type=Application
-Name=Torrent
+Name=Add Torrent
+Comment=run a .torrent file with this application to add it to transmission
+Description=run a .torrent file with this application to add it to transmission
+Icon=transmission
 Exec=/usr/bin/env addtorrent %U

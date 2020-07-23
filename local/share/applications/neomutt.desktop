@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=neomutt
+GenericName=Email Client
+Icon=/usr/share/doc/neomutt/logo/neomutt.svg
+Exec=neomutt %u
+Terminal=true
