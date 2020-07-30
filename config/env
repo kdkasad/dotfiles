@@ -31,7 +31,11 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 export SUDO_ASKPASS="$HOME/.local/bin/scripts/dmenupass"
 
 # qt5 theme
-QT_QPA_PLATFORMTHEME=qt5ct
+export QT_QPA_PLATFORMTHEME=qt5ct
+
+# mpd(1) socket
+# abstract to avoid absolute paths in config files
+export MPD_HOST="@mpd-787e3e09-5607-4e76-8b3c-eb34c4364525"
 
 # icons for lf(1)
 export LF_ICONS="\
@@ -104,9 +108,6 @@ export REFER_SOURCES="$HOME/documents/sources.refer"
 
 # Move cargo directory
 export CARGO_HOME="${XDG_DATA_HOME}/cargo"
-
-# mpd(1) socket location
-export MPD_HOST="$XDG_RUNTIME_DIR/mpd/socket"
 
 # move inputrc for readline(3)
 export INPUTRC="$XDG_CONFIG_HOME/inputrc"
