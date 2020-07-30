@@ -1,11 +1,11 @@
 #!/bin/sh
 
-if command -v pactl >/dev/null 2>&1; then # PulseAudio
+if command -v amixer >/dev/null 2>&1; then # ALSA
+	# Toggle mute
+	amixer sset Master toggle
+else # PulseAudio
 	# Toggle mute
 	pactl set-sink-mute 0 toggle
-else # ALSA
-	# Toggle mute
-	amixer set Master toggle
 fi
 
 # Send volume notification
