@@ -1,27 +1,27 @@
 ## Appearance settings:
 
-set font "monospace regular 13"
+set font "display regular 13"
 
 # Set background and bar colors
-set default-bg "#473d4b"
-set statusbar-bg "#473d4b"
-set inputbar-bg "#473d4b"
-set inputbar-fg "#c2b1d5"
-set highlight-color "#88a9ce"
-set highlight-active-color "#c2b1d5"
+set default-bg "#343136"
+set statusbar-bg "#343136"
+set inputbar-bg "#343136"
+set inputbar-fg "#7a9ed7"
+set highlight-color "#ab9df2"
+set highlight-active-color "#7a9ed7"
 
 set continuous-hist-save
 
+# shorten paths
 set window-title-basename
 set window-title-home-tilde
 set statusbar-home-tilde
 
+# Show search results while typing
 set incremental-search
 
 # Set space between pages
 set page-padding 10
-
-
 
 ## Key mappings:
 
