@@ -67,7 +67,7 @@ font-2 = ${xrdb:polybar.font-2:monospace:size=10:antialias=true;1}
 
 modules-left = dwm separator xwindow
 modules-center = mpd
-modules-right = backlight-acpi alsa pacman email cpu temperature memory wlan eth battery date
+modules-right = backlight-acpi alsa pacman email cpu temperature memory battery date
 
 tray-position = right
 tray-padding = 4
@@ -187,7 +187,7 @@ interface = ${env:WLAN_IFACE:wlp2s0}
 interval = 3.0
 
 format-connected = <ramp-signal> <label-connected>
-format-connected-underline = ${colors.purple}
+format-connected-underline = ${colors.blue}
 label-connected = %essid%
 
 format-disconnected =
@@ -309,15 +309,15 @@ format-full-underline = ${self.format-charging-underline}
 
 [module/temperature]
 type = internal/temperature
-thermal-zone = 0
+thermal-zone = 6
 
 format =  <label>
+format-warn = <label-warn>
 format-underline = ${colors.red}
-; format-warn = <ramp> <label-warn>
-; format-warn-underline = ${self.format-underline}
+format-warn-underline = ${self.format-underline}
 
 label = 🌡 %temperature-c%
-; label-warn = %temperature-c%
+label-warn = ${self.label}
 ; label-warn-foreground = ${colors.secondary}
 
 [module/powermenu]
