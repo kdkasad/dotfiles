@@ -444,6 +444,7 @@ key_bindings:
   - { key: Add,      mods: Control|Shift, action: ResetFontSize    }
   - { key: Equals,   mods: Control,       action: IncreaseFontSize }
   - { key: Minus,    mods: Control,       action: DecreaseFontSize }
+  - { key: Return,   mods: Control|Shift, action: SpawnNewInstance }
 
   #- { key: Paste,                    action: Paste                            }
   #- { key: Copy,                     action: Copy                             }
