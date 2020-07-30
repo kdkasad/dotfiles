@@ -5,7 +5,7 @@
 umask 027
 
 # load environment configuration
-[ -f "$HOME/.config/env" ] && . $HOME/.config/env
+[ -f "$HOME/.config/env" ] && . "$HOME/.config/env"
 
 # configure gpg tty
 export GPG_TTY="$(tty)"
