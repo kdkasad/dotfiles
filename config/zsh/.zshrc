@@ -140,7 +140,7 @@ alias_file=~/.config/aliases
 export GPG_TTY=$(tty)
 
 # Shortcuts
-shortcutsdir=~/.config/shortcuts
+shortcutsdir="$HOME"/.config/zsh/shortcuts
 tmpfile=$(mktemp)
 # directories
 grep -v '#' $shortcutsdir/dirs | awk '{print "alias "$1"=\"cd "$2" && la\""}' > $tmpfile

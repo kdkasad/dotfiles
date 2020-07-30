@@ -1,0 +1,13 @@
+zrc	~/.config/zsh/.zshrc
+pro	~/.zprofile
+sf	~/.config/zsh/shortcuts/files
+sdr	~/.config/zsh/shortcuts/dirs
+al	~/.config/aliases
+nrc	~/.config/nvim/init.vim
+vrc	~/.config/nvim/init.vim
+ky	~/.config/xbindkeysrc
+drc	~/.config/dwm/dwmrc
+mrc	~/.config/mutt/muttrc
+xrc	~/.xinitrc
+xre	~/.config/xresources
+pic	~/.config/picom/picom.conf
