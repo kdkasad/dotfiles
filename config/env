@@ -130,6 +130,9 @@ export DISTCC_DIR="$XDG_DATA_HOME/distcc"
 # weechat
 export WEECHAT_HOME="$XDG_CONFIG_HOME/weechat"
 
+# ccache(1)
+export CCACHE_CONFIGPATH="$XDG_CONFIG_HOME/ccache/ccache.conf"
+
 
 ## CONFIGURE PATH ##
 
