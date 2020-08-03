@@ -4,13 +4,12 @@
 
 LINES=30
 case "$1" in
-    *.mkv|*.mp4) mediainfo "$1";;
+    *.mkv|*.mp4|*.mp3|*.m4a) mediainfo "$1";;
 	*.png|*.jpg|*.jpeg|*.svg) chafa -c 240 -s $((LINES * 3))x$LINES "$1";;
     *.md) glow -s dark "$1";;
     *.pdf) pdftotext "$1" -;;
     *.zip) zipinfo "$1";;
-    *.tar) tar -tvf "$1";;
-    *.tar.*z*) tar -tvf "$1";;
+    *.tar|*.tar.*z*) tar -tvf "$1";;
     *.rar) unrar l "$1";;
     *.7z) 7z l "$1";;
     *.zsh*|*.bash*|*.git*) pistol "$1";;
