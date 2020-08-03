@@ -9,7 +9,7 @@
 	XF86AudioMute
 
 "$TERMINAL -e ncmpc"
-	Mod4 + XF86AudioPlay
+	XF86AudioStop
 "mpc toggle"
 	XF86AudioPlay
 "mpc next"
