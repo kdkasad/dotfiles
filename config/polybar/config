@@ -65,7 +65,7 @@ font-0 = ${xrdb:polybar.font-0:display:size=10:antialias=true;1}
 font-1 = ${xrdb:polybar.font-1:Segoe UI Emoji:size=10:antialias=true;1}
 font-2 = ${xrdb:polybar.font-2:monospace:size=10:antialias=true;1}
 
-modules-left = dwm separator
+modules-left = dwm separator xwindow
 modules-center = mpd
 modules-right = backlight-acpi alsa pacman email cpu temperature memory battery date
 
@@ -369,21 +369,23 @@ layout-scroll-reverse = false
 secondary-layout-symbol = [M]
 
 ; Separator in between shown tags
-; label-separator = |
+;label-separator = |
 
 ; Title of currently focused window
 ; Available tokens:
 ;   %title%
-label-title = %title%
-label-title-padding = 2
+label-title =
+;label-title = %title%
+label-title-padding = 0
 label-title-forefround = ${colors.foreground}
 label-title-maxlen = 30
 
 ; Symbol of current layout
 ; Available tokens:
 ;   %symbol%
-label-layout = %symbol%
-label-layout-padding = 2
+label-layout =
+;label-layout = %symbol%
+label-layout-padding = 0
 label-layout-foreground = ${colors.foreground}
 label-layout-background = ${colors.background}
 
