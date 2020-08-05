@@ -65,7 +65,7 @@ font-0 = ${xrdb:polybar.font-0:display:size=10:antialias=true;1}
 font-1 = ${xrdb:polybar.font-1:Segoe UI Emoji:size=10:antialias=true;1}
 font-2 = ${xrdb:polybar.font-2:monospace:size=10:antialias=true;1}
 
-modules-left = dwm separator xwindow
+modules-left = dwm separator
 modules-center = mpd
 modules-right = backlight-acpi alsa pacman email cpu temperature memory battery date
 
@@ -73,7 +73,7 @@ tray-position = right
 tray-padding = 4
 ;tray-background = #0063ff
 
-override-redirect = true
+override-redirect = false
 
 cursor-click = pointer
 cursor-scroll = ns-resize
@@ -308,7 +308,7 @@ format-full-underline = ${self.format-charging-underline}
 
 [module/temperature]
 type = internal/temperature
-thermal-zone = 6
+thermal-zone = 5
 
 format =  <label>
 format-warn = <label-warn>
@@ -349,29 +349,77 @@ menu-2-1 = cancel
 menu-2-1-exec = menu-open-0
 
 [module/dwm]
-type=internal/xworkspaces
+type = internal/dwm
 
-pin-workspaces = true
-enable-click = true
-enable-scroll = true
+format = <label-tags> <label-layout> <label-floating> <label-title>
+socket-path = /tmp/dwm.sock
 
-format = <label-state>
+; Left-click to view tag, right-click to toggle tag view
+enable-tags-click = true
+; Left-click to set secondary layout, right-click to switch to previous layout
+enable-layout-click = true
+; Scroll to cycle between available layouts
+enable-layout-scroll = false
+; Wrap when scrolling and reaching begining/end of layouts
+layout-scroll-wrap = true
+; Reverse scroll direction
+layout-scroll-reverse = false
 
-label-active = "  %name%  "
-label-active-background = ${colors.primary}
-label-active-foreground = ${colors.background}
+; If enable-layout-click = true, clicking the layout symbol will switch to this layout
+secondary-layout-symbol = [M]
 
-label-urgent = "  %name%  "
+; Separator in between shown tags
+; label-separator = |
+
+; Title of currently focused window
+; Available tokens:
+;   %title%
+label-title = %title%
+label-title-padding = 2
+label-title-forefround = ${colors.foreground}
+label-title-maxlen = 30
+
+; Symbol of current layout
+; Available tokens:
+;   %symbol%
+label-layout = %symbol%
+label-layout-padding = 2
+label-layout-foreground = ${colors.foreground}
+label-layout-background = ${colors.background}
+
+; Text to show when currently focused window is floating
+label-floating = *
+
+; States: focused, unfocused, visible, urgent, empty
+; Available tokens:
+;   %name%
+
+; focused = Selected tag on focused monitor
+label-focused = %name%
+label-focused-foreground = ${colors.background}
+label-focused-background = ${colors.primary}
+label-focused-underline= ${colors.primary}
+label-focused-padding = 2
+
+; unfocused = Unselected tag on unselected monitor
+label-unfocused = %name%
+label-unfocused-padding = ${self.label-focused-padding}
+
+; visible = Unselected tag, but occupied tag on any monitor
+label-visible = %name%
+label-visible-underline = ${colors.primary}
+label-visible-padding = ${self.label-focused-padding}
+
+; urgent = Unselected tag with window that has urgency hint set
+label-urgent = %name%
 label-urgent-underline = ${colors.alert}
+label-urgent-padding = ${self.label-focused-padding}
 
-label-occupied = "  %name%  "
-label-occupied-underline = ${colors.primary}
-label-occupied-background = ${colors.background}
-label-occupied-foreground = ${colors.foreground}
-
-label-empty = "  %name%  "
+; empty = Unselected and unoccupied tag
+; This can be set to an empty string to hide empty tags
+label-empty = %name%
 label-empty-background = ${colors.background}
-label-empty-foreground = ${colors.foreground}
+label-empty-padding = ${self.label-focused-padding}
 
 [module/pacman]
 type = custom/script
