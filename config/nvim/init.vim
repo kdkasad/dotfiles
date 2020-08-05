@@ -16,12 +16,11 @@ Plug 'udalov/kotlin-vim'
 Plug 'https://gitlab.com/kdkasad/vim-deadkeys'
 Plug 'junegunn/goyo.vim'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'neovim/nvim-lsp'
 Plug 'junegunn/fzf.vim'
 Plug 'nfnty/vim-nftables'
-Plug 'dhruvasagar/vim-table-mode'
 Plug 'ghifarit53/sonokai'
 Plug 'sheerun/vim-polyglot'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 
@@ -50,7 +49,7 @@ set secure
 set nocompatible
 
 " Always chdir to the working file
-set autochdir
+"set autochdir
 
 " S/R highlighing for neovim
 if has('nvim')
@@ -169,38 +168,19 @@ let g:sonokai_menu_selection_background = 'blue'
 colorscheme sonokai
 
 " Lightline colors
-let g:lightline = { 'colorscheme': 'sonokai', }
-
-"""""""""""""""""""""""""""""
-"      LANGUAGE SERVERS     "
-"""""""""""""""""""""""""""""
-
-lua << END
-	require'nvim_lsp'.bashls.setup{}
-	require'nvim_lsp'.ccls.setup{}
-	require'nvim_lsp'.html.setup{}
-	require'nvim_lsp'.vimls.setup{}
-END
-
-" Keep sign column visible for files with LSP
-augroup autosigncol
-au Filetype sh setlocal signcolumn=yes							" Bash
-au BufEnter *.sh setlocal signcolumn=yes						" Bash
-au BufEnter *.c,*.cpp*.objc,*.objcpp setlocal signcolumn=yes	" C/C++
-au BufEnter *.html setlocal signcolumn=yes						" HTML
-au BufEnter *.vim setlocal signcolumn=yes						" Vimscript
-augroup end
-
-nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
-nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
-nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
-nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
-nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
-nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
-nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
-nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
-
+let g:lightline = {
+	\ 'colorscheme': 'sonokai',
+	\ 'active': {
+	\	'left': [
+	\		[ 'mode', 'paste' ],
+	\		[ 'readonly', 'filename', 'modified', 'cocstatus' ]
+	\	]
+	\ },
+	\ 'component_function': {
+	\	'cocstatus': 'coc#status',
+	\	'currentfunction': 'CocCurrentFunction',
+	\ },
+\ }
 
 
 """""""""""""""""""""""""""""
@@ -381,3 +361,18 @@ vnoremap . :norm
 
 " save using ZW
 nnoremap ZW <cmd>w<cr>
+
+" CoC Mappings
+inoremap <silent><expr> <c-space> coc#refresh()
+nmap <c-]> <plug>(coc-definition)
+nmap <leader>gd	<plug>(coc-definition)
+nmap <leader>gD	<plug>(coc-declaration)
+nmap <leader>gy	<plug>(coc-type-definition)
+nmap <leader>gi	<plug>(coc-implementation)
+nmap <leader>gr	<plug>(coc-references)
+nmap <leader>r	<plug>(coc-refactor)
+nmap <leader>fm	<plug>(coc-format)
+vmap <leader>fm	<plug>(coc-format-selected)
+nmap ]e	<plug>(coc-diagnostic-next-error)
+nmap [e	<plug>(coc-diagnostic-prev-error)
+nnoremap <leader>cr <cmd>CocRestart<cr>
