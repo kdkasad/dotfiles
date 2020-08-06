@@ -38,11 +38,11 @@ orange = ${xrdb:polybar.orange:#f80}
 
 [bar/statusbar]
 monitor = ${env:MONITOR:}
-width = ${xrdb:polybar.width:100%}
-height = ${xrdb:polybar.height:27}
-offset-x = ${xrdb:polybar.offset-x:0}
-offset-y = ${xrdb:polybar.offset-y:0}
-radius = ${xrdb:polybar.radius:0.0}
+width = 95%
+height = 35
+offset-x = 2.5%
+offset-y = 13
+radius = 13
 bottom = ${xrdb:polybar.bottom:true}
 fixed-center = true
 
@@ -52,67 +52,39 @@ foreground = ${colors.foreground}
 line-size = ${xrdb:polybar.line-size:3}
 line-color = ${xrdb:polybar.line-color:#f00}
 
-border-size = ${xrdb:polybar.border-size:4}
+border-size = 0
 border-color = ${xrdb:polybar.border-color:#00000000}
 
-padding-left = ${xrdb:polybar.padding-left:0}
-padding-right = ${xrdb:polybar.padding-right:2}
+padding-left = 2
+padding-right = 30
 
 module-margin-left = 1
 module-margin-right = 2
 
-font-0 = ${xrdb:polybar.font-0:display:size=10:antialias=true;1}
-font-1 = ${xrdb:polybar.font-1:Segoe UI Emoji:size=10:antialias=true;1}
-font-2 = ${xrdb:polybar.font-2:monospace:size=10:antialias=true;1}
+font-0 = display:size=11:antialias=true
+font-1 = Segoe UI Emoji:size=11:antialias=true
+font-2 = monospace:size=11:antialias=true
+font-3 = Symbols Nerd Font:size=7:antialias=true
 
-modules-left = dwm separator xwindow
-modules-center = mpd
-modules-right = backlight-acpi alsa pacman email cpu temperature memory battery date
+modules-left = xwindow
+modules-center = dwm
+modules-right = backlight-intel alsa pacman email cpu temperature memory battery date
 
 tray-position = right
 tray-padding = 4
-;tray-background = #0063ff
+tray-detached = true
+tray-offset-x = -13
+tray-background = ${root.background}
 
 override-redirect = false
 
 cursor-click = pointer
 cursor-scroll = ns-resize
 
-[module/separator]
-type = custom/text
-content = |
-content-foreground = ${colors.foreground-alt}
-
 [module/xwindow]
 type = internal/xwindow
 label = %title:0:100:...%
 format-padding = 2
-
-[module/xkeyboard]
-type = internal/xkeyboard
-blacklist-0 = num lock
-
-format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
-format-prefix-underline = ${colors.secondary}
-
-label-layout = %layout%
-label-layout-underline = ${colors.secondary}
-
-label-indicator-padding = 2
-label-indicator-margin = 1
-label-indicator-background = ${colors.secondary}
-label-indicator-underline = ${colors.secondary}
-
-[module/filesystem]
-type = internal/fs
-interval = 25
-
-mount-0 = /
-
-label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
-label-unmounted = %mountpoint% not mounted
-label-unmounted-foreground = ${colors.foreground-alt}
 
 [module/mpd]
 type = internal/mpd
@@ -160,7 +132,7 @@ bar-empty = ─
 bar-empty-font = 2
 bar-empty-foreground = ${colors.foreground-alt}
 
-[module/backlight-acpi]
+[module/backlight-intel]
 inherit = module/xbacklight
 type = internal/backlight
 card = intel_backlight
@@ -235,33 +207,6 @@ format-underline = ${colors.purple}
 
 label = %date% %time%
 
-[module/pulseaudio]
-type = internal/pulseaudio
-
-format-volume = <label-volume> <bar-volume>
-label-volume = VOL %percentage%%
-label-volume-foreground = ${root.foreground}
-
-label-muted = 🔇
-label-muted-foreground = ${colors.foreground-alt}
-
-bar-volume-width = 10
-bar-volume-foreground-0 = ${colors.green}
-bar-volume-foreground-1 = ${colors.green}
-bar-volume-foreground-2 = ${colors.green}
-bar-volume-foreground-3 = ${colors.green}
-bar-volume-foreground-4 = ${colors.yellow}
-bar-volume-foreground-5 = ${colors.yellow}
-bar-volume-foreground-6 = ${colors.red}
-bar-volume-gradient = true
-bar-volume-indicator = |
-bar-volume-indicator-font = 2
-bar-volume-fill = ─
-bar-volume-fill-font = 2
-bar-volume-empty = ─
-bar-volume-empty-font = 2
-bar-volume-empty-foreground = ${colors.foreground-alt}
-
 [module/alsa]
 type = internal/alsa
 
@@ -308,7 +253,7 @@ format-full-underline = ${self.format-charging-underline}
 
 [module/temperature]
 type = internal/temperature
-thermal-zone = 5
+thermal-zone = 3
 
 format =  <label>
 format-warn = <label-warn>
@@ -319,107 +264,41 @@ label = 🌡 %temperature-c%
 label-warn = ${self.label}
 ; label-warn-foreground = ${colors.secondary}
 
-[module/powermenu]
-type = custom/menu
-
-expand-right = false
-
-format-spacing = 1
-
-label-open = ⏻
-label-open-foreground = ${colors.foreground}
-label-close = ⏻ cancel
-label-close-foreground = ${colors.foreground-alt}
-label-separator = |
-label-separator-foreground = ${colors.foreground-alt}
-
-menu-0-0 = reboot
-menu-0-0-exec = menu-open-1
-menu-0-1 = power off
-menu-0-1-exec = menu-open-2
-
-menu-1-0 = cancel
-menu-1-0-exec = menu-open-0
-menu-1-1 = reboot
-menu-1-1-exec = sudo reboot
-
-menu-2-0 = power off
-menu-2-0-exec = sudo poweroff
-menu-2-1 = cancel
-menu-2-1-exec = menu-open-0
-
 [module/dwm]
 type = internal/dwm
 
-format = <label-tags> <label-layout> <label-floating> <label-title>
+format = <label-tags>
 socket-path = /tmp/dwm.sock
 
 ; Left-click to view tag, right-click to toggle tag view
 enable-tags-click = true
-; Left-click to set secondary layout, right-click to switch to previous layout
-enable-layout-click = true
-; Scroll to cycle between available layouts
-enable-layout-scroll = false
-; Wrap when scrolling and reaching begining/end of layouts
-layout-scroll-wrap = true
-; Reverse scroll direction
-layout-scroll-reverse = false
-
-; If enable-layout-click = true, clicking the layout symbol will switch to this layout
-secondary-layout-symbol = [M]
-
-; Separator in between shown tags
-;label-separator = |
-
-; Title of currently focused window
-; Available tokens:
-;   %title%
-label-title =
-;label-title = %title%
-label-title-padding = 0
-label-title-forefround = ${colors.foreground}
-label-title-maxlen = 30
-
-; Symbol of current layout
-; Available tokens:
-;   %symbol%
-label-layout =
-;label-layout = %symbol%
-label-layout-padding = 0
-label-layout-foreground = ${colors.foreground}
-label-layout-background = ${colors.background}
-
-; Text to show when currently focused window is floating
-label-floating = *
 
 ; States: focused, unfocused, visible, urgent, empty
 ; Available tokens:
 ;   %name%
 
 ; focused = Selected tag on focused monitor
-label-focused = %name%
-label-focused-foreground = ${colors.background}
-label-focused-background = ${colors.primary}
-label-focused-underline= ${colors.primary}
+label-focused = 
+label-focused-foreground = ${colors.primary}
 label-focused-padding = 2
 
 ; unfocused = Unselected tag on unselected monitor
-label-unfocused = %name%
+label-unfocused = 
 label-unfocused-padding = ${self.label-focused-padding}
 
 ; visible = Unselected tag, but occupied tag on any monitor
-label-visible = %name%
-label-visible-underline = ${colors.primary}
+label-visible = 
+label-visible-foreground = ${colors.foreground}
 label-visible-padding = ${self.label-focused-padding}
 
 ; urgent = Unselected tag with window that has urgency hint set
-label-urgent = %name%
-label-urgent-underline = ${colors.alert}
+label-urgent = 
+label-urgent-foreground = ${colors.alert}
 label-urgent-padding = ${self.label-focused-padding}
 
 ; empty = Unselected and unoccupied tag
 ; This can be set to an empty string to hide empty tags
-label-empty = %name%
+label-empty = 
 label-empty-background = ${colors.background}
 label-empty-padding = ${self.label-focused-padding}
 
