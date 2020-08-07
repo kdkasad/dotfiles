@@ -21,6 +21,7 @@ Plug 'nfnty/vim-nftables'
 Plug 'ghifarit53/sonokai'
 Plug 'sheerun/vim-polyglot'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'mhinz/vim-startify'
 
 call plug#end()
 
@@ -65,6 +66,10 @@ set tags+=./tags;/
 
 " Line numbers
 set number
+
+" Change window title to filename
+set title
+set titlestring=%f\ %m
 
 " Highlight current line
 set cursorline
@@ -167,7 +172,7 @@ let g:sonokai_enable_italic = 1
 let g:sonokai_menu_selection_background = 'blue'
 colorscheme sonokai
 
-" Lightline colors
+" Lightline settings
 let g:lightline = {
 	\ 'colorscheme': 'sonokai',
 	\ 'active': {
@@ -335,7 +340,7 @@ nnoremap <leader>s :set spell!<cr>
 nmap <leader>dk <plug>DeadKeysToggle
 
 " toggle goyo
-nmap <leader>g :Goyo<cr>
+nmap <leader>go <cmd>Goyo<cr>
 
 " turn off search highlighting
 nmap <leader>nh <cmd>nohlsearch<cr>
@@ -376,3 +381,5 @@ vmap <leader>fm	<plug>(coc-format-selected)
 nmap ]e	<plug>(coc-diagnostic-next-error)
 nmap [e	<plug>(coc-diagnostic-prev-error)
 nnoremap <leader>cr <cmd>CocRestart<cr>
+nnoremap <leader>cd <cmd>CocDisable<cr>
+nnoremap <leader>ce <cmd>CocEnable<cr>

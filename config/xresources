@@ -43,27 +43,27 @@
 #define lakeside_gray2	#565570
 
 #define shusia_black		#1A181A
-#define shusia_bg0			#2D2A2E
-#define shusia_dark			#343136
-#define shusia_bg2			#3B383E
-#define shusia_bg3			#423F46
+#define shusia_bg0		#2D2A2E
+#define shusia_dark		#343136
+#define shusia_bg2		#3B383E
+#define shusia_bg3		#423F46
 #define shusia_gray2		#49464E
 #define shusia_light		#E3E1E4
-#define shusia_red			#F85E84
+#define shusia_red		#F85E84
 #define shusia_orange		#EF9062
 #define shusia_yellow		#E5C463
 #define shusia_green		#9ECD6F
-#define shusia_blue			#7A9ED7
-#define shusia_cyan			#7ACCD7
+#define shusia_blue		#7A9ED7
+#define shusia_cyan		#7ACCD7
 #define shusia_purple		#AB9DF2
-#define shusia_gray			#848089
+#define shusia_gray		#848089
 
 /* dwm */
 dwm.normbordercolor: shusia_dark
 dwm.normbgcolor: shusia_dark
 dwm.normfgcolor: shusia_light
-dwm.selbordercolor: shusia_dark
-dwm.selbgcolor: shusia_blue
+dwm.selbordercolor: shusia_blue
+dwm.selbgcolor: shusia_dark
 dwm.selfgcolor: shusia_dark
 
 /* dmenu */
@@ -78,19 +78,15 @@ slock.inputcolor:	shusia_blue
 slock.failcolor:	shusia_red
 
 /* polybar */
-polybar.bg:			shusia_dark
+polybar.bg:		shusia_dark
 polybar.bg-alt:		shusia_gray2
-polybar.fg:			shusia_light
+polybar.fg:		shusia_light
 polybar.fg-alt:		shusia_gray
 
 polybar.primary:	shusia_blue
 polybar.secondary:	shusia_light
 polybar.alert:		shushia_red
 
-polybar.width:	100%
-polybar.height:	27
-
-polybar.border-size:	0
 polybar.border-color:	shusia_blue
 
 polybar.font-0:	display:size=12:antialias=true;1

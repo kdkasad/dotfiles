@@ -61,7 +61,7 @@ cmd broot_jump ${{
   lf -remote "send $id $cmd \"$res\""
 }}
 
-cmd dragon %dragon-drag-and-drop -a -x $fx
+cmd dragon %dragon-drag-and-drop -a -x "$fx"
 
 # Archive bindings
 cmd unarchive ${{

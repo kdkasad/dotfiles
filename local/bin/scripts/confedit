@@ -1,6 +1,6 @@
 #!/bin/sh
 
-conf=$(sed 's/\s.*$//' ~/.config/config_files | dmenu)
+conf=$(sed 's/\s.*$//' ~/.config/config_files | dmenu "$@")
 
 [ "$?" -ne 0 ] && exit 1
 

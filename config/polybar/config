@@ -43,7 +43,7 @@ height = 35
 offset-x = 2.5%
 offset-y = 13
 radius = 13
-bottom = ${xrdb:polybar.bottom:true}
+bottom = true
 fixed-center = true
 
 background = ${colors.background}
@@ -253,7 +253,7 @@ format-full-underline = ${self.format-charging-underline}
 
 [module/temperature]
 type = internal/temperature
-thermal-zone = 3
+thermal-zone = 6
 
 format =  <label>
 format-warn = <label-warn>

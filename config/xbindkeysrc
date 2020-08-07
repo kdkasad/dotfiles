@@ -99,7 +99,7 @@
 	Mod4 + Shift + l
 
 # config file editor
-"confedit"
+"confedit -h 32"
 	Mod4 + o
 
 # email client
@@ -116,3 +116,7 @@
 
 "$BROWSER https://youtu.be/dQw4w9WgXcQ"
 	Mod4 + Super_L
+
+# toggle polybar
+"polybar-msg cmd toggle"
+	Mod4 + space

@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# disable notifications
+exit 0
+
 if type amixer >/dev/null 2>&1; then # ALSA
 	if amixer get Master | grep Mono: | grep off >/dev/null; then
 		volumebar='muted'
