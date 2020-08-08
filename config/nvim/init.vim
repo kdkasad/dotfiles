@@ -71,6 +71,9 @@ set number
 set title
 set titlestring=%f\ %m
 
+" Enable mouse interaction
+set mouse=a
+
 " Highlight current line
 set cursorline
 
