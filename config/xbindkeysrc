@@ -57,9 +57,9 @@
 	Mod4 + v
 
 # man page chooser
-"manchooser -g -c -h 32 -l 20"
+"manchooser -g -c -h 32 -l 20 -bw 3"
 	Mod4 + e
-"manchooser -g -h 32 -l 20"
+"manchooser -g -h 32 -l 20 -bw 3"
 	Mod4 + Shift + e
 
 # terminal
@@ -67,31 +67,31 @@
 	Mod4 + Shift + Return
 
 # dmenu program launcher (centered window)
-"dmenu_run_history -c -l 10 -h 32"
+"dmenu_run_history -c -l 10 -h 32 -bw 3"
 	Mod4 + p
 # dmenu program launcher
 "dmenu_run_history -h 32"
 	Mod4 + Shift + p
 
 # unicode character chooser
-"unichooser"
+"unichooser -h 32 -bw 3"
 	Mod4 + semicolon
 
 # emoji chooser
-"emojichooser"
+"emojichooser -h 32 -bw 3"
 	Mod4 + Shift + semicolon
 
 # drive mount menu
-"mountmenu"
+"mountmenu -h 32 -bw 3"
 	Mod4 + Shift + F9
 # drive unmount menu
-"unmountmenu"
+"unmountmenu -h 32 -bw 3"
 	Mod4 + Shift + F10
 
 # web browser
 "$BROWSER"
 	Mod4 + b
-"browseurl"
+"browseurl -h 32"
 	Mod4 + Shift + b
 
 # lock screen
@@ -105,10 +105,6 @@
 # email client
 "$TERMINAL -e neomutt"
 	Mod4 + Shift + M
-
-# launch keepass
-"pgrep -x keepassxc >/dev/null || keepassxc"
-	Mod4 + Control + K
 
 # open today's overview
 "$TERMINAL -e sh -c "calcurse -Q; pause -q""
