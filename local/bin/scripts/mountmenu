@@ -6,10 +6,10 @@ if [ -z "$available_devices" ]; then
 	exit 0
 fi
 
-device=$(echo "$available_devices" | dmenu -i -l 10 -p 'Choose device' | awk '{print $1}')
+device=$(echo "$available_devices" | dmenu -i -l 10 -p 'Choose device' $@ | awk '{print $1}')
 [ -z "$device" ] && exit 1
 
-mountpoint=$(find /mnt /media /mount ~ -maxdepth 5 -not -path '/mnt/nas/*' -not -path '*/\.*' -type d -empty 2>/dev/null | sed "s|^$HOME|~|" | dmenu -i -l 30 -p 'Choose mountpoint' | sed "s|^~|$HOME|")
+mountpoint=$(find /mnt /media /mount ~ -maxdepth 5 -not -path '/mnt/nas/*' -not -path '*/\.*' -type d -empty 2>/dev/null | sed "s|^$HOME|~|" | dmenu -i -l 30 -p 'Choose mountpoint' $@ | sed "s|^~|$HOME|")
 [ -z "$mountpoint" ] && exit 1
 
 if [ ! -d $mountpoint ]; then
