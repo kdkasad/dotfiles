@@ -57,7 +57,7 @@ border-size = 0
 border-color = ${xrdb:polybar.border-color:#00000000}
 
 padding-left = 2
-padding-right = 30
+padding-right = 4
 
 module-margin-left = 1
 module-margin-right = 2
@@ -66,10 +66,11 @@ font-0 = display:size=11:antialias=true
 font-1 = Segoe UI Emoji:size=11:antialias=true
 font-2 = monospace:size=11:antialias=true
 font-3 = Symbols Nerd Font:size=7:antialias=true
+font-4 = Symbols Nerd Font:size=11:antialias=true
 
 modules-left = xwindow
 modules-center = dwm
-modules-right = backlight-intel alsa pacman email cpu temperature memory battery date
+modules-right = backlight-intel alsa pacman email cpu temperature memory battery wifi date
 
 tray-position = right
 tray-padding = 4
@@ -154,27 +155,17 @@ format-prefix-foreground = ${colors.foreground-alt}
 format-underline = ${colors.cyan}
 label = %percentage_used%%
 
-[module/wlan]
+[module/wifi]
 type = internal/network
-interface = ${env:WLAN_IFACE:wlp2s0}
+interface = ${env:WLAN_IFACE:wlan0}
 interval = 3.0
 
-format-connected = <ramp-signal> <label-connected>
+format-connected = 
+format-connected-font = 5
 format-connected-underline = ${colors.blue}
 label-connected = %essid%
 
 format-disconnected =
-;format-disconnected = <label-disconnected>
-;format-disconnected-underline = ${self.format-connected-underline}
-;label-disconnected = %ifname% disconnected
-;label-disconnected-foreground = ${colors.foreground-alt}
-
-ramp-signal-0 = 📶
-ramp-signal-1 = 📶
-ramp-signal-2 = 📶
-ramp-signal-3 = 📶
-ramp-signal-4 = 📶
-ramp-signal-foreground = ${colors.foreground-alt}
 
 [module/eth]
 type = internal/network
@@ -182,7 +173,7 @@ interface = ${env:WLAN_IFACE:enp1s0}
 interval = 3.0
 
 format-connected-underline = ${colors.green}
-format-connected-prefix = "📡 "
+format-connected-prefix = " "
 format-connected-prefix-foreground = ${colors.foreground-alt}
 label-connected = %local_ip%
 
@@ -199,8 +190,8 @@ interval = 5
 date =
 date-alt = "📅 %A, %b %d"
 
-time = 🕓 %H:%M
-time-alt = 🕓 %H:%M
+time = "🕓 %H:%M"
+time-alt = "🕓 %H:%M"
 
 format-prefix = ""
 format-prefix-foreground = ${colors.foreground-alt}

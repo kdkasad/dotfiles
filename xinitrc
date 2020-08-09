@@ -42,9 +42,6 @@ xautolock -time 10 -notify 20 -notifier "notify-send -a 'xautolock' 'sleeping in
 # Start composition manager
 picom -b &
 
-# Start nm-applet (if not running)
-pgrep -x nm-applet >/dev/null 2>&1 || nm-applet &
-
 # load xresources
 xrdb -load ~/.config/xresources
 
