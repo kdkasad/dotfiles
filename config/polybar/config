@@ -69,7 +69,7 @@ font-3 = Symbols Nerd Font:size=7:antialias=true
 
 modules-left = xwindow
 modules-center = dwm
-modules-right = backlight-intel alsa pacman email cpu temperature memory battery date
+modules-right = backlight-intel pulseaudio pacman email cpu temperature memory battery date
 
 tray-position = right
 tray-padding = 4
@@ -207,6 +207,33 @@ format-prefix-foreground = ${colors.foreground-alt}
 format-underline = ${colors.purple}
 
 label = %date% %time%
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+format-volume = <label-volume> <bar-volume>
+label-volume = "🔊 "
+label-volume-foreground = ${root.foreground}
+
+label-muted = 🔇
+format-muted-foreground = ${colors.foreground-alt}
+
+bar-volume-width = 10
+bar-volume-foreground-0 = ${colors.green}
+bar-volume-foreground-1 = ${colors.green}
+bar-volume-foreground-2 = ${colors.green}
+bar-volume-foreground-3 = ${colors.green}
+bar-volume-foreground-4 = ${colors.yellow}
+bar-volume-foreground-5 = ${colors.yellow}
+bar-volume-foreground-6 = ${colors.red}
+bar-volume-gradient = true
+bar-volume-indicator = |
+bar-volume-indicator-font = 2
+bar-volume-fill = ─
+bar-volume-fill-font = 2
+bar-volume-empty = ─
+bar-volume-empty-font = 2
+bar-volume-empty-foreground = ${colors.foreground-alt}
 
 [module/alsa]
 type = internal/alsa
