@@ -134,17 +134,21 @@ set autoindent
 set linebreak
 
 "" SEARCH OPTIONS:
+
+" Don't highlight search results
+set nohlsearch
+
 " Show possible matches while searching
 set incsearch
+
 " Settings for case-sensitivity when searching
-set ignorecase
-set smartcase
+set ignorecase smartcase
+
 " Enable RegExp magic
 set magic
 
 " Highlight matching braces
-set showmatch
-set mat=3
+set showmatch mat=3
 
 " No bells on error
 set noerrorbells
@@ -271,7 +275,7 @@ augroup specialfiles
 
 " reload config files
 au BufWritePost ~/.config/xbindkeysrc !pkill -x xbindkeys -HUP
-au BufWritePost ~/.config/picom/picom.conf !pkill -x picom ; picom -b
+au BufWritePost ~/.config/picom/picom.conf !pkill -x picom; picom -b --experimental-backends
 au BufWritePost ~/.config/dunst/dunstrc !pkill -x dunst ; setsid dunst
 
 " shellcheck
@@ -386,3 +390,5 @@ nmap [e	<plug>(coc-diagnostic-prev-error)
 nnoremap <leader>cr <cmd>CocRestart<cr>
 nnoremap <leader>cd <cmd>CocDisable<cr>
 nnoremap <leader>ce <cmd>CocEnable<cr>
+inoremap <m-cr> <esc>f,2lct,
+inoremap <s-cr> <esc>f,2lct)
