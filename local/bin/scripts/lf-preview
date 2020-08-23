@@ -8,7 +8,7 @@ case "$1" in
 	*.png|*.jpg|*.jpeg|*.svg) chafa -c 240 -s $((LINES * 3))x$LINES "$1";;
     *.md) glow -s dark "$1";;
     *.pdf) pdftotext "$1" -;;
-    *.zip) zipinfo "$1";;
+    *.zip) zipinfo -2 "$1";;
     *.tar|*.tar.*z*) tar -tvf "$1";;
     *.rar) unrar l "$1";;
     *.7z) 7z l "$1";;
