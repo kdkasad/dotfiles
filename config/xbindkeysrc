@@ -116,3 +116,11 @@
 # toggle polybar
 "polybar-msg cmd toggle"
 	Mod4 + space
+
+# galculator
+"galculator"
+	Mod4 + Shift + G
+
+# file manager
+"$TERMINAL -e lf"
+	Mod4 + Control + Return
