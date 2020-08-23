@@ -150,8 +150,3 @@ if [ -d "$HOME/.local/bin/scripts" ] ; then
 		PATH="$dir:$PATH"
 	done
 fi
-
-# include Intellij IDEA path
-if [ -d "$HOME/.local/opt/intellij/bin" ]; then
-	PATH="$HOME/.local/opt/intellij/bin:$PATH"
-fi
