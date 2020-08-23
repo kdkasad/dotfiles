@@ -1,3 +1,3 @@
 #!/bin/sh
 
-dmenu -P -p "${1:-Password:}" <&-
+dmenu -h 32 -P -p "${1:-Password:}" <&-
