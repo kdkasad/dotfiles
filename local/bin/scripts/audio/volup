@@ -1,19 +1,14 @@
 #!/bin/sh
 
-if command -v amixer >/dev/null 2>&1; then # ALSA
+if command -v pamixer >/dev/null 2>&1; then # PulseAudio
+	# Un-mute and increase volume
+	pamixer -u -i 5
+else # ALSA
 	# Un-mute
 	amixer sset Master on
-	# Decrease volume
+	# Increase volume
 	amixer sset Master 5%+
-else # PulseAudio
-	# Un-mute
-	pactl set-sink-mute 0 false
-	# Decrease volume
-	pactl set-sink-volume 0 +5%
 fi
 
 # Send volume notification
 notifyvolume
-
-# Update statusbar
-updatestatusbar 1

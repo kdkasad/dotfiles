@@ -1,15 +1,12 @@
 #!/bin/sh
 
-if command -v amixer >/dev/null 2>&1; then # ALSA
+if command -v pamixer >/dev/null 2>&1; then # PulseAudio
+	# Toggle mute
+	pamixer -t
+else # ALSA
 	# Toggle mute
 	amixer sset Master toggle
-else # PulseAudio
-	# Toggle mute
-	pactl set-sink-mute 0 toggle
 fi
 
 # Send volume notification
 notifyvolume
-
-# Update statusbar
-updatestatusbar 1
