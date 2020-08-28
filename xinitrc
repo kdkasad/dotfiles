@@ -14,9 +14,6 @@ DBUS_SESSION_BUS_ADDRESS=$DBUS_SESSION_BUS_ADDRESS
 export DBUS_SESSION_BUS_ADDRESS
 eof
 
-# set volume to 20% if using ALSA (PulseAudio handles this automatically)
-command -v amixer >/dev/null 2>&1 && amixer sset Master 20% &
-
 # Start statusbar
 ~/.config/polybar/start-polybar.sh >/dev/null 2>&1 &
 
