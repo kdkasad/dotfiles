@@ -1,0 +1,36 @@
+#!/bin/sh
+
+suffix="withcap"
+
+for vidfile in "$1"/*; do
+	dest="$(echo "$vidfile" | tr -d ',()[]{}!@#$%^&*=' | tr '[:upper:]' '[:lower:]' | tr '_ ' '-' | sed 's/-\+/-/g')"
+	echo "$vidfile"
+	echo "==>"
+	echo "$dest"
+	mv -i "$vidfile" "$dest"
+	echo
+done
+
+for vidfile in "$1"/*.mp4 "$1"/*.webm; do
+	[ "${vidfile%.*}" = "$1/*" ] && continue
+	echo "$vidfile"
+	echo "==>"
+	echo "${vidfile%.*}.mkv"
+	ffmpeg -stats -loglevel error -i "$vidfile" -c:v copy -c:s copy -c:a copy -f matroska "${vidfile%.*}.mkv" && \
+		rm -f "$vidfile" || \
+		echo -e "\e[01;31merror\e[00m" >&2
+	echo
+done
+
+for capfile in "$1"/*.en.vtt; do
+	vidfile="${capfile%.en.vtt}.mkv"
+	[ -f "$vidfile" ] || continue
+	echo "$vidfile"
+	echo "$capfile"
+	echo "==>"
+	echo "${vidfile%.mkv}-$suffix.mkv"
+	ffmpeg -stats -loglevel error -i "$vidfile" -c:v copy -c:a copy -c:s copy "${vidfile%.mkv}-$suffix.mkv" && \
+		rm -f "$capfile" "$vidfile" || \
+		echo -e "\e[01;31merror\e[00m" >&2
+	echo
+done
