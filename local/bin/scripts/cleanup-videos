@@ -1,9 +1,10 @@
 #!/bin/sh
 
-suffix="withcap"
+suffix="-caps"
 
 for vidfile in "$1"/*; do
-	dest="$(echo "$vidfile" | tr -d ',()[]{}!@#$%^&*=' | tr '[:upper:]' '[:lower:]' | tr '_ ' '-' | sed 's/-\+/-/g')"
+	dest="$(echo "$vidfile" | tr -d ",()[]{}!@#$%^&*='\"" | tr '[:upper:]' '[:lower:]' | tr '_ ' '-' | sed 's/-\+/-/g')"
+	[ "$vidfile" = "$dest" ] && continue
 	echo "$vidfile"
 	echo "==>"
 	echo "$dest"
@@ -16,21 +17,21 @@ for vidfile in "$1"/*.mp4 "$1"/*.webm; do
 	echo "$vidfile"
 	echo "==>"
 	echo "${vidfile%.*}.mkv"
-	ffmpeg -stats -loglevel error -i "$vidfile" -c:v copy -c:s copy -c:a copy -f matroska "${vidfile%.*}.mkv" && \
+	ffmpeg -stats -loglevel warning -i "$vidfile" -c copy -f matroska "${vidfile%.*}.mkv" && \
 		rm -f "$vidfile" || \
-		echo -e "\e[01;31merror\e[00m" >&2
+		printf "\033[01;31merror\033[00m\n" >&2
 	echo
 done
 
-for capfile in "$1"/*.en.vtt; do
-	vidfile="${capfile%.en.vtt}.mkv"
+for capfile in "$1"/*.*.vtt; do
+	vidfile="${capfile%.*.vtt}.mkv"
 	[ -f "$vidfile" ] || continue
 	echo "$vidfile"
 	echo "$capfile"
 	echo "==>"
-	echo "${vidfile%.mkv}-$suffix.mkv"
-	ffmpeg -stats -loglevel error -i "$vidfile" -c:v copy -c:a copy -c:s copy "${vidfile%.mkv}-$suffix.mkv" && \
+	echo "${vidfile%.mkv}$suffix.mkv"
+	ffmpeg -stats -loglevel warning -i "$vidfile" -i "$capfile" -c copy "${vidfile%.mkv}$suffix.mkv" && \
 		rm -f "$capfile" "$vidfile" || \
-		echo -e "\e[01;31merror\e[00m" >&2
+		printf "\033[01;31merror\033[00m\n" >&2
 	echo
 done
