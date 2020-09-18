@@ -62,6 +62,7 @@ image/x-xcf=gimp.desktop
 image/x-xcursor=gimp.desktop
 image/x-xpixmap=gimp.desktop
 image/x-xwindowdump=gimp.desktop
+video/mp4=mpv.desktop
 application/pdf=org.pwmt.zathura.desktop
 x-scheme-handler/mailto=neomutt.desktop
 application/octet-stream=nvim.desktop

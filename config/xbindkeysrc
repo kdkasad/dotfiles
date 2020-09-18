@@ -57,20 +57,18 @@
 	Mod4 + v
 
 # man page chooser
-"manchooser -g -c -h 32 -l 20 -bw 3"
+"manchooser -g"
 	Mod4 + e
-"manchooser -g -h 32 -l 20 -bw 3"
-	Mod4 + Shift + e
 
 # terminal
 "$TERMINAL"
 	Mod4 + Shift + Return
 
 # dmenu program launcher (centered window)
-"dmenu_run_history -c -l 10 -h 32 -bw 3"
+"rofi -show drun"
 	Mod4 + p
 # dmenu program launcher
-"dmenu_run_history -h 32"
+"rofi -show run"
 	Mod4 + Shift + p
 
 # unicode character chooser
@@ -78,7 +76,7 @@
 	Mod4 + semicolon
 
 # emoji chooser
-"emojichooser -h 32 -bw 3"
+"emojichooser"
 	Mod4 + Shift + semicolon
 
 # drive mount menu
@@ -124,3 +122,7 @@
 # file manager
 "$TERMINAL -e lf"
 	Mod4 + Control + Return
+
+# fuzzy search for drag-and-drop
+"$TERMINAL -e fuzzydrop"
+	Mod4 + Control + Shift + Return

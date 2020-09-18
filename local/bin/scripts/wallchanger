@@ -5,7 +5,7 @@
 #
 
 # load required session environment
-source "${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/session-env"
+. "${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/session-env"
 
 # directory where images are located
 wpdir="${WP_DIR:-$HOME/pictures/wallpapers/dynamic/current}"

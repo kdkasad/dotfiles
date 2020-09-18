@@ -5,5 +5,5 @@ slock &
 if grep Charging /sys/class/power_supply/BAT0/status >/dev/null 2>&1; then
 	loginctl suspend
 else
-	loginctl suspend-then-hibernate
+	loginctl suspend
 fi

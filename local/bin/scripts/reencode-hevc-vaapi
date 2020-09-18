@@ -17,7 +17,7 @@ for vidfile in $@; do
 	# reencode using hevc_vaapi codec
 	# if successful, delete original file
 	# on failure, print 'error' in red
-	ffmpeg -stats -loglevel warning -hwaccel vaapi -i "$vidfile" -vf 'format=nv12|vaapi,hwupload' -c:a copy -c:s copy -c:v hevc_vaapi "${vidfile%.mkv}-$suffix.mkv" && \
+	ffmpeg -stats -loglevel warning -hwaccel vaapi -hwaccel_output_format vaapi -i "$vidfile" -c:a copy -c:s copy -c:v hevc_vaapi "${vidfile%.mkv}-$suffix.mkv" && \
 		rm -f "$vidfile" || \
 		echo -e "\e[01;31merror\e[00m" >&2
 done

@@ -1,8 +1,8 @@
 #!/bin/sh
 
-dmenuopts="-i -h 32"
+lines=6
 
-target="$( dmenu $dmenuopts $@ -p "choose state:" << eof || printf 'cancelled'
+target="$( rofi -dmenu -lines 6 -p "choose state:" << eof || printf 'cancelled'
 power off
 reboot
 suspend
@@ -18,7 +18,7 @@ esac
 
 case "$target" in
 	suspend|hibernate|"hybrid sleep"|"suspend then hibernate")
-		lockfirst="$( printf "yes\nno" | dmenu $dmenuopts $@ -p "lock first?" || printf cancelled )"
+		lockfirst="$( printf "yes\nno" | dmenu -lines 2 -p "lock first?" || printf cancelled )"
 		;;
 esac
 

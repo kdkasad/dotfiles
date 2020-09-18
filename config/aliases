@@ -219,3 +219,6 @@ alias psmem='ps aux | sort -nr -k 4'
 
 # show disk usage
 alias dfr='df -h / /home'
+
+alias please='sudo'
+alias fuck='sudo'

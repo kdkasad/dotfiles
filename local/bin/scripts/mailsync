@@ -15,7 +15,7 @@ ping -q -c 1 1.1.1.1 > /dev/null || ping -q -c 1 1.0.0.1 > /dev/null || ping -q 
 command -v notify-send >/dev/null || echo "Note that \`libnotify\` or \`libnotify-send\` should be installed for pop-up mail notifications with this script."
 
 # Required to display notifications if run as a cronjob:
-source ${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/session-env
+. ${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/session-env
 
 # For individual configurations:
 [ -d "$HOME/.local/share/password-store" ] && export PASSWORD_STORE_DIR="${PASSWORD_STORE_DIR:-$HOME/.local/share/password-store}"

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source "${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/session-env"
+. "${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/session-env"
 
 warning_start=20
 warning_inc=5

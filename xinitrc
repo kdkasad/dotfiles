@@ -14,12 +14,16 @@ DBUS_SESSION_BUS_ADDRESS=$DBUS_SESSION_BUS_ADDRESS
 export DBUS_SESSION_BUS_ADDRESS
 eof
 
+# Configure external display
+xrandr | grep 'HDMI[0-9] connected' &&
+	xrandr --output eDP1 --auto --output HDMI1 --primary --right-of eDP1
+
 # Start statusbar
 ~/.config/polybar/start-polybar.sh >/dev/null 2>&1 &
 
 # Set desktop background
-wallchanger &
-#bgs -z ~/pictures/wallpapers/current &
+#wallchanger &
+bgs -z ~/pictures/wallpapers/dynamic/current/08.jpg &
 
 # set Caps Lock to act as Escape
 setxkbmap -option 'caps:escape_shifted_capslock' &

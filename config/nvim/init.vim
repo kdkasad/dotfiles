@@ -69,7 +69,7 @@ set number
 
 " Change window title to filename
 set title
-set titlestring=%f\ %m
+set titlestring=vim\ -\ %f\ %m
 
 " Enable mouse interaction
 set mouse=a
@@ -124,11 +124,7 @@ set ruler
 set noshowmode
 
 " Tab settings
-set tabstop=8
-set softtabstop=8
-set shiftwidth=8
-set noexpandtab
-set autoindent
+set ts=4 sts=4 sw=4 noet ai
 
 " Line wrap options
 set linebreak
