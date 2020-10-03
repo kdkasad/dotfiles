@@ -23,7 +23,7 @@ xrandr | grep 'HDMI[0-9] connected' &&
 
 # Set desktop background
 #wallchanger &
-bgs -z ~/pictures/wallpapers/dynamic/current/08.jpg &
+bgs -z ~/pictures/wallpapers/current &
 
 # set Caps Lock to act as Escape
 setxkbmap -option 'caps:escape_shifted_capslock' &

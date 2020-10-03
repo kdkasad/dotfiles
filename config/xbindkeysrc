@@ -37,7 +37,7 @@
 	XF86RFKill
 
 # open shutdown menu
-"shutdownmenu"
+"shutdownmenu -t topbar"
 	Control + Alt + Delete
 
 # screenshots
@@ -57,7 +57,7 @@
 	Mod4 + v
 
 # man page chooser
-"manchooser -g"
+"manchooser -g -t toplist -l 22"
 	Mod4 + e
 
 # terminal
@@ -68,28 +68,28 @@
 "rofi -show drun"
 	Mod4 + p
 # dmenu program launcher
-"rofi -show run"
+"dmenu_run_history -t windowed"
 	Mod4 + Shift + p
 
 # unicode character chooser
-"unichooser -h 32 -bw 3"
+"unichooser -t toplist -I"
 	Mod4 + semicolon
 
 # emoji chooser
-"emojichooser"
+"emojichooser -t toplist"
 	Mod4 + Shift + semicolon
 
 # drive mount menu
-"mountmenu -h 32 -bw 3"
+"mountmenu -t toplist"
 	Mod4 + Shift + F9
 # drive unmount menu
-"unmountmenu -h 32 -bw 3"
+"unmountmenu -t toplist"
 	Mod4 + Shift + F10
 
 # web browser
 "$BROWSER"
 	Mod4 + b
-"browseurl -h 32"
+"browseurl -t topbar"
 	Mod4 + Shift + b
 
 # lock screen
@@ -97,7 +97,7 @@
 	Mod4 + Shift + l
 
 # config file editor
-"confedit -h 32"
+"confedit -t topbar"
 	Mod4 + o
 
 # email client

@@ -36,7 +36,7 @@ alias svim='sudo -e'
 se() {
 	[ -n "$@" ] \
 		&& fopts="$@" \
-		|| fopts="~/* ~/.local/bin/scripts ~/.config ~/.local/share ~/.local/src ~/.local/opt"
+		|| fopts="~/.local/bin/scripts ~/.config ~/.local/share ~/.local/src ~/.local/opt ~/*"
 	f="$(find $fopts -type f 2>/dev/null | fzf --reverse --height=40% -i)"
 	[ -z "$f" ] && return 1
 	case "$SHELL" in
