@@ -1,4 +1,6 @@
-#!/usr/bin/env sh
+#!/usr/bin/sh
+
+. "$HOME/.config/env"
 
 QUEUEDIR=${MSMTP_QUEUEDIR:-HOME/.msmtpqueue}
 LOCKFILE="$QUEUEDIR/.lock"

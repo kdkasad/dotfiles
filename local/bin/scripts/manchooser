@@ -2,7 +2,7 @@
 
 if [ "$1" = "-g" ]; then
 	shift
-	CHOOSER="dmenu"
+	CHOOSER="dmenu $@"
 	VIEWER="$TERMINAL -e man"
 else
 	CHOOSER="fzf +x --reverse --height=60% $@"

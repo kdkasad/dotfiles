@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Use dmenu to choose a unicode character from ~/.local/share/unicode.txt and copy it
-grep -v '#' ~/.local/share/unicode.txt | dmenu | grep -o '^.' | xclip -r -i -selection clipboard
+grep -v '#' ~/.local/share/unicode.txt | dmenu "$@" | grep -o '^.' | xclip -r -i -selection clipboard
 
 # If nothing was selected, exit
 [ ! "$(xclip -o -selection clipboard)" ] && exit 1

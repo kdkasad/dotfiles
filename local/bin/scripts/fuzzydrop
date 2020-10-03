@@ -1,0 +1,3 @@
+#!/bin/sh
+
+setsid -f dragon-drag-and-drop -x "$(find "$HOME" -not -path '*/.cache/*' -type f | fzf)"
