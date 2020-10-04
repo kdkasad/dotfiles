@@ -1,5 +1,5 @@
 " Sets the compiler
-compiler gcc
+compiler cc
 
 " Extra completion
 set tags+=~/.local/share/systags_c
