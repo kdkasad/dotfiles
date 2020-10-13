@@ -66,9 +66,10 @@ video/mp4=mpv.desktop
 application/pdf=org.pwmt.zathura.desktop
 x-scheme-handler/mailto=neomutt.desktop
 application/octet-stream=nvim.desktop
-text/html=brave-nightly-bin.desktop
-x-scheme-handler/http=brave-nightly-bin.desktop
-x-scheme-handler/https=brave-nightly-bin.desktop
-x-scheme-handler/about=brave-nightly-bin.desktop
-x-scheme-handler/unknown=brave-nightly-bin.desktop
+text/html=brave-browser.desktop
+x-scheme-handler/http=brave-browser.desktop
+x-scheme-handler/https=brave-browser.desktop
+x-scheme-handler/about=brave-browser.desktop
+x-scheme-handler/unknown=brave-browser.desktop
+x-scheme-handler/geo=brave-browser.desktop
 

@@ -4,12 +4,14 @@
 # It is intended to keep ~/.zprofile clean
 # It is sourced by ~/.zprofile on login
 
+# load secret environment configuration
+. "$HOME/.config/env_secret"
 
 ## SET GENERAL VARIABLES ##
 
 export TERMINAL='alacritty'
 export EDITOR='nvim'
-export BROWSER='brave-nightly'
+export BROWSER='brave'
 
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
@@ -21,10 +23,14 @@ export XDG_DATA_HOME="$HOME/.local/share"
 # less(1) configuration
 export LESS='-r'
 export LESSOPEN='|lesspipe.sh %s'
-export LESSHISTFILE="-"
+export LESSHISTFILE='-'
 
 # Java doesn't understand tiling wm's
 export _JAVA_AWT_WM_NONREPARENTING=1
+export AWT_TOOLKIT='MToolkit'
+
+# JRE appearance settings
+export _JAVA_OPTIONS='-Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dawt.useSystemAAFontSettings=on -Dsun.java2d.opengl=true'
 
 # sudo askpass program
 export SUDO_ASKPASS="$HOME/.local/bin/scripts/dmenupass"
@@ -148,4 +154,9 @@ if [ -d "$HOME/.local/bin/scripts" ] ; then
 	for dir in $(find -L "$HOME/.local/bin/scripts" -not -path "$HOME/.local/bin/scripts/statusbar*" -not -path "$HOME/.local/bin/scripts/cron-jobs*" -type d); do
 		PATH="$dir:$PATH"
 	done
+fi
+
+# include ccache utils
+if [ -d /usr/lib/ccache/bin ] ; then
+	PATH="/usr/lib/ccache/bin:$PATH"
 fi

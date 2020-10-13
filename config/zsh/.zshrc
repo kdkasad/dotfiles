@@ -2,6 +2,7 @@ HISTFILE=~/.cache/zsh_history
 HISTSIZE=1000
 SAVEHIST=1000
 setopt APPEND_HISTORY
+setopt histignorespace
 setopt HIST_IGNORE_DUPS
 setopt HIST_REDUCE_BLANKS
 
@@ -152,6 +153,7 @@ grep -v '#' $shortcutsdir/files | awk '{print "alias "$1"=\"vim "$2"\""}' >> $tm
 # Command not found helper
 source /usr/share/doc/pkgfile/command-not-found.zsh
 
+# spawn pfetch if in a tty
 if [ -c "$(tty)" ]; then
 	pfetch
 fi

@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 alias -g  ll='ls -lh'
-alias -g  la='ls -A'
+alias la='ls -A'
 alias -g lla='ls -lAh'
 alias -g llA='ls -lah'
 alias	   l='ls -CF1'
@@ -19,9 +19,6 @@ mkcd() {
 	mkdir -pv "$@"
 	cd "$1" || exit 1
 }
-
-# Make & install suckless utilities
-alias suckmake='make clean && make install clean'
 
 # Create makefile
 alias genmk='cp ~/.config/templates/config.mk ~/.config/templates/Makefile -t ./ && vim config.mk && vim Makefile'
@@ -186,9 +183,8 @@ alias irssi="irssi --config=$HOME/.config/irssi/config --home=$HOME/.local/share
 # youtube-dl is a long name
 alias ytdl='youtube-dl'
 
-# don't glob urls when using curl or mpv
+# don't glob urls when using curl or youtube-dl
 alias curl='noglob curl'
-alias mpv='noglob mpv'
 alias youtube-dl='noglob youtube-dl'
 
 # show progress in xz

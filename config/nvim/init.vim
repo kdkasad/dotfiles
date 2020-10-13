@@ -271,7 +271,7 @@ augroup specialfiles
 
 " reload config files
 au BufWritePost ~/.config/xbindkeysrc !pkill -x xbindkeys -HUP
-au BufWritePost ~/.config/picom/picom.conf !pkill -x picom; picom -b --experimental-backends
+au BufWritePost ~/.config/picom/picom.conf !pkill -x picom; picom -b
 au BufWritePost ~/.config/dunst/dunstrc !pkill -x dunst ; setsid dunst
 
 " shellcheck

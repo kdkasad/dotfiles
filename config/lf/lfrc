@@ -2,7 +2,6 @@
 set preview true
 set previewer ~/.local/bin/scripts/lf-preview
 set nohidden
-set color256 true
 set drawbox true
 set icons true
 set ignorecase true

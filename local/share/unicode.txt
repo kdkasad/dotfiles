@@ -92,3 +92,4 @@
 ý - Y with acute (lowercase)
 þ - Thorn (lowercase)
 ÿ - Y with diaeresis (lowercase)
+Δ - Delta

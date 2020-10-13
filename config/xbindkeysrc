@@ -65,14 +65,14 @@
 	Mod4 + Shift + Return
 
 # dmenu program launcher (centered window)
-"rofi -show drun"
+"j4-dmenu-desktop --dmenu='dmenu -t windowed'"
 	Mod4 + p
 # dmenu program launcher
 "dmenu_run_history -t windowed"
 	Mod4 + Shift + p
 
 # unicode character chooser
-"unichooser -t toplist -I"
+"unichooser -t toplist"
 	Mod4 + semicolon
 
 # emoji chooser

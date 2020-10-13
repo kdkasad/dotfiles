@@ -38,11 +38,11 @@ orange = ${xrdb:polybar.orange:#f80}
 
 [bar/statusbar]
 monitor = ${env:MONITOR:}
-width = 95%
-height = 35
-offset-x = 2.5%
-offset-y = 13
-radius = 13
+width = 100%
+height = 30
+offset-x = 0
+offset-y = 0
+radius = 0
 bottom = true
 fixed-center = true
 enable-ipc = true
@@ -69,7 +69,7 @@ font-3 = Symbols Nerd Font:size=7:antialias=true
 
 modules-left = xwindow
 modules-center = dwm
-modules-right = backlight-intel pulseaudio pacman email cpu temperature memory battery date
+modules-right = pulseaudio pacman email cpu temperature memory battery date
 
 tray-position = right
 tray-padding = 4
@@ -311,7 +311,7 @@ label-focused-foreground = ${colors.primary}
 label-focused-padding = 2
 
 ; unfocused = Unselected tag on unselected monitor
-label-unfocused = 
+label-unfocused = 
 label-unfocused-padding = ${self.label-focused-padding}
 
 ; visible = Unselected tag, but occupied tag on any monitor
