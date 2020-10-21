@@ -1,0 +1,17 @@
+#!/bin/sh
+
+#
+# Configure XKB settings
+#
+
+# Use CapsLock as Ecsape unless Shift is pressed
+setxkbmap -option 'caps:escape_shifted_capslock'
+
+# Use the Right Alt key as Compose
+setxkbmap -option 'compose:ralt'
+
+# Use Control+Alt+Backspace to kill X
+setxkbmap -option 'terminate:ctrl_alt_bksp'
+
+# Set key repeat delay/rate
+xset r rate 250 40

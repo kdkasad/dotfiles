@@ -25,11 +25,8 @@ xrandr | grep 'HDMI[0-9] connected' &&
 #wallchanger &
 bgs -z ~/pictures/wallpapers/current &
 
-# set Caps Lock to act as Escape
-setxkbmap -option 'caps:escape_shifted_capslock' &
-
-# Set keyboard repeat rate
-xset r rate 250 40 &
+# set xkb options
+kb &
 
 # Start notification daemon
 dunst &
