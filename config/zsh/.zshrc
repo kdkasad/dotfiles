@@ -150,9 +150,6 @@ fi
 	echo -en "\e]PFFFF1F3"
 }
 
-# colored GCC warnings and errors
-#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-
 # Alias definitions.
 alias_file=~/.config/aliases
 [ -f $alias_file ] && . $alias_file

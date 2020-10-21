@@ -42,6 +42,9 @@ export QT_QPA_PLATFORMTHEME=qt5ct
 # abstract to avoid absolute paths in config files
 export MPD_HOST="@mpd-787e3e09-5607-4e76-8b3c-eb34c4364525"
 
+# colored GCC warnings and errors
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+
 # icons for lf(1)
 export LF_ICONS="\
 di=🗀 :\
