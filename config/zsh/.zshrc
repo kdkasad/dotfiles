@@ -118,7 +118,7 @@ unset color_prompt force_color_prompt
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias -g ls='ls --color=auto'
+    alias ls='ls --color=auto'
 	alias -g tree='tree -C'
     alias -g less='less -r'
     #alias -g dir='dir --color=auto'
@@ -129,6 +129,26 @@ if [ -x /usr/bin/dircolors ]; then
     alias -g egrep='egrep --color=auto'
 	alias -g diff='diff --color=auto'
 fi
+
+# set colors for linux vconsole
+[ "$TERM" = "linux" ] && {
+	echo -en "\e]P0000000"
+	echo -en "\e]P1FD6883"
+	echo -en "\e]P2ADDA78"
+	echo -en "\e]P3F9CC6C"
+	echo -en "\e]P47A9ED7"
+	echo -en "\e]P5A8A9EB"
+	echo -en "\e]P685DACC"
+	echo -en "\e]P7FFF1F3"
+	echo -en "\e]P85E4F4F"
+	echo -en "\e]P9FD6883"
+	echo -en "\e]PAADDA78"
+	echo -en "\e]PBF9CC6C"
+	echo -en "\e]PC7A9ED7"
+	echo -en "\e]PDA8A9EB"
+	echo -en "\e]PE85DACC"
+	echo -en "\e]PFFFF1F3"
+}
 
 # colored GCC warnings and errors
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
