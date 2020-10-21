@@ -1,10 +1,18 @@
 #!/bin/zsh
 
-alias -g  ll='ls -lh'
+# ls aliases
+alias ll='ls -lh'
 alias la='ls -A'
-alias -g lla='ls -lAh'
-alias -g llA='ls -lah'
-alias	   l='ls -CF1'
+alias lla='ls -lAh'
+alias llA='ls -lah'
+alias l='ls -CF1'
+
+# ls aliases with sudo
+alias 'sudo  ll'='sudo ls -lh'
+alias 'sudo  la'='sudo ls -A'
+alias 'sudo lla'='sudo ls -lAh'
+alias 'sudo llA'='sudo ls -lah'
+alias 'sudo   l'='sudo ls -CF1'
 
 alias -g sl='sl | lolcat'
 
@@ -19,9 +27,6 @@ mkcd() {
 	mkdir -pv "$@"
 	cd "$1" || exit 1
 }
-
-# Create makefile
-alias genmk='cp ~/.config/templates/config.mk ~/.config/templates/Makefile -t ./ && vim config.mk && vim Makefile'
 
 # Text editor
 alias v="$EDITOR"
@@ -218,3 +223,6 @@ alias dfr='df -h / /home'
 
 alias please='sudo'
 alias fuck='sudo'
+
+# use `tput reset` because it's faster
+alias reset='tput reset'
