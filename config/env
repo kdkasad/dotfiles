@@ -89,6 +89,9 @@ ln=⛓:\
 
 ## CLEAN ~ ##
 
+# move nbrc
+export NBRC_PATH="$XDG_CONFIG_HOME/nb/nbrc"
+
 # move pass(1) directory
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME/password-store"
 
