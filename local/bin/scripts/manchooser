@@ -9,5 +9,5 @@ else
 	VIEWER="man"
 fi
 
-man -k . | $CHOOSER | awk '{print $2 $1}' | tr -d '(' | tr ')' ' ' |
+apropos . | $CHOOSER | awk '{print $2 $1}' | tr -d '(' | tr ')' ' ' |
 	xargs -r $VIEWER
