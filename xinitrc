@@ -35,7 +35,7 @@ dunst &
 xbindkeys -f ~/.config/xbindkeysrc &
 
 # Start idle timer
-xautolock -time 10 -notify 20 -notifier "notify-send -a 'xautolock' 'sleeping in 20 seconds...'" -locker "$HOME/.local/bin/scripts/idlehandler" -detectsleep -corners "-000" &
+setsid -f xautolock -time 10 -notify 20 -notifier "notify-send -a 'xautolock' 'sleeping in 20 seconds...'" -locker "$HOME/.local/bin/scripts/idlehandler" -detectsleep -corners "-000" &
 
 # Start composition manager
 picom -b --experimental-backends
