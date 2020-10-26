@@ -4,9 +4,6 @@
 # It is intended to keep ~/.zprofile clean
 # It is sourced by ~/.zprofile on login
 
-# load secret environment configuration
-. "$HOME/.config/env_secret"
-
 ## SET GENERAL VARIABLES ##
 
 export TERMINAL='alacritty'
@@ -16,6 +13,10 @@ export BROWSER='brave'
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
+
+# load secret environment configuration
+test -r "${XDG_CONFIG_HOME:-$HOME/.config}/env_secret"
+. "${XDG_CONFIG_HOME:-$HOME/.config}/env_secret"
 
 
 ## CONFIGURE PROGRAMS ##
