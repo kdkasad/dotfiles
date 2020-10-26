@@ -3,7 +3,7 @@
 # This script runs a program with the environment variables
 # for the default TOR proxy
 
-local proxy=socks://127.0.0.1:9050/
+proxy="${PROXY:-socks://127.0.0.1:9050/}"
 export http_proxy=$proxy
 export HTTP_PROXY=$proxy
 export https_proxy=$proxy
