@@ -226,3 +226,8 @@ alias fuck='sudo'
 
 # use `tput reset` because it's faster
 alias reset='tput reset'
+
+# move into directory in ~/.local/opt
+lop() {
+	cd "$HOME/.local/opt/$1"
+}

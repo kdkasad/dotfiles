@@ -22,6 +22,5 @@ not		~/notes
 lo		~/.local
 loc		~/.local
 nvc		~/.config/nvim
-lop		~/.local/opt
 no		~/notes
 ga		~/.local/share/games
