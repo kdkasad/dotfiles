@@ -239,6 +239,9 @@ au Filetype troff setlocal ft=groff
 " Detect systemd services
 au BufRead *.service setlocal ft=systemd
 
+" Treat PKGBUILDs as sh syntax
+au Filetype PKGBULID setlocal ft=sh
+
 
 """""""""""""""""""""""""""""
 "        TEMPLATES          "
