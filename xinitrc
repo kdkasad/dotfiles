@@ -38,7 +38,7 @@ xbindkeys -f ~/.config/xbindkeysrc &
 setsid -f xautolock -time 10 -notify 20 -notifier "notify-send -a 'xautolock' 'sleeping in 20 seconds...'" -locker "$HOME/.local/bin/scripts/idlehandler" -detectsleep -corners "-000" &
 
 # Start composition manager
-picom -b --experimental-backends
+picom -b
 
 # Start nm-applet (if not running)
 pgrep -x nm-applet >/dev/null 2>&1 || setsid -f nm-applet
