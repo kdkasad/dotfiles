@@ -117,7 +117,7 @@
 
 # galculator
 "galculator"
-	Mod4 + Shift + G
+	XF86Calculator
 
 # file manager
 "$TERMINAL -e lf"
@@ -126,3 +126,5 @@
 # fuzzy search for drag-and-drop
 "$TERMINAL -e fuzzydrop"
 	Mod4 + Control + Shift + Return
+
+# vim: ft=conf
