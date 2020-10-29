@@ -15,7 +15,7 @@ export DBUS_SESSION_BUS_ADDRESS
 eof
 
 # Configure external display
-xrandr | grep 'HDMI[0-9] connected' &&
+xrandr | grep 'HDMI1 connected' &&
 	xrandr --output eDP1 --auto --output HDMI1 --primary --right-of eDP1
 
 # map touchscreen to only laptop display
