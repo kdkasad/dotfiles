@@ -15,8 +15,8 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
 
 # load secret environment configuration
-test -r "${XDG_CONFIG_HOME:-$HOME/.config}/env_secret"
-. "${XDG_CONFIG_HOME:-$HOME/.config}/env_secret"
+test -r "${XDG_CONFIG_HOME:-$HOME/.config}/env_secret" \
+	&& . "${XDG_CONFIG_HOME:-$HOME/.config}/env_secret"
 
 
 ## CONFIGURE PROGRAMS ##
