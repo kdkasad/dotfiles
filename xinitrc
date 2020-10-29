@@ -18,6 +18,9 @@ eof
 xrandr | grep 'HDMI[0-9] connected' &&
 	xrandr --output eDP1 --auto --output HDMI1 --primary --right-of eDP1
 
+# map touchscreen to only laptop display
+xinput --map-to-output 'GTCH7503:00 2A94:D64D' eDP1
+
 # Start statusbar
 ~/.config/polybar/start-polybar.sh >/dev/null 2>&1 &
 
