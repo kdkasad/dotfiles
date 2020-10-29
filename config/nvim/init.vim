@@ -19,7 +19,7 @@ Plug 'ghifarit53/sonokai'
 Plug 'sheerun/vim-polyglot'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'mhinz/vim-startify'
-Plug 'ciaranm/detectindent'
+Plug 'roryokane/detectindent'
 
 call plug#end()
 
@@ -122,9 +122,11 @@ set ruler
 set noshowmode
 
 " Tab settings
-let g:detectindent_preferred_expandtab=0
-let g:detectindent_preferred_indent=4
-autocmd BufReadPost,BufNew * DetectIndent
+let g:detectindent_preferred_expandtab = 0
+let g:detectindent_preferred_indent = 4
+let g:detectindent_min_indent = 2
+let g:detectindent_max_indent = 8
+autocmd BufReadPost,BufNewFile * DetectIndent
 
 " Line wrap options
 set linebreak
