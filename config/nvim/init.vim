@@ -288,8 +288,12 @@ au Filetype sh map <buffer> <leader>bs :sp \| te checkbashisms %<cr>
 au Filetype sh map <buffer> <leader>vbs :vs \| te checkbashisms %<cr>
 
 " compile *roff documents
+augroup groffcomp
 au Filetype groff,nroff,troff nnoremap <buffer> <leader>cp <cmd>silent !compiledoc %<cr>
+au Filetype groff,nroff,troff nnoremap <buffer> <leader>ecp <cmd>autocmd groffcomp BufWritePost <buffer> silent !compiledoc %<cr>
+au Filetype groff,nroff,troff nnoremap <buffer> <leader>dcp <cmd>autocmd! groffcomp BufWritePost <buffer><cr>
 au Filetype groff,nroff,troff nnoremap <buffer> <leader>pdf :exe "silent !setsid zathura ".expand('%:r').".pdf"<cr>
+augroup END
 
 " reload xresources
 au BufWritePost ~/.config/xresources !xrdb -load %
