@@ -305,6 +305,21 @@ augroup end
 
 
 """""""""""""""""""""""""""""
+"       BINARY FILES        "
+"""""""""""""""""""""""""""""
+
+augroup hexedit
+	au!
+	au BufReadPost  <buffer> if &binary | %!xxd
+	au BufReadPost  <buffer> set ft=xxd | endif
+	au BufWritePre  <buffer> if &binary | %!xxd -r
+	au BufWritePre  <buffer> endif
+	au BufWritePost <buffer> if &binary | %!xxd
+	au BufWritePost <buffer> set nomod | endif
+augroup end
+
+
+"""""""""""""""""""""""""""""
 "    KEYBOARD SHORTCUTS     "
 """""""""""""""""""""""""""""
 
