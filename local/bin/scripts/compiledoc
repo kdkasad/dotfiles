@@ -15,4 +15,5 @@ base="${file%.*}"
 case "$ext" in
 	ms) refer -PSep "${REFER_SOURCES:-$HOME/documents/sources.refer}" "$file" | groff -me -ms -kpt -Tpdf > "$base.pdf" ;;
 	mom) refer -PSep "${REFER_SOURCES:-$HOME/documents/sources.refer}" "$file" | groff -mom -kpt -Tpdf > "$base.pdf" ;;
+	*) refer -PSep "${REFER_SOURCES:-$HOME/documents/sources.refer}" "$file" | groff -kpt -Tpdf > "$base.pdf" ;;
 esac
