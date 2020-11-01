@@ -14,8 +14,6 @@ alias 'sudo lla'='sudo ls -lAh'
 alias 'sudo llA'='sudo ls -lah'
 alias 'sudo   l'='sudo ls -CF1'
 
-alias -g sl='sl | lolcat'
-
 alias -g rm='rm -Iv'
 alias -g cp='cp -iv'
 alias -g mv='mv -iv'
