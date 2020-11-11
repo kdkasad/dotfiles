@@ -69,7 +69,7 @@ font-3 = Symbols Nerd Font:size=7:antialias=true
 
 modules-left = xwindow
 modules-center = dwm
-modules-right = pulseaudio pacman email cpu temperature memory battery date
+modules-right = pulseaudio pacman email battery date
 
 tray-position = right
 tray-padding = 4
@@ -227,7 +227,7 @@ bar-volume-foreground-4 = ${colors.yellow}
 bar-volume-foreground-5 = ${colors.yellow}
 bar-volume-foreground-6 = ${colors.red}
 bar-volume-gradient = true
-bar-volume-indicator = |
+bar-volume-indicator = 
 bar-volume-indicator-font = 2
 bar-volume-fill = ─
 bar-volume-fill-font = 2
