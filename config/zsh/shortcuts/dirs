@@ -10,7 +10,7 @@ d		~/.local/share/dotfiles
 us		/usr/share
 ulb		/usr/local/bin
 e		/etc
-ep		~/projects
+ep		~/misc
 fo		~/.local/share/fonts
 dl		~/downloads
 doc		~/documents
