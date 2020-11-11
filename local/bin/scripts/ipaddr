@@ -1,3 +1,7 @@
 #!/bin/sh
 
-ip a | sed 's/inet .*/\x1b[34m&\x1b[00m/; s/inet6 .*/\x1b[33m&\x1b[00m/; s/\(^[0-9]: \)\(\w\+\):/\1\x1b[01;35m\2\x1b[00m:/; s/UP/\x1b[32m&\x1b[00m/g; s/DOWN/\x1b[31m&\x1b[00m/g'
+ip a | sed 's/inet .*/\x1b[34m&\x1b[00m/;
+			s/inet6 .*/\x1b[33m&\x1b[00m/;
+			s/\(^[0-9]: \)\(\w\+\):/\1\x1b[01;35m\2\x1b[00m:/;
+			s/UP/\x1b[32m&\x1b[00m/g;
+			s/DOWN/\x1b[31m&\x1b[00m/g'
