@@ -17,6 +17,6 @@ eval $(ssh-agent) >/dev/null 2>&1
 mkdir "$XDG_RUNTIME_DIR/tmux" >/dev/null 2>&1
 
 # if logged in on tty1, start the X server
-if [ "$(tty)" = "/dev/tty1" ]; then
+if [ "$(tty)" = "/dev/tty2" ]; then
 	pgrep -x Xorg >/dev/null || exec startx >/dev/null 2>&1
 fi
