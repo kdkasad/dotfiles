@@ -38,11 +38,11 @@ orange = ${xrdb:polybar.orange:#f80}
 
 [bar/statusbar]
 monitor = ${env:MONITOR:}
-width = 100%
-height = 30
-offset-x = 0
-offset-y = 0
-radius = 0
+width = 1880
+height = 38
+offset-x = 20
+offset-y = 20
+radius = 19
 bottom = true
 fixed-center = true
 enable-ipc = true
@@ -57,21 +57,19 @@ border-size = 0
 border-color = ${xrdb:polybar.border-color:#00000000}
 
 padding-left = 2
-padding-right = 30
+padding-right = 2
 
-module-margin-left = 1
+module-margin-left = 0
 module-margin-right = 2
 
-font-0 = display:size=11:antialias=true
-font-1 = Segoe UI Emoji:size=11:antialias=true
-font-2 = monospace:size=11:antialias=true
-font-3 = Symbols Nerd Font:size=7:antialias=true
+font-0 = Fira Code Nerd Font:pixelsize=12:antialias=true
+font-1 = Symbols Nerd Font:size=7:antialias=true
 
 modules-left = xwindow
 modules-center = dwm
 modules-right = pulseaudio pacman email battery date
 
-tray-position = right
+tray-position = none
 tray-padding = 4
 tray-detached = true
 tray-offset-x = -13
@@ -84,8 +82,8 @@ cursor-scroll = ns-resize
 
 [module/xwindow]
 type = internal/xwindow
-label = %title:0:100:...%
-format-padding = 2
+label = %title:0:30:...%
+format-padding = 0
 
 [module/mpd]
 type = internal/mpd
@@ -95,7 +93,7 @@ format-underline = ${colors.purple}
 
 label-song = %title%
 label-song-maxlen = 25
-; no idea what this next line does but it came defaulted to this
+# no idea what this next line does but it came defaulted to this
 label-song-ellipsis = true
 
 bar-progress-width = 10
@@ -125,12 +123,12 @@ label = ☀
 bar-width = 10
 bar-indicator = |
 bar-indicator-foreground = ${colors.foreground}
-bar-indicator-font = 2
+bar-indicator-font = 0
 bar-fill = ─
-bar-fill-font = 2
+bar-fill-font = 0
 bar-fill-foreground = ${colors.purple}
 bar-empty = ─
-bar-empty-font = 2
+bar-empty-font = 0
 bar-empty-foreground = ${colors.foreground-alt}
 
 [module/backlight-intel]
@@ -197,43 +195,24 @@ type = internal/date
 interval = 5
 
 date =
-date-alt = "📅 %A, %b %d"
+date-alt = "%{F#848089}%{F-} %A, %b %d"
 
-time = 🕓 %H:%M
-time-alt = 🕓 %H:%M
+time = %{F#848089}%{F-} %H:%M
+time-alt = %{F#848089}%{F-} %H:%M
 
 format-prefix = ""
 format-prefix-foreground = ${colors.foreground-alt}
-format-underline = ${colors.purple}
 
 label = %date% %time%
 
 [module/pulseaudio]
 type = internal/pulseaudio
 
-format-volume = <label-volume> <bar-volume>
-label-volume = "🔊 "
+label-volume = %{F#848089}墳%{F-} %percentage%%
 label-volume-foreground = ${root.foreground}
-
-label-muted = 🔇
-format-muted-foreground = ${colors.foreground-alt}
-
-bar-volume-width = 10
-bar-volume-foreground-0 = ${colors.green}
-bar-volume-foreground-1 = ${colors.green}
-bar-volume-foreground-2 = ${colors.green}
-bar-volume-foreground-3 = ${colors.green}
-bar-volume-foreground-4 = ${colors.yellow}
-bar-volume-foreground-5 = ${colors.yellow}
-bar-volume-foreground-6 = ${colors.red}
-bar-volume-gradient = true
-bar-volume-indicator = 
-bar-volume-indicator-font = 2
-bar-volume-fill = ─
-bar-volume-fill-font = 2
-bar-volume-empty = ─
-bar-volume-empty-font = 2
-bar-volume-empty-foreground = ${colors.foreground-alt}
+ 
+label-muted = 婢 muted
+label-muted-foreground = ${colors.foreground-alt}
 
 [module/alsa]
 type = internal/alsa
@@ -267,17 +246,28 @@ type = internal/battery
 battery = BAT0
 adapter = ADP1
 
-format-charging =  <label-charging>
-format-charging-underline = ${colors.green}
-label-charging = 🔋 %percentage_raw%%
+format-charging = <label-charging>
+format-charging-prefix = "  "
+format-charging-prefix-foreground = ${colors.foreground-alt}
 
-format-discharging =  <label-discharging>
-format-discharging-underline = ${colors.orange}
-label-discharging = 🔋 %percentage_raw%%
+format-discharging = <label-discharging>
+format-discharging-prefix = "  "
+format-discharging-prefix-foreground = ${colors.foreground-alt}
 
-format-full-prefix = "🔋 "
+format-full-prefix = "  "
 format-full-prefix-foreground = ${colors.foreground-alt}
-format-full-underline = ${self.format-charging-underline}
+
+; format-charging =  <label-charging>
+; format-charging-underline = ${colors.green}
+; label-charging = 🔋 %percentage_raw%%
+
+; format-discharging =  <label-discharging>
+; format-discharging-underline = ${colors.orange}
+; label-discharging = 🔋 %percentage_raw%%
+
+; format-full-prefix = "🔋 "
+; format-full-prefix-foreground = ${colors.foreground-alt}
+; format-full-underline = ${self.format-charging-underline}
 
 [module/temperature]
 type = internal/temperature
@@ -296,6 +286,7 @@ label-warn = ${self.label}
 type = internal/dwm
 
 format = <label-tags>
+format-font = 2
 socket-path = /tmp/dwm.sock
 
 ; Left-click to view tag, right-click to toggle tag view
@@ -307,8 +298,9 @@ enable-tags-click = true
 
 ; focused = Selected tag on focused monitor
 label-focused = 
+# 
 label-focused-foreground = ${colors.primary}
-label-focused-padding = 2
+label-focused-padding = 1
 
 ; unfocused = Unselected tag on unselected monitor
 label-unfocused = 
@@ -347,10 +339,11 @@ type = custom/script
 exec = ~/.local/bin/scripts/statusbar/email
 interval = 60
 
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground-alt}
+
 click-left = BUTTON=1 ~/.local/bin/scripts/statusbar/email
 click-right = BUTTON=3 ~/.local/bin/scripts/statusbar/email
-
-format-underline = ${colors.green}
 
 [settings]
 screenchange-reload = true
