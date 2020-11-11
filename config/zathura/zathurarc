@@ -1,14 +1,30 @@
 ## Appearance settings:
 
-set font "display regular 13"
+set font "Fira Code Nerd Font normal 12"
+
+# Hide statusbar by default
+set guioptions ""
 
 # Set background and bar colors
 set default-bg "#343136"
+set default-fg "#dfdfdf"
+
 set statusbar-bg "#343136"
+set statusbar-fg "#dfdfdf"
+
 set inputbar-bg "#343136"
 set inputbar-fg "#7a9ed7"
+
 set highlight-color "#ab9df2"
 set highlight-active-color "#7a9ed7"
+
+# set statusbar padding
+set statusbar-h-padding 24
+
+# change document colors
+set recolor true
+set recolor-lightcolor "#343136"
+set recolor-darkcolor "#dfdfdf"
 
 set continuous-hist-save
 
@@ -16,6 +32,7 @@ set continuous-hist-save
 set window-title-basename
 set window-title-home-tilde
 set statusbar-home-tilde
+set statusbar-basename
 
 # Show search results while typing
 set incremental-search
@@ -36,3 +53,5 @@ map = zoom in
 map + zoom reset
 
 map i recolor
+
+# vim: ft=conf
