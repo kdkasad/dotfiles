@@ -194,25 +194,6 @@ let g:lightline = {
 
 
 """""""""""""""""""""""""""""
-"   CODE FOLDING SETTINGS   "
-"""""""""""""""""""""""""""""
-
-" Code folding settings
-set foldmethod=syntax
-set nofoldenable
-set foldlevel=10
-set foldnestmax=10
-let g:vimsyn_folding = 'af'
-
-" View settings
-set viewoptions-=options
-augroup AutoView
-	au BufWinLeave * silent! mkview!
-	au BufWinEnter * silent! loadview
-augroup end
-
-
-"""""""""""""""""""""""""""""
 "      SPLIT SETTINGS       "
 """""""""""""""""""""""""""""
 set splitbelow
@@ -233,14 +214,13 @@ map <C-l> <C-W>l
 """""""""""""""""""""""""""""
 
 " Use groff, not troff or nroff
-au Filetype nroff setlocal ft=groff
-au Filetype troff setlocal ft=groff
+au Filetype nroff,troff setlocal ft=groff
 
 " Detect systemd services
 au BufRead *.service setlocal ft=systemd
 
 " Treat PKGBUILDs as sh syntax
-au Filetype PKGBULID setlocal ft=sh
+au BufRead,BufCreate PKGBUILD setlocal ft=sh
 
 
 """""""""""""""""""""""""""""
@@ -254,15 +234,16 @@ iabbrev mladoc <C-o>:read ~/.config/nvim/templates/mla.ms<cr>
 """""""""""""""""""""""""""""
 "   SPELL-CHECK SETTINGS    "
 """""""""""""""""""""""""""""
+"
 " Auto-enable spellcheck for some filetypes
 augroup spellcheck
-au Filetype markdown setlocal spell
-au Filetype html setlocal spell
-au Filetype gitcommit setlocal spell
-au Filetype tex setlocal spell
-au Filetype plaintex setlocal spell
-au Filetype groff setlocal spell
-au Filetype mail setlocal spell
+	au Filetype markdown setlocal spell
+	au Filetype html setlocal spell
+	au Filetype gitcommit setlocal spell
+	au Filetype tex setlocal spell
+	au Filetype plaintex setlocal spell
+	au Filetype groff setlocal spell
+	au Filetype mail setlocal spell
 augroup end
 
 " Enable french dictionary
@@ -272,6 +253,7 @@ set spelllang=en,fr
 """""""""""""""""""""""""""""
 "   SPECIAL FILE COMMANDS   "
 """""""""""""""""""""""""""""
+
 augroup specialfiles
 
 " reload config files
@@ -287,14 +269,6 @@ au Filetype sh map <buffer> <leader>vs :vs \| te shellcheck --color=always %<cr>
 au Filetype sh map <buffer> <leader>bs :sp \| te checkbashisms %<cr>
 au Filetype sh map <buffer> <leader>vbs :vs \| te checkbashisms %<cr>
 
-" compile *roff documents
-augroup groffcomp
-au Filetype groff,nroff,troff nnoremap <buffer> <leader>cp <cmd>silent !compiledoc %<cr>
-au Filetype groff,nroff,troff nnoremap <buffer> <leader>ecp <cmd>autocmd groffcomp BufWritePost <buffer> silent !compiledoc %<cr>
-au Filetype groff,nroff,troff nnoremap <buffer> <leader>dcp <cmd>autocmd! groffcomp BufWritePost <buffer><cr>
-au Filetype groff,nroff,troff nnoremap <buffer> <leader>pdf :exe "silent !setsid zathura ".expand('%:r').".pdf"<cr>
-augroup END
-
 " reload xresources
 au BufWritePost ~/.config/xresources !xrdb -load %
 
@@ -303,20 +277,31 @@ au BufRead /tmp/{mutt,neomutt}-* setfiletype mail
 
 augroup end
 
+" compile *roff documents
+augroup groffcomp
+	au Filetype groff,nroff,troff nnoremap <buffer> <leader>cp <cmd>silent !compiledoc %<cr>
+	au Filetype groff,nroff,troff nnoremap <buffer> <leader>ecp <cmd>autocmd groffcomp BufWritePost <buffer> silent !compiledoc %<cr>
+	au Filetype groff,nroff,troff nnoremap <buffer> <leader>dcp <cmd>autocmd! groffcomp BufWritePost <buffer><cr>
+	au Filetype groff,nroff,troff nnoremap <buffer> <leader>pdf :exe "silent !setsid zathura ".expand('%:r').".pdf"<cr>
+augroup end
+
 
 """""""""""""""""""""""""""""
 "       BINARY FILES        "
 """""""""""""""""""""""""""""
 
-augroup hexedit
-	au!
-	au BufReadPost  <buffer> if &binary | %!xxd
-	au BufReadPost  <buffer> set ft=xxd | endif
-	au BufWritePre  <buffer> if &binary | %!xxd -r
-	au BufWritePre  <buffer> endif
-	au BufWritePost <buffer> if &binary | %!xxd
-	au BufWritePost <buffer> set nomod | endif
-augroup end
+" Add autocmds to edit binary files as hex using xxd(1)
+function <SID>AddHexAutoCmds()
+	augroup hexedit
+		au!
+		au BufReadPost  <buffer> exe "%!xxd" | set ft=xxd
+		au BufWritePre  <buffer> exe "%!xxd -r"
+		au BufWritePost <buffer> exe "%!xxd" | set nomod
+	augroup end
+endfunction
+
+" Load autocmds when opening a file in binary mode
+autocmd BufReadPre * if &binary | call <SID>AddHexAutoCmds() | endif
 
 
 """""""""""""""""""""""""""""
@@ -373,9 +358,9 @@ nmap <leader>go <cmd>Goyo<cr>
 nmap <leader>nh <cmd>nohlsearch<cr>
 
 " make project
-nnoremap <leader>mm <cmd>sp \| te bear make<cr>
+nnoremap <leader>mm <cmd>sp \| te bear -- make<cr>
 nnoremap <leader>m ,mm
-nnoremap <leader>mv <cmd>vs \| te bear make<cr>
+nnoremap <leader>mv <cmd>vs \| te bear -- make<cr>
 
 " Close split
 nmap <leader>wc <C-w>c
