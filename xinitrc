@@ -25,7 +25,6 @@ xinput --map-to-output 'GTCH7503:00 2A94:D64D' eDP1
 ~/.config/polybar/start-polybar.sh >/dev/null 2>&1 &
 
 # Set desktop background
-#wallchanger &
 bgs -z ~/pictures/wallpapers/current &
 
 # set xkb options
@@ -42,9 +41,6 @@ setsid -f xautolock -time 10 -notify 20 -notifier "notify-send -a 'xautolock' 's
 
 # Start composition manager
 picom -b
-
-# Start nm-applet (if not running)
-pgrep -x nm-applet >/dev/null 2>&1 || setsid -f nm-applet
 
 # load xresources
 xrdb -load ~/.config/xresources
