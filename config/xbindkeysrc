@@ -104,8 +104,8 @@
 "$TERMINAL -e neomutt"
 	Mod4 + Shift + M
 
-# open today's overview
-"$TERMINAL -e sh -c "calcurse -Q; pause -q""
+# toggle trayer
+"traytoggle"
 	Mod4 + Shift + t
 
 "$BROWSER https://youtu.be/dQw4w9WgXcQ"

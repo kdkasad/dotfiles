@@ -1,0 +1,13 @@
+#!/bin/sh
+
+#
+# Toggle trayer
+#
+
+pgrep -x trayer >/dev/null 2>&1 && {
+	pkill trayer
+	pkill nm-applet
+} || {
+	setsid -f nm-applet
+	setsid -f trayer --edge top --align right --widthtype request --margin 19 --iconspacing 19 --padding 19 --height 38 --distance 19 --distancefrom top
+}
