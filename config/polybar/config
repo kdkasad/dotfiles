@@ -247,27 +247,21 @@ battery = BAT0
 adapter = ADP1
 
 format-charging = <label-charging>
-format-charging-prefix = "  "
-format-charging-prefix-foreground = ${colors.foreground-alt}
+format-charging-prefix = <ramp-capacity>
+format-charging-prefix-foreground = ${colors.green}
 
 format-discharging = <label-discharging>
-format-discharging-prefix = "  "
+format-discharging-prefix = <ramp-capacity>
 format-discharging-prefix-foreground = ${colors.foreground-alt}
 
 format-full-prefix = "  "
-format-full-prefix-foreground = ${colors.foreground-alt}
+format-full-prefix-foreground = ${colors.blue}
 
-; format-charging =  <label-charging>
-; format-charging-underline = ${colors.green}
-; label-charging = 🔋 %percentage_raw%%
-
-; format-discharging =  <label-discharging>
-; format-discharging-underline = ${colors.orange}
-; label-discharging = 🔋 %percentage_raw%%
-
-; format-full-prefix = "🔋 "
-; format-full-prefix-foreground = ${colors.foreground-alt}
-; format-full-underline = ${self.format-charging-underline}
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
 
 [module/temperature]
 type = internal/temperature
