@@ -1,0 +1,12 @@
+/* bc(1) init script */
+
+define fact(x) {
+	if (x == 1)
+		return (1);
+	
+	return (x * fact(x-1));
+}
+
+define log(base, n) {
+	return (l(n) / l(base));
+}
