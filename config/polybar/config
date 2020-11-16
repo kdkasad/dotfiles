@@ -62,8 +62,9 @@ padding-right = 2
 module-margin-left = 0
 module-margin-right = 2
 
-font-0 = Fira Code Nerd Font:pixelsize=12:antialias=true
-font-1 = Symbols Nerd Font:size=7:antialias=true
+font-0 = Iosevka Custom:style=Medium Extended:pixelsize=12:antialias=true
+font-1 = Symbols Nerd Font:pixelsize=12:antialias=true
+font-2 = Symbols Nerd Font:size=7:antialias=true
 
 modules-left = xwindow
 modules-center = dwm
@@ -280,7 +281,7 @@ label-warn = ${self.label}
 type = internal/dwm
 
 format = <label-tags>
-format-font = 2
+format-font = 3
 socket-path = /tmp/dwm.sock
 
 ; Left-click to view tag, right-click to toggle tag view
