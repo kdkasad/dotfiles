@@ -247,22 +247,19 @@ type = internal/battery
 battery = BAT0
 adapter = ADP1
 
-format-charging = <label-charging>
-format-charging-prefix = <ramp-capacity>
-format-charging-prefix-foreground = ${colors.green}
+format-charging = "%{F9ECD6F}<ramp-capacity>%{F-} <label-charging>"
 
-format-discharging = <label-discharging>
-format-discharging-prefix = <ramp-capacity>
-format-discharging-prefix-foreground = ${colors.foreground-alt}
+format-discharging = "%{F848089}<ramp-capacity>%{F-} <label-discharging>"
 
 format-full-prefix = "  "
-format-full-prefix-foreground = ${colors.blue}
+format-full-prefix-foreground = ${colors.green}
 
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
-ramp-capacity-3 = 
-ramp-capacity-4 = 
+; Only applies if <ramp-capacity> is used
+ramp-capacity-0 = " "
+ramp-capacity-1 = " "
+ramp-capacity-2 = " "
+ramp-capacity-3 = " "
+ramp-capacity-4 = " "
 
 [module/temperature]
 type = internal/temperature
