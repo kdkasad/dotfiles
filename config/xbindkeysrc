@@ -89,8 +89,6 @@
 # web browser
 "$BROWSER"
 	Mod4 + b
-"browseurl -t topbar"
-	Mod4 + Shift + b
 
 # lock screen
 "slock"
@@ -126,5 +124,9 @@
 # fuzzy search for drag-and-drop
 "$TERMINAL -e fuzzydrop"
 	Mod4 + Control + Shift + Return
+
+# bc(1)
+"$TERMINAL -e bc -ilq ${XDG_CONFIG_HOME:-$HOME/.config}/init.bc"
+	Mod4 + Shift + b
 
 # vim: ft=conf
