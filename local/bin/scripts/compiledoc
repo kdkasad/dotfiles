@@ -1,19 +1,24 @@
 #!/bin/sh
 
-## This script will compile various document formats into a PDF with the same basename
+#
+# This script will compile various document formats into a PDF with the same basename
+#
 
 [ $# -lt 1 ] && exit 1
 
 file="$(readlink -f "$1")"
 ext="${file##*.}"
 base="${file%.*}"
+outfile="$base.pdf"
 
 [ -n "$2" ] \
 	&& out="$2" \
 	|| out="$base.pdf"
 
+groffopts="-kpt -T pdf -dpaper=letter -P-pletter"
+
 case "$ext" in
-	ms) refer -PSep "${REFER_SOURCES:-$HOME/documents/sources.refer}" "$file" | groff -me -ms -kpt -Tpdf > "$base.pdf" ;;
-	mom) refer -PSep "${REFER_SOURCES:-$HOME/documents/sources.refer}" "$file" | groff -mom -kpt -Tpdf > "$base.pdf" ;;
-	*) refer -PSep "${REFER_SOURCES:-$HOME/documents/sources.refer}" "$file" | groff -kpt -Tpdf > "$base.pdf" ;;
+	ms) refer -PSep "${REFER_SOURCES:-$HOME/documents/sources.refer}" "$file" | groff -ms $groffopts > "$outfile" ;;
+	mom) refer -PSep "${REFER_SOURCES:-$HOME/documents/sources.refer}" "$file" | groff -mom $groffopts > "$outfile" ;;
+	*) refer -PSep "${REFER_SOURCES:-$HOME/documents/sources.refer}" "$file" | groff $groffopts > "$outfile" ;;
 esac
