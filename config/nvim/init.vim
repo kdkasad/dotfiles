@@ -397,3 +397,8 @@ nnoremap <leader>cd <cmd>CocDisable<cr>
 nnoremap <leader>ce <cmd>CocEnable<cr>
 inoremap <m-cr> <esc>f,2lct,
 inoremap <s-cr> <esc>f,2lct)
+
+" Lorem Ipsum generator
+function Lipsum(paragraphs)
+	exe "r !gzip -dc $HOME/.local/share/lipsum.txt.gz | head -n" . a:paragraphs . " | sed 's/$/\\n/; s/\\. /.\\n/g'"
+endfunction
