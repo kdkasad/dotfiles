@@ -16,11 +16,10 @@ dl		~/downloads
 doc		~/documents
 pic		~/pictures
 pw		~/pictures/wallpapers
-scrot	~/pictures/screenshots
+pscr	~/pictures/screenshots
 vid		~/videos
-not		~/notes
 lo		~/.local
 loc		~/.local
 nvc		~/.config/nvim
-no		~/notes
+no		~/.local/share/nb
 ga		~/.local/share/games

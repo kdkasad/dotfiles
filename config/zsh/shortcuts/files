@@ -10,4 +10,3 @@ drc	~/.config/dwm/dwmrc
 mrc	~/.config/mutt/muttrc
 xrc	~/.xinitrc
 xre	~/.config/xresources
-pic	~/.config/picom/picom.conf
