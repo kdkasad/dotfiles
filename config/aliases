@@ -14,10 +14,15 @@ alias 'sudo lla'='sudo ls -lAh'
 alias 'sudo llA'='sudo ls -lah'
 alias 'sudo   l'='sudo ls -CF1'
 
-alias -g rm='rm -Iv'
-alias -g cp='cp -iv'
-alias -g mv='mv -iv'
-alias -g ln='ln -iv'
+alias rm='rm -Iv'
+alias cp='cp -iv --reflink=auto'
+alias mv='mv -iv'
+alias ln='ln -iv'
+
+alias 'sudo rm'='rm -Iv'
+alias 'sudo cp'='cp -iv --reflink=auto'
+alias 'sudo mv'='mv -iv'
+alias 'sudo ln'='ln -iv'
 
 # Directory creation shortcuts
 alias -g mkd='mkdir -pv'
