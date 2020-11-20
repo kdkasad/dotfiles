@@ -10,5 +10,4 @@ pacman -Qu >/dev/null || {
 	exit 0
 }
 
-printf '📦'
 pacman -Qu | grep -Fcv "[ignored]"

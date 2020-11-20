@@ -68,7 +68,7 @@ font-2 = Symbols Nerd Font:size=7:antialias=true
 
 modules-left = xwindow
 modules-center = dwm
-modules-right = pulseaudio pacman email battery date
+modules-right = pacman email pulseaudio battery date
 
 tray-position = none
 tray-padding = 4
@@ -251,15 +251,15 @@ format-charging = "%{F9ECD6F}<ramp-capacity>%{F-} <label-charging>"
 
 format-discharging = "%{F848089}<ramp-capacity>%{F-} <label-discharging>"
 
-format-full-prefix = "  "
+format-full-prefix = " "
 format-full-prefix-foreground = ${colors.green}
 
 ; Only applies if <ramp-capacity> is used
-ramp-capacity-0 = " "
-ramp-capacity-1 = " "
-ramp-capacity-2 = " "
-ramp-capacity-3 = " "
-ramp-capacity-4 = " "
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
 
 [module/temperature]
 type = internal/temperature
@@ -323,7 +323,8 @@ interval = 300
 click-left = BUTTON=1 ~/.local/bin/scripts/statusbar/packages
 click-right = BUTTON=3 ~/.local/bin/scripts/statusbar/packages
 
-format-underline = ${colors.orange}
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground-alt}
 
 [module/email]
 type = custom/script
