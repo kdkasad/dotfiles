@@ -1,6 +1,6 @@
 ## Appearance settings:
 
-set font "Fira Code Nerd Font normal 12"
+set font "monospace normal 12"
 
 # Hide statusbar by default
 set guioptions ""
