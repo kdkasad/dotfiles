@@ -235,3 +235,6 @@ lop() {
 	cd "$HOME/.local/opt/$1"
 	[ -z "$1" ] && ls -A || :
 }
+
+# use bsdtar(1) by default
+alias tar=bsdtar
