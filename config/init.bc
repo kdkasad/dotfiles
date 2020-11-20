@@ -1,12 +1,50 @@
-/* bc(1) init script */
+#!/usr/bin/bc -l
 
+#
+# bc(1) init script
+#
+
+# define pi
+pi = 4 * a(1)
+
+# factorial function
 define fact(x) {
 	if (x == 1)
-		return (1);
+		return (1)
 	
-	return (x * fact(x-1));
+	return (x * fact(x-1))
 }
 
+# logarithm function with a specified base
 define log(base, n) {
-	return (l(n) / l(base));
+	return (l(n) / l(base))
 }
+
+# arithmetic sequence
+define aseq(a1, d, n) {
+	return (a1 + d * (n-1))
+}
+
+# partial sum of arithmetic sequence
+define apsum(a1, difference, n1, n2) {
+	auto sum
+
+	for (i = n1; i <= n2; i++)
+		sum += aseq(a1, difference, i)
+
+	return (sum)
+}
+
+# geometric sequence
+define gseq(a1, r, n) {
+	return (a1 * r ^ (n - 1))
+}
+
+# partial sum of geometric sequence
+define gpsum(a1, r, n) {
+	return ( a1 * ((1 - r ^ (n-1)) / (1 - r)) )
+}
+
+# Temperature converters
+define f2c(f) { return ((f - 32) / 1.8) }
+define c2f(c) { return (c * 1.8 + 32) }
