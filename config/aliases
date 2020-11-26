@@ -233,3 +233,6 @@ lop() {
 
 # use bsdtar(1) by default
 alias tar=bsdtar
+
+# shortcut for xdg-open(1)
+alias xo=xdg-open
