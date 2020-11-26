@@ -15,7 +15,7 @@ alias 'sudo llA'='sudo ls -lah'
 alias 'sudo   l'='sudo ls -CF1'
 
 alias -g rm='rm -Iv'
-alias -g cp='cp -iv'
+alias -g cp='cp -iv --reflink=auto'
 alias -g mv='mv -iv'
 alias -g ln='ln -iv'
 
