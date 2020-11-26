@@ -106,8 +106,8 @@ Xcursor.theme: beachball
 Xcursor.size: 24
 
 /* sxiv */
-Sxiv.background: #000
-Sxiv.foreground: #FFF
+Sxiv.background: shusia_dark
+Sxiv.foreground: shusia_light
 
 /* st */
 st.font:	terminal:autohint=true:antialias=true:size=11
