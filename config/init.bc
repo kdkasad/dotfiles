@@ -9,7 +9,7 @@ pi = 4 * a(1)
 
 # factorial function
 define fact(x) {
-	if (x == 1)
+	if (x <= 1)
 		return (1)
 	
 	return (x * fact(x-1))
@@ -48,3 +48,36 @@ define gpsum(a1, r, n) {
 # Temperature converters
 define f2c(f) { return ((f - 32) / 1.8) }
 define c2f(c) { return (c * 1.8 + 32) }
+
+# Combination
+define c(n, r) {
+	return (fact(n) / (fact(r) * fact(n - r)))
+}
+
+# Cube root (not completely accurate)
+define root3(x) {
+	return (e(l(x)/3))
+}
+
+# Pascal's triangle
+define pascal(n) {
+	auto i, j, c, z, os
+	os = scale
+	scale = 0
+	for (i = 0; i <= n; i++) {
+		for (j = 0; j < (2 - length(i)); j++) {
+			print " "
+		}
+		print i, ": "
+		for (j = 0; j <= i; j++) {
+			c = c(i, j)
+			for (z = 0; z < (3 - length(c)); z++) {
+				print " "
+			}
+			print c, " "
+		}
+		print "\n"
+	}
+	scale = os
+	return
+}
