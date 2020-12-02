@@ -45,5 +45,8 @@ picom -b
 # load xresources
 xrdb -load ~/.config/xresources
 
+# start pulseaudio
+pulseaudio --start --exit-idle-time=-1 &
+
 # Become dwm
 exec dwm
