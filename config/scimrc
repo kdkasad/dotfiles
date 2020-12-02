@@ -2,3 +2,6 @@ set autocalc=1
 set xlsx_readformulas=1
 
 color "type=HEADINGS fg=BLACK bg=BLUE"
+
+nmap "ZZ" ":wq<cr>"
+nmap "ZQ" ":q<cr>"
