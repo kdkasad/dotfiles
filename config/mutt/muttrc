@@ -22,9 +22,9 @@ bind pager gg top
 bind pager G bottom
 
 # color scheme definitions
-color index brightyellow color15 "~T"
-color index_author brightcyan color15 "~T"
-color index_subject brightred color15 "~T"
+color index brightyellow default "~T"
+color index_author brightcyan default "~T"
+color index_subject brightred default "~T"
 color sidebar_highlight blue default
 color sidebar_divider brightblack default
 color sidebar_flagged red default
