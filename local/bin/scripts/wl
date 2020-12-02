@@ -1,0 +1,12 @@
+#!/bin/sh
+
+wldir="${WLDIR:-$HOME/videos/wl}"
+
+cd $wldir
+
+youtube-dl $@ && {
+	cleanup-videos .
+} || {
+	echo -e "\e[1;31merror\e[0m: youtube-dl exited with an error. Not running cleanup-videos script."
+	exit 1
+}

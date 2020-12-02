@@ -236,3 +236,6 @@ alias tar=bsdtar
 
 # shortcut for xdg-open(1)
 alias xo=xdg-open
+
+# don't glob urls when downloading with wl
+alias wl='noglob wl'
