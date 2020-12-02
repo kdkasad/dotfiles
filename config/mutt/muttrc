@@ -12,7 +12,7 @@ set sort = threads
 set sort_aux = reverse-date
 
 # mailcap definitions
-set mailcap_path = ~/.config/mutt/mailcap
+set mailcap_path = ~/.config/mutt/mailcap:$mailcap_path
 
 # don't abort unmodofied messages
 set abort_unmodified = no
