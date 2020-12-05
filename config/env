@@ -93,7 +93,10 @@ ln=⛓:\
 
 ## CLEAN ~ ##
 
-# move nbrc
+# move notmuch(1) config
+export NOTMUCH_CONFIG="$XDG_CONFIG_HOME/notmuch/config"
+
+# move nb(1) config
 export NBRC_PATH="$XDG_CONFIG_HOME/nb/nbrc"
 
 # move pass(1) directory
