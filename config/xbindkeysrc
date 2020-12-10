@@ -28,10 +28,6 @@
 "backlightctl inc 10"
 	Mod4 + F6
 
-# refresh statusbar
-"updatestatusbar"
-	Mod4 + F1
-
 # Airplane mode key (toggle WiFi)
 "rftoggle"
 	XF86RFKill

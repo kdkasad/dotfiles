@@ -64,7 +64,6 @@ do
 done
 
 wait
-updatestatusbar email
 
 notmuch new 2>/dev/null
 
