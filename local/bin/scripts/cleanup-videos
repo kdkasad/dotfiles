@@ -3,7 +3,7 @@
 suffix="-caps"
 
 for vidfile in "$1"/*; do
-	dest="$(echo "$vidfile" | tr -d ",()[]{}!@#$%^&*='\"" | tr '[:upper:]' '[:lower:]' | tr '_ ' '-' | sed 's/-\+/-/g')"
+	dest="$(echo "$vidfile" | tr -d ",()[]{}!@#$%^&*=‘’“”'\"" | tr '[:upper:]' '[:lower:]' | tr '_ ' '-' | sed 's/-\+/-/g')"
 	[ "$vidfile" = "$dest" ] && continue
 	echo "$vidfile"
 	echo "==>"
