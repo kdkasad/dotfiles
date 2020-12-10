@@ -239,3 +239,6 @@ alias xo=xdg-open
 
 # don't glob urls when downloading with wl
 alias wl='noglob wl'
+
+# notmuch(1)
+alias nom=notmuch
