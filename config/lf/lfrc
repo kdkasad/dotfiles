@@ -67,6 +67,18 @@ cmd broot_jump ${{
 
 cmd dragon &dragon-drag-and-drop -a -x $fx
 
+cmd pdf ${{
+  echo -n "Output PDF name: "
+  read ans
+  convert -auto-orient $fx "$ans"
+}}
+
+cmd pdfmerge ${{
+  echo -n "Output PDF name: "
+  read ans
+  pdfunite $fx "$ans"
+}}
+
 # Archive bindings
 cmd unarchive %bsdtar -xvf "$f"
 
