@@ -48,5 +48,8 @@ xrdb -load ~/.config/xresources
 # start pulseaudio
 pulseaudio --start --exit-idle-time=-1 &
 
+# start music player daemon
+mpd
+
 # Become dwm
 exec dwm
