@@ -31,7 +31,7 @@ bgs -z ~/pictures/wallpapers/current &
 kb &
 
 # Start notification daemon
-dunst &
+setsid -f dunst &
 
 # Start keybinding daemon
 xbindkeys -f ~/.config/xbindkeysrc &
