@@ -79,6 +79,8 @@ cmd pdfmerge ${{
   pdfunite $fx "$ans"
 }}
 
+cmd cloc %find $fx -type f | xargs -r cat | wc -l
+
 # Archive bindings
 cmd unarchive %bsdtar -xvf "$f"
 
