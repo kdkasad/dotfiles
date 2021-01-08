@@ -51,5 +51,8 @@ pulseaudio --start --exit-idle-time=-1 &
 # start music player daemon
 mpd
 
+# Start Nextcloud desktop sync client
+setsid -f nextcloud >/dev/null 2>&1
+
 # Become dwm
 exec dwm
