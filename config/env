@@ -89,6 +89,9 @@ ln=⛓:\
 *.log=📙:\
 "
 
+# set runit service dir for vsv(1)
+export SVDIR="/run/runit/service/"
+
 
 ## CLEAN ~ ##
 
