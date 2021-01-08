@@ -89,6 +89,7 @@ cmd tar %tar -cvf "$f.tar" "$f"
 cmd targz %tar -cvzf "$f.tar.gz" "$f"
 cmd tarxz %tar -cvJf "$f.tar.xz" "$f"
 cmd tarbz2 %tar -cjvf "$f.tar.bz2" "$f"
+cmd tarzst %bsdtar -acvf "$f.tar.zst" "$f"
 
 cmd simplename %simplename "$f"
 
