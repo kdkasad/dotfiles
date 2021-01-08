@@ -242,3 +242,8 @@ alias wl='noglob wl'
 
 # notmuch(1)
 alias nom=notmuch
+
+# show nb notes using glow
+nbglow() {
+	nb --no-color show "$1" | glow -p -
+}
