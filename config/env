@@ -21,6 +21,9 @@ test -r "${XDG_CONFIG_HOME:-$HOME/.config}/env_secret" \
 
 ## CONFIGURE PROGRAMS ##
 
+# enable colored output in gcc(1)
+export CFLAGS='-fdiagnostics-color=auto'
+
 # less(1) configuration
 export LESS='-r'
 export LESSOPEN='|lesspipe.sh %s'
