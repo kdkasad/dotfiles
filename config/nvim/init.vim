@@ -20,6 +20,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'mhinz/vim-startify'
 Plug 'roryokane/detectindent'
+Plug 'junegunn/vim-easy-align'
 
 call plug#end()
 
@@ -285,6 +286,8 @@ augroup groffcomp
 	au Filetype groff,nroff,troff nnoremap <buffer> <leader>pdf :exe "silent !setsid zathura ".expand('%:r').".pdf"<cr>
 augroup end
 
+au Filetype markdown vmap <leader><bslash> :EasyAlign*<bar><cr>
+
 
 """""""""""""""""""""""""""""
 "       BINARY FILES        "
@@ -402,3 +405,7 @@ inoremap <s-cr> <esc>f,2lct)
 function Lipsum(paragraphs)
 	exe "r !gzip -dc $HOME/.local/share/lipsum.txt.gz | head -n" . a:paragraphs . " | sed 's/$/\\n/; s/\\. /.\\n/g'"
 endfunction
+
+" Align markdown tables using vim-easy-align
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
