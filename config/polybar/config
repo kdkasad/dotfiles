@@ -245,7 +245,7 @@ bar-volume-empty-foreground = ${colors.foreground-alt}
 [module/battery]
 type = internal/battery
 battery = BAT0
-adapter = ADP1
+adapter = ADP0
 
 format-charging = "%{F9ECD6F}<ramp-capacity>%{F-} <label-charging>"
 
