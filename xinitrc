@@ -52,7 +52,7 @@ pulseaudio --start --exit-idle-time=-1 &
 mpd
 
 # Start Nextcloud desktop sync client
-setsid -f nextcloud >/dev/null 2>&1
+setsid -f nextcloud --background >/dev/null 2>&1
 
 # Become dwm
 exec dwm
