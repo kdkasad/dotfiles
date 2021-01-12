@@ -1,12 +1,20 @@
 #!/bin/sh
 
 wldir="${WLDIR:-$HOME/videos/wl}"
+historyfile="${HISTORY_FILE:-$wldir/.history}"
 
-cd $wldir
+cd "$wldir"
 
-youtube-dl $@ && {
+for arg in "$@"; do
+	case "$arg" in
+		-*) continue ;;
+		*) echo "$arg" >> "$historyfile" ;;
+	esac
+done
+
+youtube-dl "$@" && {
 	cleanup-videos .
 } || {
-	echo -e "\e[1;31merror\e[0m: youtube-dl exited with an error. Not running cleanup-videos script."
+	printf "\033[1;31merror\033[0m: youtube-dl exited with an error. Not running cleanup-videos script.\n"
 	exit 1
 }
