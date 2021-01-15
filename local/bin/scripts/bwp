@@ -1,0 +1,30 @@
+#!/bin/sh
+
+PREFIX_ERROR="[\033[31m!\033[0m]"
+PREFIX_INFO="[\033[34m~\033[0m]"
+
+# check for dependencies
+for DEPENDENCY in rbw fzf ; do
+	if ! command -v "$DEPENDENCY" >/dev/null 2>&1; then
+		printf '%b command not found: %s\n' "$PREFIX_ERROR" "$DEPENDENCY"
+		MISSING_DEPS=1
+	fi
+done
+if [ -n "${MISSING_DEPS:+x}" ]; then
+	exit 1
+fi
+
+# make sure rbw database is unlocked
+if ! rbw unlocked >/dev/null 2>&1; then
+	rbw unlock
+fi
+
+# use fzf to get item choice
+CHOICE="$(rbw list | fzf --reverse --height=40%)"
+if [ -z "$CHOICE" ]; then
+	printf '%b no item chosen\n' "$PREFIX_ERROR"
+	exit 1
+fi
+
+# print password
+rbw get "$CHOICE"
