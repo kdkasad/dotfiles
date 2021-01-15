@@ -93,3 +93,4 @@
 þ - Thorn (lowercase)
 ÿ - Y with diaeresis (lowercase)
 Δ - Delta
+θ - Theta (lowercase)
