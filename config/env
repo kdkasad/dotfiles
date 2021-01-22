@@ -25,7 +25,7 @@ test -r "${XDG_CONFIG_HOME:-$HOME/.config}/env_secret" \
 export CFLAGS='-fdiagnostics-color=auto'
 
 # less(1) configuration
-export LESS='-r'
+export LESS='-R'
 export LESSOPEN='|lesspipe.sh %s'
 export LESSHISTFILE='-'
 
