@@ -22,6 +22,6 @@ pgrep -x syncthing >/dev/null || setsid -f \
 	>/dev/null 2>/dev/null
 
 # if logged in on tty1, start the X server
-if [ "$(tty)" = "/dev/tty2" ]; then
+if [ "$(tty)" = "/dev/tty1" ]; then
 	pgrep -x Xorg >/dev/null || exec startx >/dev/null 2>&1
 fi
