@@ -120,7 +120,6 @@ if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
 	alias -g tree='tree -C'
-    alias -g less='less -r'
     #alias -g dir='dir --color=auto'
     #alias -g vdir='vdir --color=auto'
 
