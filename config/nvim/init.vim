@@ -163,6 +163,12 @@ au BufReadPost *
 	 \ |   exe "normal! g`\""
 	 \ | endif
 
+" Allow formatting numbered lists
+set formatoptions+=n
+
+" Don't use two spaces when joining sentences
+set nojoinspaces
+
 
 """""""""""""""""""""""""""""
 "          COLORS!          "
@@ -214,9 +220,6 @@ map <C-l> <C-W>l
 "   FILE TYPE PREFERENCES   "
 """""""""""""""""""""""""""""
 
-" Use groff, not troff or nroff
-au Filetype nroff,troff setlocal ft=groff
-
 " Detect systemd services
 au BufRead *.service setlocal ft=systemd
 
@@ -237,15 +240,7 @@ iabbrev mladoc <C-o>:read ~/.config/nvim/templates/mla.ms<cr>
 """""""""""""""""""""""""""""
 "
 " Auto-enable spellcheck for some filetypes
-augroup spellcheck
-	au Filetype markdown setlocal spell
-	au Filetype html setlocal spell
-	au Filetype gitcommit setlocal spell
-	au Filetype tex setlocal spell
-	au Filetype plaintex setlocal spell
-	au Filetype groff setlocal spell
-	au Filetype mail setlocal spell
-augroup end
+au FileType markdown,html,gitcommit,tex,plaintex,nroff,mail setlocal spell
 
 " Enable french dictionary
 set spelllang=en,fr
@@ -263,30 +258,36 @@ au BufWritePost ~/.config/picom/picom.conf !pkill -x picom; picom -b
 au BufWritePost ~/.config/dunst/dunstrc !pkill -x dunst ; setsid dunst
 
 " shellcheck
-au Filetype sh map <buffer> <leader>s :sp \| te shellcheck --color=always %<cr>
-au Filetype sh map <buffer> <leader>vs :vs \| te shellcheck --color=always %<cr>
+au FileType sh map <buffer> <leader>s :sp \| te shellcheck --color=always %<cr>
+au FileType sh map <buffer> <leader>vs :vs \| te shellcheck --color=always %<cr>
 
 " check bashisms
-au Filetype sh map <buffer> <leader>bs :sp \| te checkbashisms %<cr>
-au Filetype sh map <buffer> <leader>vbs :vs \| te checkbashisms %<cr>
+au FileType sh map <buffer> <leader>bs :sp \| te checkbashisms %<cr>
+au FileType sh map <buffer> <leader>vbs :vs \| te checkbashisms %<cr>
 
 " reload xresources
 au BufWritePost ~/.config/xresources !xrdb -load %
 
-" Email editing (mutt)
+" Use mail filetype when editing Mutt/Neomutt files
 au BufRead /tmp/{mutt,neomutt}-* setfiletype mail
+
+" Automatically format paragraphs, but not comments in emails
+au FileType mail setlocal formatoptions+=a formatoptions-=ro
+
+" Allow formatting comments, but not code in various code filetypes
+au FileType c,cpp,sh,java,python,conf setlocal formatoptions-=t
 
 augroup end
 
 " compile *roff documents
 augroup groffcomp
-	au Filetype groff,nroff,troff nnoremap <buffer> <leader>cp <cmd>silent !compiledoc %<cr>
-	au Filetype groff,nroff,troff nnoremap <buffer> <leader>ecp <cmd>autocmd groffcomp BufWritePost <buffer> silent !compiledoc %<cr>
-	au Filetype groff,nroff,troff nnoremap <buffer> <leader>dcp <cmd>autocmd! groffcomp BufWritePost <buffer><cr>
-	au Filetype groff,nroff,troff nnoremap <buffer> <leader>pdf :exe "silent !setsid zathura ".expand('%:r').".pdf"<cr>
+	au FileType nroff nnoremap <buffer> <leader>cp <cmd>silent !compiledoc %<cr>
+	au FileType nroff nnoremap <buffer> <leader>ecp <cmd>autocmd groffcomp BufWritePost <buffer> silent !compiledoc %<cr>
+	au FileType nroff nnoremap <buffer> <leader>dcp <cmd>autocmd! groffcomp BufWritePost <buffer><cr>
+	au FileType nroff nnoremap <buffer> <leader>pdf :exe "silent !setsid -f xdg-open ".expand('%:r').".pdf"<cr>
 augroup end
 
-au Filetype markdown vmap <leader><bslash> :EasyAlign*<bar><cr>
+au FileType markdown vmap <leader><bslash> :EasyAlign*<bar><cr>
 
 
 """""""""""""""""""""""""""""
@@ -374,7 +375,9 @@ vnoremap J :m '>+1<cr>gv=gv
 
 " fzf
 nmap <leader>ff :Files<cr>
+nmap <leader>fh :Files ~<cr>
 nmap <leader>fg :BLines<cr>
+nmap <leader>fb :Buffers<cr>
 
 " visual to norm shortcut
 vnoremap . :norm 
