@@ -1,6 +1,7 @@
-"""""""""""""""""""""""""""""
-"  PLUGINS (via vim-plug)   "
-"""""""""""""""""""""""""""""
+" Neovim init.vim
+" By Kian Kasad
+
+"" PLUGINS {{{1
 
 call plug#begin('~/.local/share/nvim/plugins')
 
@@ -21,13 +22,12 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'mhinz/vim-startify'
 Plug 'roryokane/detectindent'
 Plug 'junegunn/vim-easy-align'
+Plug 'Gavinok/vim-troff'
 
 call plug#end()
 
 
-"""""""""""""""""""""""""""""
-"       FZF SETTINGS        "
-"""""""""""""""""""""""""""""
+"" FZF SETTINGS {{{1
 
 let g:fzf_layout = {
 			\ 'window': {
@@ -37,9 +37,7 @@ let g:fzf_layout = {
 		\ }
 
 
-"""""""""""""""""""""""""""""
-"  GENERAL EDITOR SETTINGS  "
-"""""""""""""""""""""""""""""
+"" GENERAL EDITOR SETTINGS {{{1
 
 " Enable project-specific .vimrc
 set exrc
@@ -88,7 +86,7 @@ set hidden
 " Show partial commands
 set showcmd
 
-" Enable plugins
+" Enable filetype-based plugins and indenting
 filetype plugin indent on
 
 " Automatically read files when changed externally
@@ -132,7 +130,11 @@ autocmd BufReadPost,BufNewFile * DetectIndent
 " Line wrap options
 set linebreak
 
-"" SEARCH OPTIONS:
+" Use syntax-based folding
+set foldmethod=syntax
+set foldlevel=1
+
+"" SEARCH OPTIONS {{{2
 
 " Don't highlight search results
 set nohlsearch
@@ -148,6 +150,8 @@ set magic
 
 " Highlight matching braces
 set showmatch mat=3
+
+"" 2}}}
 
 " No bells on error
 set noerrorbells
@@ -169,10 +173,11 @@ set formatoptions+=n
 " Don't use two spaces when joining sentences
 set nojoinspaces
 
+" Allow concealing with syntax highlighting
+set conceallevel=2
 
-"""""""""""""""""""""""""""""
-"          COLORS!          "
-"""""""""""""""""""""""""""""
+
+"" COLORS {{{1
 
 " Color scheme
 set background=dark
@@ -200,9 +205,8 @@ let g:lightline = {
 \ }
 
 
-"""""""""""""""""""""""""""""
-"      SPLIT SETTINGS       "
-"""""""""""""""""""""""""""""
+"" SPLIT SETTINGS {{{1
+
 set splitbelow
 set splitright
 " Split resizing
@@ -216,9 +220,7 @@ map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 
-"""""""""""""""""""""""""""""
-"   FILE TYPE PREFERENCES   "
-"""""""""""""""""""""""""""""
+"" FILE TYPE PREFERENCES {{{1
 
 " Detect systemd services
 au BufRead *.service setlocal ft=systemd
@@ -226,19 +228,13 @@ au BufRead *.service setlocal ft=systemd
 " Treat PKGBUILDs as sh syntax
 au BufRead,BufCreate PKGBUILD setlocal ft=sh
 
-
-"""""""""""""""""""""""""""""
-"        TEMPLATES          "
-"""""""""""""""""""""""""""""
+"" TEMPLATES {{{1
 
 " groff_ms MLA format
 iabbrev mladoc <C-o>:read ~/.config/nvim/templates/mla.ms<cr>
 
+"" SPELL-CHECK SETTINGS {{{1
 
-"""""""""""""""""""""""""""""
-"   SPELL-CHECK SETTINGS    "
-"""""""""""""""""""""""""""""
-"
 " Auto-enable spellcheck for some filetypes
 au FileType markdown,html,gitcommit,tex,plaintex,nroff,mail setlocal spell
 
@@ -246,9 +242,7 @@ au FileType markdown,html,gitcommit,tex,plaintex,nroff,mail setlocal spell
 set spelllang=en,fr
 
 
-"""""""""""""""""""""""""""""
-"   SPECIAL FILE COMMANDS   "
-"""""""""""""""""""""""""""""
+"" FILE-SPECIFIC COMMANDS {{{1
 
 augroup specialfiles
 
@@ -271,8 +265,8 @@ au BufWritePost ~/.config/xresources !xrdb -load %
 " Use mail filetype when editing Mutt/Neomutt files
 au BufRead /tmp/{mutt,neomutt}-* setfiletype mail
 
-" Automatically format paragraphs, but not comments in emails
-au FileType mail setlocal formatoptions+=a formatoptions-=ro
+" Automatically format paragraphs, but not comments in emails and *roff files
+au FileType mail setlocal formatoptions-=ro
 
 " Allow formatting comments, but not code in various code filetypes
 au FileType c,cpp,sh,java,python,conf setlocal formatoptions-=t
@@ -281,18 +275,16 @@ augroup end
 
 " compile *roff documents
 augroup groffcomp
-	au FileType nroff nnoremap <buffer> <leader>cp <cmd>silent !compiledoc %<cr>
-	au FileType nroff nnoremap <buffer> <leader>ecp <cmd>autocmd groffcomp BufWritePost <buffer> silent !compiledoc %<cr>
-	au FileType nroff nnoremap <buffer> <leader>dcp <cmd>autocmd! groffcomp BufWritePost <buffer><cr>
-	au FileType nroff nnoremap <buffer> <leader>pdf :exe "silent !setsid -f xdg-open ".expand('%:r').".pdf"<cr>
+	au FileType nroff,troff nnoremap <buffer> <leader>cp <cmd>silent !compiledoc %<cr>
+	au FileType nroff,troff nnoremap <buffer> <leader>ecp <cmd>autocmd groffcomp BufWritePost <buffer> silent !compiledoc %<cr>
+	au FileType nroff,troff nnoremap <buffer> <leader>dcp <cmd>autocmd! groffcomp BufWritePost <buffer><cr>
+	au FileType nroff,troff nnoremap <buffer> <leader>pdf :exe "silent !setsid -f zathura ".expand('%:r').".pdf"<cr>
 augroup end
 
 au FileType markdown vmap <leader><bslash> :EasyAlign*<bar><cr>
 
 
-"""""""""""""""""""""""""""""
-"       BINARY FILES        "
-"""""""""""""""""""""""""""""
+"" BINARY FILE EDITING {{{1
 
 " Add autocmds to edit binary files as hex using xxd(1)
 function <SID>AddHexAutoCmds()
@@ -308,9 +300,7 @@ endfunction
 autocmd BufReadPre * if &binary | call <SID>AddHexAutoCmds() | endif
 
 
-"""""""""""""""""""""""""""""
-"    KEYBOARD SHORTCUTS     "
-"""""""""""""""""""""""""""""
+"" KEYBOARD SHORTCUTS {{{1
 
 " Leader key
 let mapleader = ','
@@ -412,3 +402,5 @@ endfunction
 " Align markdown tables using vim-easy-align
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
+
+" vim: set foldmethod=marker foldmarker={{{,}}} :
