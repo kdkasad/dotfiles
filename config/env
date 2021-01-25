@@ -22,6 +22,9 @@ test -r "${XDG_CONFIG_HOME:-$HOME/.config}/env_secret" \
 
 ## CONFIGURE PROGRAMS ##
 
+# don't print cows when using ansible
+export ANSIBLE_NOCOWS=1
+
 # enable colored output in gcc(1)
 export CFLAGS='-fdiagnostics-color=auto'
 
@@ -95,6 +98,9 @@ export SVDIR="/run/runit/service/"
 
 
 ## CLEAN ~ ##
+
+# move ansible(1) config
+export ANSIBLE_CONFIG="$XDG_CONFIG_HOME/ansible/ansible.cfg"
 
 # move notmuch(1) config
 export NOTMUCH_CONFIG="$XDG_CONFIG_HOME/notmuch/config"
