@@ -247,3 +247,9 @@ alias nom=notmuch
 nbglow() {
 	nb --no-color show "$1" | glow -p -
 }
+
+# dragon-drag-and-drop
+alias drag='dragon-drag-and-drop -a -x'
+
+# colored cat using highlight(1)
+alias ccat='highlight -Oansi'
