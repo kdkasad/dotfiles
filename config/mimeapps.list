@@ -67,6 +67,7 @@ image/x-xpixmap=gimp.desktop
 image/x-xwindowdump=gimp.desktop
 video/mp4=mpv.desktop
 video/x-matroska=mpv.desktop
+video/quicktime=mpv.desktop
 video/webm=mpv.desktop
 application/pdf=org.pwmt.zathura.desktop
 application/postscript=org.pwmt.zathura.desktop
