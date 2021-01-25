@@ -9,6 +9,7 @@
 export TERMINAL='alacritty'
 export EDITOR='nvim'
 export BROWSER='brave'
+export PAGER='less'
 
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
