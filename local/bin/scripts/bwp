@@ -27,4 +27,6 @@ if [ -z "$CHOICE" ]; then
 fi
 
 # print password
-rbw get "$CHOICE"
+SECRET="$(rbw get "$CHOICE")"
+printf '%s\n' "$SECRET"
+printf '%s' "$SECRET" | xclip -i -selection clipboard
