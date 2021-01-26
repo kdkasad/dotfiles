@@ -20,5 +20,6 @@ groffopts="-kpt -T pdf -dpaper=letter -P-pletter"
 case "$ext" in
 	ms) refer -PSep "${REFER_SOURCES:-$HOME/documents/sources.refer}" "$file" | groff -ms $groffopts > "$outfile" ;;
 	mom) refer -PSep "${REFER_SOURCES:-$HOME/documents/sources.refer}" "$file" | pdfmom > "$outfile" ;;
+	[0-9]|[0-9].in) groff -mandoc -T pdf -dpaper=letter -P-pletter "$file" > "$outfile" ;;
 	*) refer -PSep "${REFER_SOURCES:-$HOME/documents/sources.refer}" "$file" | groff $groffopts > "$outfile" ;;
 esac
