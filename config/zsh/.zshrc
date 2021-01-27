@@ -95,16 +95,21 @@ if [ "$color_prompt" = yes ]; then
 	else
 		PROMPT="%B%F{yellow}(%n) %B%F{blue}%~%(?..%b%f : %B%F{red}%?)%f%B %(!.#.$)%b%f "
 	fi
+	clear_rprompt() {
+		unset RPROMPT
+	}
 	precmd_git_info() {
-		if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
-			unset RPROMPT
+		if ! git rev-parse --is-inside-work-tree 2>/dev/null | grep true >/dev/null; then
 			return
 		fi
 		__git_info_branch="$(git branch --show-current)"
-		__git_info_state="$(git status -sb | grep -o '\[.*\]' | sed 's/\[\|\]//g' | awk '{if($1=="ahead")ahead=$2;if($1=="behind")behind=$2;if($3=="ahead")ahead=$4;if($3==behind)behind=$4;printf "%B ↑%d ↓%d%b", ahead, behind}' | sed 's/ [↑↓]0//g; s/↑[0-9]\+/%F{green}&/; s/↓[0-9]\+/%F{red}&/')"
-		RPROMPT="%B%F{magenta} ${__git_info_branch}${__git_info_state}"
+		if git name-rev --name-only --undefined '@{upstream}' >/dev/null 2>&1; then
+			__git_current_upstream="$(git name-rev --name-only '@{upstream}')"
+			__git_info_state="$(printf '↓%d ↑%d' "$(git rev-list --count --left-only "${__git_current_upstream}"...HEAD)" "$(git rev-list --count --right-only "${__git_current_upstream}"...HEAD)" | sed 's/\s*[↓↑]0\s*//g; s/↓/%B%F{red}&/; s/↑/%B%F{green}&/')"
+		fi
+		RPROMPT+="%B%F{magenta} ${__git_info_branch}${__git_info_state:+ }${__git_info_state}"
 	}
-	precmd_functions=( precmd_git_info )
+	precmd_functions=( clear_rprompt precmd_git_info )
 else
 	if [ -z "$SSH_CLIENT" ]; then
 		PROMPT="%~%(?.. : %?) %(!.#.$) "
