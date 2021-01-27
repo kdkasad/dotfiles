@@ -252,12 +252,8 @@ au BufWritePost ~/.config/picom/picom.conf !pkill -x picom; picom -b
 au BufWritePost ~/.config/dunst/dunstrc !pkill -x dunst ; setsid dunst
 
 " shellcheck
-au FileType sh map <buffer> <leader>s :sp \| te shellcheck --color=always %<cr>
-au FileType sh map <buffer> <leader>vs :vs \| te shellcheck --color=always %<cr>
-
-" check bashisms
-au FileType sh map <buffer> <leader>bs :sp \| te checkbashisms %<cr>
-au FileType sh map <buffer> <leader>vbs :vs \| te checkbashisms %<cr>
+au FileType sh nmap <buffer> <leader>s :sp \| te shellcheck --color=always %<cr>
+au FileType sh nmap <buffer> <leader>vs :vs \| te shellcheck --color=always %<cr>
 
 " reload xresources
 au BufWritePost ~/.config/xresources !xrdb -load %
