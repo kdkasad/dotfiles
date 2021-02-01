@@ -1,16 +1,15 @@
-[buildPlans.iosevka-kian]
+[buildPlans.iosevka]
 family = "Iosevka"
+spacing = "normal"
+serifs = "sans"
 
-[buildPlans.iosevka-kian.variants]
-# https://github.com/be5invis/Iosevka/tree/dev-v4#stylistic-sets
+[buildPlans.iosevka.variants]
 inherits = "ss14"
 
-[buildPlans.iosevka-kian.variants.design]
-# https://github.com/be5invis/Iosevka/tree/dev-v4#configuring-character-variants
-# https://github.com/be5invis/Iosevka/raw/dev-v4/images/charvars.png
+[buildPlans.iosevka.variants.design]
 turn-v = "curly"
 capital-d = "more-rounded"
-capital-g = "toothless-rounded"
+capital-g = "toothless-corner-serifless-hooked"
 capital-k = "curly"
 capital-r = "curly"
 b = "toothless-corner"
@@ -30,36 +29,46 @@ zero = "slashed"
 three = "twoarcs"
 dollar = "open"
 
-# Override above variants for each slope:
-# [buildPlans.iosevka-kian.variants.upright]
-# [buildPlans.iosevka-kian.variants.italic]
-# [buildPlans.iosevka-kian.variants.oblique]
+[buildPlans.iosevka.ligations]
+inherits = "clike"
 
-[buildPlans.iosevka-kian.ligations]
-# https://github.com/be5invis/Iosevka/tree/dev-v4#configuring-ligations
-# https://github.com/be5invis/Iosevka/tree/dev-v4#ligations
-inherits = "clik"
-# disables = []
-# enables = []
+[buildPlans.iosevka.weights.light]
+shape = 300
+menu = 300
+css = 300
 
+[buildPlans.iosevka.weights.regular]
+shape = 400
+menu = 400
+css = 400
 
+[buildPlans.iosevka.weights.bold]
+shape = 700
+menu = 700
+css = 700
 
+[buildPlans.iosevka.weights.heavy]
+shape = 900
+menu = 900
+css = 900
 
+[buildPlans.iosevka.widths.normal]
+shape = 576
+menu = 5
+css = "normal"
 
-[buildPlans.iosevka-term-kian]
+[buildPlans.iosevka-term]
 family = "Iosevka Term"
 spacing = "term"
+serifs = "sans"
 
-[buildPlans.iosevka-term-kian.variants]
-# https://github.com/be5invis/Iosevka/tree/dev-v4#stylistic-sets
+[buildPlans.iosevka-term.variants]
 inherits = "ss14"
 
-[buildPlans.iosevka-term-kian.variants.design]
-# https://github.com/be5invis/Iosevka/tree/dev-v4#configuring-character-variants
-# https://github.com/be5invis/Iosevka/raw/dev-v4/images/charvars.png
+[buildPlans.iosevka-term.variants.design]
 turn-v = "curly"
 capital-d = "more-rounded"
-capital-g = "toothless-rounded"
+capital-g = "toothless-corner-serifless-hooked"
 capital-k = "curly"
 capital-r = "curly"
 b = "toothless-corner"
@@ -79,85 +88,46 @@ zero = "slashed"
 three = "twoarcs"
 dollar = "open"
 
-# Override above variants for each slope:
-# [buildPlans.iosevka-term-kian.variants.upright]
-# [buildPlans.iosevka-term-kian.variants.italic]
-# [buildPlans.iosevka-term-kian.variants.oblique]
+[buildPlans.iosevka-term.ligations]
+inherits = "clike"
 
-[buildPlans.iosevka-term-kian.ligations]
-# https://github.com/be5invis/Iosevka/tree/dev-v4#configuring-ligations
-# https://github.com/be5invis/Iosevka/tree/dev-v4#ligations
-inherits = "clik"
-# disables = []
-# enables = []
+[buildPlans.iosevka-term.weights.light]
+shape = 300
+menu = 300
+css = 300
 
+[buildPlans.iosevka-term.weights.regular]
+shape = 400
+menu = 400
+css = 400
 
+[buildPlans.iosevka-term.weights.bold]
+shape = 700
+menu = 700
+css = 700
 
+[buildPlans.iosevka-term.weights.heavy]
+shape = 900
+menu = 900
+css = 900
 
+[buildPlans.iosevka-term.widths.normal]
+shape = 576
+menu = 5
+css = "normal"
 
-[buildPlans.iosevka-force-monospace-kian]
-family = "Iosevka Force Monospace"
-spacing = "force-monospace"
-
-[buildPlans.iosevka-force-monospace-kian.variants]
-# https://github.com/be5invis/Iosevka/tree/dev-v4#stylistic-sets
-inherits = "ss14"
-
-[buildPlans.iosevka-force-monospace-kian.variants.design]
-# https://github.com/be5invis/Iosevka/tree/dev-v4#configuring-character-variants
-# https://github.com/be5invis/Iosevka/raw/dev-v4/images/charvars.png
-turn-v = "curly"
-capital-d = "more-rounded"
-capital-g = "toothless-rounded"
-capital-k = "curly"
-capital-r = "curly"
-b = "toothless-corner"
-d = "toothless-corner"
-f = "serifless"
-g = "earless-corner"
-i = "serifed-tailed"
-k = "curly"
-p = "earless-corner"
-q = "earless-corner-tailed"
-v = "curly"
-w = "curly"
-x = "curly"
-y = "cursive"
-lambda = "curly"
-zero = "slashed"
-three = "twoarcs"
-dollar = "open"
-
-# Override above variants for each slope:
-# [buildPlans.iosevka-force-monospace-kian.variants.upright]
-# [buildPlans.iosevka-force-monospace-kian.variants.italic]
-# [buildPlans.iosevka-force-monospace-kian.variants.oblique]
-
-[buildPlans.iosevka-force-monospace-kian.ligations]
-# https://github.com/be5invis/Iosevka/tree/dev-v4#configuring-ligations
-# https://github.com/be5invis/Iosevka/tree/dev-v4#ligations
-inherits = "clik"
-# disables = []
-# enables = []
-
-
-
-
-
-[buildPlans.iosevka-fixed-kian]
+[buildPlans.iosevka-fixed]
 family = "Iosevka Fixed"
 spacing = "fixed"
+serifs = "sans"
 
-[buildPlans.iosevka-fixed-kian.variants]
-# https://github.com/be5invis/Iosevka/tree/dev-v4#stylistic-sets
+[buildPlans.iosevka-fixed.variants]
 inherits = "ss14"
 
-[buildPlans.iosevka-fixed-kian.variants.design]
-# https://github.com/be5invis/Iosevka/tree/dev-v4#configuring-character-variants
-# https://github.com/be5invis/Iosevka/raw/dev-v4/images/charvars.png
+[buildPlans.iosevka-fixed.variants.design]
 turn-v = "curly"
 capital-d = "more-rounded"
-capital-g = "toothless-rounded"
+capital-g = "toothless-corner-serifless-hooked"
 capital-k = "curly"
 capital-r = "curly"
 b = "toothless-corner"
@@ -177,14 +147,30 @@ zero = "slashed"
 three = "twoarcs"
 dollar = "open"
 
-# Override above variants for each slope:
-# [buildPlans.iosevka-fixed-kian.variants.upright]
-# [buildPlans.iosevka-fixed-kian.variants.italic]
-# [buildPlans.iosevka-fixed-kian.variants.oblique]
+[buildPlans.iosevka-fixed.ligations]
+inherits = "clike"
 
-[buildPlans.iosevka-fixed-kian.ligations]
-# https://github.com/be5invis/Iosevka/tree/dev-v4#configuring-ligations
-# https://github.com/be5invis/Iosevka/tree/dev-v4#ligations
-inherits = "clik"
-# disables = []
-# enables = []
+[buildPlans.iosevka-fixed.weights.light]
+shape = 300
+menu = 300
+css = 300
+
+[buildPlans.iosevka-fixed.weights.regular]
+shape = 400
+menu = 400
+css = 400
+
+[buildPlans.iosevka-fixed.weights.bold]
+shape = 700
+menu = 700
+css = 700
+
+[buildPlans.iosevka-fixed.weights.heavy]
+shape = 900
+menu = 900
+css = 900
+
+[buildPlans.iosevka-fixed.widths.normal]
+shape = 576
+menu = 5
+css = "normal"
