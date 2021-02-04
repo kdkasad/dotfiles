@@ -197,10 +197,8 @@ xzip() {
 	pv "$in" | xz -z "$@" > "$in.xz"
 }
 
-# git aliases
-alias gc='git commit'
-alias gcm='git commit -m'
-alias gl='git log --no-show-signature --graph'
+# git(1)
+alias g=git
 
 # use sxiv-rifle by default
 alias -g sx=sxiv-rifle
