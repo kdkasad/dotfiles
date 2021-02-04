@@ -7,7 +7,7 @@ suffix='hevc'
 suffix="${SUFFIX:-$suffix}"
 
 # loop through all mkv files
-for vidfile in $@; do
+for vidfile in "$@"; do
 	# skip files ending in -hevc
 	[ "${vidfile%.mkv}" = *-hevc ] && continue
 

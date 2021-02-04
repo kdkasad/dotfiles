@@ -1,6 +1,6 @@
 #!/bin/sh
 
-[ x$@ = x ] \
+[ x"$@" = x ] \
 	&& echo "${0##*/}: must specify output file" && exit 1
 
 ffmpeg \
@@ -9,4 +9,4 @@ ffmpeg \
 	-f x11grab \
 	-s "$(xdpyinfo | grep -m 1 dimensions | grep -o '[0-9]\{1,4\}x[0-9]\{1,4\}' | sed 1q)" \
 	-i "$DISPLAY" \
-	$@
+	"$@"

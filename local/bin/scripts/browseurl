@@ -1,5 +1,5 @@
 #!/bin/sh
 
-url="$(dmenu -p "URL: " $@ </dev/null)"
+url="$(dmenu -p "URL: " "$@" </dev/null)"
 [ $? -eq 0 ] || exit 1
 setsid -f $BROWSER "$url"
