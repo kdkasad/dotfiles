@@ -9,9 +9,9 @@ fn() {
 	cert_path="${CERT_PATH:-${XDG_DATA_HOME:-$HOME/.local/share}/irc.pem}"
 }
 
-test -f "$HOME/.config/kircw/config" && . "$HOME/.config/kircw/config"
+test -r "$HOME/.config/kircw/config" && . "$HOME/.config/kircw/config"
 
-if [ -n "$1" ]; then
+if [ -n "$1" ] && [ "$1" != "--" ]; then
 	eval "$1"
 	shift
 else
