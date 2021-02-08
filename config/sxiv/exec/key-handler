@@ -4,7 +4,7 @@ do
         case "$1" in
         "w") bgs -zR "$file" ;;
         "c")
-		[ -z "$destdir" ] && destdir="$(sed "s/\s.*#.*$//;/^\s*$/d" ${XDG_CONFIG_HOME:-$HOME/.config}/directories | awk '{print $2}' | dmenu -t topbar -l 20 -i -p "Copy file(s) to where?" | sed "s|~|$HOME|g")"
+		[ -z "$destdir" ] && destdir="$(find "$HOME" -maxdepth 1 -type d -not -name '.*' | sed "s|$HOME|~|g" | dmenu -t topbar -l 20 -i -p "Copy file(s) to where?" | sed "s|~|$HOME|g")"
 		[ -z "$destdir" ] && exit
 		[ ! -d "$destdir" ] && notify-send "$destdir is not a directory, cancelled." && exit
 		cp "$file" "$destdir" && notify-send -i "$(readlink -f "$file")" "$file copied to $destdir." &
