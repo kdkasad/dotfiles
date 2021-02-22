@@ -89,11 +89,15 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
+case "$TERM" in
+	linux) PECHAR='$' ;;
+	*) PECHAR='»' ;;
+esac
 if [ "$color_prompt" = yes ]; then
 	if [ -z "$SSH_CLIENT" ]; then
-		PROMPT="%B%F{blue}%~%(?..%b%f : %B%F{red}%?)%f%B %(!.#.$)%b%f "
+		PROMPT="%B%F{blue}%~%(?..%b%f : %B%F{red}%?)%f%B %(!.#.$PECHAR)%b%f "
 	else
-		PROMPT="%B%F{yellow}(%n) %B%F{blue}%~%(?..%b%f : %B%F{red}%?)%f%B %(!.#.$)%b%f "
+		PROMPT="%B%F{yellow}(%n) %B%F{blue}%~%(?..%b%f : %B%F{red}%?)%f%B %(!.#.$PECHAR)%b%f "
 	fi
 	clear_rprompt() {
 		unset RPROMPT
@@ -112,9 +116,9 @@ if [ "$color_prompt" = yes ]; then
 	precmd_functions=( clear_rprompt precmd_git_info )
 else
 	if [ -z "$SSH_CLIENT" ]; then
-		PROMPT="%~%(?.. : %?) %(!.#.$) "
+		PROMPT="%~%(?.. : %?) %(!.#.$PECHAR) "
 	else
-		PROMPT="(%n) %~%(?.. : %?) %(!.#.$) "
+		PROMPT="(%n) %~%(?.. : %?) %(!.#.$PECHAR) "
 	fi
 fi
 
