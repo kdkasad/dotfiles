@@ -121,11 +121,12 @@ set ruler
 set noshowmode
 
 " Tab settings
-let g:detectindent_preferred_expandtab = 0
-let g:detectindent_preferred_indent = 4
-let g:detectindent_min_indent = 2
-let g:detectindent_max_indent = 8
-autocmd BufReadPost,BufNewFile * DetectIndent
+"let g:detectindent_preferred_expandtab = 0
+"let g:detectindent_preferred_indent = 4
+"let g:detectindent_min_indent = 2
+"let g:detectindent_max_indent = 8
+"autocmd BufReadPost,BufNewFile * DetectIndent
+set ts=8 sw=8 sts=-1 noet
 
 " Line wrap options
 set linebreak
