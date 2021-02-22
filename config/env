@@ -140,7 +140,7 @@ export INPUTRC="$XDG_CONFIG_HOME/inputrc"
 export WGETRC="$XDG_CONFIG_HOME/wgetrc"
 
 # tmux(1) temporary data
-export TMUX_TMPDIR="$XDG_RUNTIME_DIR/tmux"
+#export TMUX_TMPDIR="$XDG_RUNTIME_DIR/tmux"
 
 # Android SDK
 export ANDROID_SDK_HOME="$XDG_DATA_HOME/android"

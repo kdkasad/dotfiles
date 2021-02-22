@@ -13,9 +13,6 @@ export GPG_TTY="$(tty)"
 # start ssh-agent(1)
 eval $(ssh-agent) >/dev/null 2>&1
 
-# create tmux directory
-mkdir "$XDG_RUNTIME_DIR/tmux" >/dev/null 2>&1
-
 # start syncthing
 pgrep -x syncthing >/dev/null || setsid -f \
 	syncthing -no-browser -logflags=3 -logfile="${XDG_DATA_HOME:-$HOME/.local/share}/syncthing/syncthing.log" \
