@@ -177,6 +177,13 @@ set nojoinspaces
 " Allow concealing with syntax highlighting
 set conceallevel=2
 
+" SESSION SETTINGS {{{1
+
+" Automatically update currently-loaded session when leaving it
+let g:startify_session_persistence = 1
+
+" Automatically delete buffers when closing a session
+let g:startify_session_delete_buffers = 1
 
 " COLORS {{{1
 
