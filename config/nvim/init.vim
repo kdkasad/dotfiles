@@ -344,7 +344,7 @@ nnoremap <leader>tm :sp\|terminal<cr>
 nnoremap <leader>tv :vs\|terminal<cr>
 
 " toggle line wrapping
-nnoremap <leader>w :set wrap!<cr>
+nnoremap <leader>wr :set wrap!<cr>
 
 " toggle spell check
 nnoremap <leader>s :set spell!<cr>
@@ -383,23 +383,40 @@ vnoremap . :norm
 nnoremap ZW <cmd>w<cr>
 
 " CoC Mappings
+autocmd CursorHold * silent call CocActionAsync('highlight')
 inoremap <silent><expr> <c-space> coc#refresh()
-nmap <c-]> <plug>(coc-definition)
-nmap <leader>gd	<plug>(coc-definition)
-nmap <leader>gD	<plug>(coc-declaration)
-nmap <leader>gy	<plug>(coc-type-definition)
-nmap <leader>gi	<plug>(coc-implementation)
-nmap <leader>gr	<plug>(coc-references)
-nmap <leader>r	<plug>(coc-refactor)
-nmap <leader>fm	<plug>(coc-format)
-vmap <leader>fm	<plug>(coc-format-selected)
-nmap ]e	<plug>(coc-diagnostic-next-error)
-nmap [e	<plug>(coc-diagnostic-prev-error)
+nmap     <c-]>      <plug>(coc-definition)
+nmap     <leader>gd <plug>(coc-definition)
+nmap     <leader>gD <plug>(coc-declaration)
+nmap     <leader>gy <plug>(coc-type-definition)
+nmap     <leader>gi <plug>(coc-implementation)
+nmap     <leader>gr <plug>(coc-references)
+nmap     <leader>r  <plug>(coc-refactor)
+xmap     <leader>fm <plug>(coc-format-selected)
+vmap     <leader>fm <plug>(coc-format-selected)
+nmap     ]e         <plug>(coc-diagnostic-next-error)
+nmap     [e         <plug>(coc-diagnostic-prev-error)
+nmap     ]w         <plug>(coc-diagnostic-next-warning)
+nmap     [w         <plug>(coc-diagnostic-prev-warning)
+nmap     <leader>a  <plug>(coc-codeaction-selected)
+xmap     <leader>a  <plug>(coc-codeaction-selected)
+nmap     <leader>ac <plug>(coc-codeaction)
 nnoremap <leader>cr <cmd>CocRestart<cr>
 nnoremap <leader>cd <cmd>CocDisable<cr>
 nnoremap <leader>ce <cmd>CocEnable<cr>
-inoremap <m-cr> <esc>f,2lct,
-inoremap <s-cr> <esc>f,2lct)
+inoremap <m-cr>     <esc>f,2lct,
+inoremap <s-cr>     <esc>f,2lct)
+"nnoremap <silent> K :call <sid>show_documentation()<cr>
+
+function s:show_documentation()
+	if (index(['vim', 'help'], &filetype) >= 0)
+		execute 'h ' . expand('<cword>')
+	elseif (coc#rpc#ready())
+		call CocActionAsync('doHover')
+	else
+		execute '!' . &keywordprg . " " . expand('<cword')
+	endif
+endfunction
 
 " Lorem Ipsum generator
 function Lipsum(paragraphs)
