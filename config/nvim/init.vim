@@ -236,6 +236,9 @@ au BufRead *.service setlocal ft=systemd
 " Treat PKGBUILDs as sh syntax
 au BufRead,BufCreate PKGBUILD setlocal ft=sh
 
+" Treat *.h files as C
+let g:c_syntax_for_h = 1
+
 " TEMPLATES {{{1
 
 " groff_ms MLA format
