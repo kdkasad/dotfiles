@@ -15,11 +15,11 @@ export DBUS_SESSION_BUS_ADDRESS
 eof
 
 # Configure external display
-xrandr | grep 'HDMI1 connected' &&
-	xrandr --output eDP1 --auto --output HDMI1 --primary --right-of eDP1
+xrandr | grep 'HDMI-1 connected' &&
+	xrandr --output eDP-1 --auto --output HDMI-1 --primary --right-of eDP-1
 
 # map touchscreen to only laptop display
-xinput --map-to-output 'GTCH7503:00 2A94:D64D' eDP1
+xinput --map-to-output 'GTCH7503:00 2A94:D64D' eDP-1
 
 # Start statusbar
 ~/.config/polybar/start-polybar.sh >/dev/null 2>&1 &
