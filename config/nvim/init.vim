@@ -133,7 +133,7 @@ set linebreak
 
 " Use syntax-based folding
 set foldmethod=syntax
-set foldlevel=1
+set foldlevelstart=99
 
 "" SEARCH OPTIONS {{{2
 
