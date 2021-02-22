@@ -40,6 +40,10 @@ set incremental-search
 # Set space between pages
 set page-padding 10
 
+# Workaround to allow xdg-open to work properly when opening links
+# See https://git.pwmt.org/pwmt/zathura/-/issues/151
+set sandbox none
+
 ## Key mappings:
 
 map u scroll half-up
