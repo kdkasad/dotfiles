@@ -1,7 +1,7 @@
 " Neovim init.vim
 " By Kian Kasad
 
-"" PLUGINS {{{1
+" PLUGINS {{{1
 
 call plug#begin('~/.local/share/nvim/plugins')
 
@@ -27,7 +27,7 @@ Plug 'Gavinok/vim-troff'
 call plug#end()
 
 
-"" FZF SETTINGS {{{1
+" FZF SETTINGS {{{1
 
 let g:fzf_layout = {
 			\ 'window': {
@@ -37,7 +37,7 @@ let g:fzf_layout = {
 		\ }
 
 
-"" GENERAL EDITOR SETTINGS {{{1
+" GENERAL EDITOR SETTINGS {{{1
 
 " Enable project-specific .vimrc
 set exrc
@@ -177,7 +177,7 @@ set nojoinspaces
 set conceallevel=2
 
 
-"" COLORS {{{1
+" COLORS {{{1
 
 " Color scheme
 set background=dark
@@ -205,7 +205,7 @@ let g:lightline = {
 \ }
 
 
-"" SPLIT SETTINGS {{{1
+" SPLIT SETTINGS {{{1
 
 set splitbelow
 set splitright
@@ -220,7 +220,7 @@ map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 
-"" FILE TYPE PREFERENCES {{{1
+" FILE TYPE PREFERENCES {{{1
 
 " Detect systemd services
 au BufRead *.service setlocal ft=systemd
@@ -228,12 +228,12 @@ au BufRead *.service setlocal ft=systemd
 " Treat PKGBUILDs as sh syntax
 au BufRead,BufCreate PKGBUILD setlocal ft=sh
 
-"" TEMPLATES {{{1
+" TEMPLATES {{{1
 
 " groff_ms MLA format
 iabbrev mladoc <C-o>:read ~/.config/nvim/templates/mla.ms<cr>
 
-"" SPELL-CHECK SETTINGS {{{1
+" SPELL-CHECK SETTINGS {{{1
 
 " Auto-enable spellcheck for some filetypes
 au FileType markdown,html,gitcommit,tex,plaintex,nroff,mail setlocal spell
@@ -242,7 +242,7 @@ au FileType markdown,html,gitcommit,tex,plaintex,nroff,mail setlocal spell
 set spelllang=en,fr
 
 
-"" FILE-SPECIFIC COMMANDS {{{1
+" FILE-SPECIFIC COMMANDS {{{1
 
 augroup specialfiles
 
@@ -280,7 +280,7 @@ augroup end
 au FileType markdown vmap <leader><bslash> :EasyAlign*<bar><cr>
 
 
-"" BINARY FILE EDITING {{{1
+" BINARY FILE EDITING {{{1
 
 " Add autocmds to edit binary files as hex using xxd(1)
 function <SID>AddHexAutoCmds()
@@ -296,7 +296,7 @@ endfunction
 autocmd BufReadPre * if &binary | call <SID>AddHexAutoCmds() | endif
 
 
-"" KEYBOARD SHORTCUTS {{{1
+" KEYBOARD SHORTCUTS {{{1
 
 " Leader key
 let mapleader = ','
@@ -398,5 +398,7 @@ endfunction
 " Align markdown tables using vim-easy-align
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
+
+" 1}}}
 
 " vim: set foldmethod=marker foldmarker={{{,}}} :
