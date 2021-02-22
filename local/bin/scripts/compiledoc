@@ -15,7 +15,7 @@ outfile="$base.pdf"
 	&& out="$2" \
 	|| out="$base.pdf"
 
-groffopts="-kpt -d paper=letter -P -pletter"
+groffopts="-mpdfmark -kpt -d paper=letter -P -pletter"
 
 case "$ext" in
 	ms) refer -PSep "${REFER_SOURCES:-$HOME/documents/sources.refer}" "$file" | pdfroff -ms $groffopts - > "$outfile" ;;
