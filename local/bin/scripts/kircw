@@ -18,10 +18,14 @@ else
 	fn
 fi
 
+if [ -n "$user" ]; then
+	kirc_extra_args="$kirc_extra_args -u $user"
+fi
+
 socat tcp-listen:6667,reuseaddr,fork,bind=127.0.0.1 ssl:"$server",cert="$cert_path" &
 
 sleep 0.1
 
-"$kirc" -s 127.0.0.1 -n "$nick" -e -c "$channels" "$@"
+"$kirc" -s 127.0.0.1 -n "$nick" -e -c "$channels" $kirc_extra_args "$@"
 
 kill $!
