@@ -4,7 +4,7 @@ PREFIX_ERROR="[\033[31m!\033[0m]"
 PREFIX_INFO="[\033[34m~\033[0m]"
 
 # check for dependencies
-for DEPENDENCY in rbw fzf ; do
+for DEPENDENCY in rbw fzf xclip ; do
 	if ! command -v "$DEPENDENCY" >/dev/null 2>&1; then
 		printf '%b command not found: %s\n' "$PREFIX_ERROR" "$DEPENDENCY"
 		MISSING_DEPS=1
