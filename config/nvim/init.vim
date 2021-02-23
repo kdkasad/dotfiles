@@ -23,6 +23,7 @@ Plug 'mhinz/vim-startify'
 Plug 'roryokane/detectindent'
 Plug 'junegunn/vim-easy-align'
 Plug 'Gavinok/vim-troff'
+Plug 'majutsushi/tagbar'
 
 call plug#end()
 
@@ -417,6 +418,9 @@ function s:show_documentation()
 		execute '!' . &keywordprg . " " . expand('<cword')
 	endif
 endfunction
+
+" Tag bar
+nnoremap <c-b> :TagbarToggle<cr>
 
 " Lorem Ipsum generator
 function Lipsum(paragraphs)
