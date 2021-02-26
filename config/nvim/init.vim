@@ -407,7 +407,7 @@ nnoremap <leader>cd <cmd>CocDisable<cr>
 nnoremap <leader>ce <cmd>CocEnable<cr>
 inoremap <m-cr>     <esc>f,2lct,
 inoremap <s-cr>     <esc>f,2lct)
-"nnoremap <silent> K :call <sid>show_documentation()<cr>
+nnoremap <silent> K :call <sid>show_documentation()<cr>
 
 function s:show_documentation()
 	if (index(['vim', 'help'], &filetype) >= 0)
@@ -415,7 +415,7 @@ function s:show_documentation()
 	elseif (coc#rpc#ready())
 		call CocActionAsync('doHover')
 	else
-		execute '!' . &keywordprg . " " . expand('<cword')
+		execute '!' . &keywordprg . " " . expand('<cword>')
 	endif
 endfunction
 
