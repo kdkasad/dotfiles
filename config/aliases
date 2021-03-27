@@ -251,3 +251,5 @@ alias drag='dragon-drag-and-drop -a -x'
 
 # colored cat using highlight(1)
 alias ccat='highlight -Oansi'
+
+alias gs='g s'
