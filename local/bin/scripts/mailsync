@@ -2,6 +2,10 @@
 
 # Sync mail and give notification if there is new mail.
 
+if [ ! -t 2 ]; then
+	exec 2>"$HOME/.local/log/mailsync/log"
+fi
+
 # Run only if user logged in (prevent cron errors)
 pgrep -u "${USER:=$LOGNAME}" >/dev/null || { echo "$USER not logged in; sync will not run."; exit ;}
 # Run only if not already running in other instance
