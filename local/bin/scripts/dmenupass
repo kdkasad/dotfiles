@@ -5,4 +5,4 @@ if [ -n "$1" ]; then
 	shift
 fi
 
-dmenu -t topbar -p "${prompt:-Password:}" "$@" <&-
+bemenu -p "${prompt:-Password:}" "$@" <&-

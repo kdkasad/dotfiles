@@ -1,7 +1,7 @@
 #!/bin/sh
 
-# Use dmenu to choose an emoji from ~/.local/share/emoji.txt and copy it
-grep -v '#' ~/.local/share/emoji.txt | dmenu "$@" | grep -o '^.' | xclip -i -r -selection clipboard
+# Use bemenu to choose an emoji from ~/.local/share/emoji.txt and copy it
+grep -v '#' ~/.local/share/emoji.txt | bemenu "$@" | grep -o '^.' | xclip -i -r -selection clipboard
 
 # If nothing was copied (i.e. the user exited), exit
 [ ! "$(xclip -o -selection clipboard)" ] && exit 1

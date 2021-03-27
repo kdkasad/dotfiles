@@ -22,6 +22,9 @@ test -r "${XDG_CONFIG_HOME:-$HOME/.config}/env_secret" \
 
 ## CONFIGURE PROGRAMS ##
 
+# set bemenu(1) colors
+export BEMENU_OPTS='-H 24 --tb "#343136" --nb "#343136" --fb "#343136" --hb "#7A9ED7" --hf "#343136" --nf "#E3E1E4" --tf "#E3E1E4" --ff "#E3E1E4"'
+
 # don't print cows when using ansible
 export ANSIBLE_NOCOWS=1
 

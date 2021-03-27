@@ -5,7 +5,7 @@ if [ -z "$available" ]; then
 	notify-send -a "device manager" "No devices available" "There are no devices which can be safely unmounted" & exit 2
 fi
 
-device=$(echo -n "$available" | dmenu -i -l 10 -p 'Choose device:' "$@" | awk '{print $1}')
+device=$(echo -n "$available" | bemenu -i -l 10 -p 'Choose device:' "$@" | awk '{print $1}')
 [ -z "$device" ] && exit 1
 if [ ! -b $device ]; then
 	notify-send -a "Device mount menu" "Error unmounting device" "The specified device does not exist:\n$device" &
@@ -13,7 +13,7 @@ if [ ! -b $device ]; then
 fi
 
 mountpoint=$(lsblk -rnpo 'NAME,MOUNTPOINT' | awk "\$1==\"$device\"{print \$2}" | sed "s|^$HOME|~|")
-deletemp=$(printf "yes\\nno" | dmenu -i -p "Delete mountpoint? ($mountpoint)" "$@" | grep -io 'y\(es\)\?\|no\?' | head -n1 | sed 's/Yes\|yes\|Y\|y/1/; s/No\|no\|N\|n/0/')
+deletemp=$(printf "yes\\nno" | bemenu -i -p "Delete mountpoint? ($mountpoint)" "$@" | grep -io 'y\(es\)\?\|no\?' | head -n1 | sed 's/Yes\|yes\|Y\|y/1/; s/No\|no\|N\|n/0/')
 
 tmpfile=$(mktemp)
 (sudo -A umount $device 2>$tmpfile) &&

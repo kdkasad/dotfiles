@@ -33,7 +33,7 @@
 	XF86RFKill
 
 # open shutdown menu
-"shutdownmenu -t topbar"
+"shutdownmenu"
 	Control + Alt + Delete
 
 # screenshots
@@ -53,33 +53,33 @@
 	Mod4 + v
 
 # man page chooser
-"manchooser -g -t toplist -l 22"
+"manchooser -g -l 22"
 	Mod4 + e
 
 # terminal
 "$TERMINAL"
 	Mod4 + Shift + Return
 
-# dmenu program launcher (centered window)
-"j4-dmenu-desktop --dmenu='dmenu -t windowed'"
+# bemenu program launcher
+"j4-dmenu-desktop --dmenu='bemenu -l20'"
 	Mod4 + p
-# dmenu program launcher
-"dmenu_run_history -t windowed"
+# bemenu program launcher
+"bemenu_run_history -l20"
 	Mod4 + Shift + p
 
 # unicode character chooser
-"unichooser -t toplist"
+"unichooser -l 20"
 	Mod4 + semicolon
 
 # emoji chooser
-"emojichooser -t toplist"
+"emojichooser -l 20"
 	Mod4 + Shift + semicolon
 
 # drive mount menu
-"mountmenu -t toplist"
+"mountmenu -l 20"
 	Mod4 + Shift + F9
 # drive unmount menu
-"unmountmenu -t toplist"
+"unmountmenu -l 20"
 	Mod4 + Shift + F10
 
 # web browser
@@ -91,7 +91,7 @@
 	Mod4 + Shift + l
 
 # config file editor
-"confedit -t topbar"
+"confedit"
 	Mod4 + o
 
 # email client

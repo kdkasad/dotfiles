@@ -18,7 +18,7 @@ path="$HOME/pictures/screenshots/$(date +'%Y-%m-%d_%H:%M:%S').png"
 
 while getopts "$optstring" option; do
 	case "$option" in
-		p) path="$(find ~ -not -path '*/.*' -type d 2>/dev/null | sed -e "s|$HOME|~|" -e "s|[^/]$|\0/|" | dmenu -l 20 -p "choose output path:" | sed "s|^~|$HOME|")" ;;
+		p) path="$(find ~ -not -path '*/.*' -type d 2>/dev/null | sed -e "s|$HOME|~|" -e "s|[^/]$|\0/|" | bemenu -l 20 -p "choose output path:" | sed "s|^~|$HOME|")" ;;
 		s) ss_select ;;
 	esac
 done
