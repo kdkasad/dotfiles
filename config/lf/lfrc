@@ -13,7 +13,6 @@ cmd open ${{
     *)
       case $(file --mime-type "$f" -bL) in
         text/*|application/json) $EDITOR "$f";;
-        image/*) setsid -f sxiv-rifle "$f" ;;
         *) setsid -f xdg-open "$f" >/dev/null 2>&1 ;;
       esac
     ;;
