@@ -299,6 +299,10 @@ au FileType markdown vmap <leader><bslash> :EasyAlign*<bar><cr>
 " don't follow EditorConfig rules for Git commit messages
 au FileType gitcommit let b:EditorConfig_disable = 1
 
+" run python scripts easily
+au FileType python nmap <leader>r :CocCommand python.execInTerminal<cr>
+au FileType python vmap <leader>r :CocCommand python.execSelectionInTerminal<cr>
+
 " BINARY FILE EDITING {{{1
 
 " Add autocmds to edit binary files as hex using xxd(1)
