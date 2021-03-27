@@ -29,6 +29,6 @@ do
 			notify-send "$(readlink -f "$file") copied to clipboard" & ;;
 	"d")
 		[ "$(printf "No\\nYes" | bemenu -i -p "Really delete $file?")" = "Yes" ] && rm "$file" && notify-send "$file deleted." ;;
-	"g")	ifinstalled gimp && gimp "$file" & ;;
+	"g")	command -v gimp >/dev/null 2>&1 && setsid -f gimp "$file" ;;
         esac
 done
