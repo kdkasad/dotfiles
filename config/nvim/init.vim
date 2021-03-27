@@ -24,6 +24,7 @@ Plug 'roryokane/detectindent'
 Plug 'junegunn/vim-easy-align'
 Plug 'Gavinok/vim-troff'
 Plug 'majutsushi/tagbar'
+Plug 'editorconfig/editorconfig-vim'
 
 call plug#end()
 
@@ -186,6 +187,9 @@ let g:startify_session_persistence = 1
 " Automatically delete buffers when closing a session
 let g:startify_session_delete_buffers = 1
 
+" Exclude remote EditorConfig files
+let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
+
 " COLORS {{{1
 
 " Color scheme
@@ -291,6 +295,8 @@ augroup end
 
 au FileType markdown vmap <leader><bslash> :EasyAlign*<bar><cr>
 
+" don't follow EditorConfig rules for Git commit messages
+au FileType gitcommit let b:EditorConfig_disable = 1
 
 " BINARY FILE EDITING {{{1
 
