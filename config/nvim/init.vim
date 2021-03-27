@@ -25,6 +25,7 @@ Plug 'junegunn/vim-easy-align'
 Plug 'Gavinok/vim-troff'
 Plug 'majutsushi/tagbar'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'KSP-KOS/EditorTools', {'rtp': 'VIM/vim-kerboscript'}
 
 call plug#end()
 
