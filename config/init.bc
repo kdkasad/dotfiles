@@ -81,3 +81,13 @@ define pascal(n) {
 	scale = os
 	return
 }
+
+# Degrees to radians
+define d2r(d) {
+	return d * (pi / 180)
+}
+
+# Radians to degrees
+define r2d(r) {
+	return r * (180 / pi)
+}
