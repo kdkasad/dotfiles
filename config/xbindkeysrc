@@ -61,7 +61,7 @@
 	Mod4 + Shift + Return
 
 # bemenu program launcher
-"j4-dmenu-desktop --dmenu='bemenu -i -l20'"
+"j4-dmenu-desktop --term=$TERMINAL --dmenu='bemenu -i -l20'"
 	Mod4 + p
 # bemenu program launcher
 "bemenu_run_history -l20"
