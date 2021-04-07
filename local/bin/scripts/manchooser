@@ -1,5 +1,27 @@
 #!/bin/sh
 
+#
+# manchooser.sh - search and display manual pages
+#
+
+for arg in "$@"; do
+	if [ "$arg" = "-h" ] || [ "$arg" = "--help" ]; then
+		cat <<EOF
+$(basename "$0") - search and display manual pages
+
+Usage:
+	$(basename "$0") [-h|--help] [-g]
+
+	Options:
+		-h, --help
+			Print this help message
+
+		-g	Use bemenu to search and open a new terminal to display man page
+EOF
+		exit 1
+	fi
+done
+
 if [ "$1" = "-g" ]; then
 	shift
 	CHOOSER="bemenu $@"
@@ -9,5 +31,4 @@ else
 	VIEWER="man"
 fi
 
-apropos . | $CHOOSER | awk '{print $2 $1}' | tr -d '(' | tr ')' ' ' |
-	xargs -r $VIEWER
+apropos . | $CHOOSER | awk '{print $2 $1}' | tr -d '(' | tr ')' ' ' | xargs -r $VIEWER
