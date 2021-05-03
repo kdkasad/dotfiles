@@ -32,7 +32,7 @@ export ANSIBLE_NOCOWS=1
 export CFLAGS='-fdiagnostics-color=auto'
 
 # less(1) configuration
-export LESS='-RF'
+export LESS='-R'
 export LESSOPEN='|lesspipe.sh %s'
 export LESSHISTFILE='-'
 
