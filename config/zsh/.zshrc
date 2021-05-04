@@ -176,7 +176,8 @@ grep -v '#' $shortcutsdir/files | awk '{print "alias "$1"=\"vim "$2"\""}' >> $tm
 \rm -f $tmpfile
 
 # Command not found helper
-source /usr/share/doc/pkgfile/command-not-found.zsh
+[ -r /usr/share/doc/pkgfile/command-not-found.zsh ] && \
+	source /usr/share/doc/pkgfile/command-not-found.zsh
 
 # spawn pfetch if in a tty
 if [ -c "$(tty)" ]; then
@@ -184,4 +185,8 @@ if [ -c "$(tty)" ]; then
 fi
 
 # syntax highlighting
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+if [ -r /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+	source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+elif [ -r /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+	source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
