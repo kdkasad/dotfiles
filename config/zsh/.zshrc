@@ -1,4 +1,4 @@
-HISTFILE=~/.cache/zsh_history
+HISTFILE="$HOME"/.cache/zsh_history
 HISTSIZE=1000
 SAVEHIST=1000
 setopt APPEND_HISTORY
@@ -59,7 +59,7 @@ case $- in
 esac
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTFILE=~/.local/share/shell_history
+HISTFILE="$HOME"/.local/share/shell_history
 HISTSIZE=1000
 HISTFILESIZE=2000
 
@@ -126,7 +126,7 @@ unset color_prompt force_color_prompt
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    test -r "$HOME"/.dircolors && eval "$(dircolors -b "$HOME"/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
 	alias -g tree='tree -C'
     #alias -g dir='dir --color=auto'
@@ -159,7 +159,7 @@ fi
 }
 
 # Alias definitions.
-alias_file=~/.config/aliases
+alias_file="$HOME"/.config/aliases
 [ -f $alias_file ] && . $alias_file
 
 # Fix pinentry
