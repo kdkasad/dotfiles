@@ -31,11 +31,11 @@ case "$lockfirst" in
 esac
 
 case "$target" in
-	"suspend") loginctl suspend ;;
-	"power off") loginctl poweroff ;;
-	"reboot") loginctl reboot ;;
-	"hibernate") loginctl hibernate ;;
-	"hybrid sleep") loginctl hybrid-sleep ;;
-	"suspend then hibernate") loginctl suspend-then-hibernate ;;
+	"suspend") systemctl suspend ;;
+	"power off") systemctl poweroff ;;
+	"reboot") systemctl reboot ;;
+	"hibernate") systemctl hibernate ;;
+	"hybrid sleep") systemctl hybrid-sleep ;;
+	"suspend then hibernate") systemctl suspend-then-hibernate ;;
 	*) echo "$0: unknown option: $target" ; exit 1
 esac
