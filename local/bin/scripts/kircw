@@ -2,20 +2,13 @@
 
 kirc="${KIRC:-kirc}"
 
-fn() {
-	server="${SERVER:-irc.freenode.net:6697}"
-	nick="$NICK"
-	channels="$CHANNELS"
-	cert_path="${CERT_PATH:-${XDG_DATA_HOME:-$HOME/.local/share}/irc.pem}"
-}
-
 test -r "$HOME/.config/kircw/config" && . "$HOME/.config/kircw/config"
 
 if [ -n "$1" ] && [ "$1" != "--" ]; then
 	eval "$1"
 	shift
 else
-	fn
+	lc
 fi
 
 if [ -n "$user" ]; then
