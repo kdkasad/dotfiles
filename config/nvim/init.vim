@@ -288,8 +288,8 @@ augroup end
 
 " compile *roff documents
 augroup groffcomp
-	au FileType nroff,troff nnoremap <buffer> <leader>cp <cmd>silent !compiledoc %<cr>
-	au FileType nroff,troff nnoremap <buffer> <leader>ecp <cmd>autocmd groffcomp BufWritePost <buffer> silent !compiledoc %<cr>
+	au FileType nroff,troff nnoremap <buffer> <leader>cp <cmd>silent !compiledoc % &<cr>
+	au FileType nroff,troff nnoremap <buffer> <leader>ecp <cmd>autocmd groffcomp BufWritePost <buffer> silent !compiledoc % &<cr>
 	au FileType nroff,troff nnoremap <buffer> <leader>dcp <cmd>autocmd! groffcomp BufWritePost <buffer><cr>
 	au FileType nroff,troff nnoremap <buffer> <leader>pdf :exe "silent !setsid -f zathura ".expand('%:r').".pdf"<cr>
 augroup end
@@ -302,6 +302,10 @@ au FileType gitcommit let b:EditorConfig_disable = 1
 " run python scripts easily
 au FileType python nmap <leader>r :CocCommand python.execInTerminal<cr>
 au FileType python vmap <leader>r :CocCommand python.execSelectionInTerminal<cr>
+
+" display markdown files using glow
+au FileType markdown nmap <buffer> <leader>gl :sp \| te glow %<cr>
+au FileType markdown nmap <buffer> <leader>vgl :vsp \| te glow %<cr>
 
 " BINARY FILE EDITING {{{1
 
@@ -346,14 +350,14 @@ imap <expr> <up> pumvisible() ? "\<c-p>" : "\<up>"
 
 " Tab manipulation shortcuts
 noremap <Leader>tn :tabnew<CR>
-noremap <Leader>tt :tab split<CR>
 noremap ]t :tabn<CR>
 noremap [t :tabp<CR>
 noremap <Leader>tc :tabc<CR>
 
 " open a terminal
-nnoremap <leader>tm :sp\|terminal<cr>
-nnoremap <leader>tv :vs\|terminal<cr>
+nnoremap <leader>tm :split\|terminal<cr>
+nnoremap <leader>tv :vsplit\|terminal<cr>
+nnoremap <leader>tt :tabnew\|terminal<cr>
 
 " toggle line wrapping
 nnoremap <leader>wr :set wrap!<cr>
