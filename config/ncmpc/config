@@ -7,13 +7,13 @@
 host = "localhost"
 
 ## Connect to mpd on the specified port.
-#port = 6600
+port = 6600
 
 ## Connect to mpd using the specified password.
 #password = "secret"
 
 ## Reconnect after NUM seconds of MPD not responding.
-#timeout = 5
+timeout = 15
 
 ############## Interface ####################
 ## Enable mouse support (if enabled at compile time).
@@ -108,7 +108,7 @@ scroll = yes
 #lyrics-autosave = no
 
 ## The text editor used for editing lyrics.
-#text-editor = emacs
+text-editor = nvim
 
 ## Ask before starting an editor.
 #text-editor-ask = yes
@@ -166,7 +166,7 @@ color status-state = white,bold
 color status-song  = black
 
 ## Set the text color used to display time the status window.
-color status-time  = white
+color status-time  = black
 
 ## Text color used to display alerts in the status window.
 color alert = red,bold
