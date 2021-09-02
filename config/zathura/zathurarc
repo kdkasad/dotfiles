@@ -6,25 +6,35 @@ set font "monospace normal 12"
 set guioptions ""
 
 # Set background and bar colors
-set default-bg "#343136"
-set default-fg "#dfdfdf"
+set default-bg "#202020"
+set default-fg "#ffffff"
 
-set statusbar-bg "#343136"
-set statusbar-fg "#dfdfdf"
+set statusbar-bg "#202020"
+set statusbar-fg "#ffffff"
 
-set inputbar-bg "#343136"
+set inputbar-bg "#191919"
 set inputbar-fg "#7a9ed7"
 
-set highlight-color "#ab9df2"
-set highlight-active-color "#7a9ed7"
+# set highlight-color "#ab9df2"
+# set highlight-active-color "#7a9ed7"
+
+set completion-bg           "#191919"
+set completion-fg           "#ffffff"
+set completion-highlight-bg "#ffffff"
+set completion-highlight-fg "#191919"
+
+set index-bg           "#191919"
+set index-fg           "#ffffff"
+set index-active-bg "#ffffff"
+set index-active-fg "#191919"
 
 # set statusbar padding
 set statusbar-h-padding 24
 
 # change document colors
 set recolor true
-set recolor-lightcolor "#343136"
-set recolor-darkcolor "#dfdfdf"
+set recolor-lightcolor "#202020"
+set recolor-darkcolor "#ffffff"
 
 set continuous-hist-save
 

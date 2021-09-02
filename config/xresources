@@ -1,62 +1,67 @@
 ! vim: ft=cpp
 
-#define nord0 #2E3440
-#define nord1 #3B4252
-#define nord2 #434C5E
-#define nord3 #4C566A
-#define nord4 #D8DEE9
-#define nord5 #E5E9F0
-#define nord6 #ECEFF4
-#define nord7 #8FBCBB
-#define nord8 #88C0D0
-#define nord9 #81A1C1
-#define nord10 #5E81AC
-#define nord11 #BF616A
-#define nord12 #D08770
-#define nord13 #EBCB8B
-#define nord14 #A3BE8C
-#define nord15 #B48EAD
+#define nord0     #2E3440
+#define nord1     #3B4252
+#define nord2     #434C5E
+#define nord3     #4C566A
+#define nord4     #D8DEE9
+#define nord5     #E5E9F0
+#define nord6     #ECEFF4
+#define nord7     #8FBCBB
+#define nord8     #88C0D0
+#define nord9     #81A1C1
+#define nord10    #5E81AC
+#define nord11    #BF616A
+#define nord12    #D08770
+#define nord13    #EBCB8B
+#define nord14    #A3BE8C
+#define nord15    #B48EAD
 
-#define pink_dark	#473D4B
-#define pink_gray2	#55495B
-#define pink_gray	#908EA8
-#define pink_light	#FFFFFF
-#define pink_red	#F06D72
-#define pink_pink	#F9C1C4
-#define pink_green	#A2EEA2
-#define pink_yellow	#FFED9B
-#define pink_orange #F8A983
-#define pink_blue	#88A9CE
-#define pink_cyan	#99D7F8
-#define pink_purple	#C2B1D5
+#define pink_dark      #473D4B
+#define pink_gray2     #55495B
+#define pink_gray      #908EA8
+#define pink_light     #FFFFFF
+#define pink_red       #F06D72
+#define pink_pink      #F9C1C4
+#define pink_green     #A2EEA2
+#define pink_yellow    #FFED9B
+#define pink_orange    #F8A983
+#define pink_blue      #88A9CE
+#define pink_cyan      #99D7F8
+#define pink_purple    #C2B1D5
 
-#define lakeside_dark	#484761
-#define lakeside_yellow	#CDC95E
-#define lakeside_blue	#416494
-#define lakeside_purple	#9E649C
-#define lakeside_cyan	#64939E
-#define lakeside_green	#649E6E
-#define lakeside_orange	#CD955E
-#define lakeside_red	#CD5E66
-#define lakeside_light	#F6E6C7
-#define lakeside_gray	#8584A0
-#define lakeside_gray2	#565570
+#define lakeside_dark      #484761
+#define lakeside_yellow    #CDC95E
+#define lakeside_blue      #416494
+#define lakeside_purple    #9E649C
+#define lakeside_cyan      #64939E
+#define lakeside_green     #649E6E
+#define lakeside_orange    #CD955E
+#define lakeside_red       #CD5E66
+#define lakeside_light     #F6E6C7
+#define lakeside_gray      #8584A0
+#define lakeside_gray2     #565570
 
-#define shusia_black	#1A181A
-#define shusia_bg0		#2D2A2E
-#define shusia_dark		#343136
-#define shusia_bg2		#3B383E
-#define shusia_bg3		#423F46
-#define shusia_gray2	#49464E
-#define shusia_light	#E3E1E4
-#define shusia_red		#F85E84
-#define shusia_orange	#EF9062
-#define shusia_yellow	#E5C463
-#define shusia_green	#9ECD6F
-#define shusia_blue		#7A9ED7
-#define shusia_cyan		#7ACCD7
-#define shusia_purple	#AB9DF2
-#define shusia_gray		#848089
+#define shusia_black     #1A181A
+#define shusia_bg0       #2D2A2E
+#define shusia_dark      #343136
+#define shusia_bg2       #3B383E
+#define shusia_bg3       #423F46
+#define shusia_gray2     #49464E
+#define shusia_light     #E3E1E4
+#define shusia_red       #F85E84
+#define shusia_orange    #EF9062
+#define shusia_yellow    #E5C463
+#define shusia_green     #9ECD6F
+#define shusia_blue      #7A9ED7
+#define shusia_cyan      #7ACCD7
+#define shusia_purple    #AB9DF2
+#define shusia_gray      #848089
+
+/* ZorinGrey-Dark colors */
+#define zgd_bg     #202020
+#define zgd_bg2    #191919
+#define zgd_fg     #ffffff
 
 /* dwm */
 dwm.normbordercolor: shusia_dark
@@ -78,10 +83,16 @@ slock.inputcolor:	shusia_blue
 slock.failcolor:	shusia_red
 
 /* polybar */
+/*
 polybar.bg:		shusia_dark
 polybar.bg-alt:		shusia_gray2
 polybar.fg:		shusia_light
 polybar.fg-alt:		shusia_gray
+*/
+polybar.bg:		zgd_bg
+polybar.bg-alt:		#5e5e5e
+polybar.fg:		zgd_fg
+polybar.fg-alt:		#5e5e5e
 
 polybar.primary:	shusia_blue
 polybar.secondary:	shusia_light
