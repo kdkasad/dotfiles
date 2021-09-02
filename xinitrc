@@ -14,6 +14,9 @@ DBUS_SESSION_BUS_ADDRESS=$DBUS_SESSION_BUS_ADDRESS
 export DBUS_SESSION_BUS_ADDRESS
 eof
 
+# Start session manager
+setsid -f lxsession
+
 # Start keybinding daemon
 xbindkeys -f ~/.config/xbindkeysrc &
 
@@ -42,24 +45,36 @@ picom -b >"$HOME"/.local/log/picom/log 2>&1
 # start pulseaudio
 pulseaudio --start --exit-idle-time=-1
 
+# start IBus
+ibus-daemon -drx
+
 # Start notification daemon
 setsid -f dunst &
+
+# Start AppArmor violation notifier
+setsid -f aa-notify -p -s 1 -w 60 -f /var/log/audit/audit.log >"$HOME"/.local/log/aa-notify/log 2>&1
 
 # Start idle timer
 setsid -f xautolock -time 10 -notify 20 -notifier "notify-send -a 'xautolock' 'sleeping in 20 seconds...'" -locker "$HOME/.local/bin/scripts/idlehandler" -detectsleep -corners "-000" &
 
+# start MPRIS proxy
+setsid -f mpris-proxy >"$HOME"/.local/log/mpris-proxy/log 2>&1
+
 # start music player daemon
 mpd
 
-# Start Nextcloud desktop sync client
-setsid -f nextcloud --background >"$HOME"/.local/log/nextcloud/log 2>&1
+# start mpDris2
+setsid -f mpDris2 >"$HOME"/.local/log/mpdris2/log 2>&1
 
 # Start KDE Connect daemon
 setsid -f /usr/lib/kdeconnectd >"$HOME"/.local/log/kdeconnectd/log 2>&1
 setsid -f kdeconnect-indicator >"$HOME"/.local/log/kdeconnect-indicator/log 2>&1
 
+# Start Nextcloud desktop sync client
+# setsid -f nextcloud --background >"$HOME"/.local/log/nextcloud/log 2>&1
+
 # Start safeeyes
-setsid -f safeeyes >"$HOME"/.local/log/safeeyes/log 2>&1
+# setsid -f safeeyes >"$HOME"/.local/log/safeeyes/log 2>&1
 
 # Become dwm
 exec dwm
