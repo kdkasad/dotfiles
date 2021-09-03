@@ -114,7 +114,7 @@
 	XF86Calculator
 
 # file manager
-"$TERMINAL -e lf"
+"$TERMINAL -t "File Manager" -e lf"
 	Mod4 + Control + Return
 
 # fuzzy search for drag-and-drop
