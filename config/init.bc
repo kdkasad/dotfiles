@@ -50,7 +50,7 @@ define f2c(f) { return ((f - 32) / 1.8) }
 define c2f(c) { return (c * 1.8 + 32) }
 
 # Combination
-define c(n, r) {
+define combs(n, r) {
 	return (fact(n) / (fact(r) * fact(n - r)))
 }
 
@@ -90,4 +90,9 @@ define d2r(d) {
 # Radians to degrees
 define r2d(r) {
 	return r * (180 / pi)
+}
+
+# Dot product
+define dotprod(u1, u2, v1, v2) {
+	return ( (u1 * v1) + (u2 * v2) )
 }
