@@ -14,7 +14,11 @@ DBUS_SESSION_BUS_ADDRESS=$DBUS_SESSION_BUS_ADDRESS
 export DBUS_SESSION_BUS_ADDRESS
 eof
 
+# Start GNOME PolicyKit agent
+setsid -f /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+
 # Start session manager
+# (requires masking lxpolkit(1) or error popup will appear)
 setsid -f lxsession
 
 # Start keybinding daemon
