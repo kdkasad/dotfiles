@@ -16,7 +16,7 @@ Plug 'ap/vim-css-color'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/fzf.vim'
 Plug 'nfnty/vim-nftables'
-Plug 'ghifarit53/sonokai'
+Plug 'sainnhe/sonokai'
 Plug 'sheerun/vim-polyglot'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'mhinz/vim-startify'
