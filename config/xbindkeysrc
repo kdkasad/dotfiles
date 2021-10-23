@@ -17,6 +17,14 @@
 "mpc prev"
 	XF86AudioPrev
 
+# dunst controls
+"dunstctl close"
+	Control + space
+"dunstctl close-all"
+	Control + Shift + space
+"dunstctl history-pop"
+	Control + grave
+
 # brightness down
 "backlightctl dec 10"
 	XF86MonBrightnessDown
