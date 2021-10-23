@@ -1,18 +1,46 @@
 #!/bin/sh
 
+set -o pipefail
+
 ss_select() {
-	maim -su | tee $path | xclip -i -selection clipboard -t image/png
-	notify-send -a 'screenshot utility' "screenshot taken" "saved to <pre>$(echo "$path" | sed "s|^$HOME|~|")</pre><br><br>and copied to clipboard"
+	maim -su -l -c 255,255,255,0.25 | tee $path | xclip -i -selection clipboard -t image/png
+	[ $? -eq 0 ] && notify-send -a 'screenshot utility' "screenshot taken" "saved to <pre>$(echo "$path" | sed "s|^$HOME|~|")</pre><br><br>and copied to clipboard"
+	exit
+}
+
+ss_ocr() {
+	# Create a temprary directory
+	tmpdir="$(mktemp -d)"
+	[ -d "$tmpdir" ] || exit 2
+
+	# Take a screenshot and pass it to tesseract for OCR
+	maim -su -l -c 255,255,255,0.25 | tesseract stdin "$tmpdir/ocr" quiet txt
+
+	# If any of that pipeline failed, delete the tmpdir and exit
+	if [ $? -ne 0 ]; then
+		rm -rf "$tmpdir"
+		exit 1
+	fi
+
+	# Copy text to clipboard
+	xclip -i -selection clipboard < "$tmpdir/ocr.txt"
+
+	# Open terminal with copied text and remove file when done
+	[ -s "$tmpdir/ocr.txt" ] && \
+		setsid -f $TERMINAL -e sh -c "cat '$tmpdir/ocr.txt' ; rm -rf '$tmpdir' ; printf '\n\n' ; read -n 1 -s -p 'Press any key to close...'"
+
+	notify-send -a 'screenshot utility' 'screenshot taken' 'text copied to clipboard'
+
 	exit
 }
 
 ss_full() {
-	maim -u | tee $path | xclip -i -selection clipboard -t image/png
+	maim -u | tee "$path" | xclip -i -selection clipboard -t image/png
 	notify-send -a 'screenshot utility' "screenshot taken" "saved to <pre>$(echo "$path" | sed "s|^$HOME|~|")</pre><br><br>and copied to clipboard"
 	exit
 }
 
-optstring="ps"
+optstring="pso"
 
 path="$HOME/pictures/screenshots/$(date +'%Y-%m-%d_%H:%M:%S').png"
 
@@ -20,6 +48,7 @@ while getopts "$optstring" option; do
 	case "$option" in
 		p) path="$(find ~ -not -path '*/.*' -type d 2>/dev/null | sed -e "s|$HOME|~|" -e "s|[^/]$|\0/|" | bemenu -l 20 -p "choose output path:" | sed "s|^~|$HOME|")" ;;
 		s) ss_select ;;
+		o) ss_ocr ;;
 	esac
 done
 

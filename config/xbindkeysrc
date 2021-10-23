@@ -53,6 +53,8 @@
 	Control + Print
 "scrnshot -ps"
 	Control + Shift + Print
+"scrnshot -o"
+	Mod4 + Print
 
 ## app/program shortcuts
 
