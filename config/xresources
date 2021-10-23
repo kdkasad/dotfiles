@@ -78,7 +78,7 @@ dmenu.selbackground: shusia_blue
 dmenu.selforeground: shusia_dark
 
 /* slock */
-slock.defaultcolor:	shusia_dark
+slock.defaultcolor:	zgd_bg
 slock.inputcolor:	shusia_blue
 slock.failcolor:	shusia_red
 
@@ -117,8 +117,13 @@ Xcursor.theme: beachball
 Xcursor.size: 24
 
 /* sxiv */
-Sxiv.background: shusia_dark
-Sxiv.foreground: shusia_light
+Sxiv.background: zgd_bg
+Sxiv.foreground: zgd_fg
+
+/* nsxiv */
+Nsxiv.window.background: zgd_bg
+Nsxiv.window.foreground: zgd_fg
+Nsxiv.font: "display"
 
 /* st */
 st.font:	terminal:autohint=true:antialias=true:size=11
