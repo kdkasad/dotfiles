@@ -96,6 +96,10 @@
 "$BROWSER"
 	Mod4 + b
 
+# open URL
+"browseurl"
+	Mod4 + u
+
 # lock screen
 "slock"
 	Mod4 + Shift + l
@@ -134,5 +138,8 @@
 # bc(1)
 "$TERMINAL -e bc -ilq ${XDG_CONFIG_HOME:-$HOME/.config}/init.bc"
 	Mod4 + Shift + b
+
+"xclip -selection clipboard -o >> ~/clipboard.txt"
+	Mod4 + Shift + a
 
 # vim: ft=conf
