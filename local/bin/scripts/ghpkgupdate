@@ -1,0 +1,30 @@
+#!/bin/bash
+
+set -o pipefail
+
+error() {
+	printf '\033[1;31merror:\033[m %s\n' "$1"
+	exit 1
+}
+
+info() {
+	printf '\033[1;34info:\033[m %s\n' "$1"
+}
+
+url=$(makepkg --printsrcinfo | grep -oiP 'url = \Khttps?://(www\.)?github\.com(/[\w\-]+){2}')
+[ $? -gt 0 ] && error 'error parsing PKGBUILD'
+owner=$(printf '%s' "$url" | grep -oiP 'https?://(www\.)?github\.com/\K[^/]+')
+repo=$(printf '%s' "$url" | grep -oiP 'https?://(www\.)?github\.com/[^/]+/\K[^/]+')
+[ -z "$owner" -o -z "$repo" ] && error 'error parsing URL. Make sure URL in PKGBUILD is a link to a GitHub repository.'
+
+printf '\033[1;34minfo:\033[m using repository: %s/%s\n' "$owner" "$repo"
+
+tag=$(curl -sSL "https://api.github.com/repos/$owner/$repo/tags?per_page=1" | jq -j '.[0] | .name')
+[ $? -gt 0 ] && error 'error fetching/parsing tags list from GitHub'
+
+printf '\033[1;34minfo:\033[m found latest tag: %s\n' "$tag"
+
+# back up PKGBUILD before proceeding
+cp -f PKGBUILD .PKGBUILD.old
+
+sed -i "/pkgver=/s:[0-9]\(\.[0-9]\+\)*:$tag:" PKGBUILD
