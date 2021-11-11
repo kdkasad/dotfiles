@@ -68,7 +68,7 @@ setsid -f mpris-proxy >"$HOME"/.local/log/mpris-proxy/log 2>&1
 mpd
 
 # start mpDris2
-setsid -f mpDris2 >"$HOME"/.local/log/mpdris2/log 2>&1
+#setsid -f mpDris2 >"$HOME"/.local/log/mpdris2/log 2>&1
 
 # Start KDE Connect daemon
 setsid -f /usr/lib/kdeconnectd >"$HOME"/.local/log/kdeconnectd/log 2>&1
