@@ -12,9 +12,10 @@ for arg in "$@"; do
 	esac
 done
 
-youtube-dl -i "$@" && {
-	cleanup-videos .
+yt-dlp --quiet --progress -i "$@" && {
+	:
+	#cleanup-videos .
 } || {
-	printf "\033[1;31merror\033[0m: youtube-dl exited with an error. Not running cleanup-videos script.\n"
+	printf "\033[1;31merror\033[0m: yt-dlp exited with an error. Not running cleanup-videos script.\n"
 	exit 1
 }
