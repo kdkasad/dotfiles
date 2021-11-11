@@ -1,0 +1,14 @@
+#!/bin/sh
+
+CONSFILE=/sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode
+
+if [ ! -w "$CONSFILE" ]; then
+	printf "\033[1;31merror:\033[0m unable to write to conservation_mode file\n"
+fi
+
+exec >$CONSFILE
+
+case "$1" in
+	on|1)  echo 1 ;;
+	off|0) echo 0 ;;
+esac

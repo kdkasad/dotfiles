@@ -1,0 +1,3 @@
+#!/bin/sh
+
+gpg -K --keyid-format 0xlong | grep sec | grep -o "0x[A-Fa-f0-9]\\{15\\}"

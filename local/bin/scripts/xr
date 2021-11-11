@@ -1,0 +1,12 @@
+#!/bin/sh
+
+xrandr | grep 'HDMI-1 connected' \
+	&& {
+		#xrandr --output HDMI-1 --auto --right-of eDP-1 --primary
+		xrandr --output eDP-1 --off --output HDMI-1 --auto --primary
+		pkill polybar
+		"$HOME"/.config/polybar/start-polybar.sh
+	} \
+	|| xrandr --auto
+
+xinput --map-to-output 'GTCH7503:00 2A94:D64D' eDP-1
