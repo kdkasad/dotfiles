@@ -184,11 +184,11 @@ pres() {
 alias irssi="irssi --config=$HOME/.config/irssi/config --home=$HOME/.local/share/irssi"
 
 # youtube-dl is a long name
-alias ytdl='youtube-dl'
+alias ytdl='yt-dlp'
 
 # don't glob urls when using curl or youtube-dl
 alias curl='noglob curl'
-alias youtube-dl='noglob youtube-dl'
+alias yt-dlp='noglob yt-dlp'
 
 # show progress in xz
 xzip() {
