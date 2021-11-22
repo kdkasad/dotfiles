@@ -24,12 +24,8 @@ setsid -f lxsession
 # Start keybinding daemon
 "$HOME"/.config/xbindkeysrc/start.sh
 
-# Configure external display
-xrandr | grep 'HDMI-1 connected' &&
-	xrandr --output eDP-1 --auto --output HDMI-1 --auto --primary --right-of eDP-1
-
-# map touchscreen to only laptop display
-xinput --map-to-output 'GTCH7503:00 2A94:D64D' eDP-1
+# Configure displays
+xr --no-polybar
 
 # Set desktop background
 bgs -z ~/pictures/wallpapers/current &

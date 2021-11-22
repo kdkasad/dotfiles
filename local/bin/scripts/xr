@@ -1,11 +1,19 @@
 #!/bin/sh
 
-xrandr | grep 'HDMI-1 connected' \
+for arg in "$@"; do
+	if [ "$arg" = "-n" -o "$arg" = "--no-polybar" ]; then
+		nopoly=true
+	fi
+done
+
+xrandr | grep -qs 'HDMI-1 connected' \
 	&& {
 		#xrandr --output HDMI-1 --auto --right-of eDP-1 --primary
 		xrandr --output eDP-1 --off --output HDMI-1 --auto --primary
-		pkill polybar
-		"$HOME"/.config/polybar/start-polybar.sh
+		if [ -z "$nopoly" ]; then
+			pkill polybar
+			"$HOME"/.config/polybar/start-polybar.sh
+		fi
 	} \
 	|| xrandr --auto
 
