@@ -96,7 +96,7 @@ polybar.fg-alt:		#5e5e5e
 
 polybar.primary:	shusia_blue
 polybar.secondary:	shusia_light
-polybar.alert:		shushia_red
+polybar.alert:		shusia_red
 
 polybar.border-color:	shusia_blue
 
