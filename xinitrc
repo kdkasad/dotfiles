@@ -22,7 +22,7 @@ setsid -f /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 setsid -f lxsession
 
 # Start keybinding daemon
-xbindkeys -f ~/.config/xbindkeysrc &
+"$HOME"/.config/xbindkeysrc/start.sh
 
 # Configure external display
 xrandr | grep 'HDMI-1 connected' &&

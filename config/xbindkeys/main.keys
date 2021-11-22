@@ -17,14 +17,6 @@
 "mpc prev"
 	XF86AudioPrev
 
-# dunst controls
-"dunstctl close"
-	Control + space
-"dunstctl close-all"
-	Control + Shift + space
-"dunstctl history-pop"
-	Control + grave
-
 # brightness down
 "backlightctl dec 10"
 	XF86MonBrightnessDown
@@ -138,6 +130,9 @@
 # bc(1)
 "$TERMINAL -e bc -ilq ${XDG_CONFIG_HOME:-$HOME/.config}/init.bc"
 	Mod4 + Shift + b
+
+"tabbed -c vimb -e"
+	Mod4 + Shift + v
 
 "xclip -selection clipboard -o >> ~/clipboard.txt"
 	Mod4 + Shift + a
