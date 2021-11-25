@@ -76,5 +76,8 @@ setsid -f kdeconnect-indicator >"$HOME"/.local/log/kdeconnect-indicator/log 2>&1
 # Start safeeyes
 # setsid -f safeeyes >"$HOME"/.local/log/safeeyes/log 2>&1
 
+# Start VNC server
+setsid -f x0vncserver -rfbport 5909 -SecurityTypes TLSVnc -PasswordFile ~/.config/vnc/passwd >"$HOME"/.local/log/vncserver/log 2>&1
+
 # Become dwm
 exec dwm
