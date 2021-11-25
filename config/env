@@ -102,6 +102,9 @@ ln=⛓:\
 # set runit service dir for vsv(1)
 export SVDIR="/run/runit/service/"
 
+# allow global per-user package installation for NPM
+export npm_config_prefix="$HOME/.local"
+
 
 ## CLEAN ~ ##
 
