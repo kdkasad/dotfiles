@@ -22,7 +22,7 @@ setsid -f /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 setsid -f lxsession
 
 # Start keybinding daemon
-"$HOME"/.config/xbindkeysrc/start.sh
+"$HOME"/.config/xbindkeys/start.sh
 
 # Configure displays
 xr --no-polybar
