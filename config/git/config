@@ -1,0 +1,104 @@
+# include ~/.config/git/private.conf
+# This is where personal information goes, like the [user] section so it isn't
+# included in the dotfiles repository
+[include]
+	path = private.conf
+
+[commit]
+	gpgsign = true
+[core]
+	editor = nvim
+	autocrlf = input
+	pager = less -S
+[color]
+	status = auto
+	ui = auto
+[tag]
+	gpgsign = true
+[blame]
+	coloring = repeatedLines
+[pull]
+	ff = only
+[alias]
+	c = commit
+	co = checkout
+	s = status
+	l = log -s --graph --no-show-signature
+	lo = log --graph --oneline --no-show-signature
+	la = log -s --graph --no-show-signature --all
+	loa = log --graph --oneline --no-show-signature --all
+	log = log --graph
+	logs = log --graph --show-signature
+	root = rev-list --max-parents=0 HEAD
+	sw = switch
+	d = diff
+	ds = diff --staged
+	dw = diff --word-diff
+	dws = diff --staged --word-diff
+	b = branch
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+[diff]
+	tool = nvimdiff
+
+# URL aliases for GitHub
+[url "https://github.com/"]
+	insteadOf = gh:
+	insteadOf = gh://
+[url "git@github.com:"]
+	pushInsteadOf = gh:
+	pushInsteadOf = gh://
+	pushInsteadOf = https://github.com/
+	pushInsteadOf = http://github.com/
+	pushInsteadOf = git://github.com/
+
+# URL aliases for GitLab
+[url "https://gitlab.com/"]
+	insteadOf = gl:
+	insteadOf = gl://
+[url "git@gitlab.com:"]
+	pushInsteadOf = gl:
+	pushInsteadOf = gl://
+	pushInsteadOf = https://gitlab.com/
+	pushInsteadOf = http://gitlab.com/
+	pushInsteadOf = git://gitlab.com/
+
+# URL aliases for git.kasad.com
+[url "https://git.kasad.com/"]
+	insteadOf = kasad:
+	insteadOf = kasad://
+	insteadOf = http://git.kasad.com/
+	insteadOf = git://git.kasad.com/
+[url "git@git.kasad.com:"]
+	pushInsteadOf = kasad:
+	pushInsteadOf = kasad://
+	pushInsteadOf = http://git.kasad.com/
+	pushInsteadOf = https://git.kasad.com/
+	pushInsteadOf = git://git.kasad.com/
+
+# URL aliases for the AUR
+[url "https://aur.archlinux.org/"]
+	insteadOf = aur:
+	insteadOf = aur://
+	insteadOf = http://aur.archlinux.org/
+[url "aur@aur.archlinux.org:"]
+	pushInsteadOf = aur:
+	pushInsteadOf = aur://
+	pushInsteadOf = http://aur.archlinux.org/
+	pushInsteadOf = https://aur.archlinux.org/
+
+# Use msmtp with queueing to send emails
+[sendemail]
+	sendmailcmd = msmtp-enqueue.sh
+	envelopesender = auto
+	confirm = auto
+[merge]
+	tool = nvimdiff
+[advice]
+	detachedHead = false
+	addEmptyPathspec = false
+[init]
+	defaultBranch = master
