@@ -45,10 +45,9 @@
 	tool = nvimdiff
 
 # URL aliases for GitHub
-[url "https://github.com/"]
+[url "git@github.com:"]
 	insteadOf = gh:
 	insteadOf = gh://
-[url "git@github.com:"]
 	pushInsteadOf = gh:
 	pushInsteadOf = gh://
 	pushInsteadOf = https://github.com/
