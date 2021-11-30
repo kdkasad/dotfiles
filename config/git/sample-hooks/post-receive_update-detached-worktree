@@ -1,0 +1,59 @@
+#!/bin/bash
+
+#
+# post-receive - checkout files to a separate working directory
+#
+# Copyright (c) 2021 Kian Kasad
+# SPDX-License-Identifier: BSD-2-Clause-Patent
+# See https://kasad.com/licenses/BSD-2-Clause-Patent for license text
+#
+
+
+# This script requires a work tree to be set. This can either be done with the
+# x-core.worktree option in Git or by setting the GIT_WORK_TREE environment
+# variable.
+worktree="$GIT_WORK_TREE"
+worktree="${worktree:-$(git config --get --local x-core.worktree)}"
+if [ -z "${worktree:+x}" ]; then
+	# If no work tree is defined, print an error message and exit
+	printf '\033[31m' >&2 # Use red color
+	cat >&2 << eof
+Error: This script requires a work tree to be set. This can either be done with
+       the core.worktree option in the remote Git repository or by setting the
+       GIT_WORK_TREE environment variable.
+eof
+	printf '\033[m' >&2 # Reset color
+	exit 1
+fi
+# Export resulting work tree dir for later use
+export GIT_WORK_TREE="$worktree"
+
+# Update files in /www
+git checkout --force --quiet master
+
+# Parse push options
+if [ ${GIT_PUSH_OPTION_COUNT:-0} -gt 0 ]; then
+	for n in $(seq 0 $GIT_PUSH_OPTION_COUNT) ; do
+		# If the 'cleanup' option is given, then set a variable for
+		# later use
+		option="GIT_PUSH_OPTION_$n"
+		if [ "${!option}" = 'cleanup' ]; then
+			cleanup_files=yes
+		fi
+	done
+fi
+
+if [ "${cleanup_files:+x}" = 'x' ]; then
+	# If told to clean up untracked files, delete them
+	git clean -df
+else
+	# Otherwise send a list of untracked files to the client
+	# --others : untracked files
+	# --exclude-standard : don't list ignored files
+	untracked_count=$(git ls-files --others --exclude-standard | wc -l)
+	if [ $untracked_count -gt 0 ]; then
+		printf '\033[1;33m%s\033[m %s\n' 'Warning:' 'Found untracked files:'
+		git ls-files --others --exclude-standard | sed "s:^:\t$worktree/:"
+		printf '\033[1;33m%s\033[m\n' "To remove these files, run 'git push -o cleanup'"
+	fi
+fi
