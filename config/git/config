@@ -96,6 +96,7 @@
 	confirm = auto
 [merge]
 	tool = nvimdiff
+	log = true
 [advice]
 	detachedHead = false
 	addEmptyPathspec = false
