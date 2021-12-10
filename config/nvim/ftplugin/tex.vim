@@ -20,7 +20,7 @@ function! s:TAC()
 	else
 		let s:ac = 1
 		augroup latex_autocompile
-			execute "autocmd BufWritePost " . fnameescape(expand("%:p")) . " CompileTexToPdf"
+			execute "autocmd BufWritePost " . fnameescape(expand("%:p")) . " silent! CompileTexToPdf"
 		augroup END
 	endif
 endfunction
@@ -29,7 +29,10 @@ call s:NormalMode()
 
 command! ToggleAutoCompile call s:TAC()
 
-ToggleAutoCompile
+" Set up keybindings for compiling
+nnoremap <buffer> ,cp <cmd>CompileTexToPdf<cr>
+nnoremap <buffer> ,ecp <cmd>ToggleAutoCompile<cr>
+nnoremap <buffer> ,pdf <cmd>exe "silent !setsid -f xdg-open " . expand('%:r') . ".pdf >/dev/null 2>&1"<cr>
 
 " Snippets:
 iabbrev doc \documentclass{<++>}<CR><CR>\begin{document}<CR><CR><++><CR><CR>\end{document}<Space><Space>

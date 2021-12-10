@@ -291,7 +291,7 @@ augroup groffcomp
 	au FileType nroff,troff nnoremap <buffer> <leader>cp <cmd>silent !compiledoc % &<cr>
 	au FileType nroff,troff nnoremap <buffer> <leader>ecp <cmd>autocmd groffcomp BufWritePost <buffer> silent !compiledoc % &<cr>
 	au FileType nroff,troff nnoremap <buffer> <leader>dcp <cmd>autocmd! groffcomp BufWritePost <buffer><cr>
-	au FileType nroff,troff nnoremap <buffer> <leader>pdf :exe "silent !setsid -f zathura ".expand('%:r').".pdf"<cr>
+	au FileType nroff,troff nnoremap <buffer> <leader>pdf :exe "silent !setsid -f xdg-open ".expand('%:r').".pdf"<cr>
 augroup end
 
 au FileType markdown vmap <leader><bslash> :EasyAlign*<bar><cr>
