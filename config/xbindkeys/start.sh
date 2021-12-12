@@ -1,6 +1,6 @@
 #!/bin/sh
 
-dir=$(dirname "$0")
+dir=$(dirname $(realpath "$0"))
 
 # kill existing pkill(1) instances
 pkill -x xbindkeys
