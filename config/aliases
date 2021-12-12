@@ -167,7 +167,11 @@ alias capsesc='setxkbmap -option caps:escape_shifted_capslock'
 
 # quickly create executable scripts
 mkscript() {
-	touch "$@"
+	for f in "$@"; do
+		if ! [ -e "$f" ]; then
+			echo '#!/bin/sh' > "$f"
+		fi
+	done
 	chmod +x "$@"
 	vim "$@"
 }
