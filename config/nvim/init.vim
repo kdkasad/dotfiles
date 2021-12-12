@@ -299,10 +299,6 @@ au FileType markdown vmap <leader><bslash> :EasyAlign*<bar><cr>
 " don't follow EditorConfig rules for Git commit messages
 au FileType gitcommit let b:EditorConfig_disable = 1
 
-" run python scripts easily
-au FileType python nmap <leader>r :CocCommand python.execInTerminal<cr>
-au FileType python vmap <leader>r :CocCommand python.execSelectionInTerminal<cr>
-
 " display markdown files using glow
 au FileType markdown nmap <buffer> <leader>gl :sp \| te glow %<cr>
 au FileType markdown nmap <buffer> <leader>vgl :vsp \| te glow %<cr>
