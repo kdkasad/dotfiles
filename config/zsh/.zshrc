@@ -122,6 +122,11 @@ else
 	fi
 fi
 
+# If Python virtual environment is activated, prepend "(venv)" to the prompt
+if [ -n "${VIRTUAL_ENV:-}" ]; then
+	PROMPT="%b%f(venv) $PROMPT"
+fi
+
 unset color_prompt force_color_prompt
 
 # enable color support of ls and also add handy aliases
