@@ -35,11 +35,11 @@ nnoremap <buffer> ,ecp <cmd>ToggleAutoCompile<cr>
 nnoremap <buffer> ,pdf <cmd>exe "silent !setsid -f xdg-open " . expand('%:r') . ".pdf >/dev/null 2>&1"<cr>
 
 " Snippets:
-iabbrev doc \documentclass{<++>}<CR><CR>\begin{document}<CR><CR><++><CR><CR>\end{document}<Space><Space>
+iabbrev doc \documentclass{<++>}<CR><CR>\usepackage[utf8]{inputenc}<CR><CR>\begin{document}<CR><CR><++><CR><CR>\end{document}<S-Tab><S-Tab>
 iabbrev pack \usepackage{<++>}<C-o>?<++><CR><C-o>df>
 iabbrev ul \begin{itemize}<CR><++><CR>\end{itemize}<C-o>?<++><CR><C-o>df>
 iabbrev ol \begin{enumerate}<CR><++><CR>\end{enumerate}<C-o>?<++><CR><C-o>df>
-iabbrev it \item{<++>}<C-o>?<++><CR><C-o>df>
+" iabbrev it \item{<++>}<C-o>?<++><CR><C-o>df>
 
 command -nargs=1 TexCompileMode if <f-args> == 'bib'
 									\ | call s:BibMode()
