@@ -184,6 +184,11 @@ if [ -d "$HOME/.local/bin/scripts" ] ; then
 	done
 fi
 
+# include TinyTex utilities
+if [ -d "$HOME/.local/bin/tinytex" ]; then
+	PATH="$HOME/.local/bin/tinytex:$PATH"
+fi
+
 # include ccache utils
 if [ -d /usr/lib/ccache/bin ] ; then
 	PATH="/usr/lib/ccache/bin:$PATH"
