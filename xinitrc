@@ -79,5 +79,10 @@ setsid -f kdeconnect-indicator >"$HOME"/.local/log/kdeconnect-indicator/log 2>&1
 # Start VNC server
 setsid -f x0vncserver -rfbport 5909 -SecurityTypes TLSVnc -PasswordFile ~/.config/vnc/passwd >"$HOME"/.local/log/vncserver/log 2>&1
 
-# Become dwm
-exec dwm
+# Prevent systemd-logind from sleeping and become dwm
+exec systemd-inhibit \
+	--what='idle' \
+	--who="$(id -un)'s Desktop environment" \
+	--why="$(id -un) is currently logged in to this system" \
+	--mode='block' \
+	dwm
