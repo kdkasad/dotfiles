@@ -256,4 +256,8 @@ alias drag='dragon-drag-and-drop -a -x'
 # colored cat using highlight(1)
 alias ccat='highlight -Oansi'
 
+# allow mistyping git-status(1)
 alias gs='g s'
+
+# Make tmux assume 256-color support
+alias tmux='tmux -2'
