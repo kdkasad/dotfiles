@@ -97,7 +97,7 @@ if [ "$color_prompt" = yes ]; then
 	if [ -z "$SSH_CLIENT" ]; then
 		PROMPT="%B%F{blue}%~%(?..%b%f : %B%F{red}%?)%f%B %(!.#.$PECHAR)%b%f "
 	else
-		PROMPT="%B%F{yellow}(%n) %B%F{blue}%~%(?..%b%f : %B%F{red}%?)%f%B %(!.#.$PECHAR)%b%f "
+		PROMPT="%B%F{yellow}(%n@%m) %B%F{blue}%~%(?..%b%f : %B%F{red}%?)%f%B %(!.#.$PECHAR)%b%f "
 	fi
 	clear_rprompt() {
 		unset RPROMPT
@@ -118,7 +118,7 @@ else
 	if [ -z "$SSH_CLIENT" ]; then
 		PROMPT="%~%(?.. : %?) %(!.#.$PECHAR) "
 	else
-		PROMPT="(%n) %~%(?.. : %?) %(!.#.$PECHAR) "
+		PROMPT="(%n@%m) %~%(?.. : %?) %(!.#.$PECHAR) "
 	fi
 fi
 
