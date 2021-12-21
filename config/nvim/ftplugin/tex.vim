@@ -1,11 +1,12 @@
 function s:NormalMode()
-	execute "command! CompileTexToPdf !pdflatex " . expand('%:r')
-	execute "command! CompileTex !latex " . expand('%:r')
+	execute "command! CompileTexToPdf !latexmk -pdfxe -outdir=" . expand('%:h') . " " . expand('%:r')
+	execute "command! CompileTexToPdfForce !latexmk -g -pdfxe -outdir=" . expand('%:h') . " " . expand('%:r')
+	execute "command! CompileTex !latex -output-directory " . expand('%:h') . " " . expand('%:r')
 endfunction
 
 function s:BibMode()
-	execute "command! CompileTexToPdf !latex " . expand('%:r') . " && bibtex " . expand('%:r') . " && latex " . expand('%:r') . " && pdflatex " . expand('%:r')
-	execute "command! CompileTex !latex " . expand('%:r') . " && bibtex " . expand('%:r') . " && latex " . expand('%:r') . " && latex " . expand('%:r')
+	execute "command! CompileTexToPdf !cd " . expand('%:h') . " && latex " . expand('%:r') . " && bibtex " . expand('%:r') . " && latex " . expand('%:r') . " && pdflatex " . expand('%:r')
+	execute "command! CompileTex !cd " . expand('%:h') . " && latex " . expand('%:r') . " && bibtex " . expand('%:r') . " && latex " . expand('%:r') . " && latex " . expand('%:r')
 endfunction
 
 function! s:TAC()
@@ -30,7 +31,7 @@ call s:NormalMode()
 command! ToggleAutoCompile call s:TAC()
 
 " Set up keybindings for compiling
-nnoremap <buffer> ,cp <cmd>CompileTexToPdf<cr>
+nnoremap <buffer> ,cp <cmd>CompileTexToPdfForce<cr>
 nnoremap <buffer> ,ecp <cmd>ToggleAutoCompile<cr>
 nnoremap <buffer> ,pdf <cmd>exe "silent !setsid -f xdg-open " . expand('%:r') . ".pdf >/dev/null 2>&1"<cr>
 
