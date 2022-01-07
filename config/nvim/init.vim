@@ -309,9 +309,9 @@ au FileType markdown nmap <buffer> <leader>vgl :vsp \| te glow %<cr>
 function <SID>AddHexAutoCmds()
 	augroup hexedit
 		au!
-		au BufReadPost  <buffer> exe "%!xxd" | set ft=xxd
-		au BufWritePre  <buffer> exe "%!xxd -r"
-		au BufWritePost <buffer> exe "%!xxd" | set nomod
+		au BufReadPost  <buffer> exe "%!xxd -groupsize 1" | set ft=xxd
+		au BufWritePre  <buffer> exe "%!xxd -revert -groupsize 1"
+		au BufWritePost <buffer> exe "%!xxd -groupsize 1" | set nomod
 	augroup end
 endfunction
 
