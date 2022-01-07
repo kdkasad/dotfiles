@@ -9,7 +9,6 @@ pkill -x xbindkeys
 if [ $# -ge 1 ]; then
 	for map in "$@"; do
 		setsid -f xbindkeys -f "$dir/${map%.keys}.keys"
-		exit
 	done
 	exit
 fi
