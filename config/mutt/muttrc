@@ -12,7 +12,7 @@ set sort = threads
 set sort_aux = reverse-date
 
 # mailcap definitions
-set mailcap_path = ~/.config/mutt/mailcap:$mailcap_path
+set mailcap_path = ~/.config/mutt/mailcap
 
 # don't abort unmodofied messages
 set abort_unmodified = no
@@ -45,3 +45,8 @@ set crypt_protected_headers_write = yes
 
 # encrypt drafts
 set postpone_encrypt = yes
+
+# don't display delivery reports automatically.
+# do display message headers, though.
+unauto_view message/delivery-status
+auto_view text/rfc822-headers
