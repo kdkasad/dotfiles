@@ -32,22 +32,22 @@ cmd mkfile ${{
 }}
 
 cmd chmod ${{
-  printf "Mode Bits: "
-  read ans
+  printf "Mode bits (0644): "
+  read -r ans
+  ans="${ans:-0644}"
 
-  for file in "$fx"
-  do
-    chmod $ans $file
-  done
+  xargs -d '\n' chmod "$ans" <<< "$fx"
 }}
 
 cmd setwallpaper %bgs -z "$f"
 
 cmd fzf_jump ${{
   res="$(find . -maxdepth 3 | fzf --reverse --header='Jump to location')"
-  if [ -f "$res" ]; then
+  if [ -f "$res" ]
+  then
     cmd="select"
-  elif [ -d "$res" ]; then
+  elif [ -d "$res" ]
+  then
     cmd="cd"
   fi
   lf -remote "send $id $cmd \"$res\""
@@ -65,18 +65,24 @@ cmd broot_jump ${{
   lf -remote "send $id $cmd \"$res\""
 }}
 
-cmd dragon &dragon-drag-and-drop -a -x $fx
+cmd dragon &xargs -d '\n' dragon-drag-and-drop -a -x <<< "$fx"
 
 cmd pdf ${{
   echo -n "Output PDF name: "
-  read ans
-  convert -auto-orient $fx "$ans"
+  read -r ans
+  xargs -d '\n' convert -auto-orient << eof
+$fx
+$ans
+eof
 }}
 
 cmd pdfmerge ${{
   echo -n "Output PDF name: "
   read ans
-  pdfunite $fx "$ans"
+  xargs -d '\n' pdfunite << eof
+$fx
+$ans
+eof
 }}
 
 cmd cloc %find $fx -type f | xargs -r cat | wc -l
