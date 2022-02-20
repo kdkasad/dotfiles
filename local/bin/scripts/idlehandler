@@ -9,8 +9,4 @@ if [ -e /tmp/nosleep ]; then
 	exit 0
 fi
 
-if grep -q Charging /sys/class/power_supply/BAT0/status; then
-	systemctl suspend
-else
-	systemctl suspend
-fi
+systemctl suspend
