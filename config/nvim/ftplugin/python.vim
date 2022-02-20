@@ -9,3 +9,6 @@ command RunPython !python3 %
 
 nmap <S-F10> :RunPython<CR>
 imap <S-F10> <C-o>:RunPython<CR>
+
+" Set folding settings
+setlocal foldmethod=indent
