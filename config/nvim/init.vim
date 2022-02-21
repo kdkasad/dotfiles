@@ -179,6 +179,10 @@ set nojoinspaces
 " Allow concealing with syntax highlighting
 set conceallevel=2
 
+" Show leading/trailing whitespace characters
+set list
+set listchars=tab:>\ ,lead:·,trail:·,extends:>,precedes:<,nbsp:·
+
 " SESSION SETTINGS {{{1
 
 " Automatically update currently-loaded session when leaving it
@@ -356,6 +360,9 @@ nnoremap <leader>tt :tabnew\|terminal<cr>
 
 " toggle line wrapping
 nnoremap <leader>wr :set wrap!<cr>
+
+" toggle visible whitespace
+nnoremap <leader>ws <cmd>set list!<cr>
 
 " toggle spell check
 nnoremap <leader>s :set spell!<cr>
