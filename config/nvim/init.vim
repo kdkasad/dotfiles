@@ -221,6 +221,10 @@ let g:lightline = {
 	\ },
 \ }
 
+" Highlight trailing whitespace
+highlight TrailingWhitespace ctermfg=235 ctermbg=203 guifg=#2d2a2e guibg=#ff6188
+match TrailingWhitespace /\s\+$/
+
 
 " SPLIT SETTINGS {{{1
 
