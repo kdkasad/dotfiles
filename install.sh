@@ -48,7 +48,9 @@ done
 
 # print initial information
 printf 'installing files to %s\n' "$PREFIX"
-echo 'this process will not overwrite any existing files'
+if [ -z "$force" ]; then
+	echo 'this process will not overwrite any existing files'
+fi
 
 # create directories
 echo creating directories... >&2
