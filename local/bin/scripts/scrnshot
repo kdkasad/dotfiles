@@ -42,7 +42,7 @@ ss_full() {
 
 optstring="pso"
 
-path="$HOME/pictures/screenshots/$(date +'%Y-%m-%d_%H:%M:%S').png"
+path="$HOME/pictures/screenshots/$(date +'%Y-%m-%d_%H-%M-%S').png"
 
 while getopts "$optstring" option; do
 	case "$option" in
