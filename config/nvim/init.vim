@@ -181,7 +181,18 @@ set conceallevel=2
 
 " Show leading/trailing whitespace characters
 set list
-set listchars=tab:>\ ,lead:·,trail:·,extends:>,precedes:<,nbsp:·
+set listchars=tab:>\ ,lead:.,trail:·,extends:>,precedes:<,nbsp:·
+
+function! s:goyo_enter()
+	set nocursorline
+endfunction
+
+function! s:goyo_leave()
+	set cursorline
+endfunction
+
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
 " SESSION SETTINGS {{{1
 
