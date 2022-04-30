@@ -22,6 +22,9 @@ test -r "${XDG_CONFIG_HOME:-$HOME/.config}/env_secret" \
 
 ## CONFIGURE PROGRAMS ##
 
+# Fix some problems with VS Code
+export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
+
 # choose VA-API driver
 export LIBVA_DRIVER_NAME='iHD'
 
