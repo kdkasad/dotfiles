@@ -3,9 +3,9 @@
 # Start screen locker
 slock &
 
-# Don't sleep if /tmp/nosleep exists
-if [ -e /tmp/nosleep ]; then
-	printf '%s exists. Not sleeping.\n' /tmp/nosleep >&2
+# Don't sleep if $HOME/.local/share/nosleep exists
+if [ -e $HOME/.local/share/nosleep ]; then
+	printf '%s exists. Not sleeping.\n' $HOME/.local/share/nosleep >&2
 	exit 0
 fi
 
