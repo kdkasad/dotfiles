@@ -85,4 +85,5 @@ x-scheme-handler/mailto=neomutt.desktop
 x-scheme-handler/unknown=brave-browser.desktop
 x-scheme-handler/web+nextcloudreddit=brave-browser.desktop
 x-scheme-handler/webcal=brave-browser.desktop
+x-scheme-handler/vscode=code-oss-url-handler.desktop
 audio/mpegapplication/octet-stream=mpv.desktop
