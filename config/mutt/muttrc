@@ -20,6 +20,8 @@ set abort_unmodified = no
 # keybindings
 bind pager gg top
 bind pager G bottom
+bind pager <Up> previous-line
+bind pager <Down> next-line
 
 # color scheme definitions
 color index brightyellow default "~T"
