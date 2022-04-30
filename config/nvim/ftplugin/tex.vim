@@ -1,7 +1,7 @@
 function s:NormalMode()
-	execute "command! CompileTexToPdf !latexmk -pdfxe -outdir=" . expand('%:h') . " " . expand('%:r')
-	execute "command! CompileTexToPdfForce !latexmk -g -pdfxe -outdir=" . expand('%:h') . " " . expand('%:r')
-	execute "command! CompileTex !latex -output-directory " . expand('%:h') . " " . expand('%:r')
+	command! CompileTexToPdf !latexmk -pdfxe -outdir=%:h %:r
+	command! CompileTexToPdfForce !latexmk -g -pdfxe -outdir=%:h %:r
+	command! CompileTex !latex -output-directory %:h %:r
 endfunction
 
 function s:BibMode()
@@ -31,9 +31,9 @@ call s:NormalMode()
 command! ToggleAutoCompile call s:TAC()
 
 " Set up keybindings for compiling
-nnoremap <buffer> ,cp <cmd>CompileTexToPdfForce<cr>
-nnoremap <buffer> ,ecp <cmd>ToggleAutoCompile<cr>
-nnoremap <buffer> ,pdf <cmd>exe "silent !setsid -f xdg-open " . expand('%:r') . ".pdf >/dev/null 2>&1"<cr>
+nnoremap <buffer> <leader>cp <cmd>CompileTexToPdfForce<cr>
+nnoremap <buffer> <leader>ecp <cmd>ToggleAutoCompile<cr>
+nnoremap <buffer> <leader>pdf <cmd>silent !setsid -f xdg-open %:r.pdf >/dev/null 2>&1<cr>
 
 " Snippets:
 iabbrev doc \documentclass{<++>}<CR><CR>\usepackage[utf8]{inputenc}<CR><CR>\begin{document}<CR><CR><++><CR><CR>\end{document}<S-Tab><S-Tab>
