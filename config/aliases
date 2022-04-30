@@ -247,7 +247,7 @@ alias nom=notmuch
 
 # show nb notes using glow
 nbglow() {
-	nb --no-color show "$1" | glow -p -
+	nb show --no-color "$1" | glow -p -
 }
 
 # dragon-drag-and-drop
