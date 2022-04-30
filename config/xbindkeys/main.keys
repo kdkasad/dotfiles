@@ -10,11 +10,11 @@
 
 "$TERMINAL -e ncmpc"
 	XF86AudioStop
-"mpc toggle"
+"playerctl play-pause"
 	XF86AudioPlay
-"mpc next"
+"playerctl next"
 	XF86AudioNext
-"mpc prev"
+"playerctl previous"
 	XF86AudioPrev
 
 # brightness down
