@@ -5,4 +5,5 @@ case $BUTTON in
 	3) setsid -f mailsync ;;
 esac >/dev/null 2>&1
 
-find ${MAILDIR:-/var/spool/mail/$(id -un)}/*/INBOX/new -type f | wc -l | sed 's/^0$//; /^$/q;'
+#find ${MAILDIR:-/var/spool/mail/$(id -un)}/*/INBOX/new -type f | wc -l | sed 's/^0$//; /^$/q;'
+find ${MAILDIR:-/var/spool/mail} -type f -not -path '**/Trash/*' -not -path '**/*.Trash/*' -not -path '**/Junk/*' -not -path '**/Drafts/*' -not -path '**/*.Drafts/*' \( -path '**/cur/*' -regex '.*:2,[A-RT-Z]*' -or -path '**/new/*' \) | wc -l | sed 's/^0$//; /^$/q;'
