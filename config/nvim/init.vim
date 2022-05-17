@@ -472,6 +472,9 @@ endfunction
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
+" Surround character with spaces
+nmap <leader><space> i <esc>la <esc>h
+
 " 1}}}
 
 " vim: set foldmethod=marker foldmarker={{{,}}} :
