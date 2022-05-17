@@ -209,12 +209,20 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 
 " Color scheme
 set background=dark
-set termguicolors
+if has('termguicolors')
+	set termguicolors
+endif
 
 let g:sonokai_style = 'shusia'
 let g:sonokai_transparent_background = 1
 let g:sonokai_enable_italic = 1
 let g:sonokai_menu_selection_background = 'blue'
+let g:sonokai_spell_foreground = 'colored'
+let g:sonokai_current_word = 'bold'
+let g:sonokai_diagnostic_text_highlight = 1
+let g:sonokai_diagnostic_line_highlight = 1
+let g:sonokai_diagnostic_virtual_text = 'colored'
+let g:sonokai_better_performannce = 1
 colorscheme sonokai
 
 " Lightline settings
