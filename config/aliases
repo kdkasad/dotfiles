@@ -250,3 +250,9 @@ alias gs='g s'
 
 # Make tmux assume 256-color support
 alias tmux='tmux -2'
+
+# Upload to https://paste.rs
+paste() {
+	local file=${1:-/dev/stdin}
+	curl --data-binary @${file} https://paste.rs
+}
