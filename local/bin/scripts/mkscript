@@ -1,0 +1,16 @@
+#!/bin/sh
+
+for f in "$@"; do
+	if ! [ -e "$f" ]; then
+		extension=${f##*.}
+		case "$extension" in
+			py) shebang='/usr/bin/env python' ;;
+			sh|*) shebang='/bin/sh' ;;
+		esac
+		printf '#!%s\n\n' "$shebang" > "$f"
+	fi
+done
+chmod +x "$@"
+vim "$@"
+
+# ft=sh ts=4 sw=4 noet

@@ -165,17 +165,6 @@ alias scim=sc-im
 # Map CapsLock to Escape
 alias capsesc='setxkbmap -option caps:escape_shifted_capslock'
 
-# quickly create executable scripts
-mkscript() {
-	for f in "$@"; do
-		if ! [ -e "$f" ]; then
-			echo '#!/bin/sh' > "$f"
-		fi
-	done
-	chmod +x "$@"
-	vim "$@"
-}
-
 alias ctime="date +'%A, %d %B %Y at %H:%M'"
 
 # present using SENT
