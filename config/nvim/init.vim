@@ -430,14 +430,15 @@ xnoremap <c-_> <Plug>Commentary
 
 " CoC Mappings
 autocmd CursorHold * silent call CocActionAsync('highlight')
-inoremap <silent><expr> <c-space> coc#refresh()
+inoremap <silent><expr> <c-n> coc#refresh()
 nmap     <c-]>      <plug>(coc-definition)
 nmap     <leader>gd <plug>(coc-definition)
 nmap     <leader>gD <plug>(coc-declaration)
 nmap     <leader>gy <plug>(coc-type-definition)
 nmap     <leader>gi <plug>(coc-implementation)
 nmap     <leader>gr <plug>(coc-references)
-nmap     <leader>r  <plug>(coc-refactor)
+nmap     <leader>fr <plug>(coc-refactor)
+nmap     <leader>fm <plug>(coc-format)
 xmap     <leader>fm <plug>(coc-format-selected)
 vmap     <leader>fm <plug>(coc-format-selected)
 nmap     ]e         <plug>(coc-diagnostic-next-error)
