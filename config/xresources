@@ -114,7 +114,7 @@ polybar.purple:	shusia_purple
 
 /* general */
 Xcursor.theme: beachball
-Xcursor.size: 24
+/* Xcursor.size: 24 */
 
 /* sxiv */
 Sxiv.background: zgd_bg
