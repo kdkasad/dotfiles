@@ -423,6 +423,11 @@ vnoremap . :norm
 " save using ZW
 nnoremap ZW <cmd>w<cr>
 
+" Secondary comment keybind
+nnoremap <c-_> <Plug>CommentaryLine
+vnoremap <c-_> <Plug>Commentary
+xnoremap <c-_> <Plug>Commentary
+
 " CoC Mappings
 autocmd CursorHold * silent call CocActionAsync('highlight')
 inoremap <silent><expr> <c-space> coc#refresh()
