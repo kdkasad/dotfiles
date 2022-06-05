@@ -17,19 +17,58 @@ Plug 'junegunn/goyo.vim'
 Plug 'junegunn/fzf.vim'
 Plug 'sainnhe/sonokai'
 Plug 'sheerun/vim-polyglot'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'mhinz/vim-startify'
 Plug 'roryokane/detectindent'
 Plug 'junegunn/vim-easy-align'
 Plug 'Gavinok/vim-troff'
 Plug 'majutsushi/tagbar'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'KSP-KOS/EditorTools', {'rtp': 'VIM/vim-kerboscript'}
+Plug 'KSP-KOS/EditorTools', { 'rtp': 'VIM/vim-kerboscript' }
+Plug 'mattn/emmet-vim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'rcarriga/nvim-notify'
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
+Plug 'MunifTanjim/nui.nvim'
+Plug 'nvim-neo-tree/neo-tree.nvim', { 'branch': 'v2.x' }
 
 call plug#end()
 
 
-" FZF SETTINGS {{{1
+" PLUGIN SETTINGS {{{1
+"
+" TREE-SITTER PARSERS {{{2
+
+command! TSInstallAll TSInstall
+			\ json
+			\ vim
+			\ bash
+			\ html
+			\ go
+			\ glsl
+			\ toml
+			\ make
+			\ http
+			\ c
+			\ help
+			\ dockerfile
+			\ javascript
+			\ rust
+			\ yaml
+			\ latex
+			\ python
+			\ bibtex
+			\ typescript
+			\ regex
+			\ php
+			\ java
+			\ kotlin
+			\ css
+
+
+" FZF SETTINGS {{{2
 
 let g:fzf_layout = {
 			\ 'window': {
@@ -37,6 +76,11 @@ let g:fzf_layout = {
 				\'height': 0.6
 			\ }
 		\ }
+
+
+" NEOTREE SETTINGS {{{2
+
+lua require('config-neotree')
 
 
 " GENERAL EDITOR SETTINGS {{{1
@@ -185,10 +229,12 @@ set listchars=tab:>\ ,lead:.,trail:·,extends:>,precedes:<,nbsp:·
 
 function! s:goyo_enter()
 	set nocursorline
+	set nolist
 endfunction
 
 function! s:goyo_leave()
 	set cursorline
+	set list
 endfunction
 
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
@@ -281,7 +327,10 @@ iabbrev mladoc <C-o>:read ~/.config/nvim/templates/mla.ms<cr>
 " Auto-enable spellcheck for some filetypes
 au FileType markdown,html,gitcommit,tex,plaintex,nroff,mail setlocal spell
 
-" Enable french dictionary
+" Use telescope to pick spellcheck suggestions
+nnoremap <silent> z= <cmd>Telescope spell_suggest<cr>
+
+" Enable English and French dictionaries
 set spelllang=en,fr
 
 
@@ -350,12 +399,6 @@ autocmd BufReadPre * if &binary | call <SID>AddHexAutoCmds() | endif
 " Leader key
 let mapleader = ','
 
-" Get off my lawn
-map <up> :echoe "this is vim"<cr>
-map <down> :echoe "this is vim"<cr>
-map <left> :echoe "this is vim"<cr>
-map <right> :echoe "this is vim"<cr>
-
 " Set keymap timeout length
 set timeoutlen=700
 
@@ -371,10 +414,10 @@ imap <expr> <down> pumvisible() ? "\<c-n>" : "\<down>"
 imap <expr> <up> pumvisible() ? "\<c-p>" : "\<up>"
 
 " Tab manipulation shortcuts
-noremap <Leader>tn :tabnew<CR>
-noremap ]t :tabn<CR>
-noremap [t :tabp<CR>
-noremap <Leader>tc :tabc<CR>
+noremap <Leader>tn <cmd>tabnew<CR>
+noremap ]t <cmd>tabn<CR>
+noremap [t <cmd>tabp<CR>
+noremap <Leader>tc :tabe %:h/
 
 " open a terminal
 nnoremap <leader>tm :split\|terminal<cr>
@@ -411,11 +454,15 @@ nmap <leader>wc <C-w>c
 vnoremap K :m '<-2<cr>gv=gv
 vnoremap J :m '>+1<cr>gv=gv
 
-" fzf
-nmap <leader>ff :Files<cr>
-nmap <leader>fh :Files ~<cr>
-nmap <leader>fg :BLines<cr>
-nmap <leader>fb :Buffers<cr>
+" Telescope fuzzy-finder shortcuts
+nmap <silent> <leader>ff <cmd>Telescope find_files<cr>
+nmap <silent> <leader>ft <cmd>Telescope git_files<cr>
+nmap <silent> <leader>fg <cmd>Telescope live_grep<cr>
+nmap <silent> <leader>fb <cmd>Telescope buffers<cr>
+nmap <silent> <leader>fh <cmd>Telescope help_tags<cr>
+nmap <silent> <leader>cc <cmd>Telescope commands<cr>
+nmap <silent> <leader>ts <cmd>Telescope treesitter<cr>
+command! T Telescope builtin
 
 " visual to norm shortcut
 vnoremap . :norm 
@@ -455,6 +502,8 @@ nnoremap <leader>ce <cmd>CocEnable<cr>
 inoremap <m-cr>     <esc>f,2lct,
 inoremap <s-cr>     <esc>f,2lct)
 nnoremap <silent> K :call <sid>show_documentation()<cr>
+nmap <nowait><expr> <up> coc#float#has_scroll() ? coc#float#scroll(0, 2) : "\<up>"
+nmap <nowait><expr> <down> coc#float#has_scroll() ? coc#float#scroll(1, 2) : "\<down>"
 
 function s:show_documentation()
 	if (index(['vim', 'help'], &filetype) >= 0)
@@ -480,6 +529,16 @@ nmap ga <Plug>(EasyAlign)
 
 " Surround character with spaces
 nmap <leader><space> i <esc>la <esc>h
+
+" Set emmet completion key
+let g:user_emmet_leader_key='<C-Z>'
+
+" Open lf(1)
+nmap <leader>lf <cmd>tabnew \| terminal lf<cr>a
+
+" Open Neotree
+nmap <leader>nt <cmd>Neotree reveal toggle<cr>
+nmap <c-n> <leader>nt
 
 " 1}}}
 

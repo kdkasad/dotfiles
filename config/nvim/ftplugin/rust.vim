@@ -4,5 +4,6 @@ iabbrev com /* */<Esc>2hi
 " Auto-format code
 autocmd BufWritePost <buffer> silent call jobstart(['cargo', 'fmt'])
 
-" Run program
-nmap <buffer> <leader>r :<c-u>wa \| split \| terminal cargo run<cr>
+" Run program/tests
+nmap <buffer> <leader>r <cmd>wa \| split \| terminal cargo run<cr>G
+nmap <buffer> <leader>t <cmd>wa \| split \| terminal cargo test<cr>G
