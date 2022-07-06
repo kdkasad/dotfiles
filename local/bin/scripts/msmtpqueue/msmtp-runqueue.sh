@@ -5,6 +5,7 @@
 QUEUEDIR=${MSMTP_QUEUEDIR:-HOME/.msmtpqueue}
 LOCKFILE="$QUEUEDIR/.lock"
 MAXWAIT=120
+DELAY=${MSMTP_DELAY:-0}
 
 OPTIONS=$*
 
@@ -43,6 +44,9 @@ if [ "$(echo ./*.mail)" = './*.mail' ]; then
 	echo "No mails in $QUEUEDIR"
 	exit 0
 fi
+
+# Wait
+sleep "$DELAY"
 
 # lock the $QUEUEDIR
 touch "$LOCKFILE" || exit 1
