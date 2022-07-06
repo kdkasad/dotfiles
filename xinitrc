@@ -46,7 +46,7 @@ picom -b >"$HOME"/.local/log/picom/log 2>&1
 pulseaudio --start --exit-idle-time=-1
 
 # start IBus
-ibus-daemon -drx
+#ibus-daemon -drx
 
 # Start notification daemon
 setsid -f dunst &
