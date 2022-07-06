@@ -256,3 +256,6 @@ paster() {
 	local file=${1:-/dev/stdin}
 	curl --data-binary @${file} https://paste.rs
 }
+
+# mpv(1) in pseudo-gui mode
+alias gmpv='mpv --player-operation-mode=pseudo-gui'
