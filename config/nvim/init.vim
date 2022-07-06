@@ -33,6 +33,7 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 Plug 'MunifTanjim/nui.nvim'
 Plug 'nvim-neo-tree/neo-tree.nvim', { 'branch': 'v2.x' }
+Plug 'jpalardy/vim-slime'
 
 call plug#end()
 
@@ -82,6 +83,12 @@ let g:fzf_layout = {
 
 lua require('config-neotree')
 
+" SLIME SETTINGS {{{2
+
+let g:slime_target = 'neovim'
+let g:slime_python_ipython = 1
+
+" }}}
 
 " GENERAL EDITOR SETTINGS {{{1
 
