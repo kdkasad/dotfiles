@@ -252,7 +252,7 @@ alias gs='g s'
 alias tmux='tmux -2'
 
 # Upload to https://paste.rs
-paste() {
+paster() {
 	local file=${1:-/dev/stdin}
 	curl --data-binary @${file} https://paste.rs
 }
