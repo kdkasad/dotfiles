@@ -424,7 +424,7 @@ imap <expr> <up> pumvisible() ? "\<c-p>" : "\<up>"
 noremap <Leader>tn <cmd>tabnew<CR>
 noremap ]t <cmd>tabn<CR>
 noremap [t <cmd>tabp<CR>
-noremap <Leader>tc :tabe %:h/
+noremap <Leader>tc :tabe <c-r>=expand('%:h')<cr>/
 
 " open a terminal
 nnoremap <leader>tm :split\|terminal<cr>
