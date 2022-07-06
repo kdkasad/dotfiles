@@ -179,7 +179,7 @@ set noshowmode
 "let g:detectindent_min_indent = 2
 "let g:detectindent_max_indent = 8
 "autocmd BufReadPost,BufNewFile * DetectIndent
-set ts=8 sw=8 sts=-1 noet
+set ts=4 sw=4 sts=-1 noet
 
 " Line wrap options
 set linebreak
