@@ -9,7 +9,7 @@ MAXWAIT=120
 OPTIONS=$*
 
 # eat some options that would cause msmtp to return 0 without sendmail mail
-case "$OPTIONS" in 
+case "$OPTIONS" in
 	*--help*)
 	echo "$0: send mails in $QUEUEDIR"
 	echo "Options are passed to msmtp"
@@ -35,7 +35,7 @@ if [ -e "$LOCKFILE" ]; then
 	exit 1
 fi
 
-# change into $QUEUEDIR 
+# change into $QUEUEDIR
 cd "$QUEUEDIR" || exit 1
 
 # check for empty queuedir
