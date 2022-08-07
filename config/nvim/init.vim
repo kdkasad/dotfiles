@@ -445,11 +445,6 @@ nnoremap <S-Tab><S-Tab> /<++><CR>"_cf>
 inoremap <C-S-Tab><C-S-Tab> <Esc>?<++><CR>"_cf>
 nnoremap <C-S-Tab><C-S-Tab> ?<++><CR>"_cf>
 
-" Use [Enter] to select item in autocomplete menu
-imap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
-imap <expr> <down> pumvisible() ? "\<c-n>" : "\<down>"
-imap <expr> <up> pumvisible() ? "\<c-p>" : "\<up>"
-
 " Tab manipulation shortcuts
 noremap <Leader>tn <cmd>tabnew<CR>
 noremap ]t <cmd>tabn<CR>
@@ -515,6 +510,13 @@ xnoremap <c-_> <Plug>Commentary
 " CoC Mappings
 autocmd CursorHold * silent call CocActionAsync('highlight')
 inoremap <silent><expr> <c-n> coc#refresh()
+imap <silent><expr> <C-n> coc#pum#visible() ? coc#pum#next(1) : "\<C-n>"
+imap <silent><expr> <C-p> coc#pum#visible() ? coc#pum#prev(1) : "\<C-p>"
+imap <silent><expr> <down> coc#pum#visible() ? coc#pum#next(0) : "\<down>"
+imap <silent><expr> <up> coc#pum#visible() ? coc#pum#prev(0) : "\<up>"
+inoremap <silent><expr> <PageDown> coc#pum#visible() ? coc#pum#scroll(1) : "\<PageDown>"
+inoremap <silent><expr> <PageUp> coc#pum#visible() ? coc#pum#scroll(0) : "\<PageUp>"
+imap <silent><expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<cr>"
 nmap     <c-]>      <plug>(coc-definition)
 nmap     <leader>gd <plug>(coc-definition)
 nmap     <leader>gD <plug>(coc-declaration)
