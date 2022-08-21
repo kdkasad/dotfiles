@@ -22,6 +22,9 @@ test -r "${XDG_CONFIG_HOME:-$HOME/.config}/env_secret" \
 
 ## CONFIGURE PROGRAMS ##
 
+# Don't send notifications when changing volume levels
+export DISABLE_VOLUME_NOTIFICATIONS=1
+
 # Fix some problems with VS Code
 export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
 
