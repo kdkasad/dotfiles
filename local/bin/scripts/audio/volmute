@@ -1,6 +1,8 @@
 #!/bin/sh
 
-if command -v pamixer >/dev/null 2>&1; then # PulseAudio
+if command -v wpctl >/dev/null 2>&1; then # WirePlumber/PipeWire
+	wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+elif command -v pamixer >/dev/null 2>&1; then # PulseAudio
 	# Toggle mute
 	pamixer -t
 else # ALSA
