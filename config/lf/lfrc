@@ -22,7 +22,7 @@ cmd open ${{
 cmd mkdir ${{
   printf "Directory Name: "
   read ans
-  mkdir -vp $ans
+  mkdir -vp "$ans"
 }}
 
 cmd mkfile ${{
