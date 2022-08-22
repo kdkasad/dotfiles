@@ -34,6 +34,7 @@ Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 Plug 'MunifTanjim/nui.nvim'
 Plug 'nvim-neo-tree/neo-tree.nvim', { 'branch': 'v2.x' }
 Plug 'jpalardy/vim-slime'
+Plug 'folke/zen-mode.nvim'
 
 call plug#end()
 
@@ -87,6 +88,19 @@ lua require('config-neotree')
 
 let g:slime_target = 'neovim'
 let g:slime_python_ipython = 1
+
+" ZEN MODE SETTINGS {{{2
+
+lua << EOF
+	require('zen-mode').setup {
+		options = {
+			list = true,
+		},
+		plugins = {
+			tmux = { enabled = true },
+		},
+	}
+EOF
 
 " }}}
 
