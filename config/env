@@ -32,7 +32,7 @@ export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
 export LIBVA_DRIVER_NAME='iHD'
 
 # set bemenu(1) colors
-export BEMENU_OPTS='-p "" --fn "monospace" -H 28 --tb "#343136" --nb "#343136" --fb "#343136" --hb "#7A9ED7" --hf "#343136" --nf "#E3E1E4" --tf "#E3E1E4" --ff "#E3E1E4"'
+export BEMENU_OPTS='-p "" --fn "monospace" -H 28 --tb "#343136" --nb "#343136" --ab "#343136" --fb "#343136" --hb "#7A9ED7" --hf "#343136" --nf "#E3E1E4" --tf "#E3E1E4" --ff "#E3E1E4"'
 
 # don't print cows when using ansible
 export ANSIBLE_NOCOWS=1
