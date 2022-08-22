@@ -2,10 +2,17 @@
 
 set -o pipefail
 
+MAIM_GLOBAL_OPTS="--quiet --hidecursor"
+MAIM_SELECT_OPTS="--select --highlight --shader=invert"
+
 ss_select() {
-	maim -su -l -c 255,255,255,0.25 | tee $path | xclip -i -selection clipboard -t image/png
-	[ $? -eq 0 ] && notify-send -a 'screenshot utility' "screenshot taken" "saved to <pre>$(echo "$path" | sed "s|^$HOME|~|")</pre><br><br>and copied to clipboard"
-	exit
+	maim $MAIM_GLOBAL_OPTS $MAIM_SELECT_OPTS | tee $path | xclip -i -selection clipboard -t image/png
+	if [ $? -eq 0 ]; then
+		notify-send -a 'screenshot utility' "screenshot taken" "saved to <pre>$(echo "$path" | sed "s|^$HOME|~|")</pre><br><br>and copied to clipboard"
+	else
+		rm -f $path
+		exit 1
+	fi
 }
 
 ss_ocr() {
@@ -14,7 +21,7 @@ ss_ocr() {
 	[ -d "$tmpdir" ] || exit 2
 
 	# Take a screenshot and pass it to tesseract for OCR
-	maim -su -l -c 255,255,255,0.25 | tesseract stdin "$tmpdir/ocr" quiet txt
+	maim $MAIM_GLOBAL_OPTS $MAIM_SELECT_OPTS | tesseract stdin "$tmpdir/ocr" quiet txt
 
 	# If any of that pipeline failed, delete the tmpdir and exit
 	if [ $? -ne 0 ]; then
@@ -30,14 +37,11 @@ ss_ocr() {
 		setsid -f $TERMINAL -e sh -c "cat '$tmpdir/ocr.txt' ; rm -rf '$tmpdir' ; printf '\n\n' ; read -n 1 -s -p 'Press any key to close...'"
 
 	notify-send -a 'screenshot utility' 'screenshot taken' 'text copied to clipboard'
-
-	exit
 }
 
 ss_full() {
-	maim -u | tee "$path" | xclip -i -selection clipboard -t image/png
+	maim $MAIM_GLOBAL_OPTS | tee "$path" | xclip -i -selection clipboard -t image/png
 	notify-send -a 'screenshot utility' "screenshot taken" "saved to <pre>$(echo "$path" | sed "s|^$HOME|~|")</pre><br><br>and copied to clipboard"
-	exit
 }
 
 optstring="pso"
@@ -47,8 +51,8 @@ path="$HOME/pictures/screenshots/$(date +'%Y-%m-%d_%H-%M-%S').png"
 while getopts "$optstring" option; do
 	case "$option" in
 		p) path="$(find ~ -not -path '*/.*' -type d 2>/dev/null | sed -e "s|$HOME|~|" -e "s|[^/]$|\0/|" | bemenu -l 20 -p "choose output path:" | sed "s|^~|$HOME|")" ;;
-		s) ss_select ;;
-		o) ss_ocr ;;
+		s) ss_select ; exit ;;
+		o) ss_ocr ; exit ;;
 	esac
 done
 
