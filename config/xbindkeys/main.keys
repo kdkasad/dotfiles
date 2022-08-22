@@ -1,9 +1,9 @@
 #vol up
 "volup"
-    XF86AudioRaiseVolume 
+    XF86AudioRaiseVolume
 #vol down
 "voldown"
-    XF86AudioLowerVolume 
+    XF86AudioLowerVolume
 # toggle mute
 "volmute"
 	XF86AudioMute
