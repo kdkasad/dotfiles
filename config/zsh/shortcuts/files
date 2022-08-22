@@ -5,8 +5,9 @@ sdr	~/.config/zsh/shortcuts/dirs
 al	~/.config/aliases
 nrc	~/.config/nvim/init.vim
 vrc	~/.config/nvim/init.vim
-ky	~/.config/xbindkeysrc
+ky	~/.config/xbindkeys/main.keys
 drc	~/.config/dwm/dwmrc
 mrc	~/.config/mutt/muttrc
 xrc	~/.xinitrc
 xre	~/.config/xresources
+ev	~/.config/env
