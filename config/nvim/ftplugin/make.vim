@@ -1,0 +1,1 @@
+iabbrev skeleton COMPILER_ARGS=<CR>DEBUG_OPTS=-g -Wall -O0<CR>RELEASE_OPTS = -O3<CR>LIBS=<CR><CR>default: debug<CR><CR>debug: CONFIG=DEBUG<CR><BS>debug: all<CR><CR>release: CONFIG=RELEASE<CR><BS>release: all<CR><CR>all: <++><CR><CR><++>: <++><CR>${CC} $(COMPILER_ARGS) $($(CONFIG)_OPTS) -o $@ $^ $(LIBS)<Esc>gg/<++><CR>cf>

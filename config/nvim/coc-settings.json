@@ -1,0 +1,16 @@
+{
+	"languageserver": {
+		"ccls": {
+			"command": "ccls",
+			"filetypes": ["c", "cc", "cpp", "c++", "objc", "objcpp", "ino"],
+			"rootPatterns": [".ccls", "compile_commands.json", ".git/", ".hg/"],
+			"initializationOptions": {
+				"cache": {
+					"directory": ".ccls_cache"
+				}
+			}
+		}
+	},
+
+	"coc.preferences.extensionUpdateCheck": "never"
+}
