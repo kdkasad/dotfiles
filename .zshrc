@@ -53,16 +53,6 @@ MAILCHECK=0 # Don't check for mail
 ## ENVIRONMENT
 ##
 
-# iTerm2 shell integration
-if [ -r "${HOME}/.iterm2_shell_integration.zsh" ]; then
-    source "${HOME}/.iterm2_shell_integration.zsh"
-fi
-
-# Fzf integration
-if command -v fzf &>/dev/null; then
-    eval "$(fzf --zsh)"
-fi
-
 # Use zoxide instead of cd if it exists
 if command -v zoxide &>/dev/null; then
     eval "$(zoxide init --cmd=cd --hook=pwd zsh)"
@@ -94,6 +84,21 @@ case $- in
     *i*) ;;
       *) return;;
 esac
+
+
+##
+## INTEGRATIONS
+##
+
+# iTerm2 shell integration
+if [ -r "${HOME}/.iterm2_shell_integration.zsh" ]; then
+    source "${HOME}/.iterm2_shell_integration.zsh"
+fi
+
+# Fzf integration
+if command -v fzf &>/dev/null; then
+    eval "$(fzf --zsh)"
+fi
 
 
 ##
