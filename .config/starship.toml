@@ -1,0 +1,44 @@
+# Load schema to get editor completions
+"$schema" = "https://starship.rs/config-schema.json"
+
+# Blank line between shell prompts
+add_newline = true
+
+[character]
+success_symbol = '[\$](bold white)'
+error_symbol = '[\$](bold red)'
+vicmd_symbol = '[:](bold white)'
+
+[directory]
+truncate_to_repo = false
+truncation_length = 10
+truncation_symbol = '.../'
+style = 'bold blue'
+
+[git_status]
+style = 'bold yellow'
+ahead = '↑ '
+behind = '↓ '
+diverged = '↑↓ '
+deleted = '×'
+
+### From no-nerd-font preset ###
+[battery]
+full_symbol = "• "
+charging_symbol = "⇡ "
+discharging_symbol = "⇣ "
+unknown_symbol = "❓ "
+empty_symbol = "❗ "
+
+[erlang]
+symbol = "ⓔ "
+
+[nodejs]
+symbol = "[⬢](bold green) "
+
+[pulumi]
+symbol = "🧊 "
+
+[typst]
+symbol = "t "
+### End no-nerd-font preset ###
