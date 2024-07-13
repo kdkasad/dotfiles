@@ -121,6 +121,12 @@ zstyle ':completion:*' squeeze-slashes true
 zstyle ':completion:*' verbose true
 zstyle :compinstall filename "$HOME/.zshrc"
 
+# Load Homebrew-installed completions
+if [ -d "$HOMEBREW_PREFIX/share/zsh-completions" ]
+then
+    fpath+="$HOMEBREW_PREFIX/share/zsh/site-functions"
+fi
+
 # Load extra completions from zsh-completions
 if [ -d "$HOMEBREW_PREFIX/share/zsh-completions" ]
 then
