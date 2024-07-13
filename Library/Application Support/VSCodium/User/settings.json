@@ -1,0 +1,84 @@
+{
+  "python.defaultInterpreterPath": "/opt/homebrew/bin/python3",
+  "gitlens.defaultDateShortFormat": "YYYY-MM-DD",
+  "gitlens.defaultTimeFormat": "H:mm",
+  "git.defaultBranchName": "",
+  "editor.fontFamily": "Iosevka, Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontSize": 16,
+  "terminal.integrated.fontSize": 16,
+  "explorer.confirmDelete": false,
+  "rust-analyzer.check.command": "clippy",
+  "editor.inlayHints.padding": true,
+  "editor.inlayHints.fontSize": 12,
+  "files.autoSave": "afterDelay",
+  "workbench.editorAssociations": {
+    "git-rebase-todo": "default"
+  },
+  "gitlens.codeLens.scopes": ["document", "containers", "blocks"],
+  "gitlens.changes.locations": ["gutter", "overview", "line"],
+  "gitlens.graph.showRemoteNames": true,
+  "explorer.confirmDragAndDrop": false,
+  "editor.formatOnSave": true,
+  "workbench.productIconTheme": "bongocat",
+  "editor.linkedEditing": true,
+  "workbench.preferredDarkColorTheme": "GitHub Dark",
+  "workbench.iconTheme": "eq-material-theme-icons",
+  "workbench.colorTheme": "GitHub Light Default",
+  "workbench.preferredLightColorTheme": "GitHub Light Default",
+  "gitlens.graph.layout": "editor",
+  "workbench.preferredHighContrastColorTheme": "GitHub Dark High Contrast",
+  "workbench.preferredHighContrastLightColorTheme": "GitHub Light High Contrast",
+  "window.autoDetectColorScheme": true,
+  "css.format.spaceAroundSelectorSeparator": true,
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.autopep8"
+  },
+  "[svelte]": {
+    "editor.defaultFormatter": "svelte.svelte-vscode"
+  },
+  "editor.formatOnSaveMode": "modificationsIfAvailable",
+  "redhat.telemetry.enabled": false,
+  "git.autofetch": true,
+  "github.copilot.enable": {
+    "*": true,
+    "plaintext": false,
+    "markdown": true,
+    "scminput": false
+  },
+  "svelte.enable-ts-plugin": true,
+  "files.autoSaveDelay": 30000,
+  "[javascript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "files.trimTrailingWhitespace": true,
+  "[typescript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "files.dialog.defaultPath": "/Users/kian/Code",
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
+  "typst-preview.cursorIndicator": true,
+  "typst-preview.pinPreviewFile": true,
+  "editor.accessibilitySupport": "off",
+  "editor.renderWhitespace": "boundary",
+  "[c]": {
+    "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd",
+    "editor.formatOnSave": false
+  },
+  "files.associations": {
+    "*.h": "c"
+  },
+  "liveServer.settings.donotVerifyTags": true,
+  "editor.smoothScrolling": true,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "gitlens.currentLine.enabled": false,
+  "gitlens.hovers.currentLine.over": "line",
+  "window.confirmBeforeClose": "always",
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[markdown]": {
+    "editor.unicodeHighlight.invisibleCharacters": false,
+    "files.trimTrailingWhitespace": false
+  }
+}
