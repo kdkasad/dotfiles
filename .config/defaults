@@ -1,0 +1,60 @@
+# Expand file panel in save dialog
+NSGlobalDomain	NSNavPanelExpandedStateForSaveMode	bool	true
+
+# Expand print panel
+NSGlobalDomain	PMPrintingExpandedStateForPrint	bool	true
+
+# Save to disk, not cloud, by default
+NSGlobalDomain	NSDocumentSaveNewDocumentsToCloud	bool	false
+
+# Automatically quit printer app once print jobs complete
+com.apple.print.PrintingPrefs	Quit When Finished	bool	true
+
+# Trackpad: Light force, right click with two fingers
+com.apple.AppleMultitouchTrackpad	FirstClickThreshold	int	0
+com.apple.AppleMultitouchTrackpad	SecondClickThreshold	int	0
+com.apple.AppleMultitouchTrackpad	TrackpadRightClick	int	1
+
+# Trackpad: Enable tap to click
+com.apple.AppleMultitouchTrackpad	Clicking	int	1
+com.apple.AppleMultitouchTrackpad	DragLock	int	1
+com.apple.AppleMultitouchTrackpad	Dragging	int	1
+
+# Keyboard repeat rate
+NSGlobalDomain	InitialKeyRepeat	int	25
+NSGlobalDomain	KeyRepeat	int	2
+
+# Disable auto-correct
+NSGlobalDomain	NSAutomaticSpellingCorrectionEnabled	bool	false
+
+# Show home directory in new Finder windows
+com.apple.finder	NewWindowTarget	string	PfHm
+com.apple.finder	NewWindowTargetPath	string	file://$HOME
+
+# Show icons for hard drives, servers, and removable media on the desktop
+com.apple.finder	ShowExternalHardDrivesOnDesktop	bool	true
+com.apple.finder	ShowHardDrivesOnDesktop	bool	true
+com.apple.finder	ShowMountedServersOnDesktop	bool	true
+com.apple.finder	ShowRemovableMediaOnDesktop	bool	true
+
+# Finder: show all filename extensions
+NSGlobalDomain	AppleShowAllExtensions	bool	true
+
+# Finder: When performing a search, search the current folder by default
+com.apple.finder	FXDefaultSearchScope	string	SCcf
+
+# Disable the warning when changing a file extension
+com.apple.finder	FXEnableExtensionChangeWarning	bool	false
+
+# Enable spring loading for directories
+NSGlobalDomain	com.apple.springing.enabled	bool	true
+NSGlobalDomain	com.apple.springing.delay	float	0.5
+
+# Dock settings
+com.apple.dock	tilesize	int	65
+com.apple.dock	showhidden	bool	true
+
+# Disable in-app rating requests from apps downloaded from the App Store.
+com.apple.appstore	InAppReviewEnabled	int	0
+
+# vim: ts=8 sw=8 noet
