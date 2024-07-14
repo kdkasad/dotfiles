@@ -87,7 +87,7 @@ com.apple.appstore	InAppReviewEnabled	int	0
 com.apple.WindowManager	GloballyEnabled	bool	true
 com.apple.WindowManager	GloballyEnabledEver	bool	true
 # Show application windows one at a time
-com.apple.WindowManager	AppWindowGroupingBehavior	bool	false
+com.apple.WindowManager	AppWindowGroupingBehavior	int	0
 # Hide desktop widgets (unless desktop is focused)
 com.apple.WindowManager	StageManagerHideWidgets	bool	true
 com.apple.WindowManager	StandardHideWidgets	bool	false
