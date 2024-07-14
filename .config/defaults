@@ -1,3 +1,20 @@
+##
+## defaults(1) settings for macOS
+##
+
+## Each line in this file, except for those starting with "#", defines a setting to write via defaults(1).
+##s
+## The format is:
+## <domain> <TAB> <key> <TAB> <type> <TAB> <value>
+## where <TAB> is the tab character (\t).
+## The <value> column can contain environment variable substitutions.
+##
+## These will be transformed into the following command (per line):
+## $ defaults write <domain> <key> -<type> <value>
+##
+## The entire file can be executed at once using:
+## $ grep -v -e '^#' -e '^$' <this file> | while IFS=$'\t' read -r domain key type value ; do defaults write "$domain" "$key" "$type" "$(eval echo "$value")" ; done
+
 # Expand file panel in save dialog
 NSGlobalDomain	NSNavPanelExpandedStateForSaveMode	bool	true
 
