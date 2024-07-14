@@ -30,12 +30,12 @@ com.apple.print.PrintingPrefs	Quit When Finished	bool	true
 # Trackpad: Light force, right click with two fingers
 com.apple.AppleMultitouchTrackpad	FirstClickThreshold	int	0
 com.apple.AppleMultitouchTrackpad	SecondClickThreshold	int	0
-com.apple.AppleMultitouchTrackpad	TrackpadRightClick	bool	true
+com.apple.AppleMultitouchTrackpad	TrackpadRightClick	int	1
 
 # Trackpad: Enable tap to click
-com.apple.AppleMultitouchTrackpad	Clicking	bool	true
-com.apple.AppleMultitouchTrackpad	DragLock	bool	true
-com.apple.AppleMultitouchTrackpad	Dragging	bool	true
+com.apple.AppleMultitouchTrackpad	Clicking	int	1
+com.apple.AppleMultitouchTrackpad	DragLock	int	1
+com.apple.AppleMultitouchTrackpad	Dragging	int	1
 
 # Keyboard repeat rate
 NSGlobalDomain	InitialKeyRepeat	int	25
@@ -80,7 +80,7 @@ com.apple.dock	mineffect	string	scale
 com.apple.dock	autohide	bool	true
 
 # Disable in-app rating requests from apps downloaded from the App Store.
-com.apple.appstore	InAppReviewEnabled	bool	false
+com.apple.appstore	InAppReviewEnabled	int	0
 
 ## Stage Manager settings
 # Enable Stage Manager
