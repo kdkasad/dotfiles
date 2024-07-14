@@ -67,11 +67,29 @@ com.apple.finder	FXEnableExtensionChangeWarning	bool	false
 NSGlobalDomain	com.apple.springing.enabled	bool	true
 NSGlobalDomain	com.apple.springing.delay	float	0.5
 
-# Dock settings
+## Dock settings
+# Position dock on left edge
+com.apple.dock	orientation	string	left
+# Dock icon size
 com.apple.dock	tilesize	int	65
+# Fade icons of apps with hidden windows
 com.apple.dock	showhidden	bool	true
+# Minimize windows using scale effect
+com.apple.dock	mineffect	string	scale
+# Auto-hide
+com.apple.dock	autohide	bool	true
 
 # Disable in-app rating requests from apps downloaded from the App Store.
 com.apple.appstore	InAppReviewEnabled	bool	false
+
+## Stage Manager settings
+# Enable Stage Manager
+com.apple.WindowManager	GloballyEnabled	bool	true
+com.apple.WindowManager	GloballyEnabledEver	bool	true
+# Show application windows one at a time
+com.apple.WindowManager	AppWindowGroupingBehavior	bool	false
+# Hide desktop widgets (unless desktop is focused)
+com.apple.WindowManager	StageManagerHideWidgets	bool	true
+com.apple.WindowManager	StandardHideWidgets	bool	false
 
 # vim: ts=8 sw=8 noet
