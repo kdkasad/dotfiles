@@ -1,5 +1,7 @@
 # Kian's dotfiles
 
+<img src="https://forthebadge.com/images/badges/works-on-my-machine-1.svg" alt="Works On My Machine badge" height=30 />
+
 My configuration files.
 
 If you're looking through this repository, use `ls -A` so you can actually see
