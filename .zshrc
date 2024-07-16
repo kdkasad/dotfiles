@@ -163,23 +163,43 @@ function add_menu_keybindings() {
     bindkey -M menuselect '^[' undo
 }
 
-# Check if zsh-vi-mode is installed. On MacOS, install using "brew install zsh-vi-mode"
-if
-    [ -n "$HOMEBREW_PREFIX" ] &&
-    [ -f "$HOMEBREW_PREFIX/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh" ]
-then # If zsh-vi-mode is installed, use it
-    # Add vi mode keybindings to the completion menu, both after initialization
-    # and again after lazy-loading keybindings
-    zvm_after_init_commands+=(add_menu_keybindings)
-    zvm_after_lazy_keybindings_commands+=(add_menu_keybindings)
+# Enable Vi-style keybindings for editing command lines.
+# This is wrapped in a function so we can use scope variables.
+enable_vi_mode() {
+    # Check if zsh-vi-mode is installed.
+    # https://github.com/jeffreytse/zsh-vi-mode
+    local found search_prefixes prefix
+    found=0
+    search_prefixes=(
+        "${XDG_DATA_HOME:-$HOME/.local/share}"
+        ${HOMEBREW_PREFIX:+"$HOMEBREW_PREFIX/opt/zsh-vi-mode/share"}
+    )
+    for prefix in "${search_prefixes[@]}"
+    do
+        if [ -r "$prefix/zsh-vi-mode/zsh-vi-mode.plugin.zsh" ]
+        then
+            found=1
+            zvm_plugin_path="$prefix/zsh-vi-mode/zsh-vi-mode.plugin.zsh"
+            break
+        fi
+    done
+    # If zsh-vi-mode is installed, use it
+    if [ "$found" = 1 ]
+    then
+        # Add vi mode keybindings to the completion menu, both after initialization
+        # and again after lazy-loading keybindings
+        zvm_after_init_commands+=(add_menu_keybindings)
+        zvm_after_lazy_keybindings_commands+=(add_menu_keybindings)
 
-    # Load zsh-vi-mode
-    source "$HOMEBREW_PREFIX/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh"
-else # If zsh-vi-mode is not installed, use the built-in vi mode
-    printf '\x1b[1;33mWarning:\x1b[m zsh-vi-mode is not installed. Using built-in vi mode.\n'
-    bindkey -v
-    add_menu_keybindings # Add completion menu keybindings
-fi
+        # Load zsh-vi-mode
+        source "$zvm_plugin_path"
+    else # If zsh-vi-mode is not installed, use the built-in vi mode
+        printf '\x1b[1;33mWarning:\x1b[m zsh-vi-mode is not installed. Using built-in vi mode.\n'
+        bindkey -v
+        add_menu_keybindings # Add completion menu keybindings
+    fi
+}
+enable_vi_mode
 
 
 ##
