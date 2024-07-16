@@ -22,6 +22,14 @@ behind = '↓ '
 diverged = '↑↓ '
 deleted = '×'
 
+[c]
+commands = [
+	[ 'sh', '-c', '$CC --version' ],
+	[ 'cc', '--version' ],
+	[ 'gcc', '--version' ],
+	[ 'clang', '--version' ],
+]
+
 ### From no-nerd-font preset ###
 [battery]
 full_symbol = "• "
