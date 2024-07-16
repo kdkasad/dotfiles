@@ -8,6 +8,7 @@ exclude_files=(
     .gitignore
     README.md
     LICENSE
+    install.sh
 )
 
 dotdir="$(realpath "$(dirname "$0")")"
