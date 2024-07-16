@@ -1,0 +1,4 @@
+# Insult users when they enter the wrong password
+Defaults insults
+
+# vim: ft=sudoers
