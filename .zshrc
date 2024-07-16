@@ -61,6 +61,7 @@ MAILCHECK=0 # Don't check for mail
 () {
     # List of commands which require NVM to be loaded
     local requires_nvm=(nvm node npm pnpm nvim)
+    unset NVM_DIR
     for cmd in "${requires_nvm[@]}"
     do
         "$cmd"() {
