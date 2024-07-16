@@ -57,17 +57,29 @@ MAILCHECK=0 # Don't check for mail
 ## ENVIRONMENT
 ##
 
-# Use zoxide instead of cd if it exists
-if command -v zoxide &>/dev/null; then
-    eval "$(zoxide init --cmd=cd --hook=pwd zsh)"
-fi
+# Lazy-load NVM
+() {
+    # List of commands which require NVM to be loaded
+    local requires_nvm=(nvm node npm pnpm)
+    for cmd in "${requires_nvm[@]}"
+    do
+        "$cmd"() {
+            # Remove this shim function
+            unset -f "$0"
 
-# bun completions
-[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+            # Load NVM
+            if [ -z "$NVM_DIR" ]
+            then
+                export NVM_DIR="$HOME/.config/nvm"
+                [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+                [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+            fi
 
-export NVM_DIR="$HOME/.config/nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+            # Run the now-loaded command
+            "$0" "$@"
+        }
+    done
+}
 
 # pnpm
 export PNPM_HOME="$HOME/.local/share/pnpm"
@@ -88,21 +100,6 @@ case $- in
     *i*) ;;
       *) return;;
 esac
-
-
-##
-## INTEGRATIONS
-##
-
-# iTerm2 shell integration
-if [ -r "${HOME}/.iterm2_shell_integration.zsh" ]; then
-    source "${HOME}/.iterm2_shell_integration.zsh"
-fi
-
-# Fzf integration
-if command -v fzf &>/dev/null; then
-    eval "$(fzf --zsh)"
-fi
 
 
 ##
@@ -143,6 +140,29 @@ compinit              # Initialize completions
 
 
 ##
+## INTEGRATIONS
+##
+
+# iTerm2 shell integration
+if [ -r "${HOME}/.iterm2_shell_integration.zsh" ]; then
+    source "${HOME}/.iterm2_shell_integration.zsh"
+fi
+
+# Fzf integration
+if command -v fzf &>/dev/null; then
+    eval "$(fzf --zsh)"
+fi
+
+# Use zoxide instead of cd if it exists
+if command -v zoxide &>/dev/null; then
+    eval "$(zoxide init --cmd=cd --hook=pwd zsh)"
+fi
+
+# Load Bun completions
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+
+
+##
 ## KEY BINDINGS
 ##
 
@@ -165,7 +185,7 @@ function add_menu_keybindings() {
 
 # Enable Vi-style keybindings for editing command lines.
 # This is wrapped in a function so we can use scope variables.
-enable_vi_mode() {
+() {
     # Check if zsh-vi-mode is installed.
     # https://github.com/jeffreytse/zsh-vi-mode
     local found search_prefixes prefix
@@ -199,7 +219,6 @@ enable_vi_mode() {
         add_menu_keybindings # Add completion menu keybindings
     fi
 }
-enable_vi_mode
 
 
 ##
@@ -353,7 +372,7 @@ if [ -c "$(tty)" ]; then
 fi
 
 # Load syntax highlighting
-load_syntax_highlighting() {
+() {
     local sh_prefixes found
     sh_prefixes=(
         "${XDG_DATA_HOME:-$HOME/.local/share}"
@@ -375,6 +394,5 @@ load_syntax_highlighting() {
         printf '\x1b[1;33mWarning:\x1b[m zsh-syntax-highlighting not found.\n'
     fi
 }
-load_syntax_highlighting
 
 # vim: ft=zsh sw=4 ts=4 et
