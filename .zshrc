@@ -6,6 +6,10 @@
 ###
 
 
+# Load function for version comparison
+autoload is-at-least
+
+
 ##
 ## SHELL OPTIONS & PARAMETERS
 ##
@@ -33,7 +37,7 @@ setopt NOMATCH       # Error if a pattern doesn't match any files instead of tre
 
 # Input/Output
 setopt NO_CLOBBER           # Don't overwrite files using '>'. Requires '>|' or '>!' to force overwriting.
-setopt CLOBBER_EMPTY        # Allow overwriting empty files using '>'.
+is-at-least 5.9 && setopt CLOBBER_EMPTY  # Allow overwriting empty files using '>'.
 setopt CORRECT              # Try to correct misspelled commands.
 setopt INTERACTIVE_COMMENTS # Allow comments in interactive mode. Useful for copy/pasting scripts.
 setopt RM_STAR_SILENT       # Don't prompt when running `rm *`. Should be used in conjunction with rm's `-I` flag.
