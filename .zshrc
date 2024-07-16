@@ -5,6 +5,15 @@
 ### MIT License. See LICENSE file for details.
 ###
 
+##
+## PROFILING
+## Set the ZSH_PROFILE_STARTUP environment variable to enable profiling.
+##
+if [ -n "${ZSH_PROFILE_STARTUP:+x}" ]
+then
+    zmodload zsh/zprof
+fi
+
 
 # Load function for version comparison
 autoload is-at-least
@@ -395,5 +404,13 @@ fi
         printf '\x1b[1;33mWarning:\x1b[m zsh-syntax-highlighting not found.\n'
     fi
 }
+
+##
+## PRINT PROFILING RESULTS
+##
+if [ -n "${ZSH_PROFILE_STARTUP:+x}" ]
+then
+    zprof
+fi
 
 # vim: ft=zsh sw=4 ts=4 et
