@@ -60,7 +60,7 @@ MAILCHECK=0 # Don't check for mail
 # Lazy-load NVM
 () {
     # List of commands which require NVM to be loaded
-    local requires_nvm=(nvm node npm pnpm)
+    local requires_nvm=(nvm node npm pnpm nvim)
     for cmd in "${requires_nvm[@]}"
     do
         "$cmd"() {
