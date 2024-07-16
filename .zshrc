@@ -353,23 +353,28 @@ if [ -c "$(tty)" ]; then
 fi
 
 # Load syntax highlighting
-sh_prefixes=(
-    /usr/share/zsh/plugins
-    /usr/local/share
-    ${HOMEBREW_PREFIX:+"$HOMEBREW_PREFIX/share"}
-)
-zsh_syntax_highlighting_found=false
-for prefix in $sh_prefixes
-do
-    if [ -r "$prefix/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
-        source "$prefix/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-        zsh_syntax_highlighting_found=true
-        break
+load_syntax_highlighting() {
+    local sh_prefixes found
+    sh_prefixes=(
+        "${XDG_DATA_HOME:-$HOME/.local/share}"
+        /usr/local/share
+        ${HOMEBREW_PREFIX:+"$HOMEBREW_PREFIX/share"}
+        /usr/share/zsh/plugins
+    )
+    found=0
+    for prefix in "${sh_prefixes[@]}"
+    do
+        if [ -r "$prefix/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
+            found=1
+            source "$prefix/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+            break
+        fi
+    done
+    if [ "$found" = 0 ]
+    then
+        printf '\x1b[1;33mWarning:\x1b[m zsh-syntax-highlighting not found.\n'
     fi
-done
-if [ "$zsh_syntax_highlighting_found" = false ]
-then
-    printf '\x1b[1;33mWarning:\x1b[m zsh-syntax-highlighting not found.\n'
-fi
+}
+load_syntax_highlighting
 
 # vim: ft=zsh sw=4 ts=4 et
