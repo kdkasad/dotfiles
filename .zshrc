@@ -80,7 +80,6 @@ MAILCHECK=0 # Don't check for mail
 () {
     # List of commands which require NVM to be loaded
     local requires_nvm=(nvm node npm pnpm nvim)
-    unset NVM_DIR
     for cmd in "${requires_nvm[@]}"
     do
         "$cmd"() {
@@ -88,12 +87,8 @@ MAILCHECK=0 # Don't check for mail
             unset -f "$0"
 
             # Load NVM
-            if [ -z "$NVM_DIR" ]
-            then
-                export NVM_DIR="$HOME/.nvm"
-                [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-                [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-            fi
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+            [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
             # Run the now-loaded command
             "$0" "$@"
