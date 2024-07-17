@@ -17,7 +17,10 @@ export PAGER=less
 
 # Homebrew environment setup
 export HOMEBREW_EVAL_ALL=true
-eval "$(/opt/homebrew/bin/brew shellenv)"
+if [ -x /opt/homebrew/bin/brew ]
+then
+	eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
 
 # Set default less(1) options
 export LESS='-SRi'
