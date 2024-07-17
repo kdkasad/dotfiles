@@ -8,7 +8,7 @@
 ###
 
 # Set NVM install directory
-NVM_DIR="$HOME/.nvm"
+export NVM_DIR="$HOME/.nvm"
 
 # Load ZSH if our shell is not interactive. If it is interactive, it will be
 # lazy-loaded in .zshrc.
@@ -17,3 +17,6 @@ then
 	[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 	[ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
 fi
+
+# Change Go installation directory
+export GOPATH="$HOME/.go"
