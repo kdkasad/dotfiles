@@ -33,6 +33,10 @@ commands = [
 [golang]
 symbol = 'Go '
 
+[status]
+disabled = false
+symbol = '× '
+
 ### From no-nerd-font preset ###
 [battery]
 full_symbol = "• "
