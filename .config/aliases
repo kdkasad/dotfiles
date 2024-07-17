@@ -237,3 +237,9 @@ defaults-diff() {
 		alias "t$cmd"="$rhs"
 	done
 }
+
+# Open CS 240 homework files at once
+v240() {
+	hw="${1:-$(basename "$(pwd)")}"
+	nvimtab "$hw.c" "$hw.h" "${hw}_main.c"
+}
