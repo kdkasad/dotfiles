@@ -5,6 +5,7 @@
 ### MIT License. See LICENSE file for details.
 ###
 
+
 ##
 ## PROFILING
 ## Set the ZSH_PROFILE_STARTUP environment variable to enable profiling.
@@ -14,6 +15,15 @@ then
     zmodload zsh/zprof
 fi
 
+
+##
+## UTILITY FUNCTIONS
+##
+
+# Check if we have a given command
+have() {
+    command -v "$1" >/dev/null 2>&1
+}
 
 # Load function for version comparison
 autoload is-at-least
@@ -159,12 +169,12 @@ if [ -r "${HOME}/.iterm2_shell_integration.zsh" ]; then
 fi
 
 # Fzf integration
-if command -v fzf &>/dev/null; then
+if have fzf; then
     eval "$(fzf --zsh)"
 fi
 
 # Use zoxide instead of cd if it exists
-if command -v zoxide &>/dev/null; then
+if have zoxide; then
     eval "$(zoxide init --cmd=cd --hook=pwd zsh)"
 fi
 
@@ -241,7 +251,7 @@ case "$TERM" in
 esac
 
 # Use starship if it's installed, otherwise use custom prompt
-if [ "$color_prompt" = yes ] && command -V starship >/dev/null 2>&1
+if [ "$color_prompt" = yes ] && have starship
 then
     eval "$(starship init zsh)"
 else
@@ -312,7 +322,8 @@ fi
 ##
 
 # enable color support of ls and also add handy aliases
-if command -v dircolors >/dev/null ; then
+if have dircolors
+then
     test -r "$HOME"/.dircolors && eval "$(dircolors -b "$HOME"/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
     alias tree='tree -C'
