@@ -1,0 +1,239 @@
+#!/bin/zsh
+
+# ls aliases
+alias ll='ls -lh'
+alias la='ls -A'
+alias lla='ls -lAh'
+alias llA='ls -lah'
+alias l='ls -F1'
+
+# ls aliases with sudo
+alias 'sudo ll'='sudo ls -lh'
+alias 'sudo la'='sudo ls -A'
+alias 'sudo lla'='sudo ls -lAh'
+alias 'sudo llA'='sudo ls -lah'
+alias 'sudo l'='sudo ls -CF1'
+
+alias -g rm='rm -Iv'
+alias -g cp='cp -iv --reflink=auto'
+alias -g mv='mv -iv'
+alias -g ln='ln -iv'
+
+# Directory creation shortcuts
+alias -g mkd='mkdir -pv'
+mkcd() {
+	mkdir -pv "$@"
+	cd "$1" || exit 1
+}
+
+# Text editor
+alias v="$EDITOR"
+alias vi="$EDITOR"
+alias vim="$EDITOR"
+alias nv='v'
+alias sv='sudo -e'
+alias svim='sudo -e'
+
+# Fuzzy search functions
+se() {
+	[ -n "$@" ] \
+		&& fopts="$@" \
+		|| fopts="~/.local/bin/scripts ~/.config ~/.local/share ~/.local/src ~/.local/opt ~/*"
+	f="$(find $fopts -type f 2>/dev/null | fzf --reverse --height=40% -i)"
+	[ -z "$f" ] && return 1
+	case "$SHELL" in
+		*bash) history -s $EDITOR "$(echo "$f" | sed "s|$HOME|~|")" ;;
+		*zsh) fc -AI
+			  echo $EDITOR "$(echo "$f" | sed "s|$HOME|~|")" >> $HISTFILE
+			  fc -R ;;
+	esac
+	$EDITOR "$f"
+}
+so() {
+	[ -n "$@" ] \
+		&& fopts="$@" \
+		|| fopts="~/* ~/.local/bin/scripts ~/.config ~/.local/share ~/.local/src ~/.local/opt"
+	f="$(find $fopts -type f 2>/dev/null | fzf --reverse --height=40% -i)"
+	[ -z "$f" ] && return 1
+	case "$SHELL" in
+		*bash) history -s $EDITOR "$(echo "$f" | sed "s|$HOME|~|")" ;;
+		*zsh) fc -AI
+			  echo $EDITOR "$(echo "$f" | sed "s|$HOME|~|")" >> $HISTFILE
+			  fc -R ;;
+	esac
+	xdg-open "$f"
+}
+sd() {
+	[ -n "$@" ] \
+		&& fopts="$@" \
+		|| fopts="./* ~/* ~/.local/bin/scripts ~/.config ~/.local/share ~/.local/src ~/.local/opt"
+	destdir="$(find $fopts -type d 2>/dev/null | fzf --reverse --height=40% -i)"
+	[ $? -ne 0 ] && return 1
+	cd "$destdir" \
+	&& ls
+	case "$SHELL" in
+		*bash) history -s cd "$destdir" ;;
+		*zsh) fc -AI
+			  echo cd $destdir >> $HISTFILE
+			  fc -R ;;
+	esac
+}
+ser() {
+	exe="$(find ~ -type f -perm -u=x 2>/dev/null | fzf --reverse --height=40% -i)"
+	case "$SHELL" in
+		*bash) history -s "$(echo "$exe" | sed "s|$HOME|~|")" ;;
+		*zsh) fc -AI
+			  echo "$(echo "$exe" | sed "s|$HOME|~|")" >> $HISTFILE
+			  fc -R ;;
+	esac
+	"$exe"
+}
+sec() {
+	file="$(find "$@" -type f -not -path '*/.*' 2>/dev/null | sed "s|$HOME|~|" | fzf --reverse --height=40% -i | sed "s|~|HOME|")"
+	[ -z "$file" ] && return 1
+	read '?'"command to run (use %s to insert filename): "
+	eval "echo \"$file\" | xargs -d '\n' -I '%s' $(echo "$REPLY" | sed 's/%s/"%s"/g')"
+	case "$SHELL" in
+		*bash) history -s "$(echo $REPLY | sed "s|%s|\"$file\"|")" ;;
+		*zsh) fc -AI
+			  echo "$(echo $REPLY | sed "s|%s|\"$file\"|")" >> $HISTFILE
+			  fc -R ;;
+	esac
+}
+sech() {
+	file="$(find "$@" -type f 2>/dev/null | sed "s|$HOME|~|" | fzf --reverse --height=40% -i | sed "s|~|HOME|")"
+	[ -z "$file" ] && return 1
+	read -p "command to run (use %s to insert filename): "
+	eval "echo \"$file\" | xargs -d '\n' -I '%s' $(echo "$REPLY" | sed 's/%s/"%s"/g')"
+	case "$SHELL" in
+		*bash) history -s "$(echo $REPLY | sed "s|%s|\"$file\"|")" ;;
+		*zsh) fc -AI
+			  echo "$(echo $REPLY | sed "s|%s|\"$file\"|")" >> $HISTFILE
+			  fc -R ;;
+	esac
+}
+secd() {
+	file="$(find "$@" -type d -not -path '*/.*' 2>/dev/null | sed "s|$HOME|~|" | fzf --reverse --height=40% -i | sed "s|~|HOME|")"
+	[ -z "$file" ] && return 1
+	read '?'"command to run (use %s to insert filename): "
+	eval "echo \"$file\" | xargs -d '\n' -I '%s' $(echo "$REPLY" | sed 's/%s/"%s"/g')"
+	case "$SHELL" in
+		*bash) history -s "$(echo $REPLY | sed "s|%s|\"$file\"|")" ;;
+		*zsh) fc -AI
+			  echo "$(echo $REPLY | sed "s|%s|\"$file\"|")" >> $HISTFILE
+			  fc -R ;;
+	esac
+}
+sechd() {
+	file="$(find "$@" -type d 2>/dev/null | sed "s|$HOME|~|" | fzf --reverse --height=40% -i | sed "s|~|HOME|")"
+	[ -z "$file" ] && return 1
+	read -p "command to run (use %s to insert filename): "
+	eval "echo \"$file\" | xargs -d '\n' -I '%s' $(echo "$REPLY" | sed 's/%s/"%s"/g')"
+	case "$SHELL" in
+		*bash) history -s "$(echo $REPLY | sed "s|%s|\"$file\"|")" ;;
+		*zsh) fc -AI
+			  echo "$(echo $REPLY | sed "s|%s|\"$file\"|")" >> $HISTFILE
+			  fc -R ;;
+	esac
+}
+
+# Move wget(1) hosts file
+alias wget='wget --hsts-file=~/.local/share/wget_hsts'
+
+# Use pinfo(1) instead of info(1)
+alias info='pinfo'
+
+# quickly source shell config
+alias sorc="source ${ZDOTDIR:-$HOME}/.zshrc"
+
+# youtube-dl is a long name
+alias ytdl='yt-dlp'
+
+# don't glob urls when using downloaders
+alias curl='noglob curl'
+alias wget='noglob curl'
+alias yt-dlp='noglob yt-dlp'
+
+# git(1)
+alias g=git
+
+# navigation upstream
+alias ..='cd ..'
+alias ...='cd ../..'
+alias .2='cd ../..'
+alias .3='cd ../../..'
+alias .4='cd ../../../..'
+alias .5='cd ../../../../..'
+
+# get memory-hungry processes
+alias psmem='ps aux | sort -nr -k 4'
+
+# use `tput reset` because it's faster
+alias reset='tput reset'
+
+# use bsdtar(1) by default
+alias tar=bsdtar
+
+# shortcut for xdg-open(1)
+alias xo=xdg-open
+
+# dragon-drag-and-drop
+alias drag='dragon-drag-and-drop -a -x'
+
+# colored cat using highlight(1)
+alias ccat='highlight -Oansi'
+
+# allow mistyping git-status(1)
+alias gs='g s'
+
+# Make tmux assume 256-color support
+alias tmux='tmux -2'
+
+# Upload to https://paste.rs
+paster() {
+	local file=${1:-/dev/stdin}
+	curl --data-binary @${file} https://paste.rs
+}
+
+# mpv(1) in pseudo-gui mode
+alias gmpv='mpv --player-operation-mode=pseudo-gui'
+
+# Folder shortcuts
+alias dl='cd ~/Downloads && ls'
+
+# Default to Python 3
+alias python=python3
+
+# Standard alias for VS Code
+alias code=codium
+
+# Hide ffmpeg(1) banner
+alias ffmpeg='ffmpeg -hide_banner'
+alias ffprobe='ffprobe -hide_banner'
+
+# Make latexmk(1) non-interactive
+alias latexmk='latexmk -interaction=nonstopmode'
+
+# Use pnpm(1) instead of npm(1)
+alias npm=pnpm
+
+# Easily detect changed defaults keys on macOS
+defaults-diff() {
+	defaults read "$@" >| /tmp/defaults-diff-before
+	printf "Modify setting(s) now. Press <Enter> when finished."
+	read -r ans
+	defaults read "$@" >| /tmp/defaults-diff-after
+	diff -u /tmp/defaults-diff-{before,after}
+	rm -f /tmp/defaults-diff-{before,after}
+}
+
+# Open multiple files in tabs in (Neo)vim
+() {
+	for cmd in vim nvim
+	do
+		local rhs="$cmd -c 'tab all'"
+		alias "${cmd}tab"="$rhs"
+		alias "tab$cmd"="$rhs"
+		alias "t$cmd"="$rhs"
+	done
+}
