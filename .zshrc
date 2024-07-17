@@ -77,7 +77,7 @@ MAILCHECK=0 # Don't check for mail
 ##
 
 # Lazy-load NVM
-() {
+load_nvm() {
     # List of commands which require NVM to be loaded
     local requires_nvm=(nvm node npm pnpm nvim)
     for cmd in "${requires_nvm[@]}"
@@ -94,7 +94,7 @@ MAILCHECK=0 # Don't check for mail
             "$0" "$@"
         }
     done
-}
+}; load_nvm
 
 # pnpm
 export PNPM_HOME="$HOME/.local/share/pnpm"
@@ -200,7 +200,7 @@ function add_menu_keybindings() {
 
 # Enable Vi-style keybindings for editing command lines.
 # This is wrapped in a function so we can use scope variables.
-() {
+load_zsh_vi_mode() {
     # Check if zsh-vi-mode is installed.
     # https://github.com/jeffreytse/zsh-vi-mode
     local found search_prefixes prefix
@@ -233,7 +233,7 @@ function add_menu_keybindings() {
         bindkey -v
         add_menu_keybindings # Add completion menu keybindings
     fi
-}
+}; load_zsh_vi_mode
 
 
 ##
@@ -388,7 +388,7 @@ if [ -c "$(tty)" ]; then
 fi
 
 # Load syntax highlighting
-() {
+load_syntax_highlighting() {
     local sh_prefixes found
     sh_prefixes=(
         "${XDG_DATA_HOME:-$HOME/.local/share}"
@@ -409,7 +409,7 @@ fi
     then
         printf '\x1b[1;33mWarning:\x1b[m zsh-syntax-highlighting not found.\n'
     fi
-}
+}; load_syntax_highlighting
 
 ##
 ## PRINT PROFILING RESULTS
