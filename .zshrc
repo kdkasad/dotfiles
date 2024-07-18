@@ -189,13 +189,12 @@ function add_menu_keybindings() {
     bindkey -M menuselect 'j' vi-down-line-or-history
     bindkey -M menuselect 'k' vi-up-line-or-history
     bindkey -M menuselect 'l' vi-forward-char
-    bindkey -M menuselect '^d' vi-forward-word
-    bindkey -M menuselect '^u' vi-backward-word
     bindkey -M menuselect 'w' vi-forward-blank-word
     bindkey -M menuselect 'b' vi-backward-blank-word
     bindkey -M menuselect '0' vi-beginning-of-line
     bindkey -M menuselect '$' vi-end-of-line
-    bindkey -M menuselect '^[' undo
+    bindkey -M menuselect '^[' undo  # ^[ = ESC
+    bindkey -M menuselect '^U' vi-kill-line
 }
 
 # Enable Vi-style keybindings for editing command lines.
