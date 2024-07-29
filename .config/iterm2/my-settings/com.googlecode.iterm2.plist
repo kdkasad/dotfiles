@@ -690,6 +690,10 @@
 	<false/>
 	<key>SoundForEsc</key>
 	<false/>
+	<key>TerminalMargin</key>
+	<integer>12</integer>
+	<key>TerminalVMargin</key>
+	<integer>12</integer>
 	<key>VisualIndicatorForEsc</key>
 	<false/>
 	<key>findMode_iTerm</key>
