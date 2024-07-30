@@ -109,15 +109,6 @@ export GPG_TTY=$(tty)
 
 
 ##
-## BEGIN INTERACTIVE-ONLY SETTINGS
-##
-case $- in
-    *i*) ;;
-      *) return;;
-esac
-
-
-##
 ## COMPLETIONS
 ##
 
