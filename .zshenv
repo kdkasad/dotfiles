@@ -20,3 +20,6 @@ fi
 
 # Change Go installation directory
 export GOPATH="$HOME/.go"
+
+# Change Homebrew self-update frequency
+export HOMEBREW_AUTO_UPDATE_SECS=86400  # 24 hours
