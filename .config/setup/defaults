@@ -92,4 +92,11 @@ com.apple.WindowManager	AppWindowGroupingBehavior	int	0
 com.apple.WindowManager	StageManagerHideWidgets	bool	true
 com.apple.WindowManager	StandardHideWidgets	bool	false
 
+## Settings for HotKey app
+de.codenauts.HotKey	big-menu-icons	bool	true
+de.codenauts.HotKey	create-example-on-start	bool	false
+de.codenauts.HotKey	hide-menu-icon	bool	false
+de.codenauts.HotKey	open-prefs-on-start	bool	false
+de.codenauts.HotKey	visual-feedback	bool	false
+
 # vim: ts=8 sw=8 noet
