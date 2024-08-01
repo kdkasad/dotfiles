@@ -2,3 +2,4 @@ Firefox	file:///Applications/Firefox.app/	persistentApps	/Users/kian/Library/Pre
 Notion	file:///Applications/Notion.app/	persistentApps	/Users/kian/Library/Preferences/com.apple.dock.plist	notion.id
 Mail	file:///System/Applications/Mail.app/	persistentApps	/Users/kian/Library/Preferences/com.apple.dock.plist	com.apple.mail
 iTerm	file:///Applications/iTerm.app/	persistentApps	/Users/kian/Library/Preferences/com.apple.dock.plist	com.googlecode.iterm2
+Slack	file:///Applications/Slack.app/	persistentApps	/Users/kian/Library/Preferences/com.apple.dock.plist	com.tinyspeck.slackmacgap

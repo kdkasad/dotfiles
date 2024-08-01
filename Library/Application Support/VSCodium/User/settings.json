@@ -80,5 +80,6 @@
   "[markdown]": {
     "editor.unicodeHighlight.invisibleCharacters": false,
     "files.trimTrailingWhitespace": false
-  }
+  },
+  "gitlens.launchpad.indicator.enabled": false
 }
