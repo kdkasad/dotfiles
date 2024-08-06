@@ -1,0 +1,139 @@
+# include ~/.config/git/private.conf
+# This is where personal information goes, like the [user] section so it isn't
+# included in the dotfiles repository
+[include]
+	path = private.conf
+
+[commit]
+	gpgsign = true
+[core]
+	editor = nvim
+	autocrlf = input
+	pager = less -SRi
+	whitespace = trailing-space,space-before-tab,cr-at-eol
+[color]
+	status = auto
+	ui = auto
+[tag]
+	gpgsign = true
+[blame]
+	coloring = repeatedLines
+[pull]
+	ff = only
+[alias]
+	c = commit
+	cam = commit --amend --no-edit
+	co = checkout
+	s = status
+	l = log -s --graph --no-show-signature
+	lo = log --graph --oneline --no-show-signature
+	la = log -s --graph --no-show-signature --all
+	loa = log --graph --oneline --no-show-signature --all
+	log = log --graph
+	logs = log --graph --show-signature
+	root = rev-list --max-parents=0 HEAD
+	sw = switch
+	d = diff
+	ds = diff --staged
+	dw = diff --word-diff
+	dws = diff --staged --word-diff
+	b = branch
+	innit = init
+	bblame = blame -w -C -C -C -M # Blame, ignoring whitespace changes and moved code
+	pushf = push --force-with-lease # Force push, but don't overwrite other people's changes
+	fpush = pushf
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+[diff]
+	tool = nvimdiff
+	colorMovedWS = allow-indentation-change
+	colorMoved = default
+
+# URL aliases for GitHub
+[url "git@github.com:"]
+	insteadOf = gh:
+	insteadOf = gh://
+	pushInsteadOf = gh:
+	pushInsteadOf = gh://
+	pushInsteadOf = https://github.com/
+	pushInsteadOf = http://github.com/
+	pushInsteadOf = git://github.com/
+
+# URL aliases for GitLab
+[url "https://gitlab.com/"]
+	insteadOf = gl:
+	insteadOf = gl://
+[url "git@gitlab.com:"]
+	pushInsteadOf = gl:
+	pushInsteadOf = gl://
+	pushInsteadOf = https://gitlab.com/
+	pushInsteadOf = http://gitlab.com/
+	pushInsteadOf = git://gitlab.com/
+
+# URL aliases for git.kasad.com
+[url "https://git.kasad.com/"]
+	insteadOf = kasad:
+	insteadOf = kasad://
+	insteadOf = http://git.kasad.com/
+	insteadOf = git://git.kasad.com/
+[url "git@git.kasad.com:"]
+	pushInsteadOf = kasad:
+	pushInsteadOf = kasad://
+	pushInsteadOf = http://git.kasad.com/
+	pushInsteadOf = https://git.kasad.com/
+	pushInsteadOf = git://git.kasad.com/
+
+# URL aliases for the AUR
+[url "https://aur.archlinux.org/"]
+	insteadOf = aur:
+	insteadOf = aur://
+	insteadOf = http://aur.archlinux.org/
+[url "aur@aur.archlinux.org:"]
+	pushInsteadOf = aur:
+	pushInsteadOf = aur://
+	pushInsteadOf = http://aur.archlinux.org/
+	pushInsteadOf = https://aur.archlinux.org/
+
+[sendemail]
+	confirm = always
+	thread = true
+	multiedit = true
+	smtpencryption = ssl
+	smtpserverport = 465
+[merge]
+	tool = nvimdiff
+	log = true
+[advice]
+	detachedHead = false
+[init]
+	defaultBranch = master
+	templateDir = ~/.config/git/templates
+[push]
+	default = simple
+[branch]
+	autosetupmerge = always
+	sort = -committerdate
+[user]
+	name = Kian Kasad
+	email = kian@kasad.com
+[diff "*"]
+	cachetextconv = true
+[diff "lockb"]
+	textconv = bun
+	binary = true
+[diff "ansible-vault"]
+	textconv = ansible-vault view
+	binary = true
+[status]
+	submodulesummary = true
+[rerere]
+	enabled = yes
+	autoUpdate = no
+[fetch]
+	writeCommitGraph = true
+[rebase]
+	updateRefs = true
+	autoSquash = yes

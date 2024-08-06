@@ -1,0 +1,102 @@
+#!/bin/sh
+
+#
+# Tracks whether to abort the commit.
+# 0 = don't abort. 1 = abort.
+#
+abort=0
+
+#
+# Print a message preceded by "Error: " in bold red font.
+# Arguments to this function are passed directly to printf(1).
+#
+error() {
+    printf '\x1b[1;31mError:\x1b[m '
+    printf "$@"
+}
+
+#
+# Print a message preceded by "Warning: " in bold yellow font.
+# Arguments to this function are passed directly to printf(1).
+#
+warning() {
+    printf '\x1b[1;33mWarning:\x1b[m '
+    printf "$@"
+}
+
+#
+# Print a message preceded by "Info: " in bold blue font.
+# Arguments to this function are passed directly to printf(1).
+#
+info() {
+    printf '\x1b[1;34mInfo:\x1b[m '
+    printf "$@"
+}
+
+#
+# This check aborts the commit if any files containing "NOCOMMIT" or
+# "!nocommit" are about to be committed
+#
+matches="$( git --no-pager grep -I --cached --word-regexp --line-number --heading --break --color=always --fixed-strings \( -e 'NOCOMMIT' --or -e '!nocommit' \) )"
+if [ -n "$matches" ]
+then
+    error 'Trying to commit non-committable marker(s):\n\n'
+    echo "$matches"
+    echo
+    error 'Remove the NOCOMMIT marker(s) and try again.\n'
+    info 'Any following checks may still run, but commit will be aborted.\n'
+    abort=1
+fi
+
+#
+# This check prompts the user if any files containing "DEBUG" are about to be
+# committed
+#
+matches="$( git --no-pager grep -I --cached --word-regexp --line-number --heading --break --color=always --fixed-strings -e 'DEBUG' )"
+if [ -n "$matches" ]
+then
+    if [ "${COMMIT_DEBUG_MARKERS:+x}" = x ]
+    then
+        warning 'Trying to commit debug markers:\n'
+    else
+        error 'Trying to commit debug markers:\n'
+    fi
+
+    echo
+    echo "$matches"
+    echo
+
+    if [ "${COMMIT_DEBUG_MARKERS:+x}" = x ]
+    then
+        warning 'Continuing commit with debug marker(s).\n'
+    else
+        error 'Remove the DEBUG marker(s) and try again.\n'
+        error 'To ignore these markers, set the environment variable COMMIT_DEBUG_MARKERS.\n'
+        info 'Any following checks may still run, but commit will be aborted.\n'
+        abort=1
+    fi
+fi
+
+#
+# This check uses gitleaks (https://github.com/gitleaks/gitleaks) to detect
+# secrets which are about to be committed.
+#
+if command -v gitleaks >/dev/null 2>&1
+then
+    output=$(gitleaks protect --staged --verbose 2>/dev/null)
+    if [ $? = 1 ]
+    then
+        error 'Detected secrets in staged files:\n'
+        echo
+        echo "$output"
+        echo
+        abort=1
+    fi
+else
+    warning 'gitleaks command not found. Cannot scan for possible secrets.\n'
+fi
+
+# Exit with the specified status
+exit $abort
+
+# vim: sw=4 ts=4 et
