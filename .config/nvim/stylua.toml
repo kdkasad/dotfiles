@@ -1,0 +1,4 @@
+# Lua code formatter settings
+
+indent_type = "Spaces"
+indent_width = 4
