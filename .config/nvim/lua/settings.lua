@@ -96,14 +96,19 @@ vim.cmd([[
 ]])
 
 -- Restore position when re-opening files
-vim.api.nvim_create_augroup("RestoreCursor", { clear = true })
 vim.api.nvim_create_autocmd("BufReadPost", {
-    group = "RestoreCursor",
+    group = vim.api.nvim_create_augroup("RestoreCursorPosition", { clear = true }),
     callback = function()
-        local line = vim.fn["line"]({ "'\"" })
-        local lastline = vim.fn["line"]({ "$" })
-        if (line > 1) and (line <= lastline) and (vim.o.filetype ~= "gitcommit") then
-            vim.cmd.normal("g'\"")
+        local line = vim.fn["line"]("'\"")
+        local lastline = vim.fn["line"]("$")
+        local ignore_filetypes = {
+            gitcommit = true,
+            gitrebase = true,
+            xxd = true,
+            help = true,
+        }
+        if (line > 1) and (line <= lastline) and (ignore_filetypes[vim.bo.filetype] == nil) then
+            vim.cmd([[normal! g'"]])
         end
     end,
 })

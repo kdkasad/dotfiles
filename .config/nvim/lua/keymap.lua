@@ -74,9 +74,10 @@ vim.keymap.set("n", "ZW", "<cmd>w<cr>")
 -- Surround character with spaces
 vim.keymap.set("n", "<leader><space>", "i <esc>la <esc>h")
 
--- Open split terminals
-vim.keymap.set("n", "<leader>ts", "<cmd>split terminal<cr>")
-vim.keymap.set("n", "<leader>tv", "<cmd>vsplit terminal<cr>")
+-- Open terminals
+vim.keymap.set("n", "<leader>ts", "<cmd>split | terminal<cr>")
+vim.keymap.set("n", "<leader>tv", "<cmd>vsplit | terminal<cr>")
+vim.keymap.set("n", "<leader>tt", "<cmd>tabnew | terminal<cr>")
 
 -- LSP keybindings
 vim.api.nvim_create_autocmd("LspAttach", {
@@ -91,6 +92,27 @@ vim.api.nvim_create_autocmd("LspAttach", {
         vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, opts)
         vim.keymap.set("n", "<leader>ga", vim.lsp.buf.code_action, opts)
         vim.keymap.set("n", "<leader>gf", vim.lsp.buf.format, opts)
+
+        -- Jump to diagnostics
+        local genGotoDiag = function(direction, level)
+            local func
+            if direction == "next" then
+                func = vim.diagnostic.goto_next
+            else
+                func = vim.diagnostic.goto_prev
+            end
+            return function()
+                func({ severity = vim.diagnostic.severity[level] })
+            end
+        end
+        vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
+        vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
+        vim.keymap.set("n", "]e", genGotoDiag("next", "ERROR"), opts)
+        vim.keymap.set("n", "[e", genGotoDiag("prev", "ERROR"), opts)
+        vim.keymap.set("n", "]w", genGotoDiag("next", "WARN"), opts)
+        vim.keymap.set("n", "[w", genGotoDiag("prev", "WARN"), opts)
+        vim.keymap.set("n", "]h", genGotoDiag("next", "HINT"), opts)
+        vim.keymap.set("n", "[h", genGotoDiag("prev", "HINT"), opts)
     end,
 })
 
@@ -98,5 +120,15 @@ vim.api.nvim_create_autocmd("LspAttach", {
 local dap = require("dap")
 vim.keymap.set("n", "<leader>db", dap.toggle_breakpoint)
 vim.keymap.set("n", "<leader>dc", dap.continue)
+
+-- vim-easy-align keybindings
+vim.keymap.set({ "n", "v" }, "ga", "<Plug>(EasyAlign)")
+
+-- Tab navigation
+vim.keymap.set("n", "<leader>tn", "<cmd>tabnew<cr>")
+vim.keymap.set("n", "]t", "gt")
+vim.keymap.set("n", "[t", "gT")
+
+-- NOTE: Completion keybindings are in plugins/completions.lua.
 
 -- vim: ft=lua sw=4 ts=4 et fdm=marker fmr={{{,}}} foldlevel=2

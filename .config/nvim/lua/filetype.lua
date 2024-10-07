@@ -47,4 +47,12 @@ vim.api.nvim_create_autocmd("BufReadPre", {
     end,
 })
 
+-- No scrolloff for help pages
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "help",
+    callback = function()
+        vim.wo.scrolloff = 0
+    end,
+})
+
 -- vim: ft=lua sw=4 ts=4 et fdm=marker fmr={{{,}}} foldlevel=2
