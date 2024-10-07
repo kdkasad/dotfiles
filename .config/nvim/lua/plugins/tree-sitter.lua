@@ -1,6 +1,8 @@
 -- Tree-sitter (for syntax highlighting & indenting)
 return {
     "nvim-treesitter/nvim-treesitter",
+    lazy = true,
+    event = "VimEnter",
     build = ":TSUpdate",
     config = function()
         -- Set up parsers

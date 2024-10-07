@@ -22,8 +22,8 @@ vim.o.expandtab = true
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
--- Don't highlight search results
-vim.o.hlsearch = false
+-- Highlight search results
+vim.o.hlsearch = true
 
 -- Keep the cursor away from the top/bottom edges
 vim.o.scrolloff = 10
@@ -122,4 +122,14 @@ vim.g.c_syntax_for_h = 1
 
 -- Use English dictionary for spell-check
 vim.opt.spelllang = { "en" }
+
+-- Highlight yanked text
+vim.api.nvim_create_autocmd("TextYankPost", {
+    desc = "Highlight when yanking text",
+    group = vim.api.nvim_create_augroup("HighlightYank", { clear = true }),
+    callback = function()
+        vim.highlight.on_yank()
+    end,
+})
+
 -- vim: ft=lua sw=4 ts=4 et fdm=marker fmr={{{,}}} foldlevel=2

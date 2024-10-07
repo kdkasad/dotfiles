@@ -55,4 +55,27 @@ vim.api.nvim_create_autocmd("FileType", {
     end,
 })
 
+-- Set comment marker for Typst files
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "typst",
+    callback = function()
+        vim.bo.commentstring = "// %s"
+    end,
+})
+
+-- CS 240 indentation rules
+vim.api.nvim_create_augroup("CS240Settings", { clear = true })
+vim.api.nvim_create_autocmd("BufReadPost", {
+    group = "CS240Settings",
+    pattern = "*/{CS 240,cs240}/*.{c,h,tex}",
+    callback = function()
+        vim.cmd[[echom "Applying CS 240 settings"]]
+        vim.bo.shiftwidth = 2
+        vim.bo.tabstop = 2
+        vim.bo.expandtab = true
+        vim.bo.textwidth = 80
+        vim.wo.colorcolumn = "+1"
+    end,
+})
+
 -- vim: ft=lua sw=4 ts=4 et fdm=marker fmr={{{,}}} foldlevel=2

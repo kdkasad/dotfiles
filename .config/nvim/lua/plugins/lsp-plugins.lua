@@ -3,7 +3,24 @@ local ensure_installed_lsps = {
     "clangd",
     "texlab",
     "jedi_language_server",
+    "typst_lsp",
 }
+
+local gen_null_ls_sources = function(null_ls)
+    return {
+        -- Stylua - formatter for Lua (install via Mason)
+        null_ls.builtins.formatting.stylua,
+
+        -- Code actions from refactoring library (installed as plugin below)
+        null_ls.builtins.code_actions.refactoring,
+
+        -- Ansible-Lint
+        null_ls.builtins.diagnostics.ansiblelint,
+
+        -- Typstfmt
+        null_ls.builtins.formatting.typstfmt,
+    }
+end
 
 return {
     -- Mason: package manager for LSPs & more
@@ -20,6 +37,8 @@ return {
         "williamboman/mason-lspconfig.nvim",
         dependencies = {
             "hrsh7th/cmp-nvim-lsp",
+            -- lspconfig: LSP configurator
+            "neovim/nvim-lspconfig" ,
         },
         opts = {
             ensure_installed = ensure_installed_lsps,
@@ -39,25 +58,13 @@ return {
         end,
     },
 
-    -- lspconfig: LSP configurator
-    { "neovim/nvim-lspconfig" },
-
     -- None-LS: Wraps non-LSP tools for use in Neovim
     {
         "nvimtools/none-ls.nvim",
         config = function()
             local null_ls = require("null-ls")
             null_ls.setup({
-                sources = {
-                    -- Stylua - formatter for Lua (install via Mason)
-                    null_ls.builtins.formatting.stylua,
-
-                    -- Code actions from refactoring library (installed as plugin below)
-                    null_ls.builtins.code_actions.refactoring,
-
-                    -- Ansible-Lint
-                    null_ls.builtins.diagnostics.ansiblelint,
-                },
+                sources = gen_null_ls_sources(null_ls),
             })
         end,
     },
@@ -65,6 +72,8 @@ return {
     -- Refactoring library
     {
         "ThePrimeagen/refactoring.nvim",
+        lazy = true,
+        event = "VimEnter",
         dependencies = {
             "nvim-lua/plenary.nvim",
             "nvim-treesitter/nvim-treesitter",
