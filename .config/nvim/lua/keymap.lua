@@ -11,7 +11,7 @@ vim.keymap.set("n", "<leader>ff", telescope_builtin.find_files, { desc = "Search
 vim.keymap.set("n", "<leader>fb", telescope_builtin.buffers, { desc = "Search in buffers" })
 vim.keymap.set("n", "<leader>fg", telescope_builtin.git_files, { desc = "Search in Git-tracked files" })
 vim.keymap.set("n", "<leader>ft", telescope_builtin.live_grep, { desc = "Search for text (live grep)" })
-vim.keymap.set("v", "<leader>ft", telescope_builtin.grep_string, { desc = "Search for currently-selected text" })
+-- vim.keymap.set("v", "<leader>ft", telescope_builtin.grep_string, { desc = "Search for currently-selected text" })
 vim.keymap.set("n", "<leader>fs", telescope_builtin.treesitter, { desc = "Search for symbol" })
 
 -- Easily toggle cursor line
@@ -64,8 +64,7 @@ vim.keymap.set("n", "<leader>s", "<cmd>set spell!<cr>", { desc = "Toggle spell c
 
 -- Clear search highlighting
 vim.keymap.set("n", "<leader>nh", "<cmd>nohlsearch<cr>", { desc = "Clear search highlighting" })
-vim.keymap.set('n', '<leader><esc>', '<cmd>nohlsearch<cr>', { desc = "Clear search highlighting" })
-
+vim.keymap.set("n", "<leader><esc>", "<cmd>nohlsearch<cr>", { desc = "Clear search highlighting" })
 
 -- Move visual selection
 vim.keymap.set("v", "K", "<cmd>m '<-2<cr>gv=gv", { desc = "Move selected lines up" })
@@ -93,15 +92,17 @@ vim.api.nvim_create_autocmd("LspAttach", {
         vim.bo[env.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
 
         -- Keybindings
-        local modes = { 'n', 'v' }
-        vim.keymap.set(modes, "K", vim.lsp.buf.hover, { buffer = env.buf, desc = "View hover documentation" })
-        vim.keymap.set(modes, "gd", vim.lsp.buf.definition, { buffer = env.buf, desc = "Go to definition" })
-        vim.keymap.set(modes, "gD", vim.lsp.buf.declaration, { buffer = env.buf, desc = "Go to declaration" })
-        vim.keymap.set(modes, "gt", vim.lsp.buf.type_definition, { buffer = env.buf, desc = "Go to type definition" })
-        vim.keymap.set(modes, "gr", telescope_builtin.lsp_references, { buffer = env.buf, desc = "Find references (telescope)" })
-        vim.keymap.set(modes, "<leader>ra", vim.lsp.buf.code_action, { buffer = env.buf, desc = "Perform code action" })
-        vim.keymap.set(modes, "<leader>rf", vim.lsp.buf.format, { buffer = env.buf, desc = "Format code" })
-        vim.keymap.set(modes, "<leader>rr", vim.lsp.buf.rename, { buffer = env.buf, desc = "Rename symbol" })
+        local map = function(lhs, rhs, desc)
+            vim.keymap.set({ "n", "v" }, lhs, rhs, { buffer = env.buf, desc = desc })
+        end
+        map("K", vim.lsp.buf.hover, "View hover documentation")
+        map("gd", telescope_builtin.lsp_definitions, "Find definition (telescope)")
+        map("gD", vim.lsp.buf.declaration, "Go to declaration")
+        map("gt", telescope_builtin.lsp_type_definitions, "Find type definition (telescope)")
+        map("gr", telescope_builtin.lsp_references, "Find references (telescope)")
+        map("<leader>ra", vim.lsp.buf.code_action, "Perform code action")
+        map("<leader>rf", vim.lsp.buf.format, "Format code")
+        map("<leader>rr", vim.lsp.buf.rename, "Rename symbol")
 
         -- Jump to diagnostics
         local genGotoDiag = function(direction, level)
@@ -115,20 +116,20 @@ vim.api.nvim_create_autocmd("LspAttach", {
                 func({ severity = vim.diagnostic.severity[level] })
             end
         end
-        vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { buffer = env.buf, desc = "Go to next diagnostic" })
-        vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { buffer = env.buf, desc = "Go to previous diagnostic" })
-        vim.keymap.set("n", "]e", genGotoDiag("next", "ERROR"), { buffer = env.buf, desc = "Go to next error" })
-        vim.keymap.set("n", "[e", genGotoDiag("prev", "ERROR"), { buffer = env.buf, desc = "Go to previous error" })
-        vim.keymap.set("n", "]w", genGotoDiag("next", "WARN"), { buffer = env.buf, desc = "Go to next warning" })
-        vim.keymap.set("n", "[w", genGotoDiag("prev", "WARN"), { buffer = env.buf, desc = "Go to previous warning" })
-        vim.keymap.set("n", "]h", genGotoDiag("next", "HINT"), { buffer = env.buf, desc = "Go to next hint" })
-        vim.keymap.set("n", "[h", genGotoDiag("prev", "HINT"), { buffer = env.buf, desc = "Go to previous hint" })
+        map("]d", vim.diagnostic.goto_next, "Go to next diagnostic")
+        map("[d", vim.diagnostic.goto_prev, "Go to previous diagnostic")
+        map("]e", genGotoDiag("next", "ERROR"), "Go to next error")
+        map("[e", genGotoDiag("prev", "ERROR"), "Go to previous error")
+        map("]w", genGotoDiag("next", "WARN"), "Go to next warning")
+        map("[w", genGotoDiag("prev", "WARN"), "Go to previous warning")
+        map("]h", genGotoDiag("next", "HINT"), "Go to next hint")
+        map("[h", genGotoDiag("prev", "HINT"), "Go to previous hint")
     end,
 })
 
 -- DAP keybindings
 local dap = require("dap")
-vim.keymap.set("n", "<leader>db", dap.toggle_breakpoint, { desc = "Set breakpoint on current line" })
+vim.keymap.set({ "n", "v" }, "<leader>db", dap.toggle_breakpoint, { desc = "Set breakpoint on current line" })
 vim.keymap.set("n", "<leader>dc", dap.continue, { desc = "Continue execution or start new debugging session" })
 
 -- vim-easy-align keybindings
