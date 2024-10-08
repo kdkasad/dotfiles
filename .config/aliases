@@ -246,3 +246,17 @@ v240() {
 	hw="${1:-$(basename "$(pwd)")}"
 	nvimtab "$hw.c" "$hw.h" "${hw}_main.c"
 }
+
+# Swap two files' names
+swap() {
+	local tmpfile
+	tmpfile=".swaptmp"
+	if [ -e "$tmpfile" ]
+	then
+		echo "Error: $tmpfile already exists." >&2
+		return
+	fi
+	mv "$1" "$tmpfile"
+	mv "$2" "$1"
+	mv "$tmpfile" "$2"
+}
