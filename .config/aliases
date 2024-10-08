@@ -172,7 +172,10 @@ alias psmem='ps aux | sort -nr -k 4'
 alias reset='tput reset'
 
 # use bsdtar(1) by default
-alias tar=bsdtar
+if command -V bsdtar >/dev/null 2>&1
+then
+    alias tar=bsdtar
+fi
 
 # shortcut for xdg-open(1)
 alias xo=xdg-open
