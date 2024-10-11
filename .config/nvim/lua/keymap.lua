@@ -95,7 +95,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
         local map = function(lhs, rhs, desc)
             vim.keymap.set({ "n", "v" }, lhs, rhs, { buffer = env.buf, desc = desc })
         end
-        map("K", vim.lsp.buf.hover, "View hover documentation")
+        -- Don't set this one for visual mode because it conflicts with the shift up keybind
+        vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = env.buf, desc = "View hover documentation" })
         map("gd", telescope_builtin.lsp_definitions, "Find definition (telescope)")
         map("gD", vim.lsp.buf.declaration, "Go to declaration")
         map("gt", telescope_builtin.lsp_type_definitions, "Find type definition (telescope)")

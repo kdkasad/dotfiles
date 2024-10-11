@@ -56,10 +56,14 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 -- Set comment marker for Typst files
+-- Use 2-space indentation for Typst files
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "typst",
     callback = function()
         vim.bo.commentstring = "// %s"
+        vim.bo.expandtab = true
+        vim.bo.shiftwidth = 2
+        vim.bo.tabstop = 2
     end,
 })
 
@@ -75,6 +79,25 @@ vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
         vim.bo.textwidth = 80
         vim.wo.colorcolumn = "+1"
     end,
+})
+
+-- Enable surrounding with dollar signs for LaTeX and Typst.
+-- Uses surround.vim. See ":h surround.txt" for details.
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "typst", "tex", "plaintex" },
+    callback = function()
+        -- $ = 36 in ASCII
+        vim.b.surround_36 = "$\r$"
+    end
+})
+
+-- Use hashtags for comments in assembly
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "asm",
+    callback = function()
+        vim.bo.comments = ":#,s1:/*,mb:*,ex:*/,://"
+        vim.bo.commentstring = "# %s"
+    end
 })
 
 -- vim: ft=lua sw=4 ts=4 et fdm=marker fmr={{{,}}} foldlevel=2
