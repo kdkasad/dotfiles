@@ -155,4 +155,7 @@ vim.keymap.set("n", "[q", "<cmd>cprev<cr>", { desc = "Previous quickfix entry" }
 vim.keymap.set({ "n", "v" }, "<leader>y", '"+y', { desc = "Yank to system clipboard" })
 vim.keymap.set({ "n", "v" }, "<leader>p", '"+p', { desc = "Paste from system clipboard" })
 
+-- Shorter command to launch Typst preview
+vim.api.nvim_create_user_command("TP", "TypstPreview", { desc = "Same as :TypstPreview" })
+
 -- vim: ft=lua sw=4 ts=4 et fdm=marker fmr={{{,}}} foldlevel=2
