@@ -22,8 +22,8 @@ vim.o.expandtab = true
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
--- Highlight search results
-vim.o.hlsearch = true
+-- Don't highlight search results
+vim.o.hlsearch = false
 
 -- Keep the cursor away from the top/bottom edges
 vim.o.scrolloff = 10
