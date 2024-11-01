@@ -54,6 +54,18 @@ return {
                         capabilities = require("cmp_nvim_lsp").default_capabilities(),
                     })
                 end,
+
+                -- Custom setup for clangd to set worker count
+                ["clangd"] = function()
+                    local clangcmd = { "clangd" }
+                    if string.find(vim.fn.hostname(), ".cs.purdue.edu", 1, true) ~= nil then
+                        clangcmd = { "clangd", "-j", "8" }
+                    end
+                    require("lspconfig").clangd.setup({
+                        capabilities = require("cmp_nvim_lsp").default_capabilities(),
+                        cmd = clangcmd,
+                    })
+                end,
             })
         end,
     },
