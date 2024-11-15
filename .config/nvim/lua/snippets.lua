@@ -15,3 +15,28 @@ vim.api.nvim_create_autocmd("FileType", {
         })
     end,
 })
+
+-- Problem format for MA 351 homework
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "typst" },
+    callback = function()
+        vim.keymap.set(
+            "ia",
+            "linprob",
+            [[
+<c-o>:set paste
+#import "../../khw.typ": problem, parts
+
+#problem(
+  name: "Exercise",
+  number: false,
+  newpage: true,
+)[]
+
+<++><c-o>:set nopaste
+<c-o>?Exercise?e+
+]],
+            { buffer = 0 }
+        )
+    end,
+})
