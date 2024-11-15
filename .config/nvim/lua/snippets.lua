@@ -7,4 +7,11 @@ vim.keymap.set("ia", "deatil", "detail")
 vim.keymap.set("ia", "deatils", "details")
 
 -- Easy C-style comments
-vim.keymap.set("ia", "com", "/* */<left><left><left>")
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "c", "cpp", "java", "yacc" },
+    callback = function()
+        vim.keymap.set("ia", "com", "/* */<left><left><left>", {
+            buffer = 0,
+        })
+    end,
+})
