@@ -158,4 +158,7 @@ vim.keymap.set({ "n", "v" }, "<leader>p", '"+p', { desc = "Paste from system cli
 -- Shorter command to launch Typst preview
 vim.api.nvim_create_user_command("TP", "TypstPreview", { desc = "Same as :TypstPreview" })
 
+-- Evaluate selected expression
+vim.keymap.set("v", "<leader>=", 'c<c-r>=<c-r>"<cr><esc>')
+
 -- vim: ft=lua sw=4 ts=4 et fdm=marker fmr={{{,}}} foldlevel=2
