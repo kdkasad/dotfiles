@@ -11,9 +11,10 @@ return {
         require("neo-tree").setup({
             event_handlers = {
                 {
-                    event = "file_opened",
+                    event = "file_open_requested",
                     handler = function(file_path)
                         require("neo-tree.command").execute({ action = "close" })
+                        return { handled = false }
                     end
                 },
             }
