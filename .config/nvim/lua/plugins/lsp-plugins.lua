@@ -4,6 +4,7 @@ local ensure_installed_lsps = {
     "texlab",
     "jedi_language_server",
     "typst_lsp",
+    "rust_analyzer",
 }
 
 local gen_null_ls_sources = function(null_ls)
