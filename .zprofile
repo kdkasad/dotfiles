@@ -63,4 +63,22 @@ PATH="$HOMEBREW_PREFIX/opt/gsed/libexec/gnubin:$PATH"
 PATH="$HOMEBREW_PREFIX/opt/make/libexec/gnubin:$PATH"
 PATH="$HOMEBREW_PREFIX/opt/sqlite3/bin:$PATH"
 
+# Include ~/opt in paths
+if [ -d "$HOME/opt" ]
+then
+    export PATH="$HOME/opt/bin:$PATH"
+    export MANPATH="$HOME/opt/share/man:$MANPATH"
+    export LD_LIBRARY_PATH="$HOME/opt/lib:$LD_LIBRARY_PATH"
+    export CPPFLAGS="$CPPFLAGS -I$HOME/opt/include"
+    export LDFLAGS="$LDFLAGS -L$HOME/opt/lib"
+
+    # Load distcc(1) compiler aliases
+    if [ -d "$HOME/opt/lib/distcc" ]
+        export DISTCC_PATH="$HOME/opt/lib/distcc:$PATH"
+    then
+    fi
+
+fi
+
+
 export PATH
