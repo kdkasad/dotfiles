@@ -147,6 +147,12 @@ then
     fpath+="$HOMEBREW_PREFIX/share/zsh-completions"
 fi
 
+# Load user-installed completions
+if [ -d "$HOME/opt/share/zsh/vendor-completions" ]
+then
+    fpath+="$HOME/opt/share/zsh/vendor-completions"
+fi
+
 zmodload zsh/complist # Load menu selection module
 autoload -Uz compinit # Load compinit
 compinit              # Initialize completions
