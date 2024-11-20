@@ -82,3 +82,5 @@ fi
 
 
 export PATH
+
+umask 007
