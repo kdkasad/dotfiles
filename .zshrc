@@ -107,6 +107,13 @@ esac
 # Fix pinentry
 export GPG_TTY=$(tty)
 
+# Load distcc(1) hosts
+distcc_hosts_file="${XDG_CONFIG_HOME:-$HOME/.config}/distcc-hosts.txt"
+if [ -r "$distcc_hosts_file" ]
+then
+    export DISTCC_HOSTS="$(cat "$distcc_hosts_file")"
+fi
+
 
 ##
 ## COMPLETIONS
