@@ -33,7 +33,6 @@ if command -v gcc-14 &>/dev/null
 then
     export CC=gcc-14
 fi
-export CFLAGS='-Wall -Werror'
 
 # Include Homebrew-installed libraries in C compiler paths
 [ -d /opt/homebrew/include ] && export CPATH=/opt/homebrew/include
