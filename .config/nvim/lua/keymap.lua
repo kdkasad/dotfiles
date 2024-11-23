@@ -161,4 +161,7 @@ vim.api.nvim_create_user_command("TP", "TypstPreview", { desc = "Same as :TypstP
 -- Evaluate selected expression
 vim.keymap.set("v", "<leader>=", 'c<c-r>=<c-r>"<cr><esc>')
 
+-- Reverse selected text
+vim.keymap.set("v", "<leader>rv", 'c<c-r>=reverse(@")<cr><esc>')
+
 -- vim: ft=lua sw=4 ts=4 et fdm=marker fmr={{{,}}} foldlevel=2
