@@ -164,4 +164,13 @@ vim.keymap.set("v", "<leader>=", 'c<c-r>=<c-r>"<cr><esc>')
 -- Reverse selected text
 vim.keymap.set("v", "<leader>rv", 'c<c-r>=reverse(@")<cr><esc>')
 
+-- Disable arrow keys (for Vim week learning)
+local arrow_key_helper = function(replacement)
+    vim.print("Don't use arrow keys! Use '" .. replacement .. "' in Normal mode instead.")
+end
+vim.keymap.set({'', 'i'}, '<up>', function() arrow_key_helper('k') end)
+vim.keymap.set({'', 'i'}, '<down>', function() arrow_key_helper('j') end)
+vim.keymap.set({'', 'i'}, '<left>', function() arrow_key_helper('h') end)
+vim.keymap.set({'', 'i'}, '<right>',function() arrow_key_helper('l') end)
+
 -- vim: ft=lua sw=4 ts=4 et fdm=marker fmr={{{,}}} foldlevel=2
