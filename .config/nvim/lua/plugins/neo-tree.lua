@@ -15,9 +15,13 @@ return {
                     handler = function(file_path)
                         require("neo-tree.command").execute({ action = "close" })
                         return { handled = false }
-                    end
+                    end,
                 },
-            }
+            },
+            default_component_configs = {
+                -- Use letters from Git instead of symbols
+                git_status = { symbols = false, },
+            },
         })
-    end
+    end,
 }
