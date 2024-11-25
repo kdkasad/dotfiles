@@ -49,10 +49,10 @@ vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move to pane on right" })
 
 -- Jump markers
 local jmopts = { desc = "Jump to next <++> marker" }
-vim.keymap.set("i", "<S-Tab><S-Tab>", '<Esc>/<++><CR>"_cf>', jmopts)
-vim.keymap.set("n", "<S-Tab><S-Tab>", '/<++><CR>"_cf>', jmopts)
-vim.keymap.set("i", "<C-S-Tab><C-S-Tab>", '<Esc>?<++><CR>"_cf>', jmopts)
-vim.keymap.set("n", "<C-S-Tab><C-S-Tab>", '?<++><CR>"_cf>', jmopts)
+vim.keymap.set("i", "<S-Tab><S-Tab>", '<Esc>/<++><CR>"_cgn', jmopts)
+vim.keymap.set("n", "<S-Tab><S-Tab>", '/<++><CR>"_cgn', jmopts)
+vim.keymap.set("i", "<C-S-Tab><C-S-Tab>", '<Esc>?<++><CR>"_cgn', jmopts)
+vim.keymap.set("n", "<C-S-Tab><C-S-Tab>", '?<++><CR>"_cgn', jmopts)
 
 -- Toggle line wrapping
 vim.keymap.set("n", "<leader>wr", "<cmd>set wrap!<cr>", { desc = "Toggle line wrapping" })
