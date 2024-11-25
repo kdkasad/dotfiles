@@ -1,4 +1,5 @@
 -- NOTE: Completion keybindings are in plugins/completions.lua.
+-- NOTE: Git hunk-editing keymaps are defined in plugins/git.lua.
 
 -- Neo-tree (file browser)
 vim.keymap.set("n", "<leader>e", ":Neotree filesystem reveal left<CR>", { desc = "Open file browser" })
