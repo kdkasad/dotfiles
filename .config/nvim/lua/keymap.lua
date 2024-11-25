@@ -2,8 +2,8 @@
 -- NOTE: Git hunk-editing keymaps are defined in plugins/git.lua.
 
 -- Neo-tree (file browser)
-vim.keymap.set("n", "<leader>e", ":Neotree filesystem reveal left<CR>", { desc = "Open file browser" })
-vim.keymap.set("n", "<C-e>", ":Neotree filesystem reveal left toggle<CR>", { desc = "Toggle file browser" })
+vim.keymap.set("n", "<leader>e", "<cmd>Neotree filesystem reveal left<CR>", { desc = "Open file browser" })
+vim.keymap.set("n", "<C-e>", "<cmd>Neotree filesystem reveal left toggle<CR>", { desc = "Toggle file browser" })
 
 -- Telescope (searching & finding)
 local telescope_builtin = require("telescope.builtin")
