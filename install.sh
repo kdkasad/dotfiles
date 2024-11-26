@@ -20,7 +20,7 @@ then
     force=1
 fi
 
-git ls-files | while IFS='' read -r file
+git ls-files --recurse-submodules | while IFS='' read -r file
 do
     exclude=0
     for cur_excluded in "${exclude_files[@]}"
