@@ -6,6 +6,7 @@
 
 exclude_files=(
     .gitignore
+    .gitmodules
     README.md
     LICENSE
     install.sh

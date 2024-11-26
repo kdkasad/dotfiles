@@ -71,6 +71,8 @@ setopt LIST_AMBIGUOUS # Show completion list if there are multiple completions.
 
 MAILCHECK=0 # Don't check for mail
 
+KEYTIMEOUT=50 # Wait 50 * 10ms for multi-key chords
+
 
 ##
 ## ENVIRONMENT
@@ -179,6 +181,12 @@ fi
 
 # Load Bun completions
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+
+# fzf-git magic
+if [ -r "${XDG_DATA_HOME:-$HOME/.local/share}/fzf-git/fzf-git.sh" ]
+then
+    source "${XDG_DATA_HOME:-$HOME/.local/share}/fzf-git/fzf-git.sh"
+fi
 
 
 ##
