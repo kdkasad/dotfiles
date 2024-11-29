@@ -5,7 +5,7 @@ return {
     },
     opts = {
         options = {
-            theme = "dracula",
+            theme = "catppuccin",
             section_separators = "",
             component_separators = "",
         },
