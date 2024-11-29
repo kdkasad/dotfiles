@@ -132,4 +132,8 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     end,
 })
 
+-- Shorten messages
+-- Default is 'ltToOCF'
+vim.o.shortmess = 'tToOCF'
+
 -- vim: ft=lua sw=4 ts=4 et fdm=marker fmr={{{,}}} foldlevel=2
