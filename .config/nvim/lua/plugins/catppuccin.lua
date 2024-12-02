@@ -12,6 +12,9 @@ return {
                 light = "latte",
                 dark = "mocha",
             },
+            integrations = {
+                mason = true,
+            },
         },
         config = function(_, opts)
             require("catppuccin").setup(opts)
