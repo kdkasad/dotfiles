@@ -6,12 +6,8 @@ return {
         lazy = false,
         priority = 1000,
         opts = {
-            flavour = auto,
+            flavour = "mocha",
             transparent_background = false,
-            background = {
-                light = "latte",
-                dark = "mocha",
-            },
             integrations = {
                 mason = true,
             },
