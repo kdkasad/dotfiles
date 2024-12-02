@@ -26,7 +26,7 @@ vim.g.maplocalleader = "\\"
 vim.o.hlsearch = false
 
 -- Keep the cursor away from the top/bottom edges
-vim.o.scrolloff = 10
+vim.o.scrolloff = 5
 
 -- Line numbers
 vim.o.number = true
