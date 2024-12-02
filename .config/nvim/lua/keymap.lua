@@ -172,6 +172,9 @@ end
 vim.keymap.set({'', 'i'}, '<up>', function() arrow_key_helper('k') end)
 vim.keymap.set({'', 'i'}, '<down>', function() arrow_key_helper('j') end)
 vim.keymap.set({'', 'i'}, '<left>', function() arrow_key_helper('h') end)
-vim.keymap.set({'', 'i'}, '<right>',function() arrow_key_helper('l') end)
+vim.keymap.set({'', 'i'}, '<right>', function() arrow_key_helper('l') end)
+
+-- Use Ctrl+B as Ctrl+A, as Ctrl+A is used as the nested tmux prefix and thus will send Ctrl+B
+vim.keymap.set("", "<c-b>", "<c-a>")
 
 -- vim: ft=lua sw=4 ts=4 et fdm=marker fmr={{{,}}} foldlevel=2
