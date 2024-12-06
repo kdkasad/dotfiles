@@ -177,4 +177,7 @@ vim.keymap.set({'', 'i'}, '<right>', function() arrow_key_helper('l') end)
 -- Use Ctrl+B as Ctrl+A, as Ctrl+A is used as the nested tmux prefix and thus will send Ctrl+B
 vim.keymap.set("", "<c-b>", "<c-a>")
 
+-- Use '*' key to surround with C-style comments
+vim.g.surround_42 = "/* \r */"
+
 -- vim: ft=lua sw=4 ts=4 et fdm=marker fmr={{{,}}} foldlevel=2
