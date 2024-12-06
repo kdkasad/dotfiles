@@ -136,4 +136,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 -- Default is 'ltToOCF'
 vim.o.shortmess = 'tToOCF'
 
+-- Highlight cursor line
+vim.wo.cursorline = true
+
 -- vim: ft=lua sw=4 ts=4 et fdm=marker fmr={{{,}}} foldlevel=2
