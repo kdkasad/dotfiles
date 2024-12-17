@@ -1,10 +1,12 @@
--- Auto-correct "ture" and "treu" to "true"
+-- Auto-correct typos
 vim.keymap.set("ia", "ture", "true")
 vim.keymap.set("ia", "treu", "true")
-
--- Auto-correct "deatil(s)" to "detail(s)"
 vim.keymap.set("ia", "deatil", "detail")
 vim.keymap.set("ia", "deatils", "details")
+vim.keymap.set("ia", "recieve", "receive")
+vim.keymap.set("ia", "recieved", "received")
+vim.keymap.set("ia", "reciever", "receiver")
+
 
 -- Easy C-style comments
 vim.api.nvim_create_autocmd("FileType", {
