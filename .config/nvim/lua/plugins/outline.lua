@@ -4,7 +4,7 @@ return {
     lazy = true,
     cmd = { "Outline", "OutlineOpen" },
     keys = {
-        { "\\", "<cmd>Outline<cr>", desc = "Toggle symbol outline" },
+        { "|", "<cmd>Outline<cr>", desc = "Toggle symbol outline" },
     },
     opts = {
         -- Your setup opts here
