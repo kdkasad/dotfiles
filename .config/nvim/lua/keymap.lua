@@ -34,6 +34,7 @@ vim.keymap.set("n", "Y", "y$")
 
 -- Shortcuts to save or quit
 vim.keymap.set("n", "<leader>w", ":w<CR>", { desc = "Same as :w" })
+vim.keymap.set("n", "<leader>ww", ":w<CR>", { desc = "Same as :w" })
 vim.keymap.set("n", "<leader>q", ":q<CR>", { desc = "Same as :q" })
 
 -- Split pane resizing
