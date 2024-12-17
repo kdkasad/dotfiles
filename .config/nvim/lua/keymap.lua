@@ -171,4 +171,8 @@ vim.keymap.set("", "<c-b>", "<c-a>")
 -- Use '*' key to surround with C-style comments
 vim.g.surround_42 = "/* \r */"
 
+-- Shift lines up/down
+vim.keymap.set("v", "K", ":m '<-2<cr>gv=gv")
+vim.keymap.set("v", "J", ":m '>+1<cr>gv=gv")
+
 -- vim: ft=lua sw=4 ts=4 et fdm=marker fmr={{{,}}} foldlevel=2
