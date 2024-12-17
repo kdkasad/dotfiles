@@ -52,6 +52,9 @@ return {
                 -- a dedicated handler.
                 function(server_name)
                     require("lspconfig")[server_name].setup({
+                        on_attach = function()
+                            vim.diagnostic.config({ severity_sort = true })
+                        end,
                         capabilities = require("cmp_nvim_lsp").default_capabilities(),
                     })
                 end,
@@ -63,6 +66,9 @@ return {
                         clangcmd = { "clangd", "-j", "8" }
                     end
                     require("lspconfig").clangd.setup({
+                        on_attach = function()
+                            vim.diagnostic.config({ severity_sort = true })
+                        end,
                         capabilities = require("cmp_nvim_lsp").default_capabilities(),
                         cmd = clangcmd,
                     })
