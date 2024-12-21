@@ -177,4 +177,10 @@ vim.g.surround_42 = "/* \r */"
 vim.keymap.set("v", "K", ":m '<-2<cr>gv=gv")
 vim.keymap.set("v", "J", ":m '>+1<cr>gv=gv")
 
+-- Scroll buffer with Alt+k/j
+vim.keymap.set("n", "<M-k>", "<c-y>")
+vim.keymap.set("n", "<M-j>", "<c-e>")
+vim.keymap.set("n", "<M-K>", "<c-u>")
+vim.keymap.set("n", "<M-J>", "<c-d>")
+
 -- vim: ft=lua sw=4 ts=4 et fdm=marker fmr={{{,}}} foldlevel=2
