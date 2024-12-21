@@ -270,3 +270,16 @@ function y() {
 	fi
 	rm -f -- "$tmp"
 }
+
+function t() {
+    if [ -z $1 ]
+    then
+        echo 'Usage: t <session-name>' >&2
+        return 1
+    fi
+    tmux new-session -s $1 -n code -d || return $?
+    tmux new-window -t $1 -n shell || return $?
+    tmux last-window || return $?
+    tmux send-keys -t $1:1 nvim Enter || return $?
+    tmux attach-session -t $1 || return $?
+}
