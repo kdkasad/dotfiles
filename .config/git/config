@@ -42,6 +42,7 @@
 	bblame = blame -w -C -C -C -M # Blame, ignoring whitespace changes and moved code
 	pushf = push --force-with-lease # Force push, but don't overwrite other people's changes
 	fpush = pushf
+	rb = rebase -i --autosquash
 [filter "lfs"]
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
