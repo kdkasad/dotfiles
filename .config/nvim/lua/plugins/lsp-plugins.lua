@@ -5,6 +5,7 @@ local ensure_installed_lsps = {
     "jedi_language_server",
     "typst_lsp",
     "rust_analyzer",
+    "gopls",
 }
 
 local gen_null_ls_sources = function(null_ls)
