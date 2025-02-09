@@ -6,23 +6,8 @@ local ensure_installed_lsps = {
     "tinymist",
     "rust_analyzer",
     "gopls",
+    "ansiblels",
 }
-
-local gen_null_ls_sources = function(null_ls)
-    return {
-        -- Stylua - formatter for Lua (install via Mason)
-        null_ls.builtins.formatting.stylua,
-
-        -- Code actions from refactoring library (installed as plugin below)
-        null_ls.builtins.code_actions.refactoring,
-
-        -- Ansible-Lint
-        null_ls.builtins.diagnostics.ansiblelint,
-
-        -- Typstfmt
-        null_ls.builtins.formatting.typstfmt,
-    }
-end
 
 return {
     -- Mason: package manager for LSPs & more
@@ -81,10 +66,26 @@ return {
     -- None-LS: Wraps non-LSP tools for use in Neovim
     {
         "nvimtools/none-ls.nvim",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+        },
+        main = "null-ls",
         config = function()
             local null_ls = require("null-ls")
             null_ls.setup({
-                sources = gen_null_ls_sources(null_ls),
+                sources = {
+                    -- Stylua - formatter for Lua (install via Mason)
+                    null_ls.builtins.formatting.stylua,
+
+                    -- Code actions from refactoring library (installed as plugin below)
+                    null_ls.builtins.code_actions.refactoring,
+
+                    -- Ansible-Lint
+                    null_ls.builtins.diagnostics.ansiblelint,
+
+                    -- Typstfmt
+                    null_ls.builtins.formatting.typstfmt,
+                },
             })
         end,
     },

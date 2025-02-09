@@ -2,19 +2,34 @@
 -- NOTE: Git hunk-editing keymaps are defined in plugins/git.lua.
 
 -- Neo-tree (file browser)
-vim.keymap.set("n", "<leader>e", "<cmd>Neotree filesystem reveal left<CR>", { desc = "Open file browser" })
-vim.keymap.set("n", "<C-e>", "<cmd>Neotree filesystem reveal left toggle<CR>", { desc = "Toggle file browser" })
-vim.keymap.set("n", "\\", "<cmd>Neotree filesystem reveal left toggle<CR>", { desc = "Toggle file browser" })
+vim.keymap.set("n", "<leader>e", function() Snacks.explorer.reveal() end, { desc = "Open file browser" })
+vim.keymap.set("n", "<C-e>", function() Snacks.explorer() end, { desc = "Toggle file browser" })
+vim.keymap.set("n", "\\", function() Snacks.explorer() end, { desc = "Toggle file browser" })
 
--- Telescope (searching & finding)
-local telescope_builtin = require("telescope.builtin")
-vim.keymap.set("n", "<C-p>", telescope_builtin.find_files, { desc = "Search for file" })
-vim.keymap.set("n", "<leader>ff", telescope_builtin.find_files, { desc = "Search for file" })
-vim.keymap.set("n", "<leader>fb", telescope_builtin.buffers, { desc = "Search in buffers" })
-vim.keymap.set("n", "<leader>fg", telescope_builtin.git_files, { desc = "Search in Git-tracked files" })
-vim.keymap.set("n", "<leader>ft", telescope_builtin.live_grep, { desc = "Search for text (live grep)" })
--- vim.keymap.set("v", "<leader>ft", telescope_builtin.grep_string, { desc = "Search for currently-selected text" })
-vim.keymap.set("n", "<leader>fs", telescope_builtin.treesitter, { desc = "Search for symbol" })
+-- Function to add a Snacks.picker mapping
+local function snackmap(lhs, func, desc, mode, pickeropts)
+    vim.keymap.set(mode or "n", lhs, function() Snacks.picker[func](pickeropts or {}) end, { desc = desc })
+end
+
+-- Search files
+snackmap("<leader>ff",  "files",                 "Search files")
+snackmap("<leader>fr",  "recent",                "Search recent files")
+snackmap("<leader>fb",  "buffers",               "Search open buffers")
+snackmap("<leader>ft",  "grep",                  "Search for text (live grep)")
+snackmap("<leader>f:",  "command_history",       "Search command history")
+snackmap("<leader>fn",  "notifications",         "Search notification history")
+snackmap("<leader>fp",  "projects",              "Search projects")
+snackmap("<leader>fc",  "files",                 "Search Neovim configuration files", { cwd = vim.fn.stdpath("config") })
+
+-- Search Git
+snackmap("<leader>fgf", "git_files",             "Search Git-tracked files")
+snackmap("<leader>fgb", "git_branches",          "Search Git branches")
+snackmap("<leader>fgl", "git_log",               "Search Git log")
+snackmap("<leader>fgF", "git_log_file",          "Search Git log file")
+snackmap("<leader>fgL", "git_log_line",          "Search Git log line")
+snackmap("<leader>fgs", "git_status",            "Search Git status")
+snackmap("<leader>fgS", "git_stash",             "Search Git stash")
+snackmap("<leader>fgd", "git_diff",              "Search Git diff (hunks)")
 
 -- Easily toggle cursor line
 vim.keymap.set("n", "<leader>cl", ":set cursorline!<CR>")
@@ -33,9 +48,9 @@ vim.api.nvim_create_user_command("WQa", "wqa", { desc = "Same as :wqa" })
 vim.keymap.set("n", "Y", "y$")
 
 -- Shortcuts to save or quit
-vim.keymap.set("n", "<leader>w", ":w<CR>", { desc = "Same as :w" })
+-- vim.keymap.set("n", "<leader>w", ":w<CR>", { desc = "Same as :w" })
 vim.keymap.set("n", "<leader>ww", ":w<CR>", { desc = "Same as :w" })
-vim.keymap.set("n", "<leader>q", ":q<CR>", { desc = "Same as :q" })
+-- vim.keymap.set("n", "<leader>q", ":q<CR>", { desc = "Same as :q" })
 
 -- Split pane resizing
 vim.keymap.set("n", "<C-Up>", ":resize +2<CR>", { desc = "Make pane taller" })
@@ -100,10 +115,14 @@ vim.api.nvim_create_autocmd("LspAttach", {
         end
         -- Don't set this one for visual mode because it conflicts with the shift up keybind
         vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = env.buf, desc = "View hover documentation" })
-        map("gd", telescope_builtin.lsp_definitions, "Find definition (telescope)")
-        map("gD", vim.lsp.buf.declaration, "Go to declaration")
-        map("gt", telescope_builtin.lsp_type_definitions, "Find type definition (telescope)")
-        map("gr", telescope_builtin.lsp_references, "Find references (telescope)")
+        map("gd", function() Snacks.picker.lsp_definitions()      end, "Find definition")
+        map("gD", function() Snacks.picker.lsp_declarations()     end, "Find declaration")
+        map("gy", function() Snacks.picker.lsp_type_definitions() end, "Find type definition")
+        map("gr", function() Snacks.picker.lsp_references()       end, "Find references")
+        map("<leader>fs", function() Snacks.picker.lsp_symbols() end, "Search LSP symbols")
+        map("<leader>fS", function() Snacks.picker.lsp_workspace_symbols() end, "Search LSP workspace symbols")
+        map("<leader>fe", function() Snacks.picker.diagnostics_buffer() end, "Search buffer diagnostics")
+        map("<leader>fE", function() Snacks.picker.diagnostics() end, "Search diagnostics")
         map("<leader>ra", vim.lsp.buf.code_action, "Perform code action")
         map("<leader>rf", vim.lsp.buf.format, "Format code")
         map("<leader>rr", vim.lsp.buf.rename, "Rename symbol")
