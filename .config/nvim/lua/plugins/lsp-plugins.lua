@@ -3,7 +3,7 @@ local ensure_installed_lsps = {
     "clangd",
     "texlab",
     "jedi_language_server",
-    "typst_lsp",
+    "tinymist",
     "rust_analyzer",
     "gopls",
 }
