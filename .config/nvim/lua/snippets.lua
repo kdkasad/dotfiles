@@ -24,19 +24,17 @@ vim.api.nvim_create_autocmd("FileType", {
     callback = function()
         vim.keymap.set(
             "ia",
-            "linprob",
+            "341prob",
             [[
 <c-o>:set paste
 #import "../../khw.typ": problem, parts
 
-#problem(
-  name: "Exercise",
-  number: false,
-  newpage: true,
-)[]
+#problem(number: "")[
+  <++>
+]
 
 <++><c-o>:set nopaste
-<c-o>?Exercise?e+
+<c-o>?number: "?e+
 ]],
             { buffer = 0 }
         )
