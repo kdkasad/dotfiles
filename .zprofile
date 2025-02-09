@@ -63,22 +63,32 @@ PATH="$HOMEBREW_PREFIX/opt/gsed/libexec/gnubin:$PATH"
 PATH="$HOMEBREW_PREFIX/opt/make/libexec/gnubin:$PATH"
 PATH="$HOMEBREW_PREFIX/opt/sqlite3/bin:$PATH"
 
-# Include ~/opt in paths
-if [ -d "$HOME/opt" ]
-then
-    export PATH="$HOME/opt/bin:$PATH"
-    export MANPATH="$HOME/opt/share/man:$MANPATH"
-    export LD_LIBRARY_PATH="$HOME/opt/lib:$LD_LIBRARY_PATH"
-    export CPPFLAGS="$CPPFLAGS -I$HOME/opt/include"
-    export LDFLAGS="$LDFLAGS -L$HOME/opt/lib"
-
-    # Load distcc(1) compiler aliases
-    if [ -d "$HOME/opt/lib/distcc" ]
-        export DISTCC_PATH="$HOME/opt/lib/distcc:$PATH"
+# Include ~/opt and ~/share/opt in paths
+for opt in "$HOME/opt" "$HOME/share/opt"
+do
+    if [ -d "$opt" ]
     then
-    fi
+        export PATH="$opt/bin:$PATH"
+        export MANPATH="$opt/share/man:$MANPATH"
+        export LD_LIBRARY_PATH="$opt/lib:$LD_LIBRARY_PATH"
+        export CPPFLAGS="$CPPFLAGS -I$opt/include"
+        export LDFLAGS="$LDFLAGS -L$opt/lib"
 
-fi
+        # Load distcc(1) compiler aliases
+        if [ -d "$opt/lib/distcc" ]
+        then
+            export DISTCC_PATH="$opt/lib/distcc:$PATH"
+        fi
+
+        for dir in "$opt"/opt/*/bin(N)
+        do
+            if [ -d "$dir" ]
+            then
+                export PATH="$dir:$PATH"
+            fi
+        done
+    fi
+done
 
 
 export PATH
