@@ -1,6 +1,6 @@
--- Use tabs for Makefiles
+-- Use tabs for certain filetypes
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = "make",
+    pattern = { "make", "go" },
     callback = function()
         vim.o.expandtab = false
     end,
