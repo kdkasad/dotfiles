@@ -46,33 +46,33 @@ return {
             ensure_installed = ensure_installed_lsps,
         },
         config = function(_, opts)
+            local default_lsp_opts = {
+                on_attach = function()
+                    vim.diagnostic.config({ severity_sort = true })
+                end,
+                capabilities = require("cmp_nvim_lsp").default_capabilities(),
+            }
+
             require("mason-lspconfig").setup(opts)
             require("mason-lspconfig").setup_handlers({
                 -- The first entry (without a key) will be the default handler
                 -- and will be called for each installed server that doesn't have
                 -- a dedicated handler.
                 function(server_name)
-                    require("lspconfig")[server_name].setup({
-                        on_attach = function()
-                            vim.diagnostic.config({ severity_sort = true })
-                        end,
-                        capabilities = require("cmp_nvim_lsp").default_capabilities(),
-                    })
+                    require("lspconfig")[server_name].setup(default_lsp_opts)
                 end,
 
                 -- Custom setup for clangd to set worker count
                 ["clangd"] = function()
-                    local clangcmd = { "clangd" }
+                    local clangd_cmd = { "clangd" }
                     if string.find(vim.fn.hostname(), ".cs.purdue.edu", 1, true) ~= nil then
-                        clangcmd = { "clangd", "-j", "8" }
+                        clangd_cmd = { "clangd", "-j", "8" }
                     end
-                    require("lspconfig").clangd.setup({
-                        on_attach = function()
-                            vim.diagnostic.config({ severity_sort = true })
-                        end,
-                        capabilities = require("cmp_nvim_lsp").default_capabilities(),
-                        cmd = clangcmd,
-                    })
+                    local clangd_opts = { cmd = clangd_cmd }
+                    for k, v in pairs(default_lsp_opts) do
+                        clangd_opts[k] = v
+                    end
+                    require("lspconfig").clangd.setup(clangd_opts)
                 end,
             })
         end,
