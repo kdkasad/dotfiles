@@ -81,7 +81,7 @@ KEYTIMEOUT=50 # Wait 50 * 10ms for multi-key chords
 # Lazy-load NVM
 load_nvm() {
     # List of commands which require NVM to be loaded
-    local requires_nvm=(nvm node npm pnpm nvim)
+    local requires_nvm=(nvm node npm pnpm)
     for cmd in "${requires_nvm[@]}"
     do
         "$cmd"() {
