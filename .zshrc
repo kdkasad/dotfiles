@@ -253,7 +253,7 @@ load_zsh_vi_mode() {
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-    alacritty|*linux|screen|xterm|xterm-color|*-256color) color_prompt=yes;;
+    alacritty|*linux|screen|xterm|xterm-color|*-256color|*ghostty*) color_prompt=yes;;
 esac
 
 # Use starship if it's installed, otherwise use custom prompt
