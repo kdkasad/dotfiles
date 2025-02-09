@@ -394,7 +394,15 @@ fi
 ##
 
 # Run pfetch if in a tty
-if [ -c "$(tty)" ]; then
+if [ -c "$(tty)" ]
+then
+    PF_INFO="ascii title os host kernel uptime memory"
+    # Only show packages if not on a Purdue CS server
+    if ! [ "$(hostname -d)" = cs.purdue.edu ]
+    then
+        PF_INFO="$PF_INFO pkgs"
+    fi
+    export PF_INFO
     pfetch
 fi
 
