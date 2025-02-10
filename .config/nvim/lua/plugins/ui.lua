@@ -10,6 +10,7 @@ return {
     {
         "sphamba/smear-cursor.nvim",
         opts = {
+			smear_insert_mode = false,
             vertical_bar_cursor_insert_mode = true,
             horizontal_bar_cursor_replace_mode = true,
             smear_to_cmd = false,
