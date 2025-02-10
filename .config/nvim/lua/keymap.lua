@@ -7,8 +7,8 @@ vim.keymap.set("n", "<C-e>", function() Snacks.explorer() end, { desc = "Toggle 
 vim.keymap.set("n", "\\", function() Snacks.explorer() end, { desc = "Toggle file browser" })
 
 -- Function to add a Snacks.picker mapping
-local function snackmap(lhs, func, desc, mode, pickeropts)
-    vim.keymap.set(mode or "n", lhs, function() Snacks.picker[func](pickeropts or {}) end, { desc = desc })
+local function snackmap(lhs, func, desc, pickeropts)
+    vim.keymap.set("n", lhs, function() Snacks.picker[func](pickeropts or {}) end, { desc = desc })
 end
 
 -- Search files
