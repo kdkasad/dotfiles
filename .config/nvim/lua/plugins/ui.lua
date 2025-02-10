@@ -52,6 +52,11 @@ return {
                     explorer = {
                         jump = { close = true },
                     },
+					lsp_symbols = {
+						filter = {
+							default = true,
+						},
+					},
                 },
             },
             -- File explorer
