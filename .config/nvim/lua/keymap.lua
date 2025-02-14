@@ -34,6 +34,9 @@ snackmap("<leader>fgd", "git_diff",              "Search Git diff (hunks)")
 -- Easily toggle cursor line
 vim.keymap.set("n", "<leader>cl", ":set cursorline!<CR>")
 
+-- Toggle scope dimming
+Snacks.toggle.dim():map("<leader>ud")
+
 -- Allow capital versions of :w, :q, :wq
 vim.api.nvim_create_user_command("W", "w", { desc = "Same as :w" })
 vim.api.nvim_create_user_command("Q", "q", { desc = "Same as :q" })
