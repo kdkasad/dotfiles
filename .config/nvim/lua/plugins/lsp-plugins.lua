@@ -87,6 +87,11 @@ return {
                     null_ls.builtins.formatting.typstfmt,
                 },
             })
+
+            -- Load CS 240 linter source if on a Purdue server
+            if vim.fn.hostname():find(".cs.purdue.edu", 1, true) then
+                require("eastwood-source")
+            end
         end,
     },
 
