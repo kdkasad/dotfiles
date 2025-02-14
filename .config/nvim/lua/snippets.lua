@@ -27,7 +27,7 @@ vim.api.nvim_create_autocmd("FileType", {
             "341prob",
             [[
 <c-o>:set paste
-#import "../../khw.typ": problem, parts
+#import "../../khw.typ": *
 
 #problem(number: "")[
   <++>
