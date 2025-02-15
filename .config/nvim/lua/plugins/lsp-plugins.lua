@@ -25,7 +25,7 @@ return {
         dependencies = {
             "hrsh7th/cmp-nvim-lsp",
             -- lspconfig: LSP configurator
-            "neovim/nvim-lspconfig" ,
+            "neovim/nvim-lspconfig",
         },
         opts = {
             ensure_installed = ensure_installed_lsps,
@@ -50,14 +50,57 @@ return {
                 -- Custom setup for clangd to set worker count
                 ["clangd"] = function()
                     local clangd_cmd = { "clangd" }
-                    if string.find(vim.fn.hostname(), ".cs.purdue.edu", 1, true) ~= nil then
+                    if vim.fn.hostname():find(".cs.purdue.edu", 1, true) ~= nil then
                         clangd_cmd = { "clangd", "-j", "8" }
                     end
-                    local clangd_opts = { cmd = clangd_cmd }
-                    for k, v in pairs(default_lsp_opts) do
-                        clangd_opts[k] = v
-                    end
+                    local clangd_opts = vim.tbl_extend('force', default_lsp_opts, {
+                        cmd = clangd_cmd,
+                    })
                     require("lspconfig").clangd.setup(clangd_opts)
+                end,
+
+                -- Configure LuaLS to recognize Neovim globals.
+                -- Taken from https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#lua_ls
+                ["lua_ls"] = function()
+                    local luals_opts = vim.tbl_extend('force', default_lsp_opts, {
+                        on_init = function(client)
+                            if client.workspace_folders then
+                                local path = client.workspace_folders[1].name
+                                vim.print(path)
+                                if
+                                    path ~= vim.fn.stdpath("config")
+                                    and (
+                                        vim.uv.fs_stat(path .. "/.luarc.json")
+                                        or vim.uv.fs_stat(path .. "/.luarc.jsonc")
+                                    )
+                                then
+                                    return
+                                end
+                            end
+
+                            client.config.settings.Lua = vim.tbl_deep_extend("force", client.config.settings.Lua, {
+                                runtime = {
+                                    -- Tell the language server which version of Lua you're using
+                                    -- (most likely LuaJIT in the case of Neovim)
+                                    version = "LuaJIT",
+                                },
+                                -- Make the server aware of Neovim runtime files
+                                workspace = {
+                                    -- checkThirdParty = false,
+                                    library = {
+                                        vim.env.VIMRUNTIME,
+                                        -- Depending on the usage, you might want to add additional paths here.
+                                        -- "${3rd}/luv/library"
+                                        -- "${3rd}/busted/library",
+                                    },
+                                },
+                            })
+                        end,
+                        settings = {
+                            Lua = {},
+                        },
+                    })
+                    require("lspconfig").lua_ls.setup(luals_opts)
                 end,
             })
         end,
