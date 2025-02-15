@@ -57,6 +57,10 @@ return {
 							default = true,
 						},
 					},
+                    lsp_references = {
+                        include_current = true,
+                        include_declaration = true,
+                    },
                 },
             },
             -- File explorer
