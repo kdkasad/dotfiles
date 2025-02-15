@@ -11,6 +11,10 @@ local eastwood_source = {
     method = null_ls.methods.DIAGNOSTICS,
     filetypes = { "c", "cpp", "objc", "objcpp" },
     generator = helpers.generator_factory({
+        -- Only run if the path to the file contains 240
+        runtime_condition = function(params)
+            return params.bufname:find("240", 1, true)
+        end,
         command = "/homes/cs240/bin/linter",
         args = { "$FILENAME" },
         to_stdin = false, -- clang-tidy doesn't accept code on stdin
