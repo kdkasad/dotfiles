@@ -276,8 +276,8 @@ function t() {
     local configuration
     if [ $# -ne 1 ]
     then
-        echo 'Usage: t <configuration>' >&2
-        return 1
+        tmux list-sessions
+        return 0
     fi
     if tmux attach -t "$1" 2>/dev/null
     then
@@ -307,6 +307,9 @@ function t() {
             popd
             ;;
         *)
+            case "$1" in
+                ma341) cd ~/Documents/Mine/School/MA\ 341/work ;;
+            esac
             tmux new-session -s "$1" -n code -d || return $?
             tmux new-window -t "$1" -n shell || return $?
             tmux new-window -t "$1" -n man || return $?
