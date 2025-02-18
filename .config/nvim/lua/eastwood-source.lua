@@ -11,9 +11,17 @@ local eastwood_source = {
     method = null_ls.methods.DIAGNOSTICS,
     filetypes = { "c", "cpp", "objc", "objcpp" },
     generator = helpers.generator_factory({
-        -- Only run if the path to the file contains 240
+        -- Only run if...
         runtime_condition = function(params)
-            return params.bufname:find("240", 1, true)
+			-- Path contains "240/devel" and filename is *_main.c
+            if params.bufname:find("240/devel/.*/.*_main%.c$") then
+				return true
+			end
+			-- Path contains "240/" and does not contain "devel"
+			if params.bufname:find("240/", 1, true) and not params.bufname:find("devel/", 1, true) then
+				return true
+			end
+			return false
         end,
         command = "/homes/cs240/bin/linter",
         args = { "$FILENAME" },
