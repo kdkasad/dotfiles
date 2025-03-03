@@ -51,6 +51,13 @@ return {
                 sources = {
                     explorer = {
                         jump = { close = true },
+                        win = {
+                            list = {
+                                keys = {
+                                    ["<c-t>"] = { "tab", mode = { "n", "i" } },
+                                },
+                            },
+                        },
                     },
                     lsp_symbols = {
                         filter = {
