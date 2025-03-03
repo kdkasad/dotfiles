@@ -10,7 +10,7 @@ return {
     {
         "sphamba/smear-cursor.nvim",
         opts = {
-			smear_insert_mode = false,
+            smear_insert_mode = false,
             vertical_bar_cursor_insert_mode = true,
             horizontal_bar_cursor_replace_mode = true,
             smear_to_cmd = false,
@@ -19,13 +19,13 @@ return {
 
     -- Breadcrumbs bar
     {
-        'Bekaboo/dropbar.nvim',
+        "Bekaboo/dropbar.nvim",
         config = function()
-            local dropbar_api = require('dropbar.api')
-            vim.keymap.set('n', '<leader>;', dropbar_api.pick, { desc = 'Pick symbols in winbar' })
-            vim.keymap.set('n', '[;', dropbar_api.goto_context_start, { desc = 'Go to start of current context' })
-            vim.keymap.set('n', '];', dropbar_api.select_next_context, { desc = 'Select next context' })
-        end
+            local dropbar_api = require("dropbar.api")
+            vim.keymap.set("n", "<leader>;", dropbar_api.pick, { desc = "Pick symbols in winbar" })
+            vim.keymap.set("n", "[;", dropbar_api.goto_context_start, { desc = "Go to start of current context" })
+            vim.keymap.set("n", "];", dropbar_api.select_next_context, { desc = "Select next context" })
+        end,
     },
 
     -- folke's snacks
@@ -52,11 +52,11 @@ return {
                     explorer = {
                         jump = { close = true },
                     },
-					lsp_symbols = {
-						filter = {
-							default = true,
-						},
-					},
+                    lsp_symbols = {
+                        filter = {
+                            default = true,
+                        },
+                    },
                     lsp_references = {
                         include_current = true,
                         include_declaration = true,
