@@ -18,7 +18,7 @@ local eastwood_source = {
 				return true
 			end
 			-- Path contains "240/" and does not contain "devel"
-			if params.bufname:find("240/", 1, true) and not params.bufname:find("devel/", 1, true) then
+			if params.bufname:find("240/", 1, true) and not params.bufname:find("devel", 1, true) then
 				return true
 			end
 			return false
