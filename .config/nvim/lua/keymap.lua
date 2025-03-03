@@ -206,6 +206,8 @@ vim.keymap.set("n", "<M-K>", "<c-u>")
 vim.keymap.set("n", "<M-J>", "<c-d>")
 
 -- Extract function declarations
-vim.keymap.set("n", "<leader>kd", function() require("kian").yank_declarations() end)
+vim.keymap.set("n", "<leader>kd", function()
+    require("kian").yank_declarations()
+end, { desc = "Generate function declarations for the current file" })
 
 -- vim: ft=lua sw=4 ts=4 et fdm=marker fmr={{{,}}} foldlevel=2
