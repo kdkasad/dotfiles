@@ -12,23 +12,31 @@ local ensure_installed_parsers = {
     "bash",
 }
 
--- Tree-sitter (for syntax highlighting & indenting)
 return {
-    "nvim-treesitter/nvim-treesitter",
-    lazy = true,
-    event = "VimEnter",
-    build = ":TSUpdate",
-    config = function()
-        -- Set up parsers
-        local tsconfig = require("nvim-treesitter.configs")
-        tsconfig.setup({
-            ensure_installed = ensure_installed_parsers,
-            auto_install = true,
-            highlight = { enable = true },
-            indent = {
-                enable = true,
-                disable = { "typst" },
-            },
-        })
-    end,
+    -- Tree-sitter (for syntax highlighting & indenting)
+    {
+        "nvim-treesitter/nvim-treesitter",
+        lazy = true,
+        event = "VimEnter",
+        build = ":TSUpdate",
+        config = function()
+            -- Set up parsers
+            local tsconfig = require("nvim-treesitter.configs")
+            tsconfig.setup({
+                ensure_installed = ensure_installed_parsers,
+                auto_install = true,
+                highlight = { enable = true },
+                indent = {
+                    enable = true,
+                    disable = { "typst" },
+                },
+            })
+        end,
+    },
+    -- Treesitter-based text object definitions
+    {
+        "nvim-treesitter/nvim-treesitter-textobjects",
+        lazy = true,
+        event = "VimEnter",
+    }
 }

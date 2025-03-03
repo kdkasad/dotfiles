@@ -13,4 +13,11 @@ return {
 
     -- vim-easy-align: For aligning columns
     { "junegunn/vim-easy-align" },
+
+    -- mini.ai: More text objects
+    {
+        "echasnovski/mini.ai",
+        version = "*",
+        opts = {},
+    },
 }
