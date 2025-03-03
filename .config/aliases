@@ -298,7 +298,7 @@ function t() {
             tmux new-window -t "$1" -n writeup -c "$HOME/Documents/Mine/School/CS 426/Homework" || return $?
             tmux new-window -t "$1" -n man || return $?
             tmux send-keys -t "${1}":vm \
-                "ssh -t cs426@10.0.3.10 \"mkdir -p ~/$hw; cd ~/$hw; tmux attach -t $hw || { tmux new-session -s $hw -n code -d && tmux new-window -t $hw -n shell && tmux send-keys -t ${hw}:code vim Enter && tmux select-window -t ${hw}:shell && tmux attach-session -t $hw; }\"" Enter \
+                "ssh -t cs426 \"mkdir -p ~/$hw; cd ~/$hw; tmux attach -t $hw || { tmux new-session -s $hw -n code -d && tmux new-window -t $hw -n shell && tmux send-keys -t ${hw}:code vim Enter && tmux select-window -t ${hw}:shell && tmux attach-session -t $hw; }\"" Enter \
                 || return $?
             tmux send-keys -t "${1}":writeup "nvim" Enter || return $?
             tmux select-window -t "${1}":writeup || return $? # To set last pane
@@ -309,6 +309,7 @@ function t() {
         *)
             case "$1" in
                 ma341) cd ~/Documents/Mine/School/MA\ 341/work ;;
+                cs211) cd ~/Code/School/cs211 ;;
             esac
             tmux new-session -s "$1" -n code -d || return $?
             tmux new-window -t "$1" -n shell || return $?
