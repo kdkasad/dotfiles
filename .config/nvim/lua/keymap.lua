@@ -85,7 +85,7 @@ vim.keymap.set("n", "<leader>s", "<cmd>set spell!<cr>", { desc = "Toggle spell c
 
 -- Clear search highlighting
 vim.keymap.set("n", "<leader>nh", "<cmd>nohlsearch<cr>", { desc = "Clear search highlighting" })
-vim.keymap.set("n", "<leader><esc>", "<cmd>set hlsearch!<cr>", { desc = "Toggle search highlighting" })
+vim.keymap.set("n", "<leader>uh", "<cmd>set hlsearch!<cr>", { desc = "Toggle search highlighting" })
 
 -- Move visual selection
 vim.keymap.set("v", "K", "<cmd>m '<-2<cr>gv=gv", { desc = "Move selected lines up" })
