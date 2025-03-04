@@ -18,6 +18,25 @@ return {
     {
         "echasnovski/mini.ai",
         version = "*",
-        opts = {},
+        dependencies = {
+            'nvim-treesitter/nvim-treesitter-textobjects',
+        },
+        config = function(_, opts)
+            local miniai = require('mini.ai')
+            local ts = function(name)
+                return miniai.gen_spec.treesitter({
+                    a = '@' .. name .. '.outer',
+                    i = '@' .. name .. '.inner',
+                })
+            end
+            miniai.setup({
+                custom_textobjects = {
+                    a = ts('parameter'),
+                    f = ts('call'),
+                    d = ts('function'),
+                    s = ts('statement'),
+                },
+            })
+        end
     },
 }

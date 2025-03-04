@@ -36,7 +36,6 @@ return {
     -- Treesitter-based text object definitions
     {
         "nvim-treesitter/nvim-treesitter-textobjects",
-        lazy = true,
-        event = "VimEnter",
+        config = false,
     }
 }
