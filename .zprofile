@@ -93,4 +93,4 @@ done
 
 export PATH
 
-umask 007
+umask 027
