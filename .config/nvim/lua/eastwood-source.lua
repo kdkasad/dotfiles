@@ -14,7 +14,7 @@ local eastwood_source = {
         -- Only run if...
         runtime_condition = function(params)
 			-- Path contains "240/devel" and filename is *_main.c
-            if params.bufname:find("240/devel/.*/.*_main%.c$") then
+            if params.bufname:find("240/devel.*/.*/.*_main%.c$") then
 				return true
 			end
 			-- Path contains "240/" and does not contain "devel"
