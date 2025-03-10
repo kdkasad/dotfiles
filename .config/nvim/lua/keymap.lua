@@ -20,6 +20,7 @@ snackmap("<leader>f:",  "command_history",       "Search command history")
 snackmap("<leader>fn",  "notifications",         "Search notification history")
 snackmap("<leader>fp",  "projects",              "Search projects")
 snackmap("<leader>fc",  "files",                 "Search Neovim configuration files", { cwd = vim.fn.stdpath("config") })
+snackmap("<leader>fh",  "help",                  "Search Neovim help pages")
 
 -- Search Git
 snackmap("<leader>fgf", "git_files",             "Search Git-tracked files")

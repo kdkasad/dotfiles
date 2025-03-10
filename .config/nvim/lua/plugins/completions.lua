@@ -24,6 +24,13 @@ return {
                     ["<C-Space>"] = cmp.mapping.complete(),
                     ["<C-e>"] = cmp.mapping.abort(),
                     ["<CR>"] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+                    ["<C-d>"] = function()
+                        if cmp.visible_docs() then
+                            cmp.close_docs()
+                        else
+                            cmp.open_docs()
+                        end
+                    end,
                 }),
                 sources = cmp.config.sources({
                     { name = "nvim_lsp" },
