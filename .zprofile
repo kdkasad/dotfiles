@@ -90,6 +90,22 @@ do
     fi
 done
 
+# Include Mason-installed executables in path
+if [ -d "$HOME/.local/share/nvim/mason/bin" ]
+then
+    export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
+fi
+
+# Load rustup and/or cargo
+if [ "${HOSTNAME#*.}" = "cs.purdue.edu" ]
+then
+    export RUSTUP_HOME="$HOME/scratch/rustup"
+    export CARGO_HOME="$HOME/scratch/cargo"
+    if [ -r "$HOME/scratch/cargo/env" ]
+    then
+        . "$HOME/scratch/cargo/env"
+    fi
+fi
 
 export PATH
 
