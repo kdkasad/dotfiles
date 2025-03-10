@@ -139,4 +139,7 @@ vim.o.shortmess = 'tToOCF'
 -- Highlight cursor line
 vim.wo.cursorline = true
 
+-- Disable line wrapping by default
+vim.o.wrap = false
+
 -- vim: ft=lua sw=4 ts=4 et fdm=marker fmr={{{,}}} foldlevel=2
