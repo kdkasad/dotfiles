@@ -142,4 +142,10 @@ vim.wo.cursorline = true
 -- Disable line wrapping by default
 vim.o.wrap = false
 
+-- Use tree-sitter for folding
+vim.o.foldmethod = 'expr'
+vim.o.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+-- Don't fold anything by default
+vim.o.foldlevel = 100
+
 -- vim: ft=lua sw=4 ts=4 et fdm=marker fmr={{{,}}} foldlevel=2
