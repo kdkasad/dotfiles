@@ -148,4 +148,11 @@ vim.o.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 -- Don't fold anything by default
 vim.o.foldlevel = 100
 
+-- Remove "how to disable mouse" menu item
+vim.cmd([[silent! aunmenu PopUp.How-to\ disable\ mouse]])
+vim.cmd([[silent! aunmenu PopUp.-1-]])
+
+-- Make cursorcolumn color the same as cursorline
+vim.cmd([[highlight! link CursorColumn CursorLine]])
+
 -- vim: ft=lua sw=4 ts=4 et fdm=marker fmr={{{,}}} foldlevel=2
