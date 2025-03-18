@@ -97,8 +97,9 @@ then
 fi
 
 # Load rustup and/or cargo
-if [ "${HOSTNAME#*.}" = "cs.purdue.edu" ]
+if [ "${HOST#*.}" = "cs.purdue.edu" ]
 then
+    export RUSTUP_IO_THREADS=10
     export RUSTUP_HOME="$HOME/scratch/rustup"
     export CARGO_HOME="$HOME/scratch/cargo"
     if [ -r "$HOME/scratch/cargo/env" ]
