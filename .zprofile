@@ -108,6 +108,12 @@ then
     fi
 fi
 
+# Include macOS developer tools
+if command -V xcode-select >/dev/null 2>&1
+then
+    export PATH="$PATH:$(xcode-select -p)/usr/bin"
+fi
+
 export PATH
 
 umask 027
