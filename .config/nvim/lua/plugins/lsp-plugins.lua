@@ -104,6 +104,11 @@ return {
                     })
                     require("lspconfig").lua_ls.setup(luals_opts)
                 end,
+
+                ["rust_analyzer"] = function()
+                    -- Don't set up rust-analyzer.
+                    -- Rustaceanvim will do that for us.
+                end
             })
         end,
     },
