@@ -155,4 +155,7 @@ vim.cmd([[silent! aunmenu PopUp.-1-]])
 -- Make cursorcolumn color the same as cursorline
 vim.cmd([[highlight! link CursorColumn CursorLine]])
 
+-- Save extra information when creating sessions
+vim.opt.sessionoptions:append({ "options" })
+
 -- vim: ft=lua sw=4 ts=4 et fdm=marker fmr={{{,}}} foldlevel=2
