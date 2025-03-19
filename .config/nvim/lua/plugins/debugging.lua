@@ -71,6 +71,14 @@ return {
         end,
     },
 
+    -- Mason-DAP bridge
+    {
+        "jay-babu/mason-nvim-dap.nvim",
+        dependencies = {
+            "williamboman/mason.nvim",
+        },
+    },
+
     -- Python DAP configuration
     {
         "mfussenegger/nvim-dap-python",
