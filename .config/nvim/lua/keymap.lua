@@ -32,6 +32,24 @@ snackmap("<leader>fgs", "git_status",            "Search Git status")
 snackmap("<leader>fgS", "git_stash",             "Search Git stash")
 snackmap("<leader>fgd", "git_diff",              "Search Git diff (hunks)")
 
+-- Neotest keybindings
+-- Output
+vim.keymap.set("n", "<leader>gs", function() require("neotest").summary.toggle() end, { desc = "Toggle test summary panel" })
+vim.keymap.set("n", "<leader>go", function() require("neotest").output.open({ enter = true, last_run = true }) end, { desc = "View last test's output" })
+vim.keymap.set("n", "<leader>gpo", function() require("neotest").output_panel.open() end, { desc = "Open test output stream" })
+vim.keymap.set("n", "<leader>gpt", function() require("neotest").output_panel.toggle() end, { desc = "Toggle test output stream" })
+vim.keymap.set("n", "<leader>gpc", function() require("neotest").output_panel.clear() end, { desc = "Clear test output stream" })
+-- Run
+vim.keymap.set("n", "<leader>grr", function() require("neotest").run.run() end, { desc = "Run nearest test" })
+vim.keymap.set("n", "<leader>grf", function() require("neotest").run.run(vim.fn.expand("%")) end, { desc = "Run current file's tests" })
+vim.keymap.set("n", "<leader>grs", function() require("neotest").run.run({ suite = true }) end, { desc = "Run entire test suite" })
+-- Watch
+vim.keymap.set("n", "<leader>gwr", function() require("neotest").watch.toggle() end, { desc = "Toggle watch for nearest test" })
+vim.keymap.set("n", "<leader>gwf", function() require("neotest").watch.toggle(vim.fn.expand("%")) end, { desc = "Toggle watch for current file" })
+vim.keymap.set("n", "<leader>gws", function() require("neotest").watch.toggle({ suite = true }) end, { desc = "Toggle watch for entire test suite" })
+-- Stop
+vim.keymap.set("n", "<leader>gc", function() require("neotest").run.stop({ interactive = true }) end, { desc = "Stop test" })
+
 -- Easily toggle cursor line
 vim.keymap.set("n", "<leader>cl", ":set cursorline!<CR>")
 
