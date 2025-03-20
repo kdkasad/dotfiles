@@ -42,7 +42,9 @@
 	bblame = blame -w -C -C -C -M # Blame, ignoring whitespace changes and moved code
 	pushf = push --force-with-lease # Force push, but don't overwrite other people's changes
 	fpush = pushf
-	rb = rebase -i --autosquash
+	rbi = rebase -i --autosquash --autostash
+	oops = reset --mixed HEAD^
+	pra = pull --rebase --autostash
 [filter "lfs"]
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
@@ -102,8 +104,6 @@
 	confirm = always
 	thread = true
 	multiedit = true
-	smtpencryption = ssl
-	smtpserverport = 465
 [merge]
 	tool = nvimdiff
 	log = true
