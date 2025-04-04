@@ -234,4 +234,17 @@ vim.keymap.set("n", "<leader>kd", function()
     require("kian").yank_declarations()
 end, { desc = "Generate function declarations for the current file" })
 
+-- Toggle virtual_lines and virtual_text diagnostic display modes
+vim.keymap.set("n", "<leader>ul", function()
+    local virtual_lines = vim.diagnostic.config().virtual_lines
+    vim.diagnostic.config({ virtual_lines = not virtual_lines })
+end, { desc = "Toggle expanded diagnostic display" })
+vim.keymap.set("n", "<leader>ut", function()
+    local virtual_text = vim.diagnostic.config().virtual_text
+    vim.diagnostic.config({ virtual_text = not virtual_text })
+end, { desc = "Toggle in-line diagnostic display" })
+vim.keymap.set("n", "<leader>uu", function()
+    vim.diagnostic.config(K_default_diagnostic_config)
+end, { desc = "Reset to default diagnostic display" })
+
 -- vim: ft=lua sw=4 ts=4 et fdm=marker fmr={{{,}}} foldlevel=2
