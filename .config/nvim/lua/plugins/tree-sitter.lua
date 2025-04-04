@@ -1,15 +1,15 @@
 -- List of parsers to install
 local ensure_installed_parsers = {
-    "lua",
-    "javascript",
-    "python",
-    "c",
-    "vim",
-    "vimdoc",
-    "html",
-    "css",
-    "make",
-    "bash",
+    -- "lua",
+    -- "javascript",
+    -- "python",
+    -- "c",
+    -- "vim",
+    -- "vimdoc",
+    -- "html",
+    -- "css",
+    -- "make",
+    -- "bash",
 }
 
 return {
