@@ -13,6 +13,9 @@ local eastwood_source = {
     generator = helpers.generator_factory({
         -- Only run if...
         runtime_condition = function(params)
+            if vim.g.eastwood_disable then
+                return false
+            end
 			-- Path contains "240/devel" and filename is *_main.c
             if params.bufname:find("240/devel.*/.*/.*_main%.c$") then
 				return true
