@@ -158,11 +158,14 @@ vim.cmd([[highlight! link CursorColumn CursorLine]])
 -- Save extra information when creating sessions
 vim.opt.sessionoptions:append({ "options" })
 
--- Use Neovim v0.11's virtual lines feature for diagnostics.
--- Shows multiple errors simultaneously rather than just the last one.
-vim.diagnostic.config({
-    virtual_text = false,
-    virtual_lines = true,
-})
+-- Set diagnostic display options
+K_default_diagnostic_config = {
+    severity_sort = true,
+    -- Use Neovim v0.11's virtual lines feature for diagnostics.
+    -- Shows multiple errors simultaneously rather than just the last one.
+    virtual_text = true,
+    virtual_lines = false,
+}
+vim.diagnostic.config(K_default_diagnostic_config)
 
 -- vim: ft=lua sw=4 ts=4 et fdm=marker fmr={{{,}}} foldlevel=2

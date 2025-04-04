@@ -32,9 +32,6 @@ return {
         },
         config = function(_, opts)
             local default_lsp_opts = {
-                on_attach = function()
-                    vim.diagnostic.config({ severity_sort = true })
-                end,
                 capabilities = require("cmp_nvim_lsp").default_capabilities(),
             }
 
