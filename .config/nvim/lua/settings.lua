@@ -163,8 +163,8 @@ K_default_diagnostic_config = {
     severity_sort = true,
     -- Use Neovim v0.11's virtual lines feature for diagnostics.
     -- Shows multiple errors simultaneously rather than just the last one.
-    virtual_text = true,
-    virtual_lines = false,
+    virtual_text = false,
+    virtual_lines = true,
 }
 vim.diagnostic.config(K_default_diagnostic_config)
 
