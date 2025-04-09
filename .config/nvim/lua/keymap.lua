@@ -247,4 +247,12 @@ vim.keymap.set("n", "<leader>uu", function()
     vim.diagnostic.config(K_default_diagnostic_config)
 end, { desc = "Reset to default diagnostic display" })
 
+-- Bindings for refactoring.nvim
+vim.keymap.set({ "x", "n" }, "<leader>rv", function()
+    require("refactoring").debug.print_var()
+end, { desc = "Inspect variable" })
+vim.keymap.set({ "x", "n" }, "<leader>rp", function()
+    require("refactoring").select_refactor()
+end, { desc = "Open refactoring menu" })
+
 -- vim: ft=lua sw=4 ts=4 et fdm=marker fmr={{{,}}} foldlevel=2

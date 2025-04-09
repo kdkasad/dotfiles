@@ -50,7 +50,7 @@ return {
                     if vim.fn.hostname():find(".cs.purdue.edu", 1, true) ~= nil then
                         clangd_cmd = { "clangd", "-j", "8", "--query-driver=/usr/bin/g++" }
                     end
-                    local clangd_opts = vim.tbl_extend('force', default_lsp_opts, {
+                    local clangd_opts = vim.tbl_extend("force", default_lsp_opts, {
                         cmd = clangd_cmd,
                     })
                     require("lspconfig").clangd.setup(clangd_opts)
@@ -59,7 +59,7 @@ return {
                 -- Configure LuaLS to recognize Neovim globals.
                 -- Taken from https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#lua_ls
                 ["lua_ls"] = function()
-                    local luals_opts = vim.tbl_extend('force', default_lsp_opts, {
+                    local luals_opts = vim.tbl_extend("force", default_lsp_opts, {
                         on_init = function(client)
                             if client.workspace_folders then
                                 local path = client.workspace_folders[1].name
@@ -105,7 +105,7 @@ return {
                 ["rust_analyzer"] = function()
                     -- Don't set up rust-analyzer.
                     -- Rustaceanvim will do that for us.
-                end
+                end,
             })
         end,
     },
@@ -123,9 +123,6 @@ return {
                 sources = {
                     -- Stylua - formatter for Lua (install via Mason)
                     null_ls.builtins.formatting.stylua,
-
-                    -- Code actions from refactoring library (installed as plugin below)
-                    null_ls.builtins.code_actions.refactoring,
 
                     -- Ansible-Lint
                     null_ls.builtins.diagnostics.ansiblelint,
@@ -146,11 +143,32 @@ return {
     {
         "ThePrimeagen/refactoring.nvim",
         lazy = true,
-        event = "VimEnter",
+        cmd = "Refactor",
         dependencies = {
             "nvim-lua/plenary.nvim",
             "nvim-treesitter/nvim-treesitter",
         },
-        config = true,
+        opts = {
+            -- Prompt for return type
+            prompt_func_return_type = {
+                go = true,
+                cpp = true,
+                c = true,
+                java = true,
+            },
+            -- Prompt for function parameters
+            prompt_func_param_type = {
+                go = true,
+                cpp = true,
+                c = true,
+                java = true,
+            },
+            print_var_statements = {
+                -- Change C printf-based statement to use jump marker to easily fill in format specifier
+                c = {
+                    'fprintf(stderr, "%s %%<++>", %s);',
+                },
+            },
+        },
     },
 }
