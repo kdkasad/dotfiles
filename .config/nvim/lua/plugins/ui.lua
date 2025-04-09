@@ -58,6 +58,7 @@ return {
                                 },
                             },
                         },
+                        hidden = true,
                     },
                     lsp_symbols = {
                         filter = {
