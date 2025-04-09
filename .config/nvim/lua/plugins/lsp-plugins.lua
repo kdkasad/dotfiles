@@ -1,14 +1,3 @@
-local ensure_installed_lsps = {
-    "lua_ls",
-    "clangd",
-    "texlab",
-    "jedi_language_server",
-    "tinymist",
-    "rust_analyzer",
-    "gopls",
-    "ansiblels",
-}
-
 return {
     -- Mason: package manager for LSPs & more
     {
@@ -27,9 +16,7 @@ return {
             -- lspconfig: LSP configurator
             "neovim/nvim-lspconfig",
         },
-        opts = {
-            ensure_installed = ensure_installed_lsps,
-        },
+        opts = {},
         config = function(_, opts)
             local default_lsp_opts = {
                 capabilities = require("cmp_nvim_lsp").default_capabilities(),
