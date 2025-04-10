@@ -107,8 +107,8 @@ vim.keymap.set("n", "<leader>nh", "<cmd>nohlsearch<cr>", { desc = "Clear search 
 vim.keymap.set("n", "<leader>uh", "<cmd>set hlsearch!<cr>", { desc = "Toggle search highlighting" })
 
 -- Move visual selection
-vim.keymap.set("v", "K", "<cmd>m '<-2<cr>gv=gv", { desc = "Move selected lines up" })
-vim.keymap.set("v", "J", "<cmd>m '>+1<cr>gv=gv", { desc = "Move selected lines down" })
+vim.keymap.set("v", "K", ":m '<-2<cr>gv=gv", { silent = true, desc = "Move selected lines up" })
+vim.keymap.set("v", "J", ":m '>+1<cr>gv=gv", { silent = true, desc = "Move selected lines down" })
 
 -- Easy shortcut for norm
 vim.keymap.set("v", ".", ":norm ", { desc = "Start :norm command" })
@@ -218,10 +218,6 @@ vim.keymap.set("", "<c-b>", "<c-a>")
 
 -- Use '*' key to surround with C-style comments
 vim.g.surround_42 = "/* \r */"
-
--- Shift lines up/down
-vim.keymap.set("v", "K", ":m '<-2<cr>gv=gv")
-vim.keymap.set("v", "J", ":m '>+1<cr>gv=gv")
 
 -- Scroll buffer with Alt+k/j
 vim.keymap.set("n", "<M-k>", "<c-y>")
