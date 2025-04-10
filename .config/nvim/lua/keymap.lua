@@ -128,6 +128,11 @@ vim.keymap.set("n", "<leader>tt", "<cmd>tabnew | terminal<cr>", { desc = "Open t
 vim.api.nvim_create_autocmd("LspAttach", {
     group = vim.api.nvim_create_augroup("LspKeybindings", { clear = true }),
     callback = function(env)
+        -- Don't enable LSP keybindings in :help buffers
+        if vim.bo[env.buf] == "help" then
+            return
+        end
+
         -- Set omnifunc
         vim.bo[env.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
 
