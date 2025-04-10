@@ -69,12 +69,22 @@ return {
                         include_current = true,
                         include_declaration = true,
                     },
+                    notifications = {
+                        win = {
+                            preview = { wo = { wrap = true }, },
+                        },
+                    },
                 },
             },
             -- File explorer
             explorer = { enabled = true, replace_netrw = true },
             -- Open files quickly
             quickfile = { enabled = true },
+            -- Styles
+            styles = {
+                notification = { wo = { wrap = true } },
+                notification_history = { wo = { wrap = true } },
+            },
         },
     },
 
