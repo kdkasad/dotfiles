@@ -116,6 +116,12 @@ then
     export DISTCC_HOSTS="$(cat "$distcc_hosts_file")"
 fi
 
+# The default open file limit on macOS is too low
+if [ "$(ulimit -n)" -lt 1024 ]
+then
+    ulimit -n 1024
+fi
+
 
 ##
 ## COMPLETIONS
