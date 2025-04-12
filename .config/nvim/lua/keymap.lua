@@ -51,7 +51,7 @@ vim.keymap.set("n", "<leader>gws", function() require("neotest").watch.toggle({ 
 vim.keymap.set("n", "<leader>gc", function() require("neotest").run.stop({ interactive = true }) end, { desc = "Stop test" })
 
 -- Easily toggle cursor line
-vim.keymap.set("n", "<leader>cl", ":set cursorline!<CR>")
+Snacks.toggle.option("cursorline"):map("<leader>cl")
 
 -- Toggle scope dimming
 Snacks.toggle.dim():map("<leader>ud")
@@ -94,17 +94,17 @@ vim.keymap.set("i", "<C-S-Tab><C-S-Tab>", '<Esc>?<++><CR>"_cgn', jmopts)
 vim.keymap.set("n", "<C-S-Tab><C-S-Tab>", '?<++><CR>"_cgn', jmopts)
 
 -- Toggle line wrapping
-vim.keymap.set("n", "<leader>wr", "<cmd>set wrap!<cr>", { desc = "Toggle line wrapping" })
+Snacks.toggle.option("wrap"):map("<leader>wr", { desc = "Toggle line wrapping" })
 
 -- Toggle whitespace visibility
-vim.keymap.set("n", "<leader>ws", "<cmd>set list!<cr>", { desc = "Toggle whitespace visibility" })
+Snacks.toggle.option("list"):map("<leader>us", { desc = "Toggle whitespace visibility" })
 
 -- Toggle spell check
-vim.keymap.set("n", "<leader>s", "<cmd>set spell!<cr>", { desc = "Toggle spell check" })
+Snacks.toggle.option("spell"):map("<leader>s", { desc = "Toggle spell check" })
 
 -- Clear search highlighting
-vim.keymap.set("n", "<leader>nh", "<cmd>nohlsearch<cr>", { desc = "Clear search highlighting" })
-vim.keymap.set("n", "<leader>uh", "<cmd>set hlsearch!<cr>", { desc = "Toggle search highlighting" })
+vim.keymap.set("n", "<leader>nh", "<cmd>nohlsearch<cr>", { silent = true, desc = "Clear search highlighting" })
+Snacks.toggle.option("hlsearch"):map("<leader>uh", { desc = "Toggle search highlighting" })
 
 -- Move visual selection
 vim.keymap.set("v", "K", ":m '<-2<cr>gv=gv", { silent = true, desc = "Move selected lines up" })
@@ -269,14 +269,8 @@ vim.keymap.set("n", "<leader>kd", function()
 end, { desc = "Generate function declarations for the current file" })
 
 -- Toggle virtual_lines and virtual_text diagnostic display modes
-vim.keymap.set("n", "<leader>ul", function()
-    local virtual_lines = vim.diagnostic.config().virtual_lines
-    vim.diagnostic.config({ virtual_lines = not virtual_lines })
-end, { desc = "Toggle expanded diagnostic display" })
-vim.keymap.set("n", "<leader>ut", function()
-    local virtual_text = vim.diagnostic.config().virtual_text
-    vim.diagnostic.config({ virtual_text = not virtual_text })
-end, { desc = "Toggle in-line diagnostic display" })
+require('diagnostic-togglers').virtual_lines:map("<leader>ul")
+require('diagnostic-togglers').virtual_text:map("<leader>ut")
 vim.keymap.set("n", "<leader>uu", function()
     vim.diagnostic.config(K_default_diagnostic_config)
 end, { desc = "Reset to default diagnostic display" })
@@ -288,5 +282,8 @@ end, { desc = "Inspect variable" })
 vim.keymap.set({ "x", "n" }, "<leader>rp", function()
     require("refactoring").select_refactor()
 end, { desc = "Open refactoring menu" })
+
+-- Toggle inlay hints
+Snacks.toggle.inlay_hints():map("<leader>ui")
 
 -- vim: ft=lua sw=4 ts=4 et fdm=marker fmr={{{,}}} foldlevel=2
