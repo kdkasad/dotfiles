@@ -38,4 +38,33 @@ function M.yank_declarations()
 	vim.notify("Copied " .. n_declarations .. " declarations to unnamed register.")
 end
 
+---Returns the special border definition for a specific severity
+---@param severity "ERROR"|"WARN"|"INFO"|"HINT"
+---@return string[][]
+local function gen_borders_for_severity(severity)
+    local hi_group_map = {
+        ["ERROR"] = "DiagnosticFloatingError",
+        ["WARN"] = "DiagnosticFloatingWarn",
+        ["INFO"] = "DiagnosticFloatingInfo",
+        ["HINT"] = "DiagnosticFloatingHint",
+    }
+    local border_chars = {
+        "╭", "─", "╮", "│", "╯", "─", "╰", "│"
+    }
+    local result = {}
+    for _, char in ipairs(border_chars) do
+        table.insert(result, { char, hi_group_map[severity] })
+    end
+    return result
+end
+
+---Table of specialized border definitions suitable for `nvim_open_win()`
+---@type table<vim.diagnostic.Severity, string[][]>
+M.borders_for_severity = {
+    [vim.diagnostic.severity.ERROR] = gen_borders_for_severity("ERROR"),
+    [vim.diagnostic.severity.WARN] = gen_borders_for_severity("WARN"),
+    [vim.diagnostic.severity.INFO] = gen_borders_for_severity("INFO"),
+    [vim.diagnostic.severity.HINT] = gen_borders_for_severity("HINT"),
+}
+
 return M

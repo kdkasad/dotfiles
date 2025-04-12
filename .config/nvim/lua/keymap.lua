@@ -161,21 +161,38 @@ vim.api.nvim_create_autocmd("LspAttach", {
         map("<leader>rf", vim.lsp.buf.format, "Format code")
         map("<leader>rr", vim.lsp.buf.rename, "Rename symbol")
 
+        local borders_for_severity = require("kian").borders_for_severity
         ---Returns a function which, when called, jumps to the next/previous diagnostic of the given severity level.
         ---@param count number 1 for forward or -1 for backward
         ---@param level string|nil Name of a key in vim.diagnostic.severity representing the severity of diagnostics to filter for when jumping
         ---@return function
         local genGotoDiag = function(count, level)
+            local severity = level and vim.diagnostic.severity[level]
+            local opts = {
+                count = count,
+                severity = severity,
+                float = {
+                    source = true,
+                    ---@type string|string[][]
+                    border = severity and borders_for_severity[severity] or 'rounded',
+                    scope = 'cursor',
+                },
+            }
             return function()
-                vim.diagnostic.jump({
-                    count = count,
-                    severity = level and vim.diagnostic.severity[level],
-                    float = {
-                        source = true,
-                        border = 'rounded',
-                        scope = 'cursor',
-                    },
-                })
+                if level == nil then
+                    local next = vim.diagnostic.jump({ count = count, float = false })
+                    if not next then
+                        return
+                    end
+                    vim.diagnostic.jump(vim.tbl_deep_extend('force', opts, {
+                        diagnostic = next,
+                        float = {
+                            border = borders_for_severity[next.severity] or 'rounded',
+                        }
+                    }))
+                else
+                    vim.diagnostic.jump(opts)
+                end
             end
         end
         ---Returns a function which, when called, jumps to the next/previous highest-priority diagnostic available.
@@ -183,13 +200,14 @@ vim.api.nvim_create_autocmd("LspAttach", {
         ---@return function
         local function genGotoNextHighPriority(direction)
             return function()
-                for _, severity in ipairs(vim.diagnostic.severity) do
+                for severity, _ in ipairs(vim.diagnostic.severity) do
                     local result = vim.diagnostic.jump({
                         count = direction,
                         severity = severity,
                         float = {
                             source = true,
-                            border = 'rounded',
+                            ---@type string[][]
+                            border = borders_for_severity[severity],
                             scope = 'cursor',
                         },
                     })
