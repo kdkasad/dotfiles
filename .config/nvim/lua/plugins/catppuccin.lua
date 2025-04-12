@@ -35,7 +35,7 @@ return {
         end,
     },
     {
-        "typicode/bg.nvim",
+        "kdkasad/bg.nvim",
         lazy = false
     },
 }
