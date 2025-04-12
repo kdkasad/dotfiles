@@ -146,7 +146,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
             { buffer = env.buf, desc = "View hover documentation" }
         )
         vim.keymap.set("i", "<C-k>",
-            function() vim.lsp.buf.signature_help({ border = 'rounded', close_events = { "InsertLeave" } }) end,
+            function() require("lsp_signature").toggle_float_win() end,
             { buffer = env.buf, desc = "View function signature help" }
         )
         map("gd", function() Snacks.picker.lsp_definitions()      end, "Find definition")

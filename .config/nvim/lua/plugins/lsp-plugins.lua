@@ -173,4 +173,16 @@ return {
         event = "LspAttach",
         opts = {},
     },
+
+    -- lsp_signature: Better function signature display
+    {
+        "ray-x/lsp_signature.nvim",
+        lazy = true,
+        opts = {
+            bind = true,
+            handler_opts = {
+                border = 'rounded',
+            },
+        },
+    }
 }
