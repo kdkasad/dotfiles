@@ -2,7 +2,6 @@ return {
     -- Mason: package manager for LSPs & more
     {
         "williamboman/mason.nvim",
-        config = true,
         opts = {
             ui = { border = "rounded" },
         },
@@ -12,6 +11,7 @@ return {
     {
         "williamboman/mason-lspconfig.nvim",
         dependencies = {
+            "williamboman/mason.nvim",
             "hrsh7th/cmp-nvim-lsp",
             -- lspconfig: LSP configurator
             "neovim/nvim-lspconfig",
@@ -129,7 +129,7 @@ return {
 
             -- Load CS 240 linter source if on a Purdue server
             if vim.fn.hostname():find(".cs.purdue.edu", 1, true) then
-                require("eastwood-source")
+                vim.schedule_wrap(require)("eastwood-source")
             end
         end,
     },

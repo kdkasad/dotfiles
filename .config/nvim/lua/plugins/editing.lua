@@ -1,3 +1,4 @@
+---@type LazySpec[]
 return {
     -- surround.vim: For editing surrounding quotes/braces
     { "tpope/vim-surround" },
@@ -6,13 +7,33 @@ return {
     { "tpope/vim-commentary" },
 
     -- abolish.vim: For helpful substitution commands
-    { "tpope/vim-abolish" },
+    {
+        "tpope/vim-abolish",
+        lazy = true,
+        cmd = { "S", "Subvert", "Abolish" },
+    },
 
     -- vim-indent-object: Motions for selecting lines at the same indentation level
-    { "michaeljsmith/vim-indent-object" },
+    {
+        "michaeljsmith/vim-indent-object",
+        lazy = true,
+        keys = {
+            { "ai", mode = "v" },
+            { "ii", mode = "v" },
+            { "aI", mode = "v" },
+            { "iI", mode = "v" },
+        },
+    },
 
     -- vim-easy-align: For aligning columns
-    { "junegunn/vim-easy-align" },
+    {
+        "junegunn/vim-easy-align",
+        lazy = true,
+        keys = {
+            "ga",
+        },
+        cmd = "EasyAlign",
+    },
 
     -- mini.ai: More text objects
     {
@@ -21,7 +42,7 @@ return {
         dependencies = {
             'nvim-treesitter/nvim-treesitter-textobjects',
         },
-        config = function(_, opts)
+        config = function()
             local miniai = require('mini.ai')
             local ts = function(name)
                 return miniai.gen_spec.treesitter({

@@ -230,14 +230,22 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 -- DAP keybindings
-local dap = require("dap")
-vim.keymap.set({ "n", "v" }, "<leader>db", dap.toggle_breakpoint, { desc = "Set breakpoint on current line" })
-vim.keymap.set("n", "<leader>dc", dap.continue, { desc = "Continue execution or start new debugging session" })
-vim.keymap.set("n", "<leader>dn", dap.step_over, { desc = "Step over" })
-vim.keymap.set("n", "<leader>ds", dap.step_over, { desc = "Step into" })
-vim.keymap.set("n", "<leader>do", dap.step_over, { desc = "Step out" })
-vim.keymap.set("n", "<leader>dl", dap.step_over, { desc = "Re-run last configuration" })
-vim.keymap.set("n", "<leader>dr", dap.repl.open, { desc = "Open REPL" })
+local function dapdo(action)
+    return function()
+        local func = require("dap")
+        for _, key in ipairs(action) do
+            func = func[key]
+        end
+        func()
+    end
+end
+vim.keymap.set({ "n", "v" }, "<leader>db", dapdo({ "toggle_breakpoint" }), { desc = "Toggle breakpoint on current line" })
+vim.keymap.set("n", "<leader>dc", dapdo({ "continue" }), { desc = "Continue execution or start new debugging session" })
+vim.keymap.set("n", "<leader>dn", dapdo({ "step_over" }), { desc = "Step over" })
+vim.keymap.set("n", "<leader>ds", dapdo({ "step_into" }), { desc = "Step into" })
+vim.keymap.set("n", "<leader>do", dapdo({ "step_out" }), { desc = "Step out" })
+vim.keymap.set("n", "<leader>dl", dapdo({ "run_last" }), { desc = "Re-run last configuration" })
+vim.keymap.set("n", "<leader>dr", dapdo({ "repl", "open" }), { desc = "Open REPL" })
 
 -- vim-easy-align keybindings
 vim.keymap.set({ "n", "v" }, "ga", "<Plug>(EasyAlign)", { desc = "Enter EasyAlign" })

@@ -1,3 +1,4 @@
+---@type LazySpec[]
 return {
     {
         "hrsh7th/nvim-cmp",
@@ -6,6 +7,8 @@ return {
         dependencies = {
             "hrsh7th/cmp-nvim-lsp",
         },
+        lazy = true,
+        event = { "InsertEnter" },
         config = function()
             local cmp = require("cmp")
             cmp.setup({
