@@ -53,6 +53,7 @@ return {
                     f = ts('call'),
                     d = ts('function'),
                     s = ts('statement'),
+                    l = ts('loop'),
                 },
             })
         end
