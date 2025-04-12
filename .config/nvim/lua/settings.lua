@@ -168,7 +168,4 @@ K_default_diagnostic_config = {
 }
 vim.diagnostic.config(K_default_diagnostic_config)
 
--- Enable rounded window border by default
-vim.o.winborder = 'rounded'
-
 -- vim: ft=lua sw=4 ts=4 et fdm=marker fmr={{{,}}} foldlevel=2
