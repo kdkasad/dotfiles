@@ -129,7 +129,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     group = vim.api.nvim_create_augroup("LspKeybindings", { clear = true }),
     callback = function(env)
         -- Don't enable LSP keybindings in :help buffers
-        if vim.bo[env.buf] == "help" then
+        if vim.bo[env.buf].filetype == "help" then
             return
         end
 
@@ -141,7 +141,14 @@ vim.api.nvim_create_autocmd("LspAttach", {
             vim.keymap.set({ "n", "v" }, lhs, rhs, { buffer = env.buf, desc = desc })
         end
         -- Don't set this one for visual mode because it conflicts with the shift up keybind
-        vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = env.buf, desc = "View hover documentation" })
+        vim.keymap.set("n", "K",
+            function() vim.lsp.buf.hover({ border = 'rounded' }) end,
+            { buffer = env.buf, desc = "View hover documentation" }
+        )
+        vim.keymap.set("i", "<C-k>",
+            function() vim.lsp.buf.signature_help({ border = 'rounded', close_events = { "InsertLeave" } }) end,
+            { buffer = env.buf, desc = "View function signature help" }
+        )
         map("gd", function() Snacks.picker.lsp_definitions()      end, "Find definition")
         map("gD", function() Snacks.picker.lsp_declarations()     end, "Find declaration")
         map("gy", function() Snacks.picker.lsp_type_definitions() end, "Find type definition")
@@ -154,26 +161,52 @@ vim.api.nvim_create_autocmd("LspAttach", {
         map("<leader>rf", vim.lsp.buf.format, "Format code")
         map("<leader>rr", vim.lsp.buf.rename, "Rename symbol")
 
-        -- Jump to diagnostics
-        local genGotoDiag = function(direction, level)
-            local func
-            if direction == "next" then
-                func = vim.diagnostic.goto_next
-            else
-                func = vim.diagnostic.goto_prev
-            end
+        ---Returns a function which, when called, jumps to the next/previous diagnostic of the given severity level.
+        ---@param count number 1 for forward or -1 for backward
+        ---@param level string|nil Name of a key in vim.diagnostic.severity representing the severity of diagnostics to filter for when jumping
+        ---@return function
+        local genGotoDiag = function(count, level)
             return function()
-                func({ severity = vim.diagnostic.severity[level] })
+                vim.diagnostic.jump({
+                    count = count,
+                    severity = level and vim.diagnostic.severity[level],
+                    float = {
+                        source = true,
+                        border = 'rounded',
+                        scope = 'cursor',
+                    },
+                })
             end
         end
-        map("]d", vim.diagnostic.goto_next, "Go to next diagnostic")
-        map("[d", vim.diagnostic.goto_prev, "Go to previous diagnostic")
-        map("]e", genGotoDiag("next", "ERROR"), "Go to next error")
-        map("[e", genGotoDiag("prev", "ERROR"), "Go to previous error")
-        map("]w", genGotoDiag("next", "WARN"), "Go to next warning")
-        map("[w", genGotoDiag("prev", "WARN"), "Go to previous warning")
-        map("]h", genGotoDiag("next", "HINT"), "Go to next hint")
-        map("[h", genGotoDiag("prev", "HINT"), "Go to previous hint")
+        ---Returns a function which, when called, jumps to the next/previous highest-priority diagnostic available.
+        ---@param direction number 1 to jump forward, -1 to jump backward
+        ---@return function
+        local function genGotoNextHighPriority(direction)
+            return function()
+                for _, severity in ipairs(vim.diagnostic.severity) do
+                    local result = vim.diagnostic.jump({
+                        count = direction,
+                        severity = severity,
+                        float = {
+                            source = true,
+                            border = 'rounded',
+                            scope = 'cursor',
+                        },
+                    })
+                    if result then
+                        break
+                    end
+                end
+            end
+        end
+        map("]d", genGotoDiag(1, nil), "Go to next diagnostic")
+        map("[d", genGotoDiag(-1, nil), "Go to previous diagnostic")
+        map("]e", genGotoNextHighPriority(1), "Go to next highest-priority diagnostic")
+        map("[e", genGotoNextHighPriority(-1), "Go to previous highest-priority diagnostic")
+        map("]w", genGotoDiag(1, "WARN"), "Go to next warning")
+        map("[w", genGotoDiag(-1, "WARN"), "Go to previous warning")
+        map("]h", genGotoDiag(1, "HINT"), "Go to next hint")
+        map("[h", genGotoDiag(-1, "HINT"), "Go to previous hint")
     end,
 })
 

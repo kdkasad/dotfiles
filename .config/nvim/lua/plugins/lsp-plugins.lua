@@ -166,4 +166,11 @@ return {
             },
         },
     },
+
+    -- nvim-lsp-endhints: Display inlay hints at the end of the line
+    {
+        "chrisgrieser/nvim-lsp-endhints",
+        event = "LspAttach",
+        opts = {},
+    },
 }
