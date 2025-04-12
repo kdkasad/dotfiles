@@ -129,7 +129,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
     group = vim.api.nvim_create_augroup("LspKeybindings", { clear = true }),
     callback = function(env)
         -- Don't enable LSP keybindings in :help buffers
-        if vim.bo[env.buf].filetype == "help" then
+        local ft = vim.bo[env.buf].filetype
+        if ft == "" or ft == "help" then
             return
         end
 
