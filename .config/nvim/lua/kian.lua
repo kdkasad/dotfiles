@@ -4,6 +4,10 @@ local M = {}
 -- buffer and copy the declaration of each to the unnamed register.
 function M.yank_declarations()
 	local parser = vim.treesitter.get_parser()
+    if parser == nil then
+        vim.notify("Failed to get tree-sitter parser", vim.log.levels.ERROR)
+        return
+    end
     local lang = parser:lang()
     if lang ~= "c" then
         vim.notify("Function definition extraction only works for C files.", vim.log.levels.ERROR)
