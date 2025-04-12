@@ -3,9 +3,6 @@ return {
     -- surround.vim: For editing surrounding quotes/braces
     { "tpope/vim-surround" },
 
-    -- commentary.vim: For commenting
-    { "tpope/vim-commentary" },
-
     -- abolish.vim: For helpful substitution commands
     {
         "tpope/vim-abolish",
