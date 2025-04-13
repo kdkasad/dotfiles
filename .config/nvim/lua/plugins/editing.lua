@@ -52,7 +52,7 @@ return {
                     a = ts('parameter'),
                     f = ts('call'),
                     d = ts('function'),
-                    s = ts('statement'),
+                    -- s = ts('statement'),
                     l = ts('loop'),
                 },
             })
