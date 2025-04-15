@@ -313,4 +313,22 @@ end, { desc = "Open refactoring menu" })
 -- Toggle inlay hints
 Snacks.toggle.inlay_hints():map("<leader>ui")
 
+-- Toggle endhints
+local endhints_enabled = true
+Snacks.toggle({
+    name = "endhints",
+    get = function()
+        return endhints_enabled
+    end,
+    set = function(new)
+        endhints_enabled = new
+        if new then
+            require("lsp-endhints").enable()
+        else
+            require("lsp-endhints").disable()
+        end
+    end
+
+}):map("<leader>ue")
+
 -- vim: ft=lua sw=4 ts=4 et fdm=marker fmr={{{,}}} foldlevel=2
