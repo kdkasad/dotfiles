@@ -9,6 +9,8 @@ return {
     -- Smear cursor
     {
         "sphamba/smear-cursor.nvim",
+        lazy = true,
+        event = "VeryLazy",
         opts = {
             smear_insert_mode = false,
             vertical_bar_cursor_insert_mode = true,

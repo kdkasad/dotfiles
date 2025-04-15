@@ -37,7 +37,15 @@ return {
         "echasnovski/mini.ai",
         version = "*",
         dependencies = {
-            'nvim-treesitter/nvim-treesitter-textobjects',
+            {
+                'nvim-treesitter/nvim-treesitter-textobjects',
+                lazy = true,
+            },
+        },
+        lazy = true,
+        keys = {
+            { "a", mode = { "x", "o" }, },
+            { "i", mode = { "x", "o" }, },
         },
         config = function()
             local miniai = require('mini.ai')
