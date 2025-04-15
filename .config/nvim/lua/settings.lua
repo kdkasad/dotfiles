@@ -90,10 +90,18 @@ vim.o.list = true
 vim.o.listchars = "tab:> ,lead:.,trail:·,multispace:.,extends:>,precedes:<,nbsp:~"
 
 -- Highlight trailing whitespace
-vim.cmd([[
-    highlight TrailingWhitespace ctermfg=White ctermbg=LightRed guifg=#2d2a2e guibg=#ff6188
-    match TrailingWhitespace /\s\+$/
-]])
+vim.api.nvim_set_hl(0, "TrailingWhitespace", {
+    fg="#2d2a2e",
+    bg="#ff6188",
+    ctermfg="White",
+    ctermbg="LightRed",
+})
+vim.api.nvim_create_autocmd({ "BufWinEnter", "WinNew" }, {
+    group = vim.api.nvim_create_augroup("my/settings/highlight-trailing-whitespace", { clear = true }),
+    callback = function(ev)
+        vim.fn.matchadd("TrailingWhitespace", "\\s\\+$")
+    end
+})
 
 -- Restore position when re-opening files
 vim.api.nvim_create_autocmd("BufReadPost", {
