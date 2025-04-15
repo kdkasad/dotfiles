@@ -87,6 +87,20 @@ return {
                 notification = { wo = { wrap = true } },
                 notification_history = { wo = { wrap = true } },
             },
+            -- Image support via Kitty protocol
+            image = {
+                enabled = true,
+                -- Render TeX/Typst math in-editor
+                math = {
+                    enabled = true,
+                },
+                -- Convert PDFs to higher-resolution PNGs
+                convert = {
+                    magick = {
+                        pdf = { "-density", 300, "{src}[0]", "-background", "white", "-alpha", "remove", "-trim" },
+                    }
+                }
+            },
         },
     },
 
