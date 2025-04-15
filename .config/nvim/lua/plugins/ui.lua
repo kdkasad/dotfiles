@@ -86,6 +86,11 @@ return {
             styles = {
                 notification = { wo = { wrap = true } },
                 notification_history = { wo = { wrap = true } },
+                dashboard = {
+                    wo = {
+                        winhighlight = "Normal:SnacksDashboardNormal,NormalFloat:SnacksDashboardNormal,TrailingWhitespace:Normal",
+                    }
+                }
             },
             -- Image support via Kitty protocol
             image = {
@@ -100,6 +105,10 @@ return {
                         pdf = { "-density", 300, "{src}[0]", "-background", "white", "-alpha", "remove", "-trim" },
                     }
                 }
+            },
+            -- Dashboard
+            dashboard = {
+                enabled = true,
             },
         },
     },
