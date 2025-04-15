@@ -98,7 +98,15 @@ vim.api.nvim_set_hl(0, "TrailingWhitespace", {
 })
 vim.api.nvim_create_autocmd({ "BufWinEnter", "WinNew" }, {
     group = vim.api.nvim_create_augroup("my/settings/highlight-trailing-whitespace", { clear = true }),
-    callback = function(ev)
+    callback = function(event)
+        -- Don't enable for read-only buffers, e.g. :help
+        if not vim.bo[event.buf].modifiable then
+            return
+        end
+        -- Don't enable for floating windows
+        if vim.api.nvim_win_get_config(0).relative ~= "" then
+            return
+        end
         vim.fn.matchadd("TrailingWhitespace", "\\s\\+$")
     end
 })
