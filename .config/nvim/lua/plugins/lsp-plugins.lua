@@ -35,7 +35,7 @@ return {
                 ["clangd"] = function()
                     local clangd_cmd = { "clangd" }
                     if vim.fn.hostname():find(".cs.purdue.edu", 1, true) ~= nil then
-                        clangd_cmd = { "clangd", "-j", "8", "--query-driver=/usr/bin/g++" }
+                        clangd_cmd = { "clangd", "-j", "8", "--query-driver=/usr/bin/clang++" }
                     end
                     local clangd_opts = vim.tbl_extend("force", default_lsp_opts, {
                         cmd = clangd_cmd,
