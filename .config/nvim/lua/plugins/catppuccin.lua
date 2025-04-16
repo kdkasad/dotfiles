@@ -5,6 +5,7 @@ return {
         name = "catppuccin",
         lazy = false,
         priority = 1000,
+        ---@type CatppuccinOptions
         opts = {
             flavour = "auto",
             transparent_background = false,
@@ -17,16 +18,20 @@ return {
                 dap = true,
                 dap_ui = true,
                 dropbar = { enabled = true },
-                gitsigns = {
-                    enabled = true,
-                    transarent = true,
-                },
+                gitsigns = true,
                 mason = true,
                 snacks = {
                     enabled = true,
                     indent_scope_color = "overlay0",
                 },
                 treesitter = true,
+            },
+            highlight_overrides = {
+                all = function(colors)
+                    return {
+                        LspInlayHint = { bg = colors.none },
+                    }
+                end,
             },
         },
         config = function(_, opts)
@@ -36,6 +41,6 @@ return {
     },
     {
         "kdkasad/bg.nvim",
-        lazy = false
+        lazy = false,
     },
 }
