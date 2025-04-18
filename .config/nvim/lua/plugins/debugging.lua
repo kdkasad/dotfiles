@@ -82,7 +82,8 @@ return {
         ft = "python",
         -- Only enable this plugin if debugpy is installed via Mason
         cond = function()
-            return require("mason-registry").is_installed("debugpy")
+            local success, registry = pcall(require, "mason-registry")
+            return success and registry.is_installed("debugpy")
         end,
         config = function()
             -- Get debugpy install path from Mason
