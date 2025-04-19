@@ -2,7 +2,7 @@
 vim.api.nvim_create_autocmd("FileType", {
     pattern = { "make", "go" },
     callback = function()
-        vim.o.expandtab = false
+        vim.bo.expandtab = false
     end,
 })
 
