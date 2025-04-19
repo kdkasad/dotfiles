@@ -9,6 +9,8 @@ return {
     -- Smear cursor
     {
         "sphamba/smear-cursor.nvim",
+        commit = "da88b1f",
+        pin = true,
         lazy = true,
         event = "VeryLazy",
         opts = {
