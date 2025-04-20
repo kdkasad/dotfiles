@@ -49,7 +49,7 @@ return {
                     map("n", "<leader>hb", function()
                         gitsigns.blame_line({ full = true })
                     end, 'Blame line')
-                    map("n", "<leader>tb", gitsigns.toggle_current_line_blame, 'Toggle current-line blame')
+                    map("n", "<leader>ub", gitsigns.toggle_current_line_blame, 'Toggle current line blame')
                     map("n", "<leader>hd", gitsigns.diffthis, 'Open (from index) diff in diff editor')
                     map("n", "<leader>hD", function()
                         gitsigns.diffthis("~")

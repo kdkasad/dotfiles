@@ -1,7 +1,10 @@
 -- NOTE: Completion keybindings are in plugins/completions.lua.
 -- NOTE: Git hunk-editing keymaps are defined in plugins/git.lua.
 
--- Neo-tree (file browser)
+-- Dismiss notifications
+vim.keymap.set("n", "<leader>un", Snacks.notifier.hide, { desc = "Dismiss notifications" })
+
+-- File explorer sidebar
 vim.keymap.set("n", "<leader>e", function() Snacks.explorer.reveal() end, { desc = "Open file browser" })
 vim.keymap.set("n", "<C-e>", function() Snacks.explorer() end, { desc = "Toggle file browser" })
 vim.keymap.set("n", "\\", function() Snacks.explorer() end, { desc = "Toggle file browser" })
@@ -51,7 +54,7 @@ vim.keymap.set("n", "<leader>gws", function() require("neotest").watch.toggle({ 
 vim.keymap.set("n", "<leader>gc", function() require("neotest").run.stop({ interactive = true }) end, { desc = "Stop test" })
 
 -- Easily toggle cursor line
-Snacks.toggle.option("cursorline"):map("<leader>cl")
+Snacks.toggle.option("cursorline"):map("<leader>uc")
 
 -- Toggle scope dimming
 Snacks.toggle.dim():map("<leader>ud")
@@ -94,7 +97,7 @@ vim.keymap.set("i", "<C-S-Tab><C-S-Tab>", '<Esc>?<++><CR>"_cgn', jmopts)
 vim.keymap.set("n", "<C-S-Tab><C-S-Tab>", '?<++><CR>"_cgn', jmopts)
 
 -- Toggle line wrapping
-Snacks.toggle.option("wrap"):map("<leader>wr", { desc = "Toggle line wrapping" })
+Snacks.toggle.option("wrap"):map("<leader>uw", { desc = "Toggle line wrapping" })
 
 -- Toggle whitespace visibility
 Snacks.toggle.option("list"):map("<leader>us", { desc = "Toggle whitespace visibility" })
@@ -259,11 +262,6 @@ vim.keymap.set("n", "[t", "gT", { desc = "Move to previous tab" })
 vim.keymap.set("n", "<leader>bn", "<cmd>tabnew<cr>", { desc = "Create new buffer" })
 vim.keymap.set("n", "]b", "<cmd>bnext<cr>", { desc = "Move to next tab" })
 vim.keymap.set("n", "[b", "<cmd>bprevious<cr>", { desc = "Move to previous tab" })
-
--- Quickfix list navigation
-vim.keymap.set("n", "<leader>co", "<cmd>copen<cr>", { desc = "Open quickfix list" })
-vim.keymap.set("n", "]q", "<cmd>cnext<cr>", { desc = "Next quickfix entry" })
-vim.keymap.set("n", "[q", "<cmd>cprev<cr>", { desc = "Previous quickfix entry" })
 
 -- Yank/paste to/from system clipboard
 vim.keymap.set({ "n", "v" }, "<leader>y", '"+y', { desc = "Yank to system clipboard" })
