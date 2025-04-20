@@ -2,6 +2,8 @@ return {
     -- Mason: package manager for LSPs & more
     {
         "williamboman/mason.nvim",
+        event = "VeryLazy",
+        cmd = "Mason",
         opts = {
             ui = { border = "rounded" },
         },
@@ -16,6 +18,7 @@ return {
             -- lspconfig: LSP configurator
             "neovim/nvim-lspconfig",
         },
+        event = "VeryLazy",
         opts = {},
         config = function(_, opts)
             local default_lsp_opts = {

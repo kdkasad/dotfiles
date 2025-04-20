@@ -47,6 +47,7 @@ return {
                 },
             }
             require("dapui") -- Force nvim-dap-ui to load
+            require("mason-nvim-dap") -- Force mason-nvim-dap to load
         end,
     },
 
@@ -70,6 +71,7 @@ return {
     -- Mason-DAP bridge
     {
         "jay-babu/mason-nvim-dap.nvim",
+        lazy = true,
         dependencies = {
             "williamboman/mason.nvim",
         },

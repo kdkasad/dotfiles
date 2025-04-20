@@ -17,7 +17,8 @@ return {
     {
         "nvim-treesitter/nvim-treesitter",
         lazy = true,
-        event = "VimEnter",
+        event = "VeryLazy",
+        cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
         build = ":TSUpdate",
         config = function()
             -- Set up parsers
@@ -33,9 +34,4 @@ return {
             })
         end,
     },
-    -- Treesitter-based text object definitions
-    {
-        "nvim-treesitter/nvim-treesitter-textobjects",
-        config = false,
-    }
 }

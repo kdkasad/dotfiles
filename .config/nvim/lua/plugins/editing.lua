@@ -1,7 +1,15 @@
 ---@type LazySpec[]
 return {
     -- surround.vim: For editing surrounding quotes/braces
-    { "tpope/vim-surround" },
+    {
+        "tpope/vim-surround",
+        lazy = true,
+        keys = {
+            "ys",
+            "cs",
+            { "S", mode = "v" },
+        },
+    },
 
     -- abolish.vim: For helpful substitution commands
     {
@@ -37,10 +45,7 @@ return {
         "echasnovski/mini.ai",
         version = "*",
         dependencies = {
-            {
-                'nvim-treesitter/nvim-treesitter-textobjects',
-                lazy = true,
-            },
+            'nvim-treesitter/nvim-treesitter-textobjects',
         },
         lazy = true,
         keys = {

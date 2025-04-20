@@ -3,6 +3,7 @@ return {
     -- Git status signs
     {
         "lewis6991/gitsigns.nvim",
+        event = "VeryLazy",
         config = function()
             require("gitsigns").setup({
                 on_attach = function(bufnr)
