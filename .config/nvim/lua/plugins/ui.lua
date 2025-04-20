@@ -2,7 +2,9 @@ return {
     -- Display notifications and LSP progress messages in the bottom right corner
     {
         "j-hui/fidget.nvim",
-        enabled = false,
+        lazy = true,
+        cmd = "Fidget",
+        event = "LspAttach",
         opts = {},
     },
 
