@@ -15,7 +15,6 @@ return {
         "williamboman/mason-lspconfig.nvim",
         dependencies = {
             "williamboman/mason.nvim",
-            "hrsh7th/cmp-nvim-lsp",
             -- lspconfig: LSP configurator
             "neovim/nvim-lspconfig",
         },
@@ -103,9 +102,7 @@ return {
     -- None-LS: Wraps non-LSP tools for use in Neovim
     {
         "nvimtools/none-ls.nvim",
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-        },
+        event = "FileType",
         main = "null-ls",
         config = function()
             local null_ls = require("null-ls")
@@ -143,7 +140,6 @@ return {
         lazy = true,
         cmd = "Refactor",
         dependencies = {
-            "nvim-lua/plenary.nvim",
             "nvim-treesitter/nvim-treesitter",
         },
         opts = {

@@ -4,11 +4,8 @@ return {
         "hrsh7th/nvim-cmp",
         commit = "b356f2c",
         pin = true,
-        dependencies = {
-            "hrsh7th/cmp-nvim-lsp",
-        },
         lazy = true,
-        event = { "InsertEnter" },
+        event = "InsertEnter",
         config = function()
             local cmp = require("cmp")
             cmp.setup(
@@ -41,10 +38,6 @@ return {
                     }),
                     sources = cmp.config.sources({
                         { name = "nvim_lsp" },
-                        -- { name = 'vsnip' }, -- For vsnip users.
-                        -- { name = 'luasnip' }, -- For luasnip users.
-                        -- { name = 'ultisnips' }, -- For ultisnips users.
-                        -- { name = 'snippy' }, -- For snippy users.
                     }, {
                         { name = "buffer" },
                     }),
@@ -55,4 +48,9 @@ return {
             )
         end,
     },
+    -- LSP completion source
+    {
+        "hrsh7th/cmp-nvim-lsp",
+        lazy = true,
+    }
 }

@@ -7,6 +7,7 @@ return {
         keys = {
             "ys",
             "cs",
+            "ds",
             { "S", mode = "v" },
         },
     },

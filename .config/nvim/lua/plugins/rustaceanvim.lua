@@ -13,5 +13,6 @@ vim.g.rustaceanvim = {
 return {
     "mrcjkb/rustaceanvim",
     version = "^5", -- Recommended
-    lazy = false,
+    lazy = true,
+    event = "VeryLazy",
 }
