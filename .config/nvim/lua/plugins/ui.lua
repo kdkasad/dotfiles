@@ -99,7 +99,7 @@ return {
                 enabled = true,
                 -- Render TeX/Typst math in-editor
                 math = {
-                    enabled = true,
+                    enabled = false,
                 },
                 -- Convert PDFs to higher-resolution PNGs
                 convert = {
