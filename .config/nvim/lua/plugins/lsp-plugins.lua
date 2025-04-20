@@ -1,3 +1,4 @@
+---@type LazySpec[]
 return {
     -- Mason: package manager for LSPs & more
     {
@@ -123,8 +124,8 @@ return {
 
             -- Proselint
             if require("mason-registry").is_installed("proselint") then
-                table.insert(opts, null_ls.builtins.diagnostics.proselint)
-                table.insert(opts, null_ls.builtins.code_actions.proselint)
+                table.insert(opts.sources, null_ls.builtins.diagnostics.proselint)
+                table.insert(opts.sources, null_ls.builtins.code_actions.proselint)
             end
 
             null_ls.setup(opts)
