@@ -24,7 +24,7 @@ return {
     -- Breadcrumbs bar
     {
         "Bekaboo/dropbar.nvim",
-        event = "VeryLazy",
+        event = LazyFile,
         config = function()
             local dropbar_api = require("dropbar.api")
             vim.keymap.set("n", "<leader>;", dropbar_api.pick, { desc = "Pick symbols in winbar" })

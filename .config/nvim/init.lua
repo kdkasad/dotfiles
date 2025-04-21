@@ -17,6 +17,8 @@ if not vim.uv.fs_stat(lazypath) then
     end
 end
 vim.opt.rtp:prepend(lazypath)
+-- Add alias for file opened events
+LazyFile = { "BufReadPost", "BufWritePost", "BufNewFile" }
 require("lazy").setup({
     spec = {
         { import = "plugins" },

@@ -71,10 +71,12 @@ return {
     -- Mason-DAP bridge
     {
         "jay-babu/mason-nvim-dap.nvim",
-        lazy = true,
         dependencies = {
             "williamboman/mason.nvim",
         },
+        lazy = true,
+        event = LazyFile,
+        opts = {},
     },
 
     -- Python DAP configuration

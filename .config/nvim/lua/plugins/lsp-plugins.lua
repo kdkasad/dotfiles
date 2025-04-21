@@ -18,7 +18,7 @@ return {
             -- lspconfig: LSP configurator
             "neovim/nvim-lspconfig",
         },
-        event = "VeryLazy",
+        event = LazyFile,
         opts = {},
         config = function(_, opts)
             local default_lsp_opts = {
@@ -102,7 +102,7 @@ return {
     -- None-LS: Wraps non-LSP tools for use in Neovim
     {
         "nvimtools/none-ls.nvim",
-        event = "FileType",
+        event = LazyFile,
         main = "null-ls",
         config = function()
             local null_ls = require("null-ls")

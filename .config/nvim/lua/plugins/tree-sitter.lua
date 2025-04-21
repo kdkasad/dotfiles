@@ -17,7 +17,7 @@ return {
     {
         "nvim-treesitter/nvim-treesitter",
         lazy = true,
-        event = "VeryLazy",
+        event = LazyFile,
         cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
         build = ":TSUpdate",
         config = function()
