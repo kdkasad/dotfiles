@@ -141,8 +141,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
         vim.bo[env.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
 
         -- Keybindings
-        local map = function(lhs, rhs, desc)
-            vim.keymap.set({ "n", "v" }, lhs, rhs, { buffer = env.buf, desc = desc })
+        ---@param opts vim.keymap.set.Opts?
+        local map = function(lhs, rhs, desc, opts)
+            vim.keymap.set({ "n", "v" }, lhs, rhs, vim.tbl_extend('keep', { buffer = env.buf, desc = desc }, opts or {}))
         end
         -- Don't set this one for visual mode because it conflicts with the shift up keybind
         vim.keymap.set("n", "K",
@@ -156,7 +157,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
         map("gd", function() Snacks.picker.lsp_definitions()      end, "Find definition")
         map("gD", function() Snacks.picker.lsp_declarations()     end, "Find declaration")
         map("gy", function() Snacks.picker.lsp_type_definitions() end, "Find type definition")
-        map("gr", function() Snacks.picker.lsp_references()       end, "Find references")
+        map("gr", function() Snacks.picker.lsp_references()       end, "Find references", { nowait = true })
         map("<leader>fs", function() Snacks.picker.lsp_symbols() end, "Search LSP symbols")
         map("<leader>fS", function() Snacks.picker.lsp_workspace_symbols() end, "Search LSP workspace symbols")
         map("<leader>fe", function() Snacks.picker.diagnostics_buffer() end, "Search buffer diagnostics")
