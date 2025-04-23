@@ -2,8 +2,6 @@
 return {
     {
         "hrsh7th/nvim-cmp",
-        commit = "b356f2c",
-        pin = true,
         lazy = true,
         event = "InsertEnter",
         config = function()
