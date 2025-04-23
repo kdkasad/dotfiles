@@ -121,6 +121,10 @@ return {
 
             -- Proselint
             if require("mason-registry").is_installed("proselint") then
+                -- Enable Proselint in Typst files
+                table.insert(null_ls.builtins.diagnostics.proselint.filetypes, "typst")
+                table.insert(null_ls.builtins.code_actions.proselint.filetypes, "typst")
+
                 table.insert(opts.sources, null_ls.builtins.diagnostics.proselint)
                 table.insert(opts.sources, null_ls.builtins.code_actions.proselint)
             end
