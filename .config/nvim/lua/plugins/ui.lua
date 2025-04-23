@@ -1,3 +1,4 @@
+---@type LazySpec[]
 return {
     -- Display notifications and LSP progress messages in the bottom right corner
     {
@@ -76,7 +77,7 @@ return {
                     },
                     notifications = {
                         win = {
-                            preview = { wo = { wrap = true }, },
+                            preview = { wo = { wrap = true } },
                         },
                     },
                 },
@@ -91,9 +92,10 @@ return {
                 notification_history = { wo = { wrap = true } },
                 dashboard = {
                     wo = {
-                        winhighlight = "Normal:SnacksDashboardNormal,NormalFloat:SnacksDashboardNormal,TrailingWhitespace:Normal",
-                    }
-                }
+                        winhighlight =
+                        "Normal:SnacksDashboardNormal,NormalFloat:SnacksDashboardNormal,TrailingWhitespace:Normal",
+                    },
+                },
             },
             -- Image support via Kitty protocol
             image = {
@@ -106,8 +108,8 @@ return {
                 convert = {
                     magick = {
                         pdf = { "-density", 300, "{src}[0]", "-background", "white", "-alpha", "remove", "-trim" },
-                    }
-                }
+                    },
+                },
             },
             -- Dashboard
             dashboard = {
@@ -148,5 +150,37 @@ return {
                 },
             },
         },
+    },
+
+    -- Better tab bar
+    {
+        "akinsho/bufferline.nvim",
+        version = "*",
+        dependencies = {
+            "catppuccin/nvim",
+        },
+        event = "VeryLazy",
+        config = function()
+            local bufferline = require("bufferline")
+            local mocha = require("catppuccin.palettes").get_palette("mocha")
+            bufferline.setup({
+                options = {
+                    mode = "tabs",
+                },
+                highlights = require("catppuccin.groups.integrations.bufferline").get({
+                    custom = {
+                        mocha = {
+                            fill = { bg = mocha.base }, -- Make tab bar background invisible
+                        },
+                    },
+                }),
+            })
+        end,
+    },
+
+    -- Required for bufferline.nvim
+    {
+        "nvim-tree/nvim-web-devicons",
+        lazy = true,
     },
 }
