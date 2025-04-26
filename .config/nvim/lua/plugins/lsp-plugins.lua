@@ -108,14 +108,8 @@ return {
             local null_ls = require("null-ls")
             local opts = {
                 sources = {
-                    -- Stylua - formatter for Lua (install via Mason)
-                    null_ls.builtins.formatting.stylua,
-
                     -- Ansible-Lint
                     null_ls.builtins.diagnostics.ansiblelint,
-
-                    -- Typstfmt
-                    null_ls.builtins.formatting.typstfmt,
                 },
             }
 

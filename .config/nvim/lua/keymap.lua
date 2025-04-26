@@ -163,7 +163,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
         map("<leader>fe", function() Snacks.picker.diagnostics_buffer() end, "Search buffer diagnostics")
         map("<leader>fE", function() Snacks.picker.diagnostics() end, "Search diagnostics")
         map("<leader>ra", vim.lsp.buf.code_action, "Perform code action")
-        map("<leader>rf", vim.lsp.buf.format, "Format code")
         map("<leader>rr", vim.lsp.buf.rename, "Rename symbol")
 
         local borders_for_severity = require("kian").borders_for_severity
@@ -329,5 +328,10 @@ Snacks.toggle({
     end
 
 }):map("<leader>ue")
+
+-- Format with conform
+vim.keymap.set({ "n", "v" }, "<leader>rf", function()
+    require("conform").format({ async = true })
+end, { desc = "Format file" })
 
 -- vim: ft=lua sw=4 ts=4 et fdm=marker fmr={{{,}}} foldlevel=2
