@@ -2,7 +2,7 @@
 return {
     -- Mason: package manager for LSPs & more
     {
-        "williamboman/mason.nvim",
+        "mason-org/mason.nvim",
         event = "VeryLazy",
         cmd = "Mason",
         opts = {
@@ -12,9 +12,9 @@ return {
 
     -- Mason-lspconfig: Bridge between Mason and lspconfig
     {
-        "williamboman/mason-lspconfig.nvim",
+        "mason-org/mason-lspconfig.nvim",
         dependencies = {
-            "williamboman/mason.nvim",
+            "mason-org/mason.nvim",
             -- lspconfig: LSP configurator
             "neovim/nvim-lspconfig",
         },
