@@ -32,6 +32,9 @@ require("lazy").setup({
 -- Load keybindings
 require("keymap")
 
+-- Load LSP settings
+require("lsp")
+
 -- Load filetype-specific settings
 require("filetype")
 

@@ -84,6 +84,9 @@ return {
         "mfussenegger/nvim-dap-python",
         lazy = true,
         ft = "python",
+        dependencies = {
+            "mfussenegger/nvim-dap",
+        },
         -- Only enable this plugin if debugpy is installed via Mason
         cond = function()
             local success, registry = pcall(require, "mason-registry")
@@ -91,10 +94,12 @@ return {
         end,
         config = function()
             -- Get debugpy install path from Mason
-            local registry = require("mason-registry")
-            local debugpy_install_path = registry.get_package("debugpy"):get_install_path()
-            local venv_path = debugpy_install_path .. "/venv/bin/python"
-            require("dap-python").setup(venv_path)
+            local python_path = vim.fn.expand("$MASON/packages/debugpy/venv/bin/python3")
+            if vim.uv.fs_stat(python_path) == nil then
+                vim.notify('It looks like debugpy is installed via Mason, but failed to find its virtual environment.')
+            else
+                require("dap-python").setup(python_path)
+            end
         end,
     },
 }
