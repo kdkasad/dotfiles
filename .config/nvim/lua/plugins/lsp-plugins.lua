@@ -25,7 +25,9 @@ return {
         },
         event = LazyFile,
         opts = {
-            automatic_enable = true,
+            automatic_enable = {
+                exclude = { "rust_analyzer" },
+            },
         },
     },
 
@@ -108,8 +110,8 @@ return {
         opts = {
             bind = true,
             handler_opts = {
-                border = 'rounded',
+                border = "rounded",
             },
         },
-    }
+    },
 }
