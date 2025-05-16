@@ -58,9 +58,10 @@ return {
             "nvim-neotest/nvim-nio",
         },
         lazy = true,
-        config = function()
+        config = function(_, opts)
             local dap = require("dap")
             local dapui = require("dapui")
+            dapui.setup(opts)
             dap.listeners.before.attach.dapui_config = dapui.open
             dap.listeners.before.launch.dapui_config = dapui.open
             dap.listeners.before.event_terminated.dapui_config = dapui.close
@@ -76,7 +77,13 @@ return {
         },
         lazy = true,
         event = LazyFile,
-        opts = {},
+        opts = {
+            handlers = {
+                function(config)
+                    require("mason-nvim-dap").default_setup(config)
+                end,
+            },
+        },
     },
 
     -- Python DAP configuration
