@@ -6,6 +6,7 @@ return {
         event = "InsertEnter",
         dependencies = {
             "hrsh7th/cmp-nvim-lsp",
+            { "echasnovski/mini.pairs", optional = true },
         },
         config = function()
             local cmp = require("cmp")
@@ -28,7 +29,14 @@ return {
                         ["<C-j>"] = cmp.mapping.scroll_docs(4),
                         ["<C-Space>"] = cmp.mapping.complete(),
                         ["<C-e>"] = cmp.mapping.abort(),
-                        ["<CR>"] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+                        ["<CR>"] = function(fallback)
+                            if cmp.visible() and cmp.get_selected_entry() ~= nil then
+                                -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+                                cmp.confirm({ select = false })
+                            else
+                                fallback()
+                            end
+                        end,
                         ["<C-d>"] = function()
                             if cmp.visible_docs() then
                                 cmp.close_docs()

@@ -76,7 +76,14 @@ return {
     -- mini.pairs: Autopairs
     {
         "echasnovski/mini.pairs",
-        event = "InsertEnter",
-        opts = {},
+        -- Loading this on InsertEnter caused problems with the snacks picker
+        -- and nvim-cmp, because nvim-cmp needs mini.pairs' <cr> mapping to be
+        -- present when it is loaded in order to use it as the fallback
+        -- function. But when the Snacks picker is opened before entering insert
+        -- mode, it will enter insert mode in the picker and register the <cr>
+        -- buffer-local mapping, causing that to be used instead of mini.pairs'
+        -- <cr> mapping.
+        event = "VeryLazy",
+        config = true,
     },
 }
