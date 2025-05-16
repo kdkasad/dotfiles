@@ -11,6 +11,7 @@ return {
                 command = "gdb",
                 args = { "--interpreter=dap", "--eval-command", "set print pretty on" },
             }
+            ---@type dap.Configuration[]
             dap.configurations.c = {
                 {
                     name = "Launch",
@@ -46,6 +47,40 @@ return {
                     cwd = "${workspaceFolder}",
                 },
             }
+
+            -- Configuration to attach to running Go program
+            ---@type dap.Configuration[]
+            dap.configurations.go = {
+                {
+                    name = "Delve: Attach to process (PID)",
+                    type = "delve",
+                    request = "attach",
+                    mode = "local",
+                    stopOnEntry = true,
+                    processId = function()
+                        return coroutine.create(function(dap_run_co)
+                            vim.ui.input({ prompt = "PID" }, function(choice)
+                                coroutine.resume(dap_run_co, choice and tonumber(choice) or dap.ABORT)
+                            end)
+                        end)
+                    end,
+                },
+                {
+                    name = "Delve: Attach to process (name)",
+                    type = "delve",
+                    request = "attach",
+                    mode = "local",
+                    stopOnEntry = true,
+                    waitFor = function()
+                        return coroutine.create(function(dap_run_co)
+                            vim.ui.input({ prompt = "Process name" }, function(choice)
+                                coroutine.resume(dap_run_co, choice or dap.ABORT)
+                            end)
+                        end)
+                    end,
+                },
+            }
+
             require("dapui") -- Force nvim-dap-ui to load
             require("mason-nvim-dap") -- Force mason-nvim-dap to load
         end,

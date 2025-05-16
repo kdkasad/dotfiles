@@ -249,6 +249,8 @@ vim.keymap.set("n", "<leader>ds", dapdo({ "step_into" }), { desc = "Step into" }
 vim.keymap.set("n", "<leader>do", dapdo({ "step_out" }), { desc = "Step out" })
 vim.keymap.set("n", "<leader>dl", dapdo({ "run_last" }), { desc = "Re-run last configuration" })
 vim.keymap.set("n", "<leader>dr", dapdo({ "repl", "open" }), { desc = "Open REPL" })
+vim.keymap.set("n", "<leader>dr", dapdo({ "goto_" }), { desc = "Jump to line under cursor" })
+vim.keymap.set("n", "<leader>da", dapdo({ "run_to_cursor" }), { desc = "Run to cursor" })
 
 -- vim-easy-align keybindings
 vim.keymap.set({ "n", "v" }, "ga", "<Plug>(EasyAlign)", { desc = "Enter EasyAlign" })

@@ -9,7 +9,7 @@ return {
             rust = { "rustfmt" },
             c = { "clang-format" },
             cpp = { "clang-format" },
-            go = { "gofmt" },
+            go = { "gofumpt", "goimports", stop_after_first = false },
             json = { "jq" },
             javascript = { "prettierd", "prettier" },
             typst = { "typstyle" },
