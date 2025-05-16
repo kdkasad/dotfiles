@@ -72,4 +72,11 @@ return {
             })
         end
     },
+
+    -- mini.pairs: Autopairs
+    {
+        "echasnovski/mini.pairs",
+        event = "InsertEnter",
+        opts = {},
+    },
 }
