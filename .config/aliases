@@ -154,8 +154,9 @@ alias curl='noglob curl'
 alias wget='noglob curl'
 alias yt-dlp='noglob yt-dlp'
 
-# git(1)
+# VCS tools
 alias g=git
+alias j=jj
 
 # navigation upstream
 alias ..='cd ..'
