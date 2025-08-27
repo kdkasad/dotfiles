@@ -10,9 +10,11 @@ vim.g.rustaceanvim = {
     }
 }
 
+---@type LazySpec
 return {
     "mrcjkb/rustaceanvim",
     version = "^5", -- Recommended
     lazy = true,
     event = "VeryLazy",
+    cmd = { "Cargo", "RustLsp", "RustAnalyzer" }
 }

@@ -30,7 +30,7 @@ vim.o.scrolloff = 5
 
 -- Line numbers
 vim.o.number = true
-vim.o.relativenumber = true
+vim.o.relativenumber = false
 
 -- Show substitutions live
 vim.o.inccommand = "nosplit"

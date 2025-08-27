@@ -46,31 +46,31 @@ return {
         "echasnovski/mini.ai",
         version = "*",
         dependencies = {
-            'nvim-treesitter/nvim-treesitter-textobjects',
+            "nvim-treesitter/nvim-treesitter-textobjects",
         },
         lazy = true,
         keys = {
-            { "a", mode = { "x", "o" }, },
-            { "i", mode = { "x", "o" }, },
+            { "a", mode = { "x", "o" } },
+            { "i", mode = { "x", "o" } },
         },
         config = function()
-            local miniai = require('mini.ai')
+            local miniai = require("mini.ai")
             local ts = function(name)
                 return miniai.gen_spec.treesitter({
-                    a = '@' .. name .. '.outer',
-                    i = '@' .. name .. '.inner',
+                    a = "@" .. name .. ".outer",
+                    i = "@" .. name .. ".inner",
                 })
             end
             miniai.setup({
                 custom_textobjects = {
-                    a = ts('parameter'),
-                    f = ts('call'),
-                    d = ts('function'),
+                    a = ts("parameter"),
+                    f = ts("call"),
+                    d = ts("function"),
                     -- s = ts('statement'),
-                    l = ts('loop'),
+                    l = ts("loop"),
                 },
             })
-        end
+        end,
     },
 
     -- mini.pairs: Autopairs
@@ -85,5 +85,17 @@ return {
         -- <cr> mapping.
         event = "VeryLazy",
         config = true,
+    },
+
+    -- Split/join arrays and what not over lines
+    {
+        "Wansmer/treesj",
+        cmd = { "TSJToggle", "TSJSplit", "TSJJoin" },
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter"
+        },
+        opts = {
+            use_default_keymaps = false,
+        },
     },
 }

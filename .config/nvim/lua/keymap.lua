@@ -336,4 +336,9 @@ vim.keymap.set({ "n", "v" }, "<leader>rf", function()
     require("conform").format({ async = true })
 end, { desc = "Format file" })
 
+-- Toggle split/join
+vim.keymap.set("n", "<leader>rm", function()
+require("treesj").toggle()
+end, { desc = "Toggle split/join" })
+
 -- vim: ft=lua sw=4 ts=4 et fdm=marker fmr={{{,}}} foldlevel=2
