@@ -28,12 +28,6 @@ export LESS='-SRi'
 # Set default make(1) options
 export MAKEFLAGS='-j'
 
-# Set default cc(1) options
-if command -v gcc-14 &>/dev/null
-then
-    export CC=gcc-14
-fi
-
 # Include Homebrew-installed libraries in C compiler paths
 [ -d /opt/homebrew/include ] && export CPATH=/opt/homebrew/include
 [ -d /opt/homebrew/lib ] && export LIBRARY_PATH=/opt/homebrew/lib
