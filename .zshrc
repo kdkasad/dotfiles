@@ -78,26 +78,6 @@ KEYTIMEOUT=50 # Wait 50 * 10ms for multi-key chords
 ## ENVIRONMENT
 ##
 
-# Lazy-load NVM
-load_nvm() {
-    # List of commands which require NVM to be loaded
-    local requires_nvm=(nvm node npm pnpm)
-    for cmd in "${requires_nvm[@]}"
-    do
-        "$cmd"() {
-            # Remove this shim function
-            unset -f "$0"
-
-            # Load NVM
-            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-            [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-            # Run the now-loaded command
-            "$0" "$@"
-        }
-    done
-}; load_nvm
-
 # pnpm
 export PNPM_HOME="$HOME/.local/share/pnpm"
 case ":$PATH:" in
