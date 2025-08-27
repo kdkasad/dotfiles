@@ -141,6 +141,12 @@ then
     fpath+="$HOME/opt/share/zsh/vendor-completions"
 fi
 
+# Load more user-installed completions
+if [ -d "${XDG_DATA_HOME:-$HOME/.share}/zsh/site-functions" ]
+then
+    fpath+="${XDG_DATA_HOME:-$HOME/.share}/zsh/site-functions"
+fi
+
 zmodload zsh/complist # Load menu selection module
 autoload -Uz compinit # Load compinit
 compinit              # Initialize completions
