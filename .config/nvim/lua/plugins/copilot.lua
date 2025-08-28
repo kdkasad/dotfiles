@@ -9,9 +9,16 @@ return {
                 auto_trigger = true,
             },
         },
-        -- This plugin requires Node.js
         cond = function()
-            return vim.fn.exepath("node") ~= ""
+            -- This plugin requires Node.js
+            if vim.fn.exepath("node") == "" then
+                return false
+            end
+
+            -- Don't run on Purdue servers
+            if vim.fn.hostname():find(".cs.purdue.edu", 1, true) ~= nil then
+                return false
+            end
         end,
         config = function(_, opts)
             require("copilot").setup(opts)
@@ -38,7 +45,7 @@ return {
                         cs.toggle_auto_trigger()
                         copilot_enabled = new
                     end
-                end
+                end,
             }):map("<leader>ac")
             require("copilot.suggestion").toggle_auto_trigger()
         end,
