@@ -167,7 +167,7 @@ return {
                 options = {
                     mode = "tabs",
                 },
-                highlights = require("catppuccin.groups.integrations.bufferline").get({
+                highlights = require("catppuccin.groups.integrations.bufferline").get_theme({
                     custom = {
                         mocha = {
                             fill = { bg = mocha.base }, -- Make tab bar background invisible
