@@ -422,6 +422,12 @@ load_syntax_highlighting() {
     fi
 }; load_syntax_highlighting
 
+# Fix HOME for Purdue servers
+if [ "$(hostname | sed 's/^[^\.]*//')" = '.cs.purdue.edu' ] && [ -L "$HOME" ]; then
+    export HOME="$(readlink "$HOME")"
+fi
+
+
 ##
 ## PRINT PROFILING RESULTS
 ##
