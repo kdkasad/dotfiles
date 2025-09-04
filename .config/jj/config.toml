@@ -1,0 +1,13 @@
+"$schema" = "https://jj-vcs.github.io/jj/latest/config-schema.json"
+
+[ui]
+pager = "less -SRiF"
+default-command = "log"
+
+[user]
+name = "Kian Kasad"
+email = "kian@kasad.com"
+
+[aliases]
+c = "commit"
+mm = ["bookmark", "move", "master", "-t", "@-"]
