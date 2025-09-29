@@ -5,6 +5,7 @@ return {
         name = "catppuccin",
         lazy = false,
         priority = 1000,
+        version = "*",
         ---@type CatppuccinOptions
         opts = {
             flavour = "auto",
