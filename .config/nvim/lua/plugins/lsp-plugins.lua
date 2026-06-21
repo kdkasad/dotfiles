@@ -22,6 +22,7 @@ return {
             "mason-org/mason.nvim",
             -- lspconfig: LSP configurator
             "neovim/nvim-lspconfig",
+            "folke/neoconf.nvim",
         },
         event = LazyFile,
         opts = {

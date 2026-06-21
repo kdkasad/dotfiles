@@ -107,6 +107,10 @@ vim.api.nvim_create_autocmd({ "BufWinEnter", "WinNew" }, {
         if vim.api.nvim_win_get_config(0).relative ~= "" then
             return
         end
+        -- Don't enable for terminal buffers
+        if vim.bo[event.buf].buftype == "terminal" then
+            return
+        end
         vim.fn.matchadd("TrailingWhitespace", "\\s\\+$")
     end
 })

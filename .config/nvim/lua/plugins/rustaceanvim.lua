@@ -4,10 +4,10 @@ vim.g.rustaceanvim = {
             ["rust-analyzer"] = {
                 check = {
                     command = "clippy",
-                }
-            }
-        }
-    }
+                },
+            },
+        },
+    },
 }
 
 ---@type LazySpec
@@ -16,5 +16,8 @@ return {
     version = "^5", -- Recommended
     lazy = true,
     event = "VeryLazy",
-    cmd = { "Cargo", "RustLsp", "RustAnalyzer" }
+    cmd = { "Cargo", "RustLsp", "RustAnalyzer" },
+    dependencies = {
+        "folke/neoconf.nvim",
+    },
 }

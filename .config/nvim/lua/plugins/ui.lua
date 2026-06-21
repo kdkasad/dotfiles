@@ -3,6 +3,7 @@ return {
     -- Display notifications and LSP progress messages in the bottom right corner
     {
         "j-hui/fidget.nvim",
+        version = "^2.0.0",
         lazy = true,
         cmd = "Fidget",
         event = "LspAttach",
@@ -162,15 +163,15 @@ return {
         event = "VeryLazy",
         config = function()
             local bufferline = require("bufferline")
-            local mocha = require("catppuccin.palettes").get_palette("mocha")
+            local macchiato = require("catppuccin.palettes").get_palette("macchiato")
             bufferline.setup({
                 options = {
                     mode = "tabs",
                 },
-                highlights = require("catppuccin.groups.integrations.bufferline").get({
+                highlights = require("catppuccin.special.bufferline").get_theme({
                     custom = {
-                        mocha = {
-                            fill = { bg = mocha.base }, -- Make tab bar background invisible
+                        macchiato = {
+                            fill = { bg = macchiato.base }, -- Make tab bar background invisible
                         },
                     },
                 }),

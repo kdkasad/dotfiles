@@ -5,14 +5,14 @@ return {
         name = "catppuccin",
         lazy = false,
         priority = 1000,
-        version = "*",
+        version = "^2.0.0",
         ---@type CatppuccinOptions
         opts = {
             flavour = "auto",
             transparent_background = false,
             background = {
                 light = "latte",
-                dark = "mocha",
+                dark = "macchiato",
             },
             integrations = {
                 cmp = true,
@@ -37,7 +37,7 @@ return {
         },
         config = function(_, opts)
             require("catppuccin").setup(opts)
-            vim.cmd.colorscheme("catppuccin")
+            vim.cmd.colorscheme("catppuccin-nvim")
         end,
     },
     {
